@@ -1,9 +1,6 @@
-# Сборка и выкладка сайта на Timeweb при каждом изменении (в том числе из кабинета редактора).
-# Нужные секреты (Settings → Secrets and variables → Actions):
-#   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD — доступ FTP к хостингу Timeweb
-#   FTP_DIR — папка сайта на хостинге, например gidrologia.ru/public_html/
-#   OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET — приложение GitHub для входа в кабинет
-#   ZAYAVKI_PASSWORD — пароль раздела «Заявки»
+# Сборка сайта при каждом изменении (в том числе из кабинета редактора).
+# Готовые файлы кладутся в ветку `deploy`; хостинг Timeweb сам забирает их оттуда
+# (server/pull.php по расписанию Crontab). Пароли и ключи в сборку не попадают.
 name: Сборка и выкладка
 
 on:
@@ -15,12 +12,13 @@ concurrency:
   group: deploy
   cancel-in-progress: false
 
+permissions:
+  contents: write
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    env:
-      HAS_FTP: ${{ secrets.FTP_SERVER != '' && secrets.FTP_DIR != '' }}
-    timeout-minutes: 30
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
@@ -30,30 +28,21 @@ jobs:
           cache: npm
 
       - run: npm ci
-
-      - name: Ключи входа и пароль заявок
-        env:
-          OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
-          OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
-          ZAYAVKI_PASSWORD: ${{ secrets.ZAYAVKI_PASSWORD }}
-        run: |
-          php -r 'echo "<?php return " . var_export(["client_id" => getenv("OAUTH_CLIENT_ID"), "client_secret" => getenv("OAUTH_CLIENT_SECRET")], true) . ";\n";' > public/admin/oauth/config.php
-          php -r 'echo "<?php return " . var_export(["password_hash" => getenv("ZAYAVKI_PASSWORD") ? password_hash(getenv("ZAYAVKI_PASSWORD"), PASSWORD_DEFAULT) : ""], true) . ";\n";' > public/admin/zayavki/config.php
-
       - run: npm run build
 
-      - name: Выкладка на Timeweb по FTP
-        # Пока секреты FTP не заданы, сайт только собирается (проверка), но не выкладывается
-        if: ${{ env.HAS_FTP == 'true' }}
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_DIR }}
-          # Фото со старого сайта (img/netcat), форума (forum/files) и видео (netcat_files) живут
-          # только на хостинге: их нет в сборке, выкладка их не трогает.
-          exclude: |
-            **/.git*
-            **/.git*/**
+      - name: Проверка сборки
+        run: |
+          test -f dist/index.html
+          test -f dist/.htaccess
+          test "$(find dist -name '*.html' | wc -l)" -gt 500
+          ! find dist -name 'config.php' | grep -q .
+
+      - name: Публикация сборки в ветку deploy
+        run: |
+          cd dist
+          git init -q -b deploy
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "Сборка ${GITHUB_SHA::7}"
+          git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" deploy
