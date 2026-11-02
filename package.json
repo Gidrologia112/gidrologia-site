@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/preview-css.mjs",
     "preview": "astro preview"
   },
   "keywords": [],

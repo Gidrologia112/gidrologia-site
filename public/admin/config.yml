@@ -56,7 +56,7 @@ collections:
     name: url
     widget: string
     required: false
-    hint: Латиницей, через дефис. Можно не заполнять — адрес сделается из заголовка. Для старых записей адрес не меняется.
+    hint: Можно не заполнять — при сохранении адрес сделается из заголовка латиницей. У старых записей адрес не меняется.
   - label: Дата
     name: date
     widget: datetime
@@ -64,6 +64,7 @@ collections:
     date_format: DD.MM.YYYY
     time_format: false
     picker_utc: true
+    default: '{{now}}'
   - label: Основная рубрика
     name: rubric
     widget: select
@@ -162,7 +163,7 @@ collections:
     name: url
     widget: string
     required: false
-    hint: Латиницей, через дефис. Можно не заполнять — адрес сделается из заголовка. Для старых записей адрес не меняется.
+    hint: Можно не заполнять — при сохранении адрес сделается из заголовка латиницей. У старых записей адрес не меняется.
   - label: Дата
     name: date
     widget: datetime
@@ -170,6 +171,7 @@ collections:
     date_format: DD.MM.YYYY
     time_format: false
     picker_utc: true
+    default: '{{now}}'
   - label: Основная рубрика
     name: rubric
     widget: select
@@ -392,7 +394,8 @@ collections:
   - label: Адрес страницы
     name: slug
     widget: string
-    hint: Латиницей, через дефис, например proekt-vodoema-v-repino. После публикации не менять.
+    required: false
+    hint: Можно не заполнять — при сохранении адрес сделается из заголовка. После публикации не менять.
   - label: Тип
     name: kind
     widget: string
@@ -461,7 +464,8 @@ collections:
   - label: Адрес раздела
     name: slug
     widget: string
-    hint: Латиницей, через дефис. После публикации не менять.
+    required: false
+    hint: Можно не заполнять — при сохранении адрес сделается из названия. После публикации не менять.
   - label: Порядок
     name: order
     widget: number
@@ -482,17 +486,9 @@ collections:
       required: false
     - label: Фотографии
       name: photos
-      widget: list
-      summary: '{{fields.src}}'
-      fields:
-      - label: Фото
-        name: src
-        widget: image
-        choose_url: false
-      - label: Миниатюра
-        name: thumb
-        widget: hidden
-        default: ''
+      widget: photos
+      required: false
+      hint: Можно выбрать или перетащить сразу много фото — они уменьшатся и загрузятся сами
   - label: Подразделы
     name: groups
     widget: list
@@ -517,17 +513,9 @@ collections:
         required: false
       - label: Фотографии
         name: photos
-        widget: list
-        summary: '{{fields.src}}'
-        fields:
-        - label: Фото
-          name: src
-          widget: image
-          choose_url: false
-        - label: Миниатюра
-          name: thumb
-          widget: hidden
-          default: ''
+        widget: photos
+        required: false
+        hint: Можно выбрать или перетащить сразу много фото — они уменьшатся и загрузятся сами
   - label: Цвет заглушки
     name: tone
     widget: hidden
@@ -554,6 +542,8 @@ collections:
   - label: Адрес раздела
     name: slug
     widget: string
+    required: false
+    hint: Можно не заполнять — при сохранении адрес сделается из названия.
   - label: Порядок
     name: order
     widget: number

@@ -3,7 +3,8 @@ import { defineCollection, z } from 'astro:content';
 // Публикации (статьи) и события. Тексты переносятся из базы NetCat скриптом scripts/import-netcat.mjs.
 const post = z.object({
   title: z.string(),
-  date: z.string().optional(),        // ГГГГ-ММ-ДД
+  // ГГГГ-ММ-ДД; кабинет пишет дату без кавычек, YAML читает её как Date — приводим к строке
+  date: z.union([z.string(), z.date()]).transform((v) => (v instanceof Date ? v.toISOString().slice(0, 10) : v)).optional(),
   url: z.string().optional(),          // адрес из кабинета редактора (= имя файла)
   rubric: z.string().optional(),
   rubrics: z.array(z.string()).optional(), // все рубрики записи (на старом сайте их могло быть несколько)

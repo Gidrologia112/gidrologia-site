@@ -32,8 +32,8 @@ slug:
 _rubrics: &rubrics ["Плавательные водоёмы", "Живые бассейны", "Декоративные водоёмы", "Безопасные каскадные водоёмы", "Водоёмы для рыб", "Классические бассейны", "Фонтаны", "Водосохранные технологии", "Проектирование", "Монтаж гидроизоляции", "Монтаж оборудования", "Обслуживание", "Партнёрам"]
 _post_fields: &post_fields
   - { label: "Заголовок", name: "title", widget: "string" }
-  - { label: "Адрес страницы", name: "url", widget: "string", required: false, hint: "Латиницей, через дефис. Можно не заполнять — адрес сделается из заголовка. Для старых записей адрес не меняется." }
-  - { label: "Дата", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD.MM.YYYY", time_format: false, picker_utc: true }
+  - { label: "Адрес страницы", name: "url", widget: "string", required: false, hint: "Можно не заполнять — при сохранении адрес сделается из заголовка латиницей. У старых записей адрес не меняется." }
+  - { label: "Дата", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD.MM.YYYY", time_format: false, picker_utc: true, default: "{{now}}" }
   - { label: "Основная рубрика", name: "rubric", widget: "select", options: *rubrics, required: false }
   - { label: "Все рубрики", name: "rubrics", widget: "select", multiple: true, options: *rubrics, required: false, hint: "По ним статья находится в фильтрах раздела «Публикации»" }
   - { label: "Краткое описание", name: "excerpt", widget: "text", required: false, hint: "1–2 предложения: показывается в списке и в поисковиках" }
@@ -140,7 +140,7 @@ collections:
     preview_path: "proekty/{{slug}}/"
     fields:
       - { label: "Название", name: "title", widget: "string" }
-      - { label: "Адрес страницы", name: "slug", widget: "string", hint: "Латиницей, через дефис, например proekt-vodoema-v-repino. После публикации не менять." }
+      - { label: "Адрес страницы", name: "slug", widget: "string", required: false, hint: "Можно не заполнять — при сохранении адрес сделается из заголовка. После публикации не менять." }
       - { label: "Тип", name: "kind", widget: "string", hint: "Например: Проект плавательного водоёма" }
       - { label: "Место", name: "place", widget: "string" }
       - { label: "Решение", name: "service", widget: "relation", collection: "uslugi", search_fields: ["title"], value_field: "slug", display_fields: ["title"], required: false }
@@ -170,7 +170,7 @@ collections:
     preview_path: "galereya/{{slug}}/"
     fields:
       - { label: "Название раздела", name: "title", widget: "string" }
-      - { label: "Адрес раздела", name: "slug", widget: "string", hint: "Латиницей, через дефис. После публикации не менять." }
+      - { label: "Адрес раздела", name: "slug", widget: "string", required: false, hint: "Можно не заполнять — при сохранении адрес сделается из названия. После публикации не менять." }
       - { label: "Порядок", name: "order", widget: "number", value_type: "int", default: 20 }
       - &album
         label: "Объекты"
@@ -181,13 +181,7 @@ collections:
         fields:
           - { label: "Название объекта", name: "title", widget: "string" }
           - { label: "Описание", name: "text", widget: "text", required: false }
-          - label: "Фотографии"
-            name: "photos"
-            widget: "list"
-            summary: "{{fields.src}}"
-            fields:
-              - { label: "Фото", name: "src", widget: "image", choose_url: false }
-              - { label: "Миниатюра", name: "thumb", widget: "hidden", default: "" }
+          - { label: "Фотографии", name: "photos", widget: "photos", required: false, hint: "Можно выбрать или перетащить сразу много фото — они уменьшатся и загрузятся сами" }
       - label: "Подразделы"
         name: "groups"
         widget: "list"
@@ -212,7 +206,7 @@ collections:
     preview_path: "video/{{slug}}/"
     fields:
       - { label: "Название раздела", name: "title", widget: "string" }
-      - { label: "Адрес раздела", name: "slug", widget: "string" }
+      - { label: "Адрес раздела", name: "slug", widget: "string", required: false, hint: "Можно не заполнять — при сохранении адрес сделается из названия." }
       - { label: "Порядок", name: "order", widget: "number", value_type: "int", default: 20 }
       - { label: "Содержимое", name: "html", widget: "markdown", modes: ["raw", "rich_text"] }
       - { label: "Старый адрес", name: "old", widget: "hidden", required: false }
