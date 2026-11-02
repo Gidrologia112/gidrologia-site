@@ -49,6 +49,77 @@ function rrmdir($p) {
 }
 function kept($rel) { foreach (KEEP as $k) if (strpos($rel, $k) === 0) return true; return false; }
 
+// Настройки входа в кабинет и пароль заявок — из ~/deploy/config.php (в GitHub их нет).
+// Применяются при каждом запуске, если config.php изменился. Незаполненные заглушки «ВСТАВЬТЕ_…» считаются пустыми.
+function cfgval($cfg, $k) { $v = trim((string) ($cfg[$k] ?? '')); return (strpos($v, 'ВСТАВЬТЕ') === 0) ? '' : $v; }
+function sync_config($dir, $target, &$state, $forceIt = false) {
+  $cfgFile = $dir . '/config.php';
+  if (!is_file($cfgFile) || !is_dir($target)) return false;
+  $sig = md5_file($cfgFile);
+  if (!$forceIt && ($state['cfg'] ?? '') === $sig && is_file($target . '/admin/zayavki/config.php') && is_file($target . '/admin/oauth/config.php')) return false;
+  $cfg = include $cfgFile;
+  if (!is_array($cfg)) { logmsg('config.php: ошибка в файле, настройки не применены'); return false; }
+  @mkdir($target . '/admin/oauth', 0755, true);
+  @mkdir($target . '/admin/zayavki', 0755, true);
+  file_put_contents($target . '/admin/oauth/config.php', '<?php return ' . var_export([
+    'client_id' => cfgval($cfg, 'oauth_client_id'), 'client_secret' => cfgval($cfg, 'oauth_client_secret'),
+  ], true) . ";\n");
+  $pw = cfgval($cfg, 'zayavki_password');
+  $old = is_file($target . '/admin/zayavki/config.php') ? (include $target . '/admin/zayavki/config.php') : [];
+  $hash = ($pw !== '' && is_array($old) && !empty($old['password_hash']) && password_verify($pw, $old['password_hash'])) ? $old['password_hash'] : ($pw !== '' ? password_hash($pw, PASSWORD_DEFAULT) : '');
+  file_put_contents($target . '/admin/zayavki/config.php', '<?php return ' . var_export(['password_hash' => $hash], true) . ";\n");
+  $state['cfg'] = $sig;
+  logmsg('Настройки кабинета обновлены' . ($hash === '' ? ' (пароль заявок не задан — вход закрыт)' : '') . (cfgval($cfg, 'oauth_client_secret') === '' ? ' (секрет GitHub не задан — вход в /admin не заработает)' : ''));
+  return true;
+}
+function save_state($f, $state) { file_put_contents($f, json_encode($state, JSON_UNESCAPED_UNICODE)); }
+
+// Фото, видео и вложения форума старого сайта: копируются (не переносятся) из ~/public_html в новую папку
+// по спискам из репозитория. Повторно — только если списки изменились. Старые файлы не трогаются.
+const MEDIA_EXT = ['jpg','jpeg','png','gif','webp','bmp','mp4','flv','avi','wmv','mov','webm','pdf','doc','docx','xls','xlsx','ppt','pptx','rtf','txt'];
+function copy_media($dir, $target) {
+  $old = dirname($dir) . '/public_html';
+  if (!is_dir($old) || !is_dir($target)) return;
+  $base = 'https://raw.githubusercontent.com/' . REPO . '/main/import/';
+  [$c1, $tsv] = http_get($base . 'files-to-copy.tsv');
+  [$c2, $refs] = http_get($base . 'media-refs.txt');
+  if ($c1 !== 200 || $c2 !== 200) return;
+  $sig = md5($tsv . $refs);
+  $doneFile = $dir . '/media.done';
+  if (is_file($doneFile) && trim(file_get_contents($doneFile)) === $sig) return;
+  $pairs = [];
+  foreach (explode("\n", $tsv) as $line) {           // netcat_files/<хеш> -> img/netcat/...
+    if ($line === '' || $line[0] === '#') continue;
+    $p = explode("\t", rtrim($line, "\r"));
+    if (count($p) === 2) $pairs[] = ['netcat_files/' . $p[0], $p[1]];
+  }
+  foreach (explode("\n", $refs) as $line) {          // netcat_files/... и forum/files/... — по тем же путям
+    $line = trim($line);
+    if ($line !== '') $pairs[] = [$line, $line];
+  }
+  $copied = $have = $missing = $skipped = 0; $bytes = 0;
+  foreach ($pairs as [$from, $to]) {
+    if (strpos($from . $to, '..') !== false || strpos($to, '/') === 0) { $skipped++; continue; }
+    $ext = strtolower(pathinfo($to, PATHINFO_EXTENSION));
+    $isForum = strpos($to, 'forum/files/') === 0;
+    if (!$isForum && !in_array($ext, MEDIA_EXT, true)) { $skipped++; continue; }
+    if (!(strpos($to, 'img/netcat/') === 0 || strpos($to, 'netcat_files/') === 0 || $isForum)) { $skipped++; continue; }
+    $s = $old . '/' . $from;
+    if (!is_file($s)) {                                // регистр букв в имени мог отличаться
+      $d = dirname($s); $n = strtolower(basename($s)); $alt = null;
+      if (is_dir($d)) foreach (scandir($d) as $f) if (strtolower($f) === $n) { $alt = $d . '/' . $f; break; }
+      if ($alt === null) { $missing++; continue; }
+      $s = $alt;
+    }
+    $t = $target . '/' . $to;
+    if (is_file($t) && filesize($t) === filesize($s)) { $have++; continue; }
+    if (!is_dir(dirname($t))) mkdir(dirname($t), 0755, true);
+    if (copy($s, $t . '.tmp') && rename($t . '.tmp', $t)) { $copied++; $bytes += filesize($t); }
+  }
+  file_put_contents($doneFile, $sig . "\n");
+  logmsg(sprintf('Медиа: скопировано %d (%.0f МБ), уже было %d, нет в старом сайте %d, пропущено %d', $copied, $bytes / 1048576, $have, $missing, $skipped));
+}
+
 // Не запускаться дважды одновременно
 $lock = fopen($dir . '/pull.lock', 'c');
 if (!$lock || !flock($lock, LOCK_EX | LOCK_NB)) exit(0);
@@ -61,7 +132,11 @@ if (!is_array($state)) $state = [];
 [$code, $body, $err] = http_get('https://api.github.com/repos/' . REPO . '/commits/' . BRANCH, ['Accept: application/vnd.github.sha']);
 if ($code !== 200 || !preg_match('/^[0-9a-f]{40}$/', trim((string) $body))) { logmsg("Не удалось узнать версию: HTTP $code $err"); exit(1); }
 $sha = trim($body);
-if (!$force && ($state['sha'] ?? '') === $sha) exit(0);
+if (!$force && ($state['sha'] ?? '') === $sha) {
+  if (sync_config($dir, $target, $state)) save_state($stateFile, $state);
+  copy_media($dir, $target);
+  exit(0);
+}
 
 // 2. Скачиваем архив сборки
 $zip = $dir . '/build.zip';
@@ -99,21 +174,9 @@ foreach (($state['files'] ?? []) as $rel) {
 }
 rrmdir($tmp);
 
-// 5. Настройки входа в кабинет и пароль заявок — из ~/deploy/config.php (в GitHub их нет)
-$cfgFile = $dir . '/config.php';
-if (is_file($cfgFile)) {
-  $cfg = require $cfgFile;
-  @mkdir($target . '/admin/oauth', 0755, true);
-  @mkdir($target . '/admin/zayavki', 0755, true);
-  file_put_contents($target . '/admin/oauth/config.php', '<?php return ' . var_export([
-    'client_id' => (string) ($cfg['oauth_client_id'] ?? ''), 'client_secret' => (string) ($cfg['oauth_client_secret'] ?? ''),
-  ], true) . ";\n");
-  $pw = (string) ($cfg['zayavki_password'] ?? '');
-  $old = is_file($target . '/admin/zayavki/config.php') ? (include $target . '/admin/zayavki/config.php') : [];
-  $hash = (is_array($old) && !empty($old['password_hash']) && password_verify($pw, $old['password_hash'])) ? $old['password_hash'] : ($pw !== '' ? password_hash($pw, PASSWORD_DEFAULT) : '');
-  file_put_contents($target . '/admin/zayavki/config.php', '<?php return ' . var_export(['password_hash' => $hash], true) . ";\n");
-}
-
-file_put_contents($stateFile, json_encode(['sha' => $sha, 'time' => date('c'), 'files' => array_keys($new)], JSON_UNESCAPED_UNICODE));
+$state = array_merge($state, ['sha' => $sha, 'time' => date('c'), 'files' => array_keys($new)]);
+sync_config($dir, $target, $state, true);
+save_state($stateFile, $state);
 @file_put_contents($target . '/admin/deploy-status.json', json_encode(['version' => substr($sha, 0, 7), 'time' => date('c')]));
 logmsg('Выложена сборка ' . substr($sha, 0, 7) . ': файлов ' . count($new) . ', удалено ' . $removed);
+copy_media($dir, $target);
