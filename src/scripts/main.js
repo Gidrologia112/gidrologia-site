@@ -352,20 +352,13 @@ function initMotion() {
     }), { threshold: 0.6 });
     nums.forEach((n) => io.observe(n));
   }
-  // 3. Шапка: компактнее после прокрутки, прячется при прокрутке вниз и возвращается при прокрутке вверх
+  // 3. Шапка всегда на месте, после прокрутки становится компактнее
   const hdr = $('.hdr');
   if (hdr) {
-    let last = window.scrollY, ticking = false;
-    const upd = () => {
-      const y = window.scrollY;
-      hdr.classList.toggle('hdr-scrolled', y > 24);
-      const menuOpen = document.body.style.overflow === 'hidden';
-      if (!reduceMotion && !menuOpen) hdr.classList.toggle('hdr-hide', y > 320 && y > last + 4);
-      if (y < last - 4) hdr.classList.remove('hdr-hide');
-      last = y; ticking = false;
-    };
+    let ticking = false;
+    const upd = () => { hdr.classList.toggle('hdr-scrolled', window.scrollY > 24); ticking = false; };
     window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(upd); } }, { passive: true });
-    hdr.addEventListener('focusin', () => hdr.classList.remove('hdr-hide'));
+    upd();
   }
   // 4. Картинки в текстах проявляются по загрузке
   $$('.prose img, .gal-grid img, .card .ph > img, .post .ph > img').forEach((img) => {

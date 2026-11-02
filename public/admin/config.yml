@@ -699,25 +699,27 @@ collections:
       - label: Подпись
         name: text
         widget: string
-    - label: 'Главная: квалификация'
-      name: credentials
+    - label: 'Главная: факты о компании (плитки с фото)'
+      name: aboutTiles
       widget: list
+      hint: Первая плитка — большая. Без фото плитка будет синей.
       summary: '{{fields.title}}'
       fields:
       - label: Заголовок
         name: title
         widget: string
-      - label: Текст
+      - label: Текст (1–2 предложения)
         name: text
         widget: text
-    - label: 'Главная: кратко о компании'
-      name: about
-      widget: list
-      hint: Абзацы текста в блоке «О нас»
-      field:
-        label: Абзац
-        name: p
-        widget: text
+      - label: Фото
+        name: photo
+        widget: image
+        required: false
+        choose_url: false
+      - label: Крупная цифра (для плитки без фото)
+        name: big
+        widget: string
+        required: false
     - label: 'Карта: города'
       name: cities
       widget: list

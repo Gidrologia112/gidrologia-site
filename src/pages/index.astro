@@ -64,14 +64,17 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
         </div>
       </div>
     </div>
-    <div class="g-cred rv">
-      {site.credentials.map((x) => <div><b>{x.title}</b><p>{x.text}</p></div>)}
-    </div>
-    <div class="g-story rv">
-      <p class="lbl">Кратко о компании</p>
-      <div class="story-text">
-        {site.about.map((t) => <p>{t}</p>)}
-      </div>
+    <div class="g-tiles">
+      {site.aboutTiles.map((t, i) => (
+        <article class={`tile rv rv-s${i === 0 ? ' tile-big' : ''}${t.photo ? '' : ' tile-plain'}`} style={`--d:${i * 90}ms`}>
+          {t.photo && <Photo src={t.photo} alt={t.title} label="" tone="#0A2A36" />}
+          {t.big && <div class="h tile-big-num" aria-hidden="true">{t.big}</div>}
+          <div class="tile-txt">
+            <h3 class="h">{t.title}</h3>
+            <p>{t.text}</p>
+          </div>
+        </article>
+      ))}
     </div>
     <a href={L.presentation} class="btn btn-line rv" style="margin-top:40px">Смотреть презентацию компании</a>
   </div>

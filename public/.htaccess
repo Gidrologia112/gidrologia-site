@@ -3,10 +3,20 @@
 AddDefaultCharset UTF-8
 Options -Indexes
 
-# HTTPS и единый домен без www
+# Единый адрес https://gidrologia.ru: другие домены и www — туда.
+# new.gidrologia.ru — предпросмотр до запуска: без переадресации и закрыт от поисковиков.
 RewriteEngine On
-RewriteCond %{HTTPS} off [OR]
-RewriteCond %{HTTP_HOST} ^www\. [NC]
+SetEnvIfNoCase Host ^new\.gidrologia\.ru$ GIDRO_PREVIEW
+<IfModule mod_headers.c>
+  Header always set X-Robots-Tag "noindex, nofollow" env=GIDRO_PREVIEW
+</IfModule>
+RewriteCond %{HTTP_HOST} !^gidrologia\.ru$ [NC]
+RewriteCond %{HTTP_HOST} !^new\.gidrologia\.ru$ [NC]
+RewriteRule ^ https://gidrologia.ru%{REQUEST_URI} [L,R=301]
+# HTTP → HTTPS (Timeweb отдаёт сайт через прокси: смотрим и X-Forwarded-Proto)
+RewriteCond %{HTTP_HOST} ^gidrologia\.ru$ [NC]
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !=https
 RewriteRule ^ https://gidrologia.ru%{REQUEST_URI} [L,R=301]
 
 # ===== 301-редиректы со старых адресов NetCat =====
