@@ -1,0 +1,14 @@
+---
+import PostPage from '../../components/PostPage.astro';
+import { getEvents } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const all = await getEvents();
+  return all.map((post) => ({
+    params: { slug: post.slug },
+    props: { post, related: all.filter((p) => p.slug !== post.slug).slice(0, 5) },
+  }));
+}
+const { post, related } = Astro.props;
+---
+<PostPage post={post} related={related} base="/sobytiya/" section="События" sectionHref="/sobytiya/" kind="event" />

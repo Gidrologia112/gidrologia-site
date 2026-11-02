@@ -1,0 +1,22 @@
+---
+import site from '../data/site.json';
+interface Props { tz?: boolean; }
+const { tz = false } = Astro.props;
+---
+<div data-form-wrap data-form-start={tz ? '1' : '0'}>
+  <div class="seg" role="tablist" aria-label="Тип обращения">
+    <button type="button" role="tab" aria-selected={tz ? 'false' : 'true'} data-ft="0">Обсудить проект</button>
+    <button type="button" role="tab" aria-selected={tz ? 'true' : 'false'} data-ft="1">Отправить ТЗ</button>
+  </div>
+  <form class="form" action="/send.php" method="post" enctype="multipart/form-data" data-form novalidate>
+    <input type="hidden" name="type" value={tz ? 'tz' : 'project'} data-ft-type>
+    <div class="hp" aria-hidden="true"><label>Сайт<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <label class="fld">Имя<input type="text" name="name" autocomplete="name" required maxlength="100"></label>
+    <label class="fld">Телефон<input type="tel" name="phone" autocomplete="tel" inputmode="tel" required maxlength="30"></label>
+    <label class="fld"><span data-ft-label>{tz ? 'Кратко о техническом задании' : 'Расскажите об участке и задаче'}</span><textarea name="message" rows="3" maxlength="3000"></textarea></label>
+    <label class="fld-file" data-ft-file hidden={!tz}>Файл ТЗ, план участка или эскиз (PDF, DOC, JPG, PNG, до 10 МБ)<input type="file" name="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"></label>
+    <label class="consent"><input type="checkbox" name="consent" value="1" required><span>Согласен на обработку персональных данных в соответствии с&nbsp;<a href={site.links.privacy} target="_blank">политикой конфиденциальности</a></span></label>
+    <button type="submit" class="btn btn-light" data-ft-btn>{tz ? 'Отправить ТЗ на расчёт' : 'Отправить заявку'}</button>
+    <p class="form-msg" role="status" data-form-msg></p>
+  </form>
+</div>

@@ -1,0 +1,510 @@
+{
+ "slug": "fontany",
+ "title": "Фонтаны",
+ "old": "/galereya/fontany/",
+ "tone": "#1C3445",
+ "albums": [
+  {
+   "title": "Фонтан ВНИИМ",
+   "text": "Фонтан на территории ВНИИМ им.Менделеева. Создан совместными усилиями с компанией \"Домашний Оазис\".",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/fontan.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_fontan.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/fontan_2.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_fontan_2.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Бекасово (Московская область)",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/DSC_0001_resize.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_DSC_0001_resize.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/DSC_0006_resize.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_DSC_0006_resize.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/DSC01558_resize.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_DSC01558_resize.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/DSC01560_resize.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_DSC01560_resize.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Медное озеро (Ленинградская область)",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/SAM_0536.JPG",
+     "thumb": "/img/netcat/multifile/2557/preview_SAM_0536.JPG"
+    }
+   ]
+  },
+  {
+   "title": "ТСЖ Контур (Санкт-Петербург)",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/Foto017_resize.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_Foto017_resize.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/Foto016_resize.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_Foto016_resize.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Фонтан в Зеленогорске (ЛО)",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/zel026_0.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_zel026_0.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/zel025_0.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_zel025_0.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/zel027_0.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_zel027_0.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/zel019_0.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_zel019_0.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Фонтан на Валдае",
+   "text": "Построен в 2017 году",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/vld003.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_vld003.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/vld001.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_vld001.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/vld002.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_vld002.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Фонтан в п. Мошкачи (Кировская обл.)",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/mash000_1_0.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_mash000_1_0.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/2016_002.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_2016_002.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Фонтаны в конном клубе Форсайд (ЛО)",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/20160922_162234.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_20160922_162234.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/20160922_162253.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_20160922_162253.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/20160922_161910.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_20160922_161910.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/fs017_0.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_fs017_0.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Фонтан в Агалатово",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/agf021.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_agf021.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/agf020.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_agf020.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/agf018.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_agf018.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/agf019.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_agf019.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Фонтан в п. Жуковка (МО) с чашей из кортена",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/guk1014.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_guk1014.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/guk1015.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_guk1015.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/guk1016.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_guk1016.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/guk1028.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_guk1028.jpeg"
+    }
+   ]
+  },
+  {
+   "title": "Фонтан с маскароном в Стрельне (Лен. обл.)",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/ststena010.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_ststena010.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/ststena009.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_ststena009.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/ststena008.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_ststena008.jpeg"
+    }
+   ]
+  },
+  {
+   "title": "Классический фонтан в Стрельне (Лен. обл.)",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/stfont023.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_stfont023.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/stfont018.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_stfont018.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/stfont019.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_stfont019.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/stfont020.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_stfont020.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/stfont021.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_stfont021.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/stfont022.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_stfont022.jpeg"
+    }
+   ]
+  },
+  {
+   "title": "БКВ-фонтан в Екатеринбурге. 2015",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/kirovbkv3004.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_kirovbkv3004.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Фонтан в Агалатово № 2",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/ag2012.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_ag2012.jpeg"
+    }
+   ]
+  },
+  {
+   "title": "Фонтан-поилка для птиц в Сосновом Бору. 2022",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/sosnbr.bkvfnt.2022.003.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_sosnbr.bkvfnt.2022.003.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/sosnbr.bkvfnt.2022.006.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_sosnbr.bkvfnt.2022.006.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/sosnbr.bkvfnt.2022.008.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_sosnbr.bkvfnt.2022.008.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/sosnbr.bkvfnt.2022.009.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_sosnbr.bkvfnt.2022.009.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/sosnbr.bkvfnt.2022.005.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_sosnbr.bkvfnt.2022.005.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/sosnbr.bkvfnt.2022.010.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_sosnbr.bkvfnt.2022.010.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/sosnbr.bkvfnt.2022.011.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_sosnbr.bkvfnt.2022.011.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Фонтан-чаша в Миллениум парке (МО)",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/millpark.2023.002213.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_millpark.2023.002213.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/millpark.2023.002214.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_millpark.2023.002214.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/millpark.2023.002215.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_millpark.2023.002215.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/millpark.2023.002216.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_millpark.2023.002216.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/millpark.2023.002217.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_millpark.2023.002217.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/millpark.2023.002218.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_millpark.2023.002218.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/millpark.2023.038.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_millpark.2023.038.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/millpark.2023.039.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_millpark.2023.039.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Фонтан-камень в Миллениум парке (МО). 2023",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/milpark.bkv.2023.006.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_milpark.bkv.2023.006.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/milpark.bkv.2023.007.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_milpark.bkv.2023.007.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/milpark.bkv.2023.008.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_milpark.bkv.2023.008.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/milpark.bkv.2023.009.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_milpark.bkv.2023.009.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/milpark.bkv.2023.0010.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_milpark.bkv.2023.0010.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Фонтан \"Круг\" в Москве. 2023",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/fontan.krug.msk.2023.0012.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_fontan.krug.msk.2023.0012.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/fontan.krug.msk.2023.0013.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_fontan.krug.msk.2023.0013.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/fontan.krug.msk.2023.0014.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_fontan.krug.msk.2023.0014.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/fontan.krug.msk.2023.0017.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_fontan.krug.msk.2023.0017.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/fontan.krug.msk.2023.0019.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_fontan.krug.msk.2023.0019.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Фонтана-ваза в Синявино. 2021",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/vaza.2021.003_2.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_vaza.2021.003_2.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/vaza.2021.002_2.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_vaza.2021.002_2.jpeg"
+    }
+   ]
+  },
+  {
+   "title": "Фонтан \"Металлические чаши\". МартХаус. 2023",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/martbkv.2023.215.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_martbkv.2023.215.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/martbkv.2023.216.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_martbkv.2023.216.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/martbkv.2023.217.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_martbkv.2023.217.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/martbkv.2023.218.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_martbkv.2023.218.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/martbkv.2023.219.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_martbkv.2023.219.jpg"
+    }
+   ]
+  },
+  {
+   "title": "БКВ-фонтан в г. Пушкин. 2023",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/pushkin.font..2023.030.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_pushkin.font..2023.030.jpg"
+    }
+   ]
+  },
+  {
+   "title": "БКВ-фонтан \"Две чаши\". Репино-парк. 2022 г",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/Izobrazhenie_WhatsApp_2024_05_27_v_18.56.20_848f8415.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_Izobrazhenie_WhatsApp_2024_05_27_v_18.56.20_848f8415.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/Izobrazhenie_WhatsApp_2024_05_27_v_18.56.20_a0e0a9a8.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_Izobrazhenie_WhatsApp_2024_05_27_v_18.56.20_a0e0a9a8.jpg"
+    }
+   ]
+  },
+  {
+   "title": "БКВ-фонтан в Самаре. 2024",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/samara.bkv.2024.001.JPG",
+     "thumb": "/img/netcat/multifile/2557/preview_samara.bkv.2024.001.JPG"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/samara.bkv.2024.002.JPG",
+     "thumb": "/img/netcat/multifile/2557/preview_samara.bkv.2024.002.JPG"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/samara.bkv.2024.003.JPG",
+     "thumb": "/img/netcat/multifile/2557/preview_samara.bkv.2024.003.JPG"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/samara.bkv.2024.004.JPG",
+     "thumb": "/img/netcat/multifile/2557/preview_samara.bkv.2024.004.JPG"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/samara.bkv.2024.005.JPG",
+     "thumb": "/img/netcat/multifile/2557/preview_samara.bkv.2024.005.JPG"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/samara.bkv.2024.006.JPG",
+     "thumb": "/img/netcat/multifile/2557/preview_samara.bkv.2024.006.JPG"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/samara.bkv.2024.007.JPG",
+     "thumb": "/img/netcat/multifile/2557/preview_samara.bkv.2024.007.JPG"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/samara.bkv.2024.008.JPG",
+     "thumb": "/img/netcat/multifile/2557/preview_samara.bkv.2024.008.JPG"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/samara.bkv.2024.009.JPG",
+     "thumb": "/img/netcat/multifile/2557/preview_samara.bkv.2024.009.JPG"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/samara.bkv.2024.010.JPG",
+     "thumb": "/img/netcat/multifile/2557/preview_samara.bkv.2024.010.JPG"
+    }
+   ]
+  },
+  {
+   "title": "Фонтан в квартале Октавия. 2021 г",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/Okt.font.2021.024.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_Okt.font.2021.024.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/Okt.font.2021.025.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_Okt.font.2021.025.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/Okt.font.2021.026.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_Okt.font.2021.026.jpg"
+    }
+   ]
+  }
+ ],
+ "groups": [],
+ "order": 7
+}

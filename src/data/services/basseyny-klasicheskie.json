@@ -1,0 +1,26 @@
+{
+ "slug": "basseyny-klasicheskie",
+ "group": "extra",
+ "title": "Классические бассейны",
+ "tone": "#2B3F4C",
+ "short": "Классика – это проверено!",
+ "facts": [
+  {
+   "label": "Форма",
+   "value": "Строгая геометрия"
+  },
+  {
+   "label": "Водоподготовка",
+   "value": "Традиционная"
+  },
+  {
+   "label": "Работы",
+   "value": "Проект, монтаж, сервис"
+  }
+ ],
+ "gallery": "klassicheskie-basseyny",
+ "video": "klassicheskie-basseyny",
+ "rubric": "Классические бассейны",
+ "cover": "/img/netcat/f/2560-1-item-1.jpg",
+ "order": 7
+}

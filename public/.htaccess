@@ -1,0 +1,118 @@
+# Гидрология — настройки Apache (хостинг Timeweb)
+
+AddDefaultCharset UTF-8
+Options -Indexes
+
+# HTTPS и единый домен без www
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://gidrologia.ru%{REQUEST_URI} [L,R=301]
+
+# ===== 301-редиректы со старых адресов NetCat =====
+# Старые карточки услуг, проектов, публикаций и событий: /razdel/slug.html → /razdel/slug/
+# Записи без ЧПУ на старом сайте (sobytiya_ID.html)
+RewriteRule ^sobytiya/sobytiya_3\.html$ /sobytiya/vodnye-obekty-na-uchastke-klassifikatsiya-otlichiy-3/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_4\.html$ /sobytiya/otkryta-videostranichka-gidrologii-na-youtube-4/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_5\.html$ /sobytiya/seminar-25-26-fevralya-2014-g-v-kieve-5/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_6\.html$ /sobytiya/seminar-na-temu-plavatelnye-vodoemy-sposoby-biolog-6/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_7\.html$ /sobytiya/my-stali-blizhe-k-vam-7/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_9\.html$ /sobytiya/25-yanvarya-sostoyalsya-pervyj-v-etom-godu-seminar-9/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_11\.html$ /sobytiya/den-rozhdeniya-dmitriya-petrova-11/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_12\.html$ /sobytiya/zvonok-s-sajta-12/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_13\.html$ /sobytiya/seminar-dmitriya-petrova-v-kieve-sostoitsya-13/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_15\.html$ /sobytiya/seminar-v-kazani-15/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_19\.html$ /sobytiya/blagotvoritelnyj-proekt-vodoem-s-vodopadom-dlya-gm-19/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_20\.html$ /sobytiya/nachalo-sezona-2014-20/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_21\.html$ /sobytiya/gidrologiya-na-ukraine-21/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_35\.html$ /sobytiya/publikatsiya-novogo-proekta-35/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_55\.html$ /sobytiya/sostoyalsya-letnij-seminar-dmitriya-petrova-55/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_314\.html$ /sobytiya/pozdravlyaem-s-novym-godom-314/ [L,R=301]
+RewriteRule ^uslugi/vodoemybezopasnye-kaskadnye\.html$ /uslugi/vodoemy-bezopasnye-kaskadnye/ [L,R=301]
+RewriteRule ^(uslugi|proekty|publikatsii|sobytiya)/([^/]+)\.html$ /$1/$2/ [L,R=301]
+# Видео: /video/razdel.html → /video/razdel/
+RewriteRule ^video/iskusstvennye-ozera-dlya-kottedzhnyh-poselkov\.html$ /video/iskusstvennye-ozera/ [L,R=301]
+RewriteRule ^video/([^/]+)\.html$ /video/$1/ [L,R=301]
+# Галерея: разделы с числовыми адресами и отдельные страницы фото → раздел
+RewriteRule ^galereya/galereya_67\.html$ /galereya/vodosohrannye-tehnologii/ [L,R=301]
+RewriteRule ^galereya/galereya_66\.html$ /galereya/obsluzhivanie/ [L,R=301]
+RewriteRule ^galereya/galereya_72\.html$ /galereya/proektirovanie/ [L,R=301]
+RewriteRule ^galereya/galereya_\d+\.html$ /galereya/ [L,R=301]
+RewriteRule ^galereya/([^/]+)/[^/]+\.html$ /galereya/$1/ [L,R=301]
+# Старые разделы
+RewriteRule ^(content|node|taxonomy)(/.*)?$ /publikatsii/ [L,R=301]
+RewriteRule ^isparenie\.html$ /isparenie/ [L,R=301]
+RewriteRule ^geografiya/?$ /#geo [NE,L,R=301]
+# Архив форума: старые адреса phpBB → статичные страницы
+RewriteRule ^forum/files/ - [L]
+RewriteCond %{QUERY_STRING} (^|&)t=(\d+)
+RewriteRule ^forum/viewtopic\.php$ /arhiv-foruma/tema-%2/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=24(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/24-plavatelnye-vodoemy/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=25(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/25-dekorativnye-vodoemy/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=7(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/7-bezopasnye-kaskadnye-vodoemy/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=2(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/2-plavatelnye-vodoemy/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=28(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/28-kupeli/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=16(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/16-obschestvennye-plavatelnye-vodoemy/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=11(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/11-bassejny-klassicheskie/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=6(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/6-zhivye-bassejny/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=5(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/5-dekorativnye-vodoemy/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=4(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/4-vodoemy-dlya-ryb/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=3(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/3-fontany/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=21(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/21-estestvennye-vodoemy/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=20(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/20-zelenye-krovli/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=12(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/12-vodosohrannye-tehnologii/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=15(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/15-montazh-gidroizolyatsii/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=18(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/18-montazh-oborudovaniya/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=10(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/10-obsluzhivanie/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=17(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/17-seminary-vystavki-vebinary/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=13(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/13-raznoe/? [L,R=301]
+RewriteCond %{QUERY_STRING} (^|&)f=19(&|$)
+RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/19-spetsialisty-rossii/? [L,R=301]
+RewriteRule ^forum(/.*)?$ /arhiv-foruma/? [L,R=301]
+# Служебные адреса NetCat
+RewriteRule ^netcat(/.*)?$ / [L,R=301]
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com https://yastatic.net; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self' https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru; frame-src blob: https://mc.yandex.ru https://mc.yandex.com https://www.youtube.com https://rutube.ru; form-action 'self'; base-uri 'self'; frame-ancestors 'self'"
+  <FilesMatch "\.(woff2|svg|jpg|jpeg|png|webp|avif|css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+# Запрет доступа к служебным файлам
+<FilesMatch "^\.|\.(env|log|ini|bak|sql)$">
+  Require all denied
+</FilesMatch>

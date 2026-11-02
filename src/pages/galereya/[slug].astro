@@ -1,0 +1,52 @@
+---
+import { services, gallery } from '../../lib/data';
+import Page from '../../layouts/Page.astro';
+import Photo from '../../components/Photo.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+
+export function getStaticPaths() {
+  return gallery.map((g) => ({ params: { slug: g.slug } }));
+}
+const { slug } = Astro.params;
+const g = gallery.find((x) => x.slug === slug)!;
+const svc = services.find((s) => s.gallery === g.slug);
+const others = gallery.filter((x) => x.slug !== g.slug);
+type Album = { title: string; text: string; photos: { src: string; thumb: string }[] };
+const groups: { title: string; albums: Album[] }[] = [
+  ...(g.albums.length ? [{ title: '', albums: g.albums as Album[] }] : []),
+  ...(g.groups as { title: string; albums: Album[] }[]),
+];
+const total = groups.reduce((n, x) => n + x.albums.reduce((m, a) => m + a.photos.length, 0), 0);
+---
+<Page
+  title={`${g.title} — фото | Гидрология`}
+  description={`Фотографии раздела «${g.title}» в галерее «Гидрологии»: ${total} фото построенных объектов.`}
+  path={`/galereya/${g.slug}/`} label="Галерея" h1={g.title}
+  crumbs={[{ label: 'Галерея', href: '/galereya/' }, { label: g.title }]}
+>
+  {svc && <a slot="hero" href={`/uslugi/${svc.slug}/`} class="btn btn-line" style="margin-top:28px">О решении: {svc.title} →</a>}
+  <section>
+    <div class="w sec-sm">
+      {total > 0 ? groups.map((grp) => (
+        <div class="gal-group">
+          {grp.title && <h2 class="h t-h3" style="margin:0 0 32px">{grp.title}</h2>}
+          {grp.albums.map((a) => (
+            <div class="gal-album">
+              <div class="gal-head"><h3 class="h">{a.title}</h3>{a.text && <p>{a.text}</p>}</div>
+              <div class="gal-grid">
+                {a.photos.map((p, i) => <a href={p.src} target="_blank" rel="noopener" data-lb={a.title}><Photo src={p.thumb || p.src} alt={`${a.title} — фото ${i + 1}`} tone={g.tone} /></a>)}
+              </div>
+            </div>
+          ))}
+        </div>
+      )) : (
+        <div class="todo">Фотографий в этом разделе пока нет.</div>
+      )}
+      <div style="margin-top:72px">
+        <h2 class="h" style="font-size:15px;letter-spacing:0;margin:0 0 16px">Другие разделы</h2>
+        <div class="chips">{others.map((o) => <a class="chip" href={`/galereya/${o.slug}/`}>{o.title}</a>)}</div>
+      </div>
+    </div>
+  </section>
+  <CtaBlock />
+</Page>

@@ -1,0 +1,45 @@
+---
+import site from '../data/site.json';
+const c = site.contacts;
+const L = site.links;
+---
+<footer class="foot">
+  <div class="w">
+    <div class="foot-top">
+      <div>
+        <img src="/logo-light.svg" alt="Гидрология" width="172" height="44">
+        <div class="foot-contacts">
+          <a href={c.phoneSpbHref}>{c.phoneSpb}</a><br>
+          <a href={c.phoneRuHref}>{c.phoneRu}</a><br>
+          <a href={`mailto:${c.email}`}>{c.email}</a><br>
+          {c.hours}
+        </div>
+      </div>
+      <nav class="foot-nav" aria-label="Нижнее меню">
+        <a href={L.objects}>Объекты</a>
+        <a href={L.publications}>Публикации</a>
+        <a href={L.forum}>Архив форума</a>
+        <a href="/#evo">Учебный центр ЭВО</a>
+        <a href={L.services}>Решения</a>
+        <a href={L.gallery}>Галерея</a>
+        <a href={L.shop} target="_blank" rel="noopener">Магазин ↗</a>
+        <a href="/#about">О нас</a>
+        <a href={L.video}>Видео</a>
+        <a href={L.evaporation}>Калькулятор испарения</a>
+        <a href="/#geo">География</a>
+        <a href={L.events}>События</a>
+        <a href={L.partners}>Партнёрам</a>
+        <a href={L.contacts}>Контакты</a>
+      </nav>
+    </div>
+    <div class="foot-bot">
+      <span>© {site.since}–{new Date().getFullYear()} Гидрология · Санкт-Петербург</span>
+      <span><a href={L.instagram} target="_blank" rel="noopener">Instagram</a> · <a href={L.houzz} target="_blank" rel="noopener">Houzz</a> · <a href={L.privacy}>Политика конфиденциальности</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a href={c.phoneSpbHref} class="btn btn-ghost">Позвонить</a>
+  <a href="/kontakty/#form" class="btn btn-light">Обсудить проект</a>
+</div>

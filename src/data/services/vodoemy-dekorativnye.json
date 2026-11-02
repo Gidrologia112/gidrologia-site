@@ -1,0 +1,26 @@
+{
+ "slug": "vodoemy-dekorativnye",
+ "group": "main",
+ "title": "Декоративные водоёмы",
+ "tone": "#2F4D40",
+ "short": "Открытый водоём с водными растениями, каскадными горками, ручьями, фильтрацией. Классического или современного дизайна.",
+ "facts": [
+  {
+   "label": "Стиль",
+   "value": "Классика или модерн"
+  },
+  {
+   "label": "Элементы",
+   "value": "Ручьи, каскады"
+  },
+  {
+   "label": "Фильтрация",
+   "value": "Есть"
+  }
+ ],
+ "gallery": "dekorativnye-vodoemy",
+ "video": "dekorativnye-vodoemy",
+ "rubric": "Декоративные водоёмы",
+ "cover": "/img/netcat/f/2560-3-item-3.jpg",
+ "order": 3
+}

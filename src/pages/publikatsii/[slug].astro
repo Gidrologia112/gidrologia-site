@@ -1,0 +1,15 @@
+---
+import PostPage from '../../components/PostPage.astro';
+import { getPublications } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const all = await getPublications();
+  return all.map((post) => {
+    const same = all.filter((p) => p.slug !== post.slug && p.data.rubric === post.data.rubric);
+    const rest = all.filter((p) => p.slug !== post.slug && p.data.rubric !== post.data.rubric);
+    return { params: { slug: post.slug }, props: { post, related: [...same, ...rest].slice(0, 5) } };
+  });
+}
+const { post, related } = Astro.props;
+---
+<PostPage post={post} related={related} base="/publikatsii/" section="Публикации" sectionHref="/publikatsii/" kind="article" />

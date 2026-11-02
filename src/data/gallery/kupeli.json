@@ -1,0 +1,72 @@
+{
+ "slug": "kupeli",
+ "title": "Купели",
+ "old": "/galereya/kupeli/",
+ "tone": "#2B4652",
+ "albums": [
+  {
+   "title": "Купель на Валдае",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/WhatsApp_Image_2020_12_26_at_19.34.34_0.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_WhatsApp_Image_2020_12_26_at_19.34.34_0.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/WhatsApp_Image_2020_12_26_at_19.34.35__1__0.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_WhatsApp_Image_2020_12_26_at_19.34.35__1__0.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/WhatsApp_Image_2020_12_26_at_19.34.35__2__0.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_WhatsApp_Image_2020_12_26_at_19.34.35__2__0.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/WhatsApp_Image_2020_12_26_at_19.34.35_0.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_WhatsApp_Image_2020_12_26_at_19.34.35_0.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/WhatsApp_Image_2020_12_26_at_19.34.36_0.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_WhatsApp_Image_2020_12_26_at_19.34.36_0.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/valdkup2020.023_0.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_valdkup2020.023_0.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/valdkup2020.024_0.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_valdkup2020.024_0.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/valdkup2020.025_0.jpeg",
+     "thumb": "/img/netcat/multifile/2557/preview_valdkup2020.025_0.jpeg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/valdkup004_0.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_valdkup004_0.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/valdkup005_0.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_valdkup005_0.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/evo.gidrologia.0014_0.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_evo.gidrologia.0014_0.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/evo.gidrologia.0015_0.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_evo.gidrologia.0015_0.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/evo.gidrologia.0022_0.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_evo.gidrologia.0022_0.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/evo.gidrologia.0023_0.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_evo.gidrologia.0023_0.jpg"
+    }
+   ]
+  }
+ ],
+ "groups": [],
+ "order": 8
+}

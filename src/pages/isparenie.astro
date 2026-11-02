@@ -1,0 +1,88 @@
+---
+import Page from '../layouts/Page.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+// Давление насыщенного пара (Па) при температуре воды — из старого калькулятора gidrologia.ru/isparenie
+const temps: [number, number][] = [[6, 873.1], [7, 1002.6], [8, 1073.5], [9, 1148.8], [10, 1228.7], [11, 1313.5], [12, 1403.4], [13, 1498.7], [14, 1599.6], [15, 1706.4], [16, 1819.4], [17, 1939.0], [18, 2065.4], [19, 2198.9], [20, 2340.0], [21, 2488.9], [22, 2646.0], [23, 2811.7], [24, 2986.4], [25, 3170.6]];
+const related = [
+  { href: '/publikatsii/isparenie-vody/', t: 'Испарение воды: от чего зависит и как считать' },
+  { href: '/publikatsii/raschet-poter-vody-fontanom/', t: 'Расчёт потерь воды фонтаном' },
+  { href: '/uslugi/vodosohrannye-tehnologii/', t: 'Водосохранные технологии: пополнение дождевой водой' },
+];
+---
+<Page
+  title="Калькулятор испарения воды из водоёма и пруда — Гидрология"
+  description="Онлайн-калькулятор испарения: сколько воды теряет пруд, плавательный или декоративный водоём за сутки, месяц и сезон — по площади или размерам, температуре воды, ветру и влажности."
+  path="/isparenie/" label="Инструменты" h1="Калькулятор" accent="испарения"
+  lead="Сколько воды водоём теряет на испарение за сутки, месяц и весь сезон — чтобы заранее предусмотреть пополнение."
+  crumbs={[{ label: 'Калькулятор испарения' }]}
+>
+  <section>
+    <div class="w sec-sm calc" data-calc>
+      <form class="calc-form" onsubmit="return false">
+        <fieldset class="calc-shape">
+          <legend>Размер водоёма</legend>
+          <div class="seg" role="radiogroup" aria-label="Как задать размер">
+            <label><input type="radio" name="shape" value="area" checked data-calc-shape> Площадь</label>
+            <label><input type="radio" name="shape" value="rect" data-calc-shape> Длина × ширина</label>
+            <label><input type="radio" name="shape" value="circle" data-calc-shape> Круг</label>
+          </div>
+          <label data-shape="area">Площадь зеркала воды, м²<input type="number" min="0.5" step="any" inputmode="decimal" placeholder="Например, 60" data-calc-area></label>
+          <div class="pair" data-shape="rect" hidden>
+            <label>Длина, м<input type="number" min="0.5" step="any" inputmode="decimal" placeholder="10" data-calc-len></label>
+            <label>Ширина, м<input type="number" min="0.5" step="any" inputmode="decimal" placeholder="6" data-calc-wid></label>
+          </div>
+          <label data-shape="circle" hidden>Диаметр, м<input type="number" min="0.5" step="any" inputmode="decimal" placeholder="8" data-calc-dia></label>
+          <p class="note" data-calc-area-out hidden></p>
+        </fieldset>
+        <label>Температура воды
+          <select data-calc-temp>{temps.map(([t, p]) => <option value={p} data-t={t} selected={t === 18}>{t} °C</option>)}</select>
+        </label>
+        <details class="calc-more">
+          <summary>Погода и сезон</summary>
+          <div class="pair">
+            <label>Средний ветер, м/с<input type="number" min="0" max="20" step="0.5" value="7" inputmode="decimal" data-calc-wind></label>
+            <label>Влажность воздуха, %<input type="number" min="30" max="100" step="1" value="75" inputmode="numeric" data-calc-hum></label>
+          </div>
+          <label>Длительность сезона, месяцев<input type="number" min="1" max="12" step="1" value="5" inputmode="numeric" data-calc-season></label>
+          <p class="note" style="margin:0">По умолчанию — средние летние значения старого калькулятора «Гидрологии»: ветер 7 м/с, влажность 75 %. Сезон 5 месяцев — с мая по сентябрь.</p>
+        </details>
+      </form>
+      <div class="calc-res" aria-live="polite">
+        <div class="calc-main">
+          <div><div class="h" data-calc-day>—</div><span>в среднем за сутки</span></div>
+          <div><div class="h" data-calc-month>—</div><span>за месяц</span></div>
+        </div>
+        <div class="calc-sub">
+          <div><b data-calc-season-out>—</b><span>за сезон</span></div>
+          <div><b data-calc-mm>—</b><span>слой испарения за месяц</span></div>
+        </div>
+        <p class="calc-hint" data-calc-hint>Укажите размер водоёма — расчёт появится сразу.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="light-2">
+    <div class="w sec-sm g-article">
+      <div class="prose">
+        <h2>Как считает калькулятор</h2>
+        <p>Слой испарения за месяц определяется по разнице между давлением насыщенного пара у поверхности воды (зависит от её температуры) и фактической влажностью воздуха, с поправкой на ветер. Объём потерь — это слой испарения за вычетом 70 мм, умноженный на площадь зеркала воды. Методика та же, что в прежнем калькуляторе на сайте «Гидрологии».</p>
+        <h3>Что увеличивает потери</h3>
+        <ul>
+          <li>Открытое солнце и ветреное место — тень от деревьев и построек заметно снижает испарение.</li>
+          <li>Ручьи, каскады, водопады и фонтаны: вода в движении и брызги испаряются быстрее спокойной глади.</li>
+          <li>Тёплая вода — каждый градус прибавляет к испарению.</li>
+          <li>Прибрежные растения забирают воду и испаряют её листьями.</li>
+        </ul>
+        <h3>Как организовать пополнение</h3>
+        <p>Для небольших потерь достаточно доливки из скважины или водопровода, для больших — автоматического долива с датчиком уровня или сбора дождевой воды с крыши в накопительную ёмкость. Подберём решение под ваш участок.</p>
+      </div>
+      <aside class="aside">
+        <div class="aside-card">
+          <p class="lbl">По теме</p>
+          <ul>{related.map((r) => <li><a href={r.href}>{r.t} →</a></li>)}</ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+  <CtaBlock from="#EDE9E1" title="Нужна" accent="консультация?" text="Подскажем, как уменьшить потери воды и как организовать пополнение водоёма." />
+</Page>

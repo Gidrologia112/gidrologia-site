@@ -1,0 +1,26 @@
+{
+ "slug": "vodosohrannye-tehnologii",
+ "group": "extra",
+ "title": "Водосохранные технологии",
+ "tone": "#34503F",
+ "short": "Экономия водных ресурсов в засушливых или бедных естественными водоёмами регионах, организация бережливого накопления и использования воды, выпадающей с осадками.",
+ "facts": [
+  {
+   "label": "Задача",
+   "value": "Экономия воды"
+  },
+  {
+   "label": "Источник",
+   "value": "Осадки"
+  },
+  {
+   "label": "Регионы",
+   "value": "Засушливые, без водоёмов"
+  }
+ ],
+ "gallery": "vodosohrannye-tehnologii",
+ "video": "vodosohrannye-tehnologii",
+ "rubric": "Водосохранные технологии",
+ "cover": "/img/netcat/f/2560-8-rain-water-3-1.jpg",
+ "order": 8
+}

@@ -1,0 +1,26 @@
+{
+ "slug": "vodoemydlya-ryb",
+ "group": "main",
+ "title": "Водоёмы для рыб",
+ "tone": "#244050",
+ "short": "Садовый аквариум с естественной фильтрацией. Пруд с декоративными рыбами. Фермы для рыборазведения. Качественная очистка воды. Аэрация.",
+ "facts": [
+  {
+   "label": "Аэрация",
+   "value": "Есть"
+  },
+  {
+   "label": "Очистка",
+   "value": "Естественная"
+  },
+  {
+   "label": "Назначение",
+   "value": "Декор, разведение"
+  }
+ ],
+ "gallery": "vodoemy-dlya-ryb-sadovye-akvariumy",
+ "video": "vodoemy-dlya-ryb",
+ "rubric": "Водоёмы для рыб",
+ "cover": "/img/netcat/f/2560-6-item-6.jpg",
+ "order": 5
+}

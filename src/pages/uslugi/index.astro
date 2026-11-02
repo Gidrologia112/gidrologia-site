@@ -1,0 +1,48 @@
+---
+import { services } from '../../lib/data';
+import Page from '../../layouts/Page.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+
+const groups = [
+  { key: 'main', title: 'Водные объекты' },
+  { key: 'extra', title: 'Также строим' },
+  { key: 'work', title: 'Работы и сервис' },
+];
+let n = 0;
+---
+<Page
+  title="Решения: водоёмы, живые бассейны, фонтаны — Гидрология"
+  description="Плавательные и декоративные водоёмы, живые и классические бассейны, безопасные каскады, фонтаны, проектирование, гидроизоляция, монтаж оборудования и обслуживание."
+  path="/uslugi/" label="Решения" h1="Что мы" accent="создаём"
+  lead="Каждое направление — от эскиза и проекта до запуска и сезонного обслуживания. Делаем сами: собственные инженеры и бригады."
+  crumbs={[{ label: 'Решения' }]}
+>
+  <section>
+    <div class="w sec">
+      {groups.map((g, gi) => (
+        <div class={gi ? 'svc-group' : ''}>
+          {gi > 0 && <h2>{g.title}</h2>}
+          <div class="svc-list">
+            {services.filter((s) => s.group === g.key).map((s) => {
+              n++;
+              return (
+                <a class="svc-row" href={`/uslugi/${s.slug}/`}>
+                  <span class="n">{String(n).padStart(2, '0')}</span>
+                  <span class="h t">{s.title}</span>
+                  <p>{s.short}</p>
+                  <span class="arr">→</span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+      <div class="chips" style="margin-top:48px">
+        <a class="chip" href="/galereya/kupeli/">Купели</a>
+        <a class="chip" href="/video/iskusstvennye-ozera/">Искусственные озёра для коттеджных посёлков</a>
+        <a class="chip" href="/video/zelenye-krovli/">Зелёные кровли</a>
+      </div>
+    </div>
+  </section>
+  <CtaBlock />
+</Page>

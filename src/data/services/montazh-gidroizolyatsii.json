@@ -1,0 +1,26 @@
+{
+ "slug": "montazh-gidroizolyatsii",
+ "group": "work",
+ "title": "Монтаж гидроизоляции",
+ "tone": "#3A4A50",
+ "short": "Монтаж гидроизоляции, гидроизоляция искусственных водоёма, гидроизоляция кровли, склеивание EPDM-мембраны",
+ "facts": [
+  {
+   "label": "Материал",
+   "value": "EPDM-мембрана"
+  },
+  {
+   "label": "Объекты",
+   "value": "Водоёмы, кровли"
+  },
+  {
+   "label": "Работы",
+   "value": "Монтаж, склейка"
+  }
+ ],
+ "gallery": "montazh-gidroizolyatsii",
+ "video": "gidroizolyatsiya",
+ "rubric": "Монтаж гидроизоляции",
+ "cover": "/img/netcat/f/2560-12-item-12.jpg",
+ "order": 10
+}

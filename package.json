@@ -1,0 +1,22 @@
+{
+  "name": "gidrologia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "@fontsource-variable/onest": "^5.1.0",
+    "@fontsource/lora": "^5.1.0",
+    "astro": "^4.16.18",
+    "marked": "^14.1.4"
+  },
+  "type": "module"
+}

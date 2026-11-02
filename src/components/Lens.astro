@@ -1,0 +1,8 @@
+---
+interface Props { from: string; to: string; }
+const { from, to } = Astro.props;
+---
+<svg class="men" viewBox="0 0 1440 96" preserveAspectRatio="none" aria-hidden="true" style={`background:${to}`}>
+  <path d="M0 0 H1440 Q720 192 0 0 Z" fill={from}></path>
+  <path d="M0 0 Q720 192 1440 0" fill="none" stroke="#0083C3" stroke-width="3" vector-effect="non-scaling-stroke"></path>
+</svg>

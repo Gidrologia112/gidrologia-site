@@ -1,0 +1,29 @@
+---
+import { video } from '../../lib/data';
+import Page from '../../layouts/Page.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+const count = (h = '') => (h.match(/<iframe|<video/g) || []).length;
+---
+<Page
+  title="Видео: водоёмы, купели, фонтаны, монтаж — Гидрология"
+  description="Видео «Гидрологии»: искусственные озёра, купели, плавательные и декоративные водоёмы, живые бассейны, фонтаны, гидроизоляция, зелёные кровли, оборудование, семинары."
+  path="/video/" label="Видео" h1="Видео"
+  lead="14 разделов: от искусственных озёр для коттеджных посёлков до монтажа гидроизоляции и семинаров."
+  crumbs={[{ label: 'Видео' }]}
+>
+  <section>
+    <div class="w sec-sm">
+      <div class="svc-list">
+        {video.map((v, i) => (
+          <a class="svc-row" href={`/video/${v.slug}/`}>
+            <span class="n">{String(i + 1).padStart(2, '0')}</span>
+            <span class="h t">{v.title}</span>
+            <p>{count(v.html) ? `${count(v.html)} видео` : ''}</p>
+            <span class="arr">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBlock />
+</Page>

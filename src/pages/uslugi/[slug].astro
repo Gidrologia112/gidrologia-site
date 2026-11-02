@@ -1,0 +1,115 @@
+---
+import { services, projects, gallery, video } from '../../lib/data';
+import Page from '../../layouts/Page.astro';
+import Photo from '../../components/Photo.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+import site from '../../data/site.json';
+import { getEntry } from 'astro:content';
+import { hasImg } from '../../lib/img';
+import { getPublications } from '../../lib/content';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug } }));
+}
+const { slug } = Astro.params;
+const s = services.find((x) => x.slug === slug)!;
+const entry = await getEntry('uslugi', slug as string);
+const Body = entry ? (await entry.render()).Content : null;
+const gal = gallery.find((g) => g.slug === s.gallery);
+// Для обложки берём полноразмерное фото из галереи раздела: старые миниатюры услуг слишком маленькие для широкого блока
+const galFirst = gal ? [...(gal.albums as any[]), ...(gal.groups as any[]).flatMap((x) => x.albums)][0]?.photos[0]?.src : '';
+const vid = video.find((v) => v.slug === s.video);
+const related = projects.filter((p) => p.service === s.slug);
+const posts = (await getPublications()).filter((p) => (p.data.rubrics || [p.data.rubric]).includes(s.rubric)).slice(0, 4);
+const rubricKey = site.pubRubrics.find((r) => r.label === s.rubric)?.key;
+const others = services.filter((x) => x.slug !== s.slug);
+const includes = (s as { includes?: string[] }).includes;
+const shop = (s as { shop?: string }).shop || site.links.shop;
+---
+<Page
+  title={`${s.title} — проектирование и строительство | Гидрология`}
+  description={s.short}
+  path={`/uslugi/${s.slug}/`} label="Решение" h1={s.title} lead={s.short}
+  crumbs={[{ label: 'Решения', href: '/uslugi/' }, { label: s.title }]}
+  jsonld={{ '@context': 'https://schema.org', '@type': 'Service', name: s.title, description: s.short, provider: { '@type': 'Organization', name: 'Гидрология', url: 'https://gidrologia.ru/' }, areaServed: 'RU' }}
+>
+  <div slot="hero">
+    <div class="btns" style="margin-top:32px">
+      <a href="#contact" class="btn btn-dark">Обсудить проект</a>
+      {gal && <a href={`/galereya/${gal.slug}/`} class="btn btn-line">Фотографии объектов</a>}
+    </div>
+    <Photo label={`Фото: ${s.title.toLowerCase()}`} tone={s.tone} src={hasImg(galFirst) ? galFirst : (s as { cover?: string }).cover} alt={s.title} class="cover" eager />
+  </div>
+
+  <section>
+    <div class="w sec g-article">
+      <div>
+        <dl class="facts-row" style="margin-top:0;border-top:0;padding-top:0">{s.facts.map((f: any) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>
+        {includes && (
+          <div style="margin-top:56px">
+            <h2 class="h" style="font-size:32px;margin:0 0 20px">Что входит</h2>
+            <ol class="g-proc g-proc-auto">
+              {includes.map((t, i) => <li><div class="h">{String(i + 1).padStart(2, '0')}</div><div><b>{t}</b></div></li>)}
+            </ol>
+          </div>
+        )}
+        <div class="prose" style="margin-top:56px">
+          {Body ? <Body /> : (
+            <div class="todo"><b>Подробный текст страницы переносится из базы старого сайта.</b><br>Здесь появится полное описание решения со старой страницы, фотографии и схемы.</div>
+          )}
+        </div>
+      </div>
+      <aside class="aside">
+        <div class="aside-card dark dark-2" style="background:var(--deep-2)">
+          <p class="lbl">Расчёт стоимости</p>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--on-dark)">Пришлите техническое задание или план участка — подготовим эскиз и смету.</p>
+          <a href="/kontakty/#tz" class="btn btn-light" style="margin-top:18px;width:100%">Отправить ТЗ</a>
+        </div>
+        <div class="aside-card">
+          <p class="lbl">По теме</p>
+          <ul>
+            {gal && <li><a href={`/galereya/${gal.slug}/`}>Галерея: {gal.title} →</a></li>}
+            {vid && <li><a href={`/video/${vid.slug}/`}>Видео: {vid.title} →</a></li>}
+            {rubricKey && <li><a href={`/publikatsii/?r=${rubricKey}`}>Статьи: {s.rubric} →</a></li>}
+            <li><a href={shop} target="_blank" rel="noopener">Оборудование в магазине ↗</a></li>
+          </ul>
+        </div>
+        <div class="aside-card">
+          <p class="lbl">Другие решения</p>
+          <ul>{others.slice(0, 7).map((o) => <li><a href={`/uslugi/${o.slug}/`}>{o.title}</a></li>)}</ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {(related.length > 0 || posts.length > 0) && (
+    <section class="light-2">
+      <div class="w sec-sm">
+        {related.length > 0 && (
+          <>
+            <div class="hd-row"><h2 class="h t-h3">Проекты</h2><a class="more" href="/proekty/">Все объекты →</a></div>
+            <div class="cards">
+              {related.map((p) => (
+                <a class="card" href={`/proekty/${p.slug}/`}>
+                  <Photo label="Фото проекта" tone={p.tone} src={p.images[0]?.src} alt={p.title} />
+                  <div class="kind">{p.kind} · {p.place}</div>
+                  <div class="h name">{p.title}</div>
+                </a>
+              ))}
+            </div>
+          </>
+        )}
+        {posts.length > 0 && (
+          <div style={related.length ? 'margin-top:72px' : ''}>
+            <div class="hd-row"><h2 class="h t-h3">Статьи по теме</h2><a class="more" href={`/publikatsii/?r=${rubricKey}`}>Все статьи →</a></div>
+            <div class="arts" style="margin-top:0">
+              {posts.map((p) => <a class="art" href={`/publikatsii/${p.slug}/`}><div><p class="lbl">{p.data.rubric}</p><div class="h">{p.data.title}</div></div><span class="arr">→</span></a>)}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  <CtaBlock from={related.length || posts.length ? '#EDE9E1' : '#F3F1EC'} title="Обсудим" accent={`${s.title.toLowerCase()} для вашего участка`} />
+</Page>

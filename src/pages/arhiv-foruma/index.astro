@@ -1,0 +1,30 @@
+---
+import Page from '../../layouts/Page.astro';
+import TopicList from '../../components/TopicList.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+import forum from '../../data/forum.json';
+const sections = Object.fromEntries(forum.forums.map((f) => [f.id, f.title]));
+const forumOf = Object.fromEntries(forum.topics.map((t) => [t.id, t.forum]));
+const count = (id: number) => forum.topics.filter((t) => t.forum === id).length;
+const totalPosts = forum.topics.reduce((n, t) => n + t.posts, 0);
+const totalPhotos = forum.topics.reduce((n, t) => n + t.photos, 0);
+---
+<Page
+  title="Архив форума «Гидрологии» — стройки, отчёты, обсуждения"
+  description="Архив форума gidrologia.ru с 2013 года: фотоотчёты строительства водоёмов, бассейнов и фонтанов, семинары, обслуживание и обсуждения."
+  path="/arhiv-foruma/" label="Сообщество" h1="Архив" accent="форума"
+  lead={`Форум «Гидрологии» с 2013 года: ${forum.topics.length} тем, ${totalPosts} сообщений и ${totalPhotos.toLocaleString('ru-RU')} фотографий — дневники строек, отчёты с семинаров и ответы на вопросы. Форум закрыт для новых сообщений, все материалы сохранены.`}
+  crumbs={[{ label: 'Публикации', href: '/publikatsii/' }, { label: 'Архив форума' }]}
+>
+  <section>
+    <div class="w sec-sm">
+      <h2 class="h t-h3" style="margin:0 0 20px">Разделы</h2>
+      <div class="chips" style="margin-bottom:72px">
+        {forum.forums.map((f) => <a class="chip" href={`/arhiv-foruma/${f.slug}/`}>{f.title}<span style="opacity:.55;margin-left:6px">{count(f.id)}</span></a>)}
+      </div>
+      <h2 class="h t-h3" style="margin:0 0 20px">Все темы</h2>
+      <TopicList topics={forum.topics} sections={sections} forumOf={forumOf} />
+    </div>
+  </section>
+  <CtaBlock title="Есть" accent="вопрос?" text="Форум закрыт, но инженеры «Гидрологии» по-прежнему отвечают — напишите нам." />
+</Page>

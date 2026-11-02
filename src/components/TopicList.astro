@@ -1,0 +1,35 @@
+---
+// Список тем архива форума с поиском
+import { fmtDate } from '../lib/content';
+interface Topic { id: number; title: string; date: string; last: string; posts: number; photos: number; excerpt: string; }
+interface Props { topics: Topic[]; sections?: Record<number, string>; forumOf?: Record<number, number>; perPage?: number; }
+const { topics, sections, forumOf, perPage = 20 } = Astro.props;
+const word = (n: number, a: string, b: string, c: string) => { const m = n % 100, k = n % 10; return m > 10 && m < 20 ? c : k === 1 ? a : k > 1 && k < 5 ? b : c; };
+---
+<div data-list data-per={perPage}>
+  <div class="list-tools">
+    <label class="search">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6.5" stroke="#5E5954" stroke-width="1.6"/><path d="M14 14l4 4" stroke="#5E5954" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="sr">Поиск по темам</span>
+      <input type="search" data-list-q placeholder="Найти тему: Светлое, плёнка, насос…" autocomplete="off">
+    </label>
+  </div>
+  <div style="border-top:1px solid var(--ink)" aria-live="polite">
+    {topics.map((t) => (
+      <a class="topic" href={`/arhiv-foruma/tema-${t.id}/`} data-item data-r="||" data-t={`${t.title} ${t.excerpt}`.toLowerCase()}>
+        <div>
+          {sections && forumOf && <p class="lbl">{sections[forumOf[t.id]]}</p>}
+          <div class="h t">{t.title}</div>
+          {t.excerpt && <p>{t.excerpt}</p>}
+        </div>
+        <div class="meta">
+          <span>{t.posts} {word(t.posts, 'сообщение', 'сообщения', 'сообщений')}</span>
+          {t.photos > 0 && <span>{t.photos} фото</span>}
+          <span>{t.date === t.last ? fmtDate(t.date) : `${fmtDate(t.date)} — ${fmtDate(t.last)}`}</span>
+        </div>
+      </a>
+    ))}
+  </div>
+  <p class="empty" data-list-empty hidden>Ничего не нашлось. <a href="/kontakty/#form" class="acc">Задайте вопрос инженеру →</a></p>
+  <button type="button" class="btn btn-line" data-list-more hidden style="margin-top:32px">Показать ещё</button>
+</div>

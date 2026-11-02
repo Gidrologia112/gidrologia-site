@@ -1,0 +1,1043 @@
+# Собрано из scripts/cms-config.src.yml скриптом scripts/build-cms-config.py — правьте исходник.
+backend:
+  name: github
+  repo: Gidrologia112/gidrologia-site
+  branch: main
+  base_url: https://gidrologia.ru
+  auth_endpoint: admin/oauth/auth.php
+  commit_messages:
+    create: 'Создано: {{collection}} «{{slug}}»'
+    update: 'Изменено: {{collection}} «{{slug}}»'
+    delete: 'Удалено: {{collection}} «{{slug}}»'
+    uploadMedia: Загружен файл {{path}}
+    deleteMedia: Удалён файл {{path}}
+publish_mode: editorial_workflow
+locale: ru
+site_url: https://gidrologia.ru
+display_url: https://gidrologia.ru
+logo_url: /logo.svg
+media_folder: public/img/uploads
+public_folder: /img/uploads
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: '-'
+collections:
+- name: publikatsii
+  label: Публикации
+  label_singular: статью
+  description: Статьи базы знаний. Новая статья появится на сайте через 2–3 минуты после публикации.
+  folder: src/content/publikatsii
+  extension: md
+  format: frontmatter
+  create: true
+  slug: '{{fields.url}}'
+  identifier_field: title
+  summary: '{{title}} — {{date}}'
+  sortable_fields:
+  - date
+  - title
+  view_filters:
+  - label: Плавательные водоёмы
+    field: rubric
+    pattern: Плавательные
+  - label: Декоративные водоёмы
+    field: rubric
+    pattern: Декоративные
+  - label: Монтаж оборудования
+    field: rubric
+    pattern: оборудования
+  preview_path: publikatsii/{{slug}}/
+  fields:
+  - label: Заголовок
+    name: title
+    widget: string
+  - label: Адрес страницы
+    name: url
+    widget: string
+    required: false
+    hint: Латиницей, через дефис. Можно не заполнять — адрес сделается из заголовка. Для старых записей адрес не меняется.
+  - label: Дата
+    name: date
+    widget: datetime
+    format: YYYY-MM-DD
+    date_format: DD.MM.YYYY
+    time_format: false
+    picker_utc: true
+  - label: Основная рубрика
+    name: rubric
+    widget: select
+    options:
+    - Плавательные водоёмы
+    - Живые бассейны
+    - Декоративные водоёмы
+    - Безопасные каскадные водоёмы
+    - Водоёмы для рыб
+    - Классические бассейны
+    - Фонтаны
+    - Водосохранные технологии
+    - Проектирование
+    - Монтаж гидроизоляции
+    - Монтаж оборудования
+    - Обслуживание
+    - Партнёрам
+    required: false
+  - label: Все рубрики
+    name: rubrics
+    widget: select
+    multiple: true
+    options:
+    - Плавательные водоёмы
+    - Живые бассейны
+    - Декоративные водоёмы
+    - Безопасные каскадные водоёмы
+    - Водоёмы для рыб
+    - Классические бассейны
+    - Фонтаны
+    - Водосохранные технологии
+    - Проектирование
+    - Монтаж гидроизоляции
+    - Монтаж оборудования
+    - Обслуживание
+    - Партнёрам
+    required: false
+    hint: По ним статья находится в фильтрах раздела «Публикации»
+  - label: Краткое описание
+    name: excerpt
+    widget: text
+    required: false
+    hint: '1–2 предложения: показывается в списке и в поисковиках'
+  - label: Обложка
+    name: cover
+    widget: image
+    required: false
+    choose_url: false
+  - label: По материалам
+    name: source
+    widget: string
+    required: false
+    hint: Если статья подготовлена по чужим материалам
+  - label: Текст
+    name: body
+    widget: markdown
+    modes:
+    - rich_text
+    - raw
+  - label: Старый адрес
+    name: old
+    widget: hidden
+    required: false
+  - label: ID NetCat
+    name: netcatId
+    widget: hidden
+    required: false
+  - label: Порядок
+    name: order
+    widget: hidden
+    required: false
+  - label: Перенесено
+    name: imported
+    widget: hidden
+    default: false
+- name: sobytiya
+  label: События
+  label_singular: событие
+  description: Новости, семинары, дневники строек.
+  folder: src/content/sobytiya
+  extension: md
+  format: frontmatter
+  create: true
+  slug: '{{fields.url}}'
+  identifier_field: title
+  summary: '{{title}} — {{date}}'
+  sortable_fields:
+  - date
+  - title
+  preview_path: sobytiya/{{slug}}/
+  fields:
+  - label: Заголовок
+    name: title
+    widget: string
+  - label: Адрес страницы
+    name: url
+    widget: string
+    required: false
+    hint: Латиницей, через дефис. Можно не заполнять — адрес сделается из заголовка. Для старых записей адрес не меняется.
+  - label: Дата
+    name: date
+    widget: datetime
+    format: YYYY-MM-DD
+    date_format: DD.MM.YYYY
+    time_format: false
+    picker_utc: true
+  - label: Основная рубрика
+    name: rubric
+    widget: select
+    options:
+    - Плавательные водоёмы
+    - Живые бассейны
+    - Декоративные водоёмы
+    - Безопасные каскадные водоёмы
+    - Водоёмы для рыб
+    - Классические бассейны
+    - Фонтаны
+    - Водосохранные технологии
+    - Проектирование
+    - Монтаж гидроизоляции
+    - Монтаж оборудования
+    - Обслуживание
+    - Партнёрам
+    required: false
+  - label: Все рубрики
+    name: rubrics
+    widget: select
+    multiple: true
+    options:
+    - Плавательные водоёмы
+    - Живые бассейны
+    - Декоративные водоёмы
+    - Безопасные каскадные водоёмы
+    - Водоёмы для рыб
+    - Классические бассейны
+    - Фонтаны
+    - Водосохранные технологии
+    - Проектирование
+    - Монтаж гидроизоляции
+    - Монтаж оборудования
+    - Обслуживание
+    - Партнёрам
+    required: false
+    hint: По ним статья находится в фильтрах раздела «Публикации»
+  - label: Краткое описание
+    name: excerpt
+    widget: text
+    required: false
+    hint: '1–2 предложения: показывается в списке и в поисковиках'
+  - label: Обложка
+    name: cover
+    widget: image
+    required: false
+    choose_url: false
+  - label: По материалам
+    name: source
+    widget: string
+    required: false
+    hint: Если статья подготовлена по чужим материалам
+  - label: Текст
+    name: body
+    widget: markdown
+    modes:
+    - rich_text
+    - raw
+  - label: Старый адрес
+    name: old
+    widget: hidden
+    required: false
+  - label: ID NetCat
+    name: netcatId
+    widget: hidden
+    required: false
+  - label: Порядок
+    name: order
+    widget: hidden
+    required: false
+  - label: Перенесено
+    name: imported
+    widget: hidden
+    default: false
+- name: uslugi
+  label: Решения
+  label_singular: решение
+  description: 'Направления работы: название, краткое описание, факты и подробный текст.'
+  folder: src/data/services
+  extension: json
+  format: json
+  create: false
+  delete: false
+  identifier_field: title
+  summary: '{{title}}'
+  preview_path: uslugi/{{slug}}/
+  fields:
+  - label: Название
+    name: title
+    widget: string
+  - label: Адрес (не менять)
+    name: slug
+    widget: hidden
+  - label: Группа
+    name: group
+    widget: select
+    options:
+    - label: Что мы создаём
+      value: main
+    - label: Также строим
+      value: extra
+    - label: Работы и сервис
+      value: work
+  - label: Порядок в списке
+    name: order
+    widget: number
+    value_type: int
+  - label: Краткое описание
+    name: short
+    widget: text
+  - label: Факты
+    name: facts
+    widget: list
+    summary: '{{fields.label}}: {{fields.value}}'
+    fields:
+    - label: Параметр
+      name: label
+      widget: string
+    - label: Значение
+      name: value
+      widget: string
+  - label: Что входит
+    name: includes
+    widget: list
+    required: false
+    field:
+      label: Пункт
+      name: item
+      widget: string
+  - label: Обложка
+    name: cover
+    widget: image
+    required: false
+    choose_url: false
+  - label: Ссылка на магазин
+    name: shop
+    widget: string
+    required: false
+  - label: Раздел галереи
+    name: gallery
+    widget: relation
+    collection: galereya
+    search_fields:
+    - title
+    value_field: slug
+    display_fields:
+    - title
+    required: false
+  - label: Раздел видео
+    name: video
+    widget: relation
+    collection: video
+    search_fields:
+    - title
+    value_field: slug
+    display_fields:
+    - title
+    required: false
+  - label: Рубрика статей
+    name: rubric
+    widget: select
+    options:
+    - Плавательные водоёмы
+    - Живые бассейны
+    - Декоративные водоёмы
+    - Безопасные каскадные водоёмы
+    - Водоёмы для рыб
+    - Классические бассейны
+    - Фонтаны
+    - Водосохранные технологии
+    - Проектирование
+    - Монтаж гидроизоляции
+    - Монтаж оборудования
+    - Обслуживание
+    - Партнёрам
+    required: false
+  - label: Цвет заглушки
+    name: tone
+    widget: hidden
+- name: uslugi_text
+  label: 'Решения: подробные тексты'
+  label_singular: текст
+  folder: src/content/uslugi
+  extension: md
+  format: frontmatter
+  create: false
+  delete: false
+  identifier_field: title
+  summary: '{{title}}'
+  fields:
+  - label: Решение
+    name: title
+    widget: string
+    hint: Название для списка в кабинете; на сайте берётся из раздела «Решения»
+  - label: Текст
+    name: body
+    widget: markdown
+    modes:
+    - rich_text
+    - raw
+  - label: Перенесено
+    name: imported
+    widget: hidden
+    default: true
+- name: proekty
+  label: Проекты
+  label_singular: проект
+  folder: src/data/projects
+  extension: json
+  format: json
+  create: true
+  slug: '{{fields.slug}}'
+  identifier_field: title
+  preview_path: proekty/{{slug}}/
+  fields:
+  - label: Название
+    name: title
+    widget: string
+  - label: Адрес страницы
+    name: slug
+    widget: string
+    hint: Латиницей, через дефис, например proekt-vodoema-v-repino. После публикации не менять.
+  - label: Тип
+    name: kind
+    widget: string
+    hint: 'Например: Проект плавательного водоёма'
+  - label: Место
+    name: place
+    widget: string
+  - label: Решение
+    name: service
+    widget: relation
+    collection: uslugi
+    search_fields:
+    - title
+    value_field: slug
+    display_fields:
+    - title
+    required: false
+  - label: Обложка
+    name: cover
+    widget: image
+    required: false
+    choose_url: false
+  - label: Порядок
+    name: order
+    widget: number
+    value_type: int
+    default: 10
+  - label: Описание
+    name: html
+    widget: markdown
+    modes:
+    - rich_text
+    - raw
+  - label: Фото проекта
+    name: images
+    widget: list
+    required: false
+    summary: '{{fields.caption}}'
+    fields:
+    - label: Фото
+      name: src
+      widget: image
+      choose_url: false
+    - label: Подпись
+      name: caption
+      widget: string
+  - label: Цвет заглушки
+    name: tone
+    widget: hidden
+    default: '#22465A'
+- name: galereya
+  label: Галерея
+  label_singular: раздел галереи
+  description: Разделы галереи. Внутри раздела — объекты (альбомы) с подписью и фотографиями.
+  folder: src/data/gallery
+  extension: json
+  format: json
+  create: true
+  slug: '{{fields.slug}}'
+  identifier_field: title
+  preview_path: galereya/{{slug}}/
+  fields:
+  - label: Название раздела
+    name: title
+    widget: string
+  - label: Адрес раздела
+    name: slug
+    widget: string
+    hint: Латиницей, через дефис. После публикации не менять.
+  - label: Порядок
+    name: order
+    widget: number
+    value_type: int
+    default: 20
+  - label: Объекты
+    name: albums
+    widget: list
+    required: false
+    summary: '{{fields.title}}'
+    fields:
+    - label: Название объекта
+      name: title
+      widget: string
+    - label: Описание
+      name: text
+      widget: text
+      required: false
+    - label: Фотографии
+      name: photos
+      widget: list
+      summary: '{{fields.src}}'
+      fields:
+      - label: Фото
+        name: src
+        widget: image
+        choose_url: false
+      - label: Миниатюра
+        name: thumb
+        widget: hidden
+        default: ''
+  - label: Подразделы
+    name: groups
+    widget: list
+    required: false
+    summary: '{{fields.title}}'
+    fields:
+    - label: Название подраздела
+      name: title
+      widget: string
+    - label: Объекты
+      name: albums
+      widget: list
+      required: false
+      summary: '{{fields.title}}'
+      fields:
+      - label: Название объекта
+        name: title
+        widget: string
+      - label: Описание
+        name: text
+        widget: text
+        required: false
+      - label: Фотографии
+        name: photos
+        widget: list
+        summary: '{{fields.src}}'
+        fields:
+        - label: Фото
+          name: src
+          widget: image
+          choose_url: false
+        - label: Миниатюра
+          name: thumb
+          widget: hidden
+          default: ''
+  - label: Цвет заглушки
+    name: tone
+    widget: hidden
+    default: '#1F4A55'
+  - label: Старый адрес
+    name: old
+    widget: hidden
+    required: false
+- name: video
+  label: Видео
+  label_singular: раздел видео
+  description: Чтобы вставить ролик с YouTube или Rutube, вставьте в текст ссылку вида https://rutube.ru/play/embed/… в режиме «Markdown» тегом iframe — или просто ссылку на ролик.
+  folder: src/data/video
+  extension: json
+  format: json
+  create: true
+  slug: '{{fields.slug}}'
+  identifier_field: title
+  preview_path: video/{{slug}}/
+  fields:
+  - label: Название раздела
+    name: title
+    widget: string
+  - label: Адрес раздела
+    name: slug
+    widget: string
+  - label: Порядок
+    name: order
+    widget: number
+    value_type: int
+    default: 20
+  - label: Содержимое
+    name: html
+    widget: markdown
+    modes:
+    - raw
+    - rich_text
+  - label: Старый адрес
+    name: old
+    widget: hidden
+    required: false
+- name: settings
+  label: Тексты сайта
+  description: Контакты, цифры, тексты главной страницы, команда, партнёры.
+  editor:
+    preview: false
+  files:
+  - name: site
+    label: Контакты и главная страница
+    file: src/data/site.json
+    format: json
+    fields:
+    - label: Название компании
+      name: company
+      widget: string
+    - label: Подпись под логотипом
+      name: tagline
+      widget: string
+    - label: Работаем с (год)
+      name: since
+      widget: number
+      value_type: int
+    - label: Контакты
+      name: contacts
+      widget: object
+      fields:
+      - label: Телефон Санкт-Петербург
+        name: phoneSpb
+        widget: string
+      - label: Ссылка для звонка (СПб)
+        name: phoneSpbHref
+        widget: string
+        hint: Формат tel:+78127482244
+      - label: Телефон по России
+        name: phoneRu
+        widget: string
+      - label: Ссылка для звонка (Россия)
+        name: phoneRuHref
+        widget: string
+      - label: E-mail
+        name: email
+        widget: string
+      - label: Часы работы
+        name: hours
+        widget: string
+      - label: Посещение офиса
+        name: visit
+        widget: string
+    - label: Ссылки
+      name: links
+      widget: object
+      collapsed: true
+      fields:
+      - label: Магазин
+        name: shop
+        widget: string
+      - label: Сайт ЭВО
+        name: evo
+        widget: string
+      - label: Instagram
+        name: instagram
+        widget: string
+      - label: Houzz
+        name: houzz
+        widget: string
+      - label: ForumHouse
+        name: forumhouse
+        widget: string
+      - label: Gardener
+        name: gardener
+        widget: string
+      - label: Калькулятор испарения
+        name: evaporation
+        widget: hidden
+      - label: Галерея
+        name: gallery
+        widget: hidden
+      - label: Видео
+        name: video
+        widget: hidden
+      - label: Публикации
+        name: publications
+        widget: hidden
+      - label: Объекты
+        name: objects
+        widget: hidden
+      - label: События
+        name: events
+        widget: hidden
+      - label: Партнёрам
+        name: partners
+        widget: hidden
+      - label: Презентация
+        name: presentation
+        widget: string
+      - label: Политика
+        name: privacy
+        widget: hidden
+      - label: Контакты
+        name: contacts
+        widget: hidden
+      - label: Решения
+        name: services
+        widget: hidden
+      - label: Архив форума
+        name: forum
+        widget: hidden
+    - label: Меню
+      name: nav
+      widget: list
+      collapsed: true
+      summary: '{{fields.label}}'
+      fields:
+      - label: Пункт
+        name: label
+        widget: string
+      - label: Ссылка
+        name: href
+        widget: string
+    - label: 'Главная: строка доверия под заголовком'
+      name: trust
+      widget: list
+      field:
+        label: Пункт
+        name: item
+        widget: string
+    - label: 'Главная: цифры'
+      name: stats
+      widget: list
+      summary: '{{fields.value}}{{fields.suffix}} — {{fields.text}}'
+      fields:
+      - label: Число
+        name: value
+        widget: string
+      - label: Знак после числа
+        name: suffix
+        widget: string
+        required: false
+      - label: Подпись
+        name: text
+        widget: string
+    - label: 'Главная: квалификация'
+      name: credentials
+      widget: list
+      summary: '{{fields.title}}'
+      fields:
+      - label: Заголовок
+        name: title
+        widget: string
+      - label: Текст
+        name: text
+        widget: text
+    - label: Команда
+      name: team
+      widget: list
+      summary: '{{fields.name}} — {{fields.role}}'
+      fields:
+      - label: Имя и фамилия
+        name: name
+        widget: string
+      - label: Должность
+        name: role
+        widget: string
+      - label: Фото
+        name: photo
+        widget: image
+        required: false
+        choose_url: false
+    - label: 'Карта: города'
+      name: cities
+      widget: list
+      collapsed: true
+      summary: '{{fields.name}}'
+      fields:
+      - label: Город
+        name: name
+        widget: string
+      - label: Подпись
+        name: role
+        widget: string
+      - label: Текст
+        name: text
+        widget: text
+      - label: Положение по горизонтали, %
+        name: x
+        widget: number
+        value_type: float
+        hint: 0 — левый край карты, 100 — правый
+      - label: Положение по вертикали, %
+        name: y
+        widget: number
+        value_type: float
+        hint: 0 — верх, 100 — низ
+      - label: Главный офис
+        name: hq
+        widget: boolean
+        required: false
+        default: false
+    - label: Проекты за рубежом
+      name: abroad
+      widget: list
+      field:
+        label: Страна
+        name: item
+        widget: string
+    - label: 'Главная: решения (вкладки)'
+      name: solutions
+      widget: list
+      collapsed: true
+      summary: '{{fields.title}}'
+      fields:
+      - label: Название
+        name: title
+        widget: string
+      - label: Ссылка
+        name: href
+        widget: string
+      - label: Текст
+        name: text
+        widget: text
+      - label: Фото
+        name: photo
+        widget: image
+        required: false
+        choose_url: false
+      - label: Подпись заглушки
+        name: photoLabel
+        widget: string
+        required: false
+      - label: Факты
+        name: facts
+        widget: list
+        fields:
+        - label: Параметр
+          name: label
+          widget: string
+        - label: Значение
+          name: value
+          widget: string
+      - label: Цвет
+        name: tone
+        widget: hidden
+    - label: 'Главная: также строим'
+      name: alsoBuild
+      widget: list
+      collapsed: true
+      summary: '{{fields.label}}'
+      fields:
+      - label: Название
+        name: label
+        widget: string
+      - label: Ссылка
+        name: href
+        widget: string
+    - label: 'Главная: работы и сервис'
+      name: services
+      widget: list
+      collapsed: true
+      summary: '{{fields.label}}'
+      fields:
+      - label: Название
+        name: label
+        widget: string
+      - label: Ссылка
+        name: href
+        widget: string
+    - label: 'Главная: схема водоёма'
+      name: scheme
+      widget: list
+      collapsed: true
+      summary: '{{fields.title}}'
+      fields:
+      - label: Заголовок
+        name: title
+        widget: string
+      - label: Текст
+        name: text
+        widget: text
+      - label: X, %
+        name: x
+        widget: number
+        value_type: float
+      - label: Y, %
+        name: y
+        widget: number
+        value_type: float
+    - label: 'Главная: бассейн или водоём'
+      name: compare
+      widget: list
+      collapsed: true
+      summary: '{{fields.param}}'
+      fields:
+      - label: Параметр
+        name: param
+        widget: string
+      - label: Бассейн
+        name: pool
+        widget: string
+      - label: Плавательный водоём
+        name: pond
+        widget: string
+    - label: 'Главная: кейс'
+      name: case
+      widget: object
+      collapsed: true
+      fields:
+      - label: Название
+        name: title
+        widget: string
+      - label: Тип и место
+        name: kind
+        widget: string
+      - label: Ссылка
+        name: href
+        widget: string
+      - label: Фото «до»
+        name: before
+        widget: image
+        required: false
+        choose_url: false
+      - label: Фото «после»
+        name: after
+        widget: image
+        required: false
+        choose_url: false
+      - label: Факты
+        name: facts
+        widget: list
+        fields:
+        - label: Параметр
+          name: label
+          widget: string
+        - label: Значение
+          name: value
+          widget: string
+      - label: Этапы
+        name: steps
+        widget: list
+        fields:
+        - label: Этап
+          name: label
+          widget: string
+        - label: Текст
+          name: text
+          widget: text
+    - label: 'Главная: объекты'
+      name: objects
+      widget: list
+      collapsed: true
+      summary: '{{fields.title}}'
+      fields:
+      - label: Название
+        name: title
+        widget: string
+      - label: Тип
+        name: kind
+        widget: string
+      - label: Ссылка
+        name: href
+        widget: string
+      - label: Фото
+        name: photo
+        widget: image
+        required: false
+        choose_url: false
+      - label: Цвет
+        name: tone
+        widget: hidden
+    - label: 'Главная: подписи галереи'
+      name: galleryChips
+      widget: list
+      field:
+        label: Подпись
+        name: item
+        widget: string
+    - label: 'Главная: как мы работаем'
+      name: process
+      widget: list
+      collapsed: true
+      summary: '{{fields.title}}'
+      fields:
+      - label: Этап
+        name: title
+        widget: string
+      - label: Текст
+        name: text
+        widget: string
+    - label: 'Главная: рубрики базы знаний'
+      name: rubrics
+      widget: select
+      multiple: true
+      options:
+      - Плавательные водоёмы
+      - Живые бассейны
+      - Декоративные водоёмы
+      - Безопасные каскадные водоёмы
+      - Водоёмы для рыб
+      - Классические бассейны
+      - Фонтаны
+      - Водосохранные технологии
+      - Проектирование
+      - Монтаж гидроизоляции
+      - Монтаж оборудования
+      - Обслуживание
+      - Партнёрам
+    - label: Учебный центр ЭВО
+      name: evo
+      widget: object
+      collapsed: true
+      fields:
+      - label: Адрес
+        name: address
+        widget: text
+      - label: Форматы
+        name: formats
+        widget: list
+        fields:
+        - label: Название
+          name: title
+          widget: string
+        - label: Описание
+          name: text
+          widget: string
+      - label: Хронология
+        name: timeline
+        widget: list
+        fields:
+        - label: Когда
+          name: date
+          widget: string
+        - label: Событие
+          name: title
+          widget: string
+        - label: Ссылка
+          name: href
+          widget: string
+          required: false
+    - label: 'Партнёрам: преимущества'
+      name: partnerPoints
+      widget: list
+      field:
+        label: Пункт
+        name: item
+        widget: string
+    - label: Партнёры (логотипы)
+      name: partners
+      widget: list
+      summary: '{{fields.name}}'
+      fields:
+      - label: Название
+        name: name
+        widget: string
+      - label: Сайт
+        name: href
+        widget: string
+        required: false
+      - label: Логотип
+        name: logo
+        widget: image
+        required: false
+        choose_url: false
+    - label: Рубрики публикаций (служебное)
+      name: pubRubrics
+      widget: list
+      collapsed: true
+      summary: '{{fields.label}}'
+      fields:
+      - label: Ключ в адресе
+        name: key
+        widget: string
+      - label: Название
+        name: label
+        widget: string

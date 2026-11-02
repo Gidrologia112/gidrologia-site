@@ -1,0 +1,42 @@
+{
+ "slug": "vodoemy-dlya-ryb-sadovye-akvariumy",
+ "title": "Водоёмы для рыб (садовые аквариумы)",
+ "old": "/galereya/vodoemy-dlya-ryb-sadovye-akvariumy/",
+ "tone": "#244050",
+ "albums": [
+  {
+   "title": "Лебяжье (ЛО)",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/vodryb001gal.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_vodryb001gal.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/vodryb002gal.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_vodryb002gal.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Юкки",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/20140813_185805_resize_0.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_20140813_185805_resize_0.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/20140813_185841_resize_0.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_20140813_185841_resize_0.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/20140813_185955_resize_0.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_20140813_185955_resize_0.jpg"
+    }
+   ]
+  }
+ ],
+ "groups": [],
+ "order": 4
+}

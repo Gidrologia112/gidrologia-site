@@ -1,0 +1,41 @@
+---
+import { projects, gallery } from '../../lib/data';
+import Page from '../../layouts/Page.astro';
+import Photo from '../../components/Photo.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+const first = (g: any) => { const a = [...g.albums, ...g.groups.flatMap((x: any) => x.albums)][0]; return a ? (a.photos[0].thumb || a.photos[0].src) : ''; };
+---
+<Page
+  title="Объекты и проекты — Гидрология"
+  description="Проекты плавательных водоёмов и живых бассейнов «Гидрологии»: Санкт-Петербург и Ленинградская область, Московская область, Германия."
+  path="/proekty/" label="Объекты" h1="Проекты" accent="и объекты"
+  lead="Более 300 водных объектов в России. Здесь — проекты с эскизами и составом документации; в галерее — фотографии построенных водоёмов по направлениям."
+  crumbs={[{ label: 'Объекты' }]}
+>
+  <section>
+    <div class="w sec">
+      <div class="cards">
+        {projects.map((p) => (
+          <a class="card" href={`/proekty/${p.slug}/`}>
+            <Photo label="Фото проекта" tone={p.tone} src={(p as { cover?: string }).cover || p.images[0]?.src} alt={p.title} />
+            <div class="kind">{p.kind} · {p.place}</div>
+            <div class="h name">{p.title}</div>
+            <span class="go">Смотреть проект →</span>
+          </a>
+        ))}
+      </div>
+      <div style="margin-top:96px">
+        <div class="hd-row"><h2 class="h t-h3">Галерея построенных объектов</h2><a class="more" href="/galereya/">Вся галерея →</a></div>
+        <div class="cards cards-4">
+          {gallery.slice(0, 8).map((g) => (
+            <a class="card" href={`/galereya/${g.slug}/`}>
+              <Photo label="Фото" tone={g.tone} src={first(g)} alt={g.title} />
+              <div class="h name" style="font-size:19px">{g.title}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+  <CtaBlock title="Хотите" accent="такой же водоём?" text="Пришлите техническое задание или расскажите об участке — предложим внешний вид водоёма, подберём оборудование и подготовим проект." tz />
+</Page>

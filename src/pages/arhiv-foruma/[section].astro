@@ -1,0 +1,30 @@
+---
+import Page from '../../layouts/Page.astro';
+import TopicList from '../../components/TopicList.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+import forum from '../../data/forum.json';
+export function getStaticPaths() {
+  return forum.forums.map((f) => ({ params: { section: f.slug } }));
+}
+const f = forum.forums.find((x) => x.slug === Astro.params.section)!;
+const topics = forum.topics.filter((t) => t.forum === f.id);
+const others = forum.forums.filter((x) => x.id !== f.id);
+---
+<Page
+  title={`${f.title} — архив форума | Гидрология`}
+  description={`Темы раздела «${f.title}» архива форума «Гидрологии»: фотоотчёты, вопросы и ответы.`}
+  path={`/arhiv-foruma/${f.slug}/`} label="Архив форума" h1={f.title}
+  lead={`${topics.length} тем${f.desc ? ' · ' + f.desc : ''}`}
+  crumbs={[{ label: 'Архив форума', href: '/arhiv-foruma/' }, { label: f.title }]}
+>
+  <section>
+    <div class="w sec-sm">
+      <TopicList topics={topics} />
+      <div style="margin-top:72px">
+        <h2 class="h" style="font-size:15px;letter-spacing:0;margin:0 0 16px">Другие разделы</h2>
+        <div class="chips">{others.map((o) => <a class="chip" href={`/arhiv-foruma/${o.slug}/`}>{o.title}</a>)}</div>
+      </div>
+    </div>
+  </section>
+  <CtaBlock />
+</Page>

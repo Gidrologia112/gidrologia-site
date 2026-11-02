@@ -1,0 +1,46 @@
+---
+import site from '../data/site.json';
+const c = site.contacts;
+const L = site.links;
+const path = Astro.url.pathname;
+const isActive = (href: string) => href !== '/' && !href.startsWith('/#') && path.startsWith(href);
+---
+<header class="hdr">
+  <div class="w hdr-in">
+    <a class="hdr-logo" href="/" aria-label="Гидрология — на главную"><img src="/logo-light.svg" alt="Гидрология — бассейны, водоёмы, фонтаны" width="141" height="36"></a>
+    <nav class="nav" aria-label="Основное меню">
+      {site.nav.map((n) => <a href={n.href} aria-current={isActive(n.href) ? 'page' : undefined}>{n.label}</a>)}
+      <a href={L.shop} target="_blank" rel="noopener">Магазин ↗</a>
+    </nav>
+    <div class="hdr-cta">
+      <div class="hdr-phone"><a href={c.phoneSpbHref}>{c.phoneSpb}</a><span>{c.hours}</span></div>
+      <a href="/kontakty/#form" class="btn btn-light" style="min-height:44px;padding:0 20px;font-size:14px">Обсудить проект</a>
+    </div>
+    <button type="button" class="burger" data-menu-open aria-label="Открыть меню" aria-controls="mnav" aria-expanded="false">
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true"><path d="M1 1h18M1 7h18M1 13h18" stroke="#F3F1EC" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="mnav" id="mnav" hidden>
+  <div class="mnav-top">
+    <img src="/logo-light.svg" alt="Гидрология" width="125" height="32" style="height:32px;width:auto">
+    <button type="button" class="burger" style="display:inline-flex" data-menu-close aria-label="Закрыть меню">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 2l12 12M14 2L2 14" stroke="#F3F1EC" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav aria-label="Мобильное меню">
+    {site.nav.map((n) => <a class="h" href={n.href} data-menu-link>{n.label === 'ЭВО' ? 'Учебный центр ЭВО' : n.label}</a>)}
+  </nav>
+  <div class="mnav-extra">
+    <a href={L.shop} target="_blank" rel="noopener">Магазин ↗</a>
+    <a href={L.evaporation}>Калькулятор испарения</a>
+    <a href={L.gallery}>Галерея</a>
+    <a href={L.video}>Видео</a>
+  </div>
+  <div class="mnav-contacts">
+    <a href={c.phoneSpbHref}>{c.phoneSpb}</a>
+    <span>{c.phoneRu} · бесплатно по России</span>
+    <span>{c.hours}</span>
+  </div>
+</div>

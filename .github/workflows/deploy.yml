@@ -1,0 +1,55 @@
+# Сборка и выкладка сайта на Timeweb при каждом изменении (в том числе из кабинета редактора).
+# Нужные секреты (Settings → Secrets and variables → Actions):
+#   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD — доступ FTP к хостингу Timeweb
+#   FTP_DIR — папка сайта на хостинге, например gidrologia.ru/public_html/
+#   OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET — приложение GitHub для входа в кабинет
+#   ZAYAVKI_PASSWORD — пароль раздела «Заявки»
+name: Сборка и выкладка
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Ключи входа и пароль заявок
+        env:
+          OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
+          OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
+          ZAYAVKI_PASSWORD: ${{ secrets.ZAYAVKI_PASSWORD }}
+        run: |
+          php -r 'echo "<?php return " . var_export(["client_id" => getenv("OAUTH_CLIENT_ID"), "client_secret" => getenv("OAUTH_CLIENT_SECRET")], true) . ";\n";' > public/admin/oauth/config.php
+          php -r 'echo "<?php return " . var_export(["password_hash" => getenv("ZAYAVKI_PASSWORD") ? password_hash(getenv("ZAYAVKI_PASSWORD"), PASSWORD_DEFAULT) : ""], true) . ";\n";' > public/admin/zayavki/config.php
+
+      - run: npm run build
+
+      - name: Выкладка на Timeweb по FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ${{ secrets.FTP_DIR }}
+          # Фото со старого сайта (img/netcat), форума (forum/files) и видео (netcat_files) живут
+          # только на хостинге: их нет в сборке, выкладка их не трогает.
+          exclude: |
+            **/.git*
+            **/.git*/**

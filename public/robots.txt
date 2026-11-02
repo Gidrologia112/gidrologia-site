@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /send.php
+Disallow: /*?utm
+Allow: /
+
+Sitemap: https://gidrologia.ru/sitemap-index.xml

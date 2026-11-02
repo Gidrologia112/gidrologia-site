@@ -1,0 +1,29 @@
+{
+ "slug": "vodoemy-bezopasnye-kaskadnye",
+ "group": "main",
+ "title": "Безопасные каскадные водоёмы",
+ "tone": "#3F4A42",
+ "short": "Безопасны для детей; отсутствие открытой воды; ручей или каскад; небольшие габариты; быстрый монтаж за один день.",
+ "facts": [
+  {
+   "label": "Открытая вода",
+   "value": "Нет"
+  },
+  {
+   "label": "Монтаж",
+   "value": "1 день"
+  },
+  {
+   "label": "Габариты",
+   "value": "Небольшие"
+  }
+ ],
+ "gallery": "bezopasnye-kaskadnye-vodoemy",
+ "video": "bezopasnye-kaskadnye-vodoemy",
+ "rubric": "Безопасные каскадные водоёмы",
+ "oldSlugs": [
+  "vodoemybezopasnye-kaskadnye"
+ ],
+ "cover": "/img/netcat/f/2560-4-item-4.jpg",
+ "order": 4
+}

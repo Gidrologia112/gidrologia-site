@@ -1,0 +1,21 @@
+---
+import Page from '../../layouts/Page.astro';
+import PostList from '../../components/PostList.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+import { getEvents } from '../../lib/content';
+const posts = await getEvents();
+---
+<Page
+  title="События: семинары, выставки, вебинары — Гидрология"
+  description="Новости «Гидрологии»: семинары учебного центра ЭВО, выставки, вебинары и новые объекты."
+  path="/sobytiya/" label="Новости" h1="События"
+  lead="Семинары учебного центра ЭВО, выставки, вебинары и новости компании."
+  crumbs={[{ label: 'События' }]}
+>
+  <section>
+    <div class="w sec-sm">
+      <PostList posts={posts} base="/sobytiya/" placeholder="Найти событие" />
+    </div>
+  </section>
+  <CtaBlock title="Хотите на" accent="семинар ЭВО?" text="Оставьте контакты — расскажем о ближайших семинарах для ландшафтных специалистов." />
+</Page>

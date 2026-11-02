@@ -1,0 +1,55 @@
+---
+import Page from '../../layouts/Page.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+import forum from '../../data/forum.json';
+import { getCollection } from 'astro:content';
+import { fmtDate } from '../../lib/content';
+export async function getStaticPaths() {
+  const all = await getCollection('forum');
+  return all.map((t) => ({ params: { id: String(t.data.id) }, props: { t: t.data } }));
+}
+const { t } = Astro.props;
+const sec = forum.forums.find((f) => f.slug === t.forum);
+const near = forum.topics.filter((x) => sec && x.forum === sec.id && x.id !== t.id).slice(0, 8);
+const first = t.posts[0];
+const desc = (forum.topics.find((x) => x.id === t.id)?.excerpt || t.title).slice(0, 180);
+---
+<Page
+  title={`${t.title} — архив форума | Гидрология`}
+  description={desc}
+  path={`/arhiv-foruma/tema-${t.id}/`} label={sec ? `Архив форума · ${sec.title}` : 'Архив форума'} h1={t.title}
+  crumbs={[{ label: 'Архив форума', href: '/arhiv-foruma/' }, ...(sec ? [{ label: sec.title, href: `/arhiv-foruma/${sec.slug}/` }] : []), { label: t.title }]}
+  jsonld={{ '@context': 'https://schema.org', '@type': 'DiscussionForumPosting', headline: t.title, datePublished: first.date, author: { '@type': 'Person', name: first.author }, url: new URL(`/arhiv-foruma/tema-${t.id}/`, Astro.site).href }}
+>
+  <section>
+    <div class="w sec-sm g-article">
+      <div class="thread">
+        {t.posts.map((p) => (
+          <article class="fpost" id={`p${p.id}`}>
+            <header><b>{p.author}</b><span>{fmtDate(p.date)}</span></header>
+            {p.html && <div class="prose" set:html={p.html} />}
+            {p.photos.length > 0 && (
+              <div class="gal-grid">
+                {p.photos.map((ph, i) => <a href={ph.src} target="_blank" rel="noopener" data-lb={`${t.title} — ${fmtDate(p.date)}`}><img src={ph.thumb || ph.src} alt={`${t.title}: фото ${i + 1}`} loading="lazy" decoding="async"></a>)}
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+      <aside class="aside">
+        <div class="aside-card" style="background:var(--deep-2);border-color:var(--deep-2);color:var(--paper)">
+          <p class="lbl" style="color:var(--on-dark-2)">Форум закрыт</p>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--on-dark)">Это архив. Если остался вопрос по теме — инженер ответит лично.</p>
+          <a href="#contact" class="btn btn-light" style="margin-top:18px;width:100%">Задать вопрос</a>
+        </div>
+        {near.length > 0 && (
+          <div class="aside-card">
+            <p class="lbl">Ещё в разделе</p>
+            <ul>{near.map((x) => <li><a href={`/arhiv-foruma/tema-${x.id}/`}>{x.title}</a></li>)}</ul>
+          </div>
+        )}
+      </aside>
+    </div>
+  </section>
+  <CtaBlock />
+</Page>

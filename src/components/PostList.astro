@@ -1,0 +1,38 @@
+---
+// Список публикаций/событий с поиском, рубриками и кнопкой «Показать ещё»
+import Photo from './Photo.astro';
+import { fmtDate, type Post } from '../lib/content';
+interface Props { posts: Post[]; base: string; rubrics?: { key: string; label: string }[]; perPage?: number; placeholder?: string; }
+const { posts, base, rubrics = [], perPage = 12, placeholder = 'Поиск по названию' } = Astro.props;
+const tones = ['#1F4A55', '#2F4D40', '#22465A', '#3D5A48', '#2B3F4C', '#244050'];
+---
+<div data-list data-per={perPage}>
+  <div class="list-tools">
+    <label class="search">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6.5" stroke="#5E5954" stroke-width="1.6"/><path d="M14 14l4 4" stroke="#5E5954" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="sr">Поиск</span>
+      <input type="search" data-list-q placeholder={placeholder} autocomplete="off">
+    </label>
+    {rubrics.length > 0 && (
+      <div class="chips" role="group" aria-label="Рубрики">
+        <button type="button" class="chip" data-list-rub="all" aria-pressed="true" style="min-height:36px;font-size:13px">Все</button>
+        {rubrics.map((r) => <button type="button" class="chip" data-list-rub={r.label} data-key={r.key} aria-pressed="false" style="min-height:36px;font-size:13px">{r.label}</button>)}
+      </div>
+    )}
+  </div>
+  <div style="border-top:1px solid var(--ink)" aria-live="polite">
+    {posts.map((p, i) => (
+      <a class="post" href={`${base}${p.slug}/`} data-item data-r={`|${(p.data.rubrics || (p.data.rubric ? [p.data.rubric] : [])).join('|')}|`} data-t={`${p.data.title} ${p.data.excerpt || ''}`.toLowerCase()}>
+        <Photo label="Фото" tone={tones[i % tones.length]} src={p.data.cover} alt="" />
+        <div>
+          {p.data.rubric && <p class="lbl">{p.data.rubric}</p>}
+          <div class="h t">{p.data.title}</div>
+          {p.data.excerpt && <p>{p.data.excerpt}</p>}
+          {p.data.date && <div class="d">{fmtDate(p.data.date)}</div>}
+        </div>
+      </a>
+    ))}
+  </div>
+  <p class="empty" data-list-empty hidden>Ничего не нашлось. <a href="/kontakty/#form" class="acc">Задайте вопрос инженеру →</a></p>
+  <button type="button" class="btn btn-line" data-list-more hidden style="margin-top:32px">Показать ещё</button>
+</div>

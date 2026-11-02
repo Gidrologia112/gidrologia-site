@@ -1,0 +1,78 @@
+---
+import Page from '../layouts/Page.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import site from '../data/site.json';
+const stages = [
+  { t: 'Проектирование', d: 'Эскиз, визуализация или полный проект водной части вашего объекта.', href: '/uslugi/proektirovanie-vodoemov/' },
+  { t: 'Подбор и поставка оборудования', d: 'Оборудование ведущих мировых производителей — в нашем магазине.', href: site.links.shop },
+  { t: 'Гидроизоляция', d: 'Монтаж и склейка EPDM-мембраны для водоёмов и кровель.', href: '/uslugi/montazh-gidroizolyatsii/' },
+  { t: 'Монтаж оборудования', d: 'Насосы, фильтры, скиммеры, подсветка — монтируем и запускаем.', href: '/uslugi/montazh-oborudovaniya/' },
+  { t: 'Сопровождение', d: 'Весенний запуск, зимняя консервация, всесезонный сервис.', href: '/uslugi/obsluzhivanie/' },
+];
+const benefits = [
+  'Огромный опыт строительства искусственных водоёмов любого назначения',
+  'Квалифицированные специалисты',
+  'Возможность получать большую прибыль за счёт лучшего качества реализации объекта',
+  'Возможность браться за объекты, которые раньше были недоступны',
+  'Новый уровень в строительстве искусственных водоёмов',
+  'Сокращение затрат на объекте',
+];
+---
+<Page
+  title="Партнёрам: ландшафтным архитекторам и строительным компаниям — Гидрология"
+  description="Партнёрская программа «Гидрологии»: подключаемся к проекту на любом этапе — проектирование, оборудование, гидроизоляция, монтаж и сервис водных объектов."
+  path="/partnery/" label="Партнёрам" h1="Объединяйте усилия" accent="с «Гидрологией»"
+  lead="Ландшафтным архитекторам, дизайнерам и строительным компаниям: берём на себя водную часть объекта — целиком или отдельным этапом."
+  crumbs={[{ label: 'Партнёрам' }]}
+>
+  <section>
+    <div class="w sec g2">
+      <div class="rv">
+        <p class="lbl">О сотрудничестве</p>
+        <h2 class="h t-h2">Вода — <span class="acc">наш профиль</span></h2>
+      </div>
+      <div class="rv">
+        <p class="page-lead" style="margin:0">Мы одна из немногих профильных компаний ландшафтного рынка России. С 2012 года реализовали более 300 водных объектов, а наши специалисты прошли обучение у поставщиков оборудования. Вы ведёте объект и отношения с заказчиком — мы отвечаем за воду.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="light-2">
+    <div class="w sec">
+      <div class="hd-row rv">
+        <div><p class="lbl">Как подключаемся</p><h2 class="h t-h2">На любом <span class="acc">этапе проекта</span></h2></div>
+      </div>
+      <ol class="g-proc rv">
+        {stages.map((s, i) => <li><div class="h">{String(i + 1).padStart(2, '0')}</div><div><b><a href={s.href} style="text-decoration:none">{s.t} →</a></b><p>{s.d}</p></div></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="w sec g2">
+      <div class="rv">
+        <p class="lbl">Преимущества</p>
+        <h2 class="h t-h2">Партнёрская программа <span class="acc">«Гидрологии»</span></h2>
+      </div>
+      <ul class="dots rv" style="font-size:18px">{benefits.map((b) => <li>{b}</li>)}</ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="w sec" style="padding-top:0">
+      <div class="hd-row rv"><div><p class="lbl">Наши партнёры</p><h2 class="h t-h2">С кем мы работаем</h2></div></div>
+      <div class="g-part rv">
+        {site.partners.map((p) => <a href={p.href} target="_blank" rel="noopener nofollow">{p.logo ? <img src={p.logo} alt={p.name} loading="lazy"> : <span>[Логотип]</span>}<span>{p.name}</span></a>)}
+      </div>
+      <div class="platforms rv">
+        <span>Нас читают на площадках:</span>
+        <a class="chip" href={site.links.houzz} target="_blank" rel="noopener">Houzz</a>
+        <a class="chip" href={site.links.forumhouse} target="_blank" rel="noopener">ForumHouse</a>
+        <a class="chip" href={site.links.gardener} target="_blank" rel="noopener">Gardener.ru</a>
+        <a class="chip" href={site.links.instagram} target="_blank" rel="noopener">Instagram @petrov.gidrologia</a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBlock title="Обсудим" accent="сотрудничество" text="Расскажите об объекте и этапе, на котором нужна помощь, — предложим формат работы." />
+</Page>

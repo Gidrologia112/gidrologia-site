@@ -1,0 +1,59 @@
+---
+// Страница статьи или события
+import Page from '../layouts/Page.astro';
+import Photo from './Photo.astro';
+import CtaBlock from './CtaBlock.astro';
+import site from '../data/site.json';
+import { fmtDate, type Post } from '../lib/content';
+
+interface Props { post: Post; related: Post[]; base: string; section: string; sectionHref: string; kind: 'article' | 'event'; }
+const { post, related, base, section, sectionHref, kind } = Astro.props;
+const { Content } = await post.render();
+const hasBody = post.body.trim().length > 0;
+const d = post.data;
+const rubricKey = site.pubRubrics.find((r) => r.label === d.rubric)?.key;
+const ld = {
+  '@context': 'https://schema.org', '@type': kind === 'article' ? 'Article' : 'NewsArticle',
+  headline: d.title, description: d.excerpt, datePublished: d.date,
+  author: { '@type': 'Organization', name: 'Гидрология' }, publisher: { '@type': 'Organization', name: 'Гидрология', logo: { '@type': 'ImageObject', url: 'https://gidrologia.ru/logo.svg' } },
+  mainEntityOfPage: new URL(`${base}${post.slug}/`, Astro.site).href,
+};
+---
+<Page
+  title={`${d.title} — Гидрология`}
+  description={d.excerpt || `${section} «Гидрологии»: ${d.title}`}
+  path={`${base}${post.slug}/`} label={d.rubric || section} h1={d.title} lead={d.excerpt}
+  crumbs={[{ label: section, href: sectionHref }, { label: d.title }]} jsonld={ld}
+>
+  <div slot="hero">
+    <div class="meta">
+      {d.date && <span>{fmtDate(d.date)}</span>}
+      {d.rubric && rubricKey && <a href={`${sectionHref}?r=${rubricKey}`}>{d.rubric}</a>}
+      {d.source && <span>По материалам: {d.source}</span>}
+    </div>
+    {d.cover && <Photo src={d.cover} alt={d.title} class="cover" eager />}
+  </div>
+  <section>
+    <div class="w sec-sm g-article">
+      <article class="prose">
+        {hasBody ? <Content /> : (
+          <div class="todo"><b>Текст материала переносится из базы старого сайта.</b><br>Здесь появится полная статья с иллюстрациями{d.old && <> (старый адрес: {d.old})</>}.</div>
+        )}
+      </article>
+      <aside class="aside">
+        <div class="aside-card" style="background:var(--deep-2);border-color:var(--deep-2);color:var(--paper)">
+          <p class="lbl" style="color:var(--on-dark-2)">Есть вопрос?</p>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--on-dark)">Инженер «Гидрологии» ответит лично и поможет подобрать решение.</p>
+          <a href="#contact" class="btn btn-light" style="margin-top:18px;width:100%">Задать вопрос</a>
+        </div>
+        {related.length > 0 && (
+          <div class="aside-card">
+            <p class="lbl">{kind === 'article' ? 'Читайте также' : 'Другие события'}</p>
+            <ul>{related.map((r) => <li><a href={`${base}${r.slug}/`}>{r.data.title}</a></li>)}</ul>
+          </div>
+        )}
+      </aside>
+    </div>
+  </section>
+  <CtaBlock title="Остались" accent="вопросы?" text="Расскажите о своём водоёме или участке — инженер ответит и подскажет, с чего начать." />
+</Page>

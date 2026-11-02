@@ -1,0 +1,42 @@
+---
+// Макет внутренней страницы: шапка, крошки, заголовок раздела, содержимое, подвал.
+import Base from './Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Crumb { label: string; href?: string; }
+interface Props {
+  title: string; description: string; path: string;
+  h1: string; accent?: string; label?: string; lead?: string;
+  crumbs?: Crumb[]; dark?: boolean; jsonld?: Record<string, unknown>;
+}
+const { title, description, path, h1, accent, label, lead, crumbs = [], dark = false, jsonld } = Astro.props;
+const trail = [{ label: 'Главная', href: '/' }, ...crumbs];
+const crumbLd = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: trail.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, item: c.href ? new URL(c.href, Astro.site).href : new URL(path, Astro.site).href })),
+};
+---
+<Base title={title} description={description} path={path}>
+  <Header />
+  <main id="main">
+    <section class={`page-hero ${dark ? 'dark' : ''}`}>
+      <div class="w">
+        <nav class="crumbs" aria-label="Навигационная цепочка">
+          {trail.map((c, i) => (
+            <span>{c.href && i < trail.length - 1 ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}{i < trail.length - 1 && <i aria-hidden="true">/</i>}</span>
+          ))}
+        </nav>
+        {label && <p class="lbl">{label}</p>}
+        <h1 class="h t-h1 page-h1">{h1}{accent && <> <span class="acc">{accent}</span></>}</h1>
+        {lead && <p class="page-lead">{lead}</p>}
+        <slot name="hero" />
+      </div>
+    </section>
+    <slot />
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(crumbLd)} />
+  {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
+  <script>import '../scripts/main.js';</script>
+</Base>

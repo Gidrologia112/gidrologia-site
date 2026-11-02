@@ -1,0 +1,34 @@
+---
+import { md } from '../../lib/md';
+import { services, video } from '../../lib/data';
+import Page from '../../layouts/Page.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+
+export function getStaticPaths() {
+  return video.map((v) => ({ params: { slug: v.slug } }));
+}
+const { slug } = Astro.params;
+const v = video.find((x) => x.slug === slug)! as { slug: string; title: string; html?: string };
+const svc = services.find((s) => s.video === v.slug);
+const others = video.filter((x) => x.slug !== v.slug);
+---
+<Page
+  title={`${v.title} — видео | Гидрология`}
+  description={`Видео раздела «${v.title}» от «Гидрологии».`}
+  path={`/video/${v.slug}/`} label="Видео" h1={v.title}
+  crumbs={[{ label: 'Видео', href: '/video/' }, { label: v.title }]}
+>
+  {svc && <a slot="hero" href={`/uslugi/${svc.slug}/`} class="btn btn-line" style="margin-top:28px">О решении: {svc.title} →</a>}
+  <section>
+    <div class="w sec-sm">
+      {v.html ? <div class="prose" style="max-width:880px" set:html={md(v.html)} /> : (
+        <div class="todo">Видео в этом разделе пока нет.</div>
+      )}
+      <div style="margin-top:72px">
+        <h2 class="h" style="font-size:15px;letter-spacing:0;margin:0 0 16px">Другие разделы</h2>
+        <div class="chips">{others.map((o) => <a class="chip" href={`/video/${o.slug}/`}>{o.title}</a>)}</div>
+      </div>
+    </div>
+  </section>
+  <CtaBlock />
+</Page>

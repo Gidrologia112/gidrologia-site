@@ -1,0 +1,112 @@
+{
+ "slug": "klassicheskie-basseyny",
+ "title": "Классические бассейны",
+ "old": "/galereya/klassicheskie-basseyny/",
+ "tone": "#2B3F4C",
+ "albums": [
+  {
+   "title": "Всеволожск (Ленинградская область)",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/vsv002.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_vsv002.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/vsv001.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_vsv001.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/vsv003.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_vsv003.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/vsv004.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_vsv004.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Борисово (Ленинградская область)",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/SAM_0182_resize.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_SAM_0182_resize.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/SAM_0190_resize.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_SAM_0190_resize.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/SAM_0196_resize.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_SAM_0196_resize.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/SAM_0238_resize.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_SAM_0238_resize.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Бассейн в п. Приветнинское (ЛО)",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/priv045.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_priv045.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/priv047.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_priv047.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Басссейн в п. Сувантоярви (Лен. обл.)",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/suv.2021.016.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_suv.2021.016.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/suv.2021.017.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_suv.2021.017.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/suv.2021.018.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_suv.2021.018.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/suv.2021.019.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_suv.2021.019.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/suv.2021.020.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_suv.2021.020.jpg"
+    }
+   ]
+  },
+  {
+   "title": "Лисий нос (Лен. обл.). 2017",
+   "text": "",
+   "photos": [
+    {
+     "src": "/img/netcat/multifile/2557/Image00001.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_Image00001.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/Image00002.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_Image00002.jpg"
+    },
+    {
+     "src": "/img/netcat/multifile/2557/Image00003.jpg",
+     "thumb": "/img/netcat/multifile/2557/preview_Image00003.jpg"
+    }
+   ]
+  }
+ ],
+ "groups": [],
+ "order": 9
+}

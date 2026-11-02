@@ -1,0 +1,12 @@
+---
+// Фото с заглушкой: пока файла нет (src пустой или картинка ещё не скопирована в public/), показываем цветной блок с подписью.
+import { hasImg } from '../lib/img';
+interface Props { src?: string; alt?: string; label?: string; tone?: string; class?: string; eager?: boolean; }
+const { src = '', alt = '', label = 'Фото', tone = '#2E5A62', class: cls = '', eager = false } = Astro.props;
+const ok = hasImg(src);
+---
+<div class={`ph ${cls}`} style={`background:${tone}`}>
+  {ok
+    ? <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async">
+    : <span class="ph-label">{label}</span>}
+</div>

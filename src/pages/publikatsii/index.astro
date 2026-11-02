@@ -1,0 +1,23 @@
+---
+import Page from '../../layouts/Page.astro';
+import PostList from '../../components/PostList.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+import site from '../../data/site.json';
+import { getPublications } from '../../lib/content';
+const posts = await getPublications();
+---
+<Page
+  title="Публикации о водоёмах, бассейнах и фонтанах — Гидрология"
+  description="Статьи инженеров «Гидрологии»: плавательные и декоративные водоёмы, живые бассейны, оборудование, гидроизоляция, обслуживание."
+  path="/publikatsii/" label="Сообщество" h1="Знаем о воде больше," accent="чем видно с берега"
+  lead="Статьи, разборы и ответы инженеров. Опыт, который 12 лет копился на нашем форуме и в публикациях, — в одном месте."
+  crumbs={[{ label: 'Публикации' }]}
+>
+  <a slot="hero" href="/arhiv-foruma/" class="btn btn-line" style="margin-top:28px">Архив форума: дневники строек и обсуждения →</a>
+  <section>
+    <div class="w sec-sm">
+      <PostList posts={posts} base="/publikatsii/" rubrics={site.pubRubrics} placeholder="Найти статью: насос, рыбы, гидроизоляция…" />
+    </div>
+  </section>
+  <CtaBlock title="Не нашли" accent="ответ?" text="Задайте вопрос — инженер ответит лично. Если вопрос полезен другим, ответ появится в базе знаний." />
+</Page>

@@ -1,0 +1,442 @@
+---
+import Base from '../layouts/Base.astro';
+import Lens from '../components/Lens.astro';
+import Photo from '../components/Photo.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
+import site from '../data/site.json';
+import { getEvents, getPublications, fmtDate } from '../lib/content';
+const latestEvents = (await getEvents()).slice(0, 4);
+const kbPosts = await getPublications();
+
+const c = site.contacts;
+const L = site.links;
+const DEEP = '#05161D', DEEP2 = '#0A2A36', PAPER = '#F3F1EC', PAPER2 = '#EDE9E1', WHITE = '#FFFFFF';
+// Маршруты от Петербурга к остальным городам карты (viewBox 1000×600)
+const routes = site.cities.slice(1).map((ct) => {
+  const sx = 150, sy = 106, X = ct.x * 10, Y = ct.y * 6;
+  const cx = sx + (X - sx) * 0.5 + (Y - sy) * 0.25, cy = sy + (Y - sy) * 0.15;
+  return `M${sx} ${sy} Q${Math.round(cx)} ${Math.round(cy)} ${Math.round(X)} ${Math.round(Y)}`;
+});
+const pad2 = (n: number) => String(n).padStart(2, '0');
+---
+<Base
+  title="Гидрология — искусственные водоёмы, живые бассейны и фонтаны под ключ"
+  description="Проектируем, строим и обслуживаем водные объекты с 2012 года: плавательные водоёмы, живые бассейны, декоративные пруды, каскады и фонтаны. Более 300 объектов, Санкт-Петербург и вся Россия."
+>
+<Header />
+
+<main id="main">
+
+<!-- 00 Обложка -->
+<section class="hero" aria-label="Гидрология">
+  <canvas data-water aria-hidden="true"></canvas>
+  <div class="hero-shade"></div>
+  <div class="w hero-in">
+    <p class="lbl rise">Водные объекты в ландшафте · с {site.since} года</p>
+    <h1 class="h t-h1 rise r2">Вода, которая становится <span class="acc">частью вашего участка</span></h1>
+    <div class="hero-row rise r3">
+      <p>Проектируем, строим и обслуживаем под ключ: плавательные водоёмы, живые бассейны, пруды, ручьи, каскады и фонтаны.</p>
+      <div class="btns">
+        <a href="#contact" class="btn btn-light">Обсудить проект</a>
+        <a href="#objects" class="btn btn-ghost">Смотреть объекты</a>
+      </div>
+    </div>
+    <div class="trust rise r4">{site.trust.map((t) => <span>{t}</span>)}</div>
+  </div>
+  <div class="hint rise r4" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="3" stroke="#8FB4C2" stroke-width="1.2"/><circle cx="9" cy="9" r="7.5" stroke="#8FB4C2" stroke-width=".8" opacity=".5"/></svg>
+    Коснитесь воды
+  </div>
+</section>
+
+<Lens from={DEEP} to={PAPER} />
+
+<!-- 01 О нас -->
+<section id="about">
+  <div class="w sec" style="padding-top:72px">
+    <div class="g-about rv">
+      <p class="lbl" style="margin-top:10px">01 — О нас</p>
+      <div>
+        <p class="h t-st">Мы — одна из немногих профильных компаний ландшафтного рынка России. Наш профиль — водные объекты: водоёмы и&nbsp;ручьи, бассейны и&nbsp;каскады, водопады и&nbsp;фонтаны. <span class="acc">Это всё мы умеем и&nbsp;любим делать.</span></p>
+        <div class="g-nums">
+          {site.stats.map((s) => <div><div class="h t-num">{s.value}{s.suffix && <span class="acc">{s.suffix}</span>}</div><p>{s.text}</p></div>)}
+        </div>
+      </div>
+    </div>
+    <div class="g-cred rv">
+      {site.credentials.map((x) => <div><b>{x.title}</b><p>{x.text}</p></div>)}
+    </div>
+    <div class="g-team rv">
+      {site.team.map((m, i) => (
+        <div>
+          <Photo src={m.photo} alt={m.name} label="Фото" tone={['#CFC9BD', '#C7CDC6', '#C4CBCF', '#D2CCC0'][i % 4]} />
+          <div class="q">{m.name}</div>
+          <div class="role">{m.role}</div>
+        </div>
+      ))}
+    </div>
+    <a href={L.presentation} class="btn btn-line rv" style="margin-top:40px">Смотреть презентацию компании</a>
+  </div>
+</section>
+
+<!-- 02 География -->
+<section id="geo" class="light-2">
+  <div class="w sec">
+    <div class="hd-row rv">
+      <div>
+        <p class="lbl">02 — География</p>
+        <h2 class="h t-h2">От Невы <span class="acc">до&nbsp;Урала</span></h2>
+      </div>
+      <p class="lead">Базируемся в Санкт-Петербурге, строим по всей России. Нажмите на город, чтобы узнать, что мы там делали.</p>
+    </div>
+    <div class="g-geo rv" data-geo>
+      <div>
+        <div class="map">
+          <svg viewBox="0 0 1000 600" aria-hidden="true">
+            <g stroke="rgba(160,200,215,.08)" stroke-width="1"><path d="M0 100H1000M0 200H1000M0 300H1000M0 400H1000M0 500H1000M125 0V600M250 0V600M375 0V600M500 0V600M625 0V600M750 0V600M875 0V600"/></g>
+            <g fill="none" stroke="#0083C3" stroke-width="1.8" stroke-linecap="round">{routes.map((d) => <path class="route" d={d} />)}</g>
+          </svg>
+          {site.cities.map((ct, i) => (
+            <div class={`pt${ct.hq ? ' hq' : ''}${ct.x > 85 ? ' lft' : ''}`} style={`left:${ct.x}%;top:${ct.y}%`}>
+              {i === 0 && <span class="pt-pulse"></span>}
+              <button type="button" data-city={i} aria-pressed={i === 0 ? 'true' : 'false'} aria-label={ct.name}><i></i></button>
+              <span class="pt-l">{ct.name}</span>
+            </div>
+          ))}
+        </div>
+        <div class="chips city-chips">
+          {site.cities.map((ct, i) => <button type="button" class="chip" data-city={i} aria-pressed={i === 0 ? 'true' : 'false'} style="min-height:36px;font-size:13px">{ct.name}</button>)}
+        </div>
+      </div>
+      <div class="city-card" aria-live="polite">
+        <p class="lbl" data-city-role>{site.cities[0].role}</p>
+        <h3 class="h" data-city-name>{site.cities[0].name}</h3>
+        <p data-city-text>{site.cities[0].text}</p>
+        <div class="abroad">
+          Также проектировали для коллег
+          <div class="chips">{site.abroad.map((a) => <span class="chip">{a}</span>)}</div>
+        </div>
+      </div>
+    </div>
+    <script type="application/json" id="cities-data" set:html={JSON.stringify(site.cities)}></script>
+  </div>
+</section>
+
+<!-- 03 Решения -->
+<section id="solutions">
+  <div class="w sec">
+    <div class="hd-row rv">
+      <div>
+        <p class="lbl">03 — Решения</p>
+        <h2 class="h t-h2">Что мы <span class="acc">создаём</span></h2>
+      </div>
+      <p class="lead">Каждое направление — от эскиза и проекта до запуска и сезонного обслуживания.</p>
+    </div>
+    <div class="g-sol rv" data-tabs>
+      <div class="sol-list" role="tablist" aria-label="Направления">
+        {site.solutions.map((s, i) => (
+          <button type="button" role="tab" id={`sol-t${i}`} aria-controls={`sol-p${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+            <span class="sol-n">{pad2(i + 1)}</span><span class="h sol-t">{s.title}</span>
+          </button>
+        ))}
+      </div>
+      <div>
+        {site.solutions.map((s, i) => (
+          <div class="panel" role="tabpanel" id={`sol-p${i}`} aria-labelledby={`sol-t${i}`} hidden={i !== 0}>
+            <Photo src={s.photo} alt={s.title} label={`Фото: ${s.photoLabel}`} tone={s.tone} />
+            <div class="panel-in">
+              <h3 class="h t-h3">{s.title}</h3>
+              <p>{s.text}</p>
+              <dl class="facts">{s.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>
+              <div class="btns">
+                <a href={s.href} class="btn btn-light">Подробнее о решении</a>
+                <a href="#objects" class="btn btn-ghost">Примеры объектов</a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="g-more rv">
+      <div><b>Также строим</b><div class="chips">{site.alsoBuild.map((x) => <a class="chip" href={x.href}>{x.label}</a>)}</div></div>
+      <div><b>Работы и сервис</b><div class="chips">{site.services.map((x) => <a class="chip" href={x.href}>{x.label}</a>)}</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Как устроено + сравнение -->
+<section id="scheme" class="light-2">
+  <div class="w sec">
+    <div class="hd-row rv">
+      <div>
+        <p class="lbl">Как это устроено</p>
+        <h2 class="h t-h2">Что внутри <span class="acc">плавательного водоёма</span></h2>
+      </div>
+      <p class="lead">Нажмите на точку на схеме. Схема упрощённая — каждый объект мы рассчитываем индивидуально.</p>
+    </div>
+    <div class="g-scheme rv" data-scheme>
+      <div class="scheme">
+        <svg viewBox="0 0 1000 520" role="img" aria-label="Схема плавательного водоёма в разрезе">
+          <path d="M0 150H1000V520H0Z" fill="#B9A98C"/>
+          <path d="M0 150H1000" stroke="#8C7C60" stroke-width="2"/>
+          <path d="M60 150L120 230L380 230L420 380L780 380L820 230L940 150Z" fill="#2B5E6E"/>
+          <path d="M60 150L120 230L380 230L420 380L780 380L820 230L940 150" fill="none" stroke="#1B1918" stroke-width="5"/>
+          <path d="M60 150H940" stroke="#9FD3E8" stroke-width="3"/>
+          <path d="M120 230H380" stroke="#3E7350" stroke-width="10" stroke-linecap="round"/>
+          <g stroke="#4F8A5B" stroke-width="4" stroke-linecap="round"><path d="M150 228V170M175 228V160M205 228V176M240 228V156M275 228V172M310 228V162M345 228V178"/></g>
+          <path d="M380 230L392 168" stroke="#E8E2D6" stroke-width="6"/>
+          <rect x="890" y="120" width="40" height="38" rx="4" fill="#E8E2D6" stroke="#1B1918" stroke-width="2"/>
+          <rect x="840" y="420" width="70" height="44" rx="6" fill="#E8E2D6" stroke="#1B1918" stroke-width="2"/>
+          <rect x="700" y="430" width="90" height="56" rx="6" fill="#E8E2D6" stroke="#1B1918" stroke-width="2"/>
+          <path d="M910 158V442M840 442H790M700 458H150V240" fill="none" stroke="#5E5954" stroke-width="3" stroke-dasharray="8 6"/>
+        </svg>
+        {site.scheme.map((p, i) => (
+          <button type="button" class="spot" data-spot={i} aria-pressed={i === 0 ? 'true' : 'false'} aria-label={p.title} style={`left:${p.x}%;top:${p.y}%`}>{i + 1}</button>
+        ))}
+      </div>
+      <div class="spot-card" aria-live="polite">
+        <p class="lbl">Элемент <span data-spot-n>1</span> из {site.scheme.length}</p>
+        <h3 class="h" data-spot-title>{site.scheme[0].title}</h3>
+        <p data-spot-text>{site.scheme[0].text}</p>
+      </div>
+    </div>
+    <script type="application/json" id="scheme-data" set:html={JSON.stringify(site.scheme)}></script>
+
+    <div class="cmp-wrap rv">
+      <div class="hd-row" style="margin-bottom:32px">
+        <h3 class="h t-h3">Бассейн или <span class="acc">плавательный водоём?</span></h3>
+        <p class="lead">Строим и то и другое, поэтому сравниваем честно.</p>
+      </div>
+      <div class="cmp" role="table" aria-label="Сравнение бассейна и плавательного водоёма">
+        <div class="k" role="columnheader"><span class="sr">Параметр</span></div><div class="hd" role="columnheader">Классический бассейн</div><div class="hd hl" role="columnheader">Плавательный водоём</div>
+        {site.compare.map((r) => <><div class="k" role="rowheader">{r.param}</div><div role="cell">{r.pool}</div><div class="hl" role="cell">{r.pond}</div></>)}
+      </div>
+      <p class="note">Цифры подставим из смет «Гидрологии».</p>
+    </div>
+  </div>
+</section>
+
+<Lens from={PAPER2} to={DEEP} />
+
+<!-- 04 Объекты -->
+<section id="objects" class="dark">
+  <div class="w sec" style="padding-top:64px">
+    <div class="hd-row rv">
+      <div>
+        <p class="lbl">04 — Объекты</p>
+        <h2 class="h t-h2">История одного <span class="acc">водоёма</span></h2>
+      </div>
+      <a href={L.objects} class="more">Все объекты →</a>
+    </div>
+    <div class="g-case rv">
+      <div class="ba" data-ba>
+        <div class="ba-before">{site.case.before && <img src={site.case.before} alt="Участок до строительства" loading="lazy">}<span class="ba-tag">До · участок</span></div>
+        <div class="ba-after">{site.case.after && <img src={site.case.after} alt="Тот же ракурс после строительства" loading="lazy">}<span class="ba-tag">После<span class="ba-x"> · тот же ракурс</span></span></div>
+        <div class="ba-line" aria-hidden="true"><span class="ba-knob"><svg width="22" height="12" viewBox="0 0 22 12" fill="none"><path d="M6 1L1 6l5 5M16 1l5 5-5 5" stroke="#05161D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <label><span class="sr">Сравнить участок до и после строительства</span><input type="range" min="0" max="100" value="50"></label>
+        <span class="ba-hint">Потяните, чтобы сравнить</span>
+      </div>
+      <div class="case" data-tabs>
+        <p class="lbl">{site.case.kind}</p>
+        <h3 class="h t-h3">{site.case.title}</h3>
+        <div class="case-tabs" role="tablist" aria-label="История объекта">
+          {site.case.steps.map((s, i) => <button type="button" role="tab" id={`cs-t${i}`} aria-controls={`cs-p${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{s.label}</button>)}
+        </div>
+        {site.case.steps.map((s, i) => <p class="case-text" role="tabpanel" id={`cs-p${i}`} aria-labelledby={`cs-t${i}`} hidden={i !== 0}>{s.text}</p>)}
+        <dl class="case-facts">{site.case.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>
+        <a href={site.case.href} class="btn btn-light">Читать историю объекта</a>
+      </div>
+    </div>
+    <div class="strip rv">
+      {site.objects.map((o) => (
+        <a href={o.href}>
+          <Photo src={o.photo} alt={o.title} label="Фото объекта" tone={o.tone} />
+          <div class="kind">{o.kind}</div>
+          <div class="h name">{o.title}</div>
+        </a>
+      ))}
+    </div>
+    <div class="gal rv">
+      <div class="chips">
+        <span class="gal-l">Галерея:</span>
+        {site.galleryChips.map((g) => <a class="chip" href={L.gallery}>{g}</a>)}
+        <a class="chip" href={L.gallery}>Все 15 разделов →</a>
+      </div>
+      <a href={L.video} class="more">Видео: 14 разделов →</a>
+    </div>
+  </div>
+</section>
+
+<Lens from={DEEP} to={PAPER} />
+
+<!-- Как мы работаем -->
+<section id="process">
+  <div class="w sec" style="padding-top:64px">
+    <div class="hd-row rv">
+      <div>
+        <p class="lbl">Как мы работаем</p>
+        <h2 class="h t-h2">От идеи <span class="acc">до&nbsp;первого купания</span></h2>
+      </div>
+      <a href="#contact" class="more" data-form-tab="1">Отправить техническое задание →</a>
+    </div>
+    <ol class="g-proc rv">
+      {site.process.map((p, i) => <li><div class="h">{pad2(i + 1)}</div><div><b>{p.title}</b><p>{p.text}</p></div></li>)}
+    </ol>
+  </div>
+</section>
+
+<div class="pause rv">
+  <span class="ph-label">Панорамное фото объекта на всю ширину</span>
+  <blockquote class="q">«Мы держим руку на пульсе и следим за всеми новинками отрасли»</blockquote>
+</div>
+
+<!-- 05 Сообщество -->
+<section id="community" class="white">
+  <div class="w sec">
+    <div class="hd-row rv">
+      <div>
+        <p class="lbl">05 — Сообщество</p>
+        <h2 class="h t-h2">Знаем о воде больше, <span class="acc">чем видно с&nbsp;берега</span></h2>
+      </div>
+      <p class="lead">Статьи, ответы инженеров и дневники строек. Опыт, который 12 лет копился на нашем форуме — 400+ тем и около 2 700 ответов, — собран в одном месте.</p>
+    </div>
+    <div class="g-comm rv">
+      <div data-kb>
+        <label class="search">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6.5" stroke="#5E5954" stroke-width="1.6"/><path d="M14 14l4 4" stroke="#5E5954" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span class="sr">Поиск по статьям</span>
+          <input type="search" data-kb-q placeholder="Найти статью: насос, рыбы, гидроизоляция…" autocomplete="off">
+        </label>
+        <div class="chips rubs" role="group" aria-label="Рубрики">
+          <button type="button" class="chip" data-rub="all" aria-pressed="true">Все</button>
+          {site.rubrics.map((r) => <button type="button" class="chip" data-rub={r} aria-pressed="false">{r}</button>)}
+        </div>
+        <div class="arts" aria-live="polite">
+          {kbPosts.map((a) => (
+            <a href={`/publikatsii/${a.slug}/`} class="art" data-art data-r={`|${(a.data.rubrics || []).join('|')}|`} data-t={`${a.data.title} ${(a.data.rubrics || []).join(' ')}`.toLowerCase()}>
+              <div><p class="lbl">{a.data.rubric || 'Публикация'}</p><div class="h">{a.data.title}</div></div><span class="arr">→</span>
+            </a>
+          ))}
+        </div>
+        <p class="empty" data-kb-empty hidden>Такого материала пока нет. <a href="#contact" class="acc">Задайте вопрос инженеру →</a></p>
+        <a href={L.publications} class="btn btn-dark" style="margin-top:28px">Вся база знаний</a>
+      </div>
+      <div class="side">
+        <a href={L.objects} class="diary">
+          <Photo label="Фото этапа" tone="#2E5A62" />
+          <div class="t"><p class="lbl">Дневник стройки</p><div class="h" style="margin-top:8px;font-size:22px;line-height:1.25">Как строится плавательный водоём: от котлована до запуска</div></div>
+        </a>
+        <div class="faq-card">
+          <p class="lbl">Вопрос — ответ</p>
+          <div class="h" style="margin-top:8px;font-size:20px;line-height:1.3">Нужна ли химия в плавательном водоёме?</div>
+          <p>Нет. Воду очищают водные растения и прудовые бактерии в зоне регенерации.</p>
+          <a href={L.publications} class="more" style="display:inline-block;margin-top:10px;font-size:14px">Все вопросы →</a>
+        </div>
+      </div>
+    </div>
+    <div class="g-tools rv">
+      <a href={L.evaporation} class="on"><b>Калькулятор испарения</b><span>Потери воды за день и месяц по площади и температуре воды</span></a>
+      <a href="#contact" data-form-tab="1"><b>Подать ТЗ</b><span>Форма для расчёта проекта и стоимости водоёма</span></a>
+      <a href={L.video}><b>Видео</b><span>14 разделов: от купелей до зелёных кровель</span></a>
+      <a href={L.shop} target="_blank" rel="noopener"><b>Магазин ↗</b><span>Оборудование для искусственных водоёмов</span></a>
+    </div>
+  </div>
+</section>
+
+<Lens from={WHITE} to={DEEP2} />
+
+<!-- 06 ЭВО -->
+<section id="evo" class="dark-2">
+  <div class="w sec g-evo" style="padding-top:64px">
+    <div class="rv">
+      <p class="lbl">06 — Учебный центр ЭВО</p>
+      <h2 class="h t-h2">Мы учим <span class="acc">других</span></h2>
+      <p class="lead" style="margin-top:24px;font-size:17px;max-width:none">Учебно-выставочный центр «ЭВО» — практические и теоретические семинары для ландшафтных компаний. Проводили их в Санкт-Петербурге, Москве, Казани и Киеве.</p>
+      <div class="evo-nums">
+        <div><div class="h">50+</div><span>семинаров</span></div>
+        <div><div class="h">4</div><span>летних семинара в 2026</span></div>
+      </div>
+      <div class="evo-addr">{site.evo.address}</div>
+      <a href={L.evo} target="_blank" rel="noopener" class="btn btn-light" style="margin-top:28px">Сайт ЭВО ↗</a>
+    </div>
+    <div class="rv">
+      <div class="g-fmt">{site.evo.formats.map((f) => <div><b>{f.title}</b><p>{f.text}</p></div>)}</div>
+      <div class="tl">
+        {site.evo.timeline.map((e) => <a href={e.href}><span class="lbl">{e.date}</span><span class="h">{e.title}</span><span class="arr">→</span></a>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<Lens from={DEEP2} to={PAPER} />
+
+<!-- 07 Новости -->
+<section id="news">
+  <div class="w sec" style="padding-top:64px;padding-bottom:64px">
+    <div class="hd-row rv" style="margin-bottom:28px">
+      <div>
+        <p class="lbl">07 — Новости</p>
+        <h2 class="h t-h2">События</h2>
+      </div>
+      <a href={L.events} class="more">Все события →</a>
+    </div>
+    <div class="news rv" style="border-top:1px solid var(--line)">
+      {latestEvents.map((n) => <a href={`/sobytiya/${n.slug}/`}><span class="lbl">{fmtDate(n.data.date)}</span><span class="h">{n.data.title}</span><span class="arr">→</span></a>)}
+    </div>
+  </div>
+</section>
+
+<!-- 08 Партнёры -->
+<section id="partners">
+  <div class="w sec" style="padding-top:64px">
+    <div class="g2 rv" style="margin-bottom:44px">
+      <div>
+        <p class="lbl">08 — Партнёры</p>
+        <h2 class="h t-h2">Объединяйте усилия <span class="acc">с&nbsp;«Гидрологией»</span></h2>
+      </div>
+      <div>
+        <ul class="dots">{site.partnerPoints.map((p) => <li>{p}</li>)}</ul>
+        <a href={L.partners} class="more" style="display:inline-block;margin-top:22px">О партнёрской программе →</a>
+      </div>
+    </div>
+    <div class="g-part rv">
+      {site.partners.map((p) => <a href={p.href} target="_blank" rel="noopener nofollow">{p.logo ? <img src={p.logo} alt={p.name} loading="lazy"> : <span>[Логотип]</span>}<span>{p.name}</span></a>)}
+    </div>
+    <div class="platforms rv">
+      <span>Нас читают на площадках:</span>
+      <a class="chip" href={L.houzz} target="_blank" rel="noopener">Houzz</a>
+      <a class="chip" href={L.forumhouse} target="_blank" rel="noopener">ForumHouse</a>
+      <a class="chip" href={L.gardener} target="_blank" rel="noopener">Gardener.ru</a>
+      <a class="chip" href={L.instagram} target="_blank" rel="noopener">Instagram @petrov.gidrologia</a>
+    </div>
+  </div>
+</section>
+
+<Lens from={PAPER} to={DEEP} />
+
+<!-- 09 Связаться -->
+<section id="contact" class="dark contact">
+  <div class="w sec g2" style="padding-top:64px;align-items:start">
+    <div class="rv">
+      <p class="lbl">09 — Связаться</p>
+      <h2 class="h">Есть идея <span class="acc">для вашего участка?</span></h2>
+      <p class="lead" style="margin-top:24px;font-size:17px;max-width:440px">Расскажите о ней — инженер поможет подобрать решение и обсудит реализацию.</p>
+      <div class="contact-list">
+        <a href={c.phoneSpbHref}>{c.phoneSpb} <span>· Санкт-Петербург</span></a>
+        <a href={c.phoneRuHref}>{c.phoneRu} <span>· бесплатно по России</span></a>
+        <a href={`mailto:${c.email}`}>{c.email}</a>
+        <small>{c.hours} · {c.visit.toLowerCase()}</small>
+      </div>
+    </div>
+    <div class="rv"><ContactForm /></div>
+  </div>
+</section>
+
+</main>
+
+<Footer />
+
+<script>import '../scripts/main.js';</script>
+</Base>

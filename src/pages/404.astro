@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+---
+<Base title="Страница не найдена — Гидрология" description="Такой страницы нет на сайте gidrologia.ru." path="/404.html">
+<main id="main" class="dark" style="min-height:100vh;display:flex;align-items:center">
+  <div class="w">
+    <a href="/"><img src="/logo-light.svg" alt="Гидрология — на главную" width="141" height="36" style="height:36px;width:auto"></a>
+    <p class="lbl" style="margin-top:64px">Ошибка 404</p>
+    <h1 class="h t-h2">Здесь пока <span class="acc">нет воды</span></h1>
+    <p class="lead" style="margin-top:20px">Страница переехала или больше не существует. Мы обновили сайт — начните с главной или позвоните нам: {site.contacts.phoneSpb}.</p>
+    <div class="btns" style="margin-top:32px"><a href="/" class="btn btn-light">На главную</a><a href="/#contact" class="btn btn-ghost">Связаться</a></div>
+  </div>
+</main>
+</Base>

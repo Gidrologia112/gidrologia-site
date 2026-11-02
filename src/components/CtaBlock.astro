@@ -1,0 +1,26 @@
+---
+// Нижний блок связи на внутренних страницах (по структуре заказчика: «Призыв (обратная связь)»)
+import Lens from './Lens.astro';
+import ContactForm from './ContactForm.astro';
+import site from '../data/site.json';
+interface Props { from?: string; title?: string; accent?: string; text?: string; tz?: boolean; }
+const { from = '#F3F1EC', title = 'Есть идея', accent = 'для вашего участка?', text = 'Расскажите о ней — инженер поможет подобрать решение и обсудит реализацию.', tz = false } = Astro.props;
+const c = site.contacts;
+---
+<Lens from={from} to="#05161D" />
+<section id="contact" class="dark contact">
+  <div class="w sec g2" style="padding-top:64px;align-items:start">
+    <div class="rv">
+      <p class="lbl">Связаться</p>
+      <h2 class="h">{title} <span class="acc">{accent}</span></h2>
+      <p class="lead" style="margin-top:24px;font-size:17px;max-width:440px">{text}</p>
+      <div class="contact-list">
+        <a href={c.phoneSpbHref}>{c.phoneSpb} <span>· Санкт-Петербург</span></a>
+        <a href={c.phoneRuHref}>{c.phoneRu} <span>· бесплатно по России</span></a>
+        <a href={`mailto:${c.email}`}>{c.email}</a>
+        <small>{c.hours}</small>
+      </div>
+    </div>
+    <div class="rv"><ContactForm tz={tz} /></div>
+  </div>
+</section>

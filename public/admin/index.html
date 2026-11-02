@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Кабинет редактора — Гидрология</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <script src="https://unpkg.com/decap-cms@3.17.1/dist/decap-cms.js"></script>
+  <script>
+    // Транслитерация заголовка в адрес страницы (Decap сам кириллицу не переводит)
+    var TR = { а:'a',б:'b',в:'v',г:'g',д:'d',е:'e',ё:'e',ж:'zh',з:'z',и:'i',й:'y',к:'k',л:'l',м:'m',н:'n',о:'o',п:'p',р:'r',с:'s',т:'t',у:'u',ф:'f',х:'h',ц:'ts',ч:'ch',ш:'sh',щ:'sch',ъ:'',ы:'y',ь:'',э:'e',ю:'yu',я:'ya' };
+    function slugify(s) {
+      return String(s || '').toLowerCase().split('').map(function (c) { return TR[c] !== undefined ? TR[c] : c; }).join('')
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80).replace(/-+$/, '');
+    }
+    CMS.registerEventListener({
+      name: 'preSave',
+      handler: function (ctx) {
+        var data = ctx.entry.get('data');
+        if (data.has('url') && !String(data.get('url') || '').trim() && data.get('title')) {
+          return data.set('url', slugify(data.get('title')));
+        }
+        if (data.has('url')) return data.set('url', slugify(data.get('url')));
+        return data;
+      },
+    });
+    // Ссылки в шапке кабинета
+    if (CMS.registerAdditionalLink) {
+      CMS.registerAdditionalLink({ id: 'zayavki', title: 'Заявки с сайта', data: '/admin/zayavki/', options: { icon: 'page' } });
+      CMS.registerAdditionalLink({ id: 'metrika', title: 'Метрика', data: 'https://metrika.yandex.ru/dashboard?id=114014482', options: { icon: 'page' } });
+      CMS.registerAdditionalLink({ id: 'deploy', title: 'Статус выкладки', data: 'https://github.com/Gidrologia112/gidrologia-site/actions', options: { icon: 'page' } });
+    }
+  </script>
+</body>
+</html>

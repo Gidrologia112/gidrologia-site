@@ -1,0 +1,47 @@
+---
+import { md } from '../../lib/md';
+import { services, projects } from '../../lib/data';
+import Page from '../../layouts/Page.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+
+export function getStaticPaths() {
+  return projects.map((p) => ({ params: { slug: p.slug } }));
+}
+const { slug } = Astro.params;
+const p = projects.find((x) => x.slug === slug)!;
+const svc = services.find((s) => s.slug === p.service);
+const others = projects.filter((x) => x.slug !== p.slug);
+const html = (p as { html?: string }).html || '';
+---
+<Page
+  title={`${p.title} — проект | Гидрология`}
+  description={`${p.kind}: ${p.place}. Эскиз, визуализация и проект строительства от «Гидрологии».`}
+  path={`/proekty/${p.slug}/`} label={`${p.kind} · ${p.place}`} h1={p.title}
+  crumbs={[{ label: 'Объекты', href: '/proekty/' }, { label: p.title }]}
+>
+  <section>
+    <div class="w sec-sm g-article">
+      <div class="prose" set:html={md(html)} />
+      <aside class="aside">
+        <div class="aside-card" style="background:var(--deep-2);border-color:var(--deep-2);color:var(--paper)">
+          <p class="lbl" style="color:var(--on-dark-2)">Проект для вашего участка</p>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:var(--on-dark)">Пришлите техническое задание — предложим внешний вид водоёма и подберём оборудование.</p>
+          <a href="/kontakty/#tz" class="btn btn-light" style="margin-top:18px;width:100%">Отправить ТЗ</a>
+        </div>
+        {svc && (
+          <div class="aside-card">
+            <p class="lbl">Решение</p>
+            <a href={`/uslugi/${svc.slug}/`} class="h" style="font-size:22px">{svc.title} →</a>
+            <p style="margin:10px 0 0;font-size:15px;line-height:1.6;color:var(--muted)">{svc.short}</p>
+          </div>
+        )}
+        <div class="aside-card">
+          <p class="lbl">Другие проекты</p>
+          <ul>{others.map((o) => <li><a href={`/proekty/${o.slug}/`}>{o.title}</a></li>)}</ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CtaBlock from="#EDE9E1" title="Нужен" accent="проект водоёма?" text="Пришлите техническое задание — проанализируем его, предложим внешний вид водоёма и подберём оборудование." tz />
+</Page>
