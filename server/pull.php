@@ -99,7 +99,7 @@ function copy_media($dir, $target) {
   }
   $copied = $have = $missing = $skipped = 0; $bytes = 0;
   foreach ($pairs as [$from, $to]) {
-    if (strpos($from . $to, '..') !== false || strpos($to, '/') === 0) { $skipped++; continue; }
+    if (preg_match('#(^|/)\.\.(/|$)#', $from . '/' . $to) || strpos($to, '/') === 0) { $skipped++; continue; }
     $ext = strtolower(pathinfo($to, PATHINFO_EXTENSION));
     $isForum = strpos($to, 'forum/files/') === 0;
     if (!$isForum && !in_array($ext, MEDIA_EXT, true)) { $skipped++; continue; }
