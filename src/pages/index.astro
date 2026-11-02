@@ -6,6 +6,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ContactForm from '../components/ContactForm.astro';
 import site from '../data/site.json';
+import { mapPos, mapLabels, labelSide } from '../lib/map';
 import { getEvents, getPublications, fmtDate } from '../lib/content';
 const latestEvents = (await getEvents()).slice(0, 4);
 const kbPosts = await getPublications();
@@ -13,12 +14,8 @@ const kbPosts = await getPublications();
 const c = site.contacts;
 const L = site.links;
 const DEEP = '#05161D', DEEP2 = '#0A2A36', PAPER = '#F3F1EC', PAPER2 = '#EDE9E1', WHITE = '#FFFFFF';
-// Маршруты от Петербурга к остальным городам карты (viewBox 1000×600)
-const routes = site.cities.slice(1).map((ct) => {
-  const sx = 150, sy = 106, X = ct.x * 10, Y = ct.y * 6;
-  const cx = sx + (X - sx) * 0.5 + (Y - sy) * 0.25, cy = sy + (Y - sy) * 0.15;
-  return `M${sx} ${sy} Q${Math.round(cx)} ${Math.round(cy)} ${Math.round(X)} ${Math.round(Y)}`;
-});
+// Карта «От Невы до Урала»: подложка public/img/map.svg, города — по широте и долготе (src/lib/map.ts)
+const cityPos = (ct: { lat: number; lon: number }) => mapPos(ct.lat, ct.lon);
 const pad2 = (n: number) => String(n).padStart(2, '0');
 ---
 <Base
@@ -45,13 +42,15 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
     </div>
     <div class="trust rise r4">{site.trust.map((t) => <span>{t}</span>)}</div>
   </div>
+  <svg class="men hero-edge" viewBox="0 0 1440 96" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 0 Q720 192 1440 0 V96 H0 Z" fill="#F3F1EC"></path>
+    <path d="M0 0 Q720 192 1440 0" fill="none" stroke="#0083C3" stroke-width="3" vector-effect="non-scaling-stroke"></path>
+  </svg>
   <div class="hint rise r4" aria-hidden="true">
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="3" stroke="#8FB4C2" stroke-width="1.2"/><circle cx="9" cy="9" r="7.5" stroke="#8FB4C2" stroke-width=".8" opacity=".5"/></svg>
     Коснитесь воды
   </div>
 </section>
-
-<Lens from={DEEP} to={PAPER} />
 
 <!-- 01 О нас -->
 <section id="about">
@@ -68,14 +67,11 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
     <div class="g-cred rv">
       {site.credentials.map((x) => <div><b>{x.title}</b><p>{x.text}</p></div>)}
     </div>
-    <div class="g-team rv">
-      {site.team.map((m, i) => (
-        <div>
-          <Photo src={m.photo} alt={m.name} label="Фото" tone={['#CFC9BD', '#C7CDC6', '#C4CBCF', '#D2CCC0'][i % 4]} />
-          <div class="q">{m.name}</div>
-          <div class="role">{m.role}</div>
-        </div>
-      ))}
+    <div class="g-story rv">
+      <p class="lbl">Кратко о компании</p>
+      <div class="story-text">
+        {site.about.map((t) => <p>{t}</p>)}
+      </div>
     </div>
     <a href={L.presentation} class="btn btn-line rv" style="margin-top:40px">Смотреть презентацию компании</a>
   </div>
@@ -94,17 +90,18 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
     <div class="g-geo rv" data-geo>
       <div>
         <div class="map">
-          <svg viewBox="0 0 1000 600" aria-hidden="true">
-            <g stroke="rgba(160,200,215,.08)" stroke-width="1"><path d="M0 100H1000M0 200H1000M0 300H1000M0 400H1000M0 500H1000M125 0V600M250 0V600M375 0V600M500 0V600M625 0V600M750 0V600M875 0V600"/></g>
-            <g fill="none" stroke="#0083C3" stroke-width="1.8" stroke-linecap="round">{routes.map((d) => <path class="route" d={d} />)}</g>
-          </svg>
-          {site.cities.map((ct, i) => (
-            <div class={`pt${ct.hq ? ' hq' : ''}${ct.x > 85 ? ' lft' : ''}`} style={`left:${ct.x}%;top:${ct.y}%`}>
-              {i === 0 && <span class="pt-pulse"></span>}
-              <button type="button" data-city={i} aria-pressed={i === 0 ? 'true' : 'false'} aria-label={ct.name}><i></i></button>
-              <span class="pt-l">{ct.name}</span>
-            </div>
-          ))}
+          <img src="/img/map.svg" alt="" width="1000" height="640" loading="lazy" decoding="async">
+          {mapLabels.map((l) => { const [x, y] = mapPos(l.lat, l.lon); return <span class={`map-l map-l-${l.k}`} style={`left:${x}%;top:${y}%`} aria-hidden="true">{l.t}</span>; })}
+          {site.cities.map((ct, i) => {
+            const [x, y] = cityPos(ct);
+            return (
+              <div class={`pt${ct.hq ? ' hq' : ''} ${labelSide[ct.name] ?? (x > 80 ? 'lft' : '')}`} style={`left:${x}%;top:${y}%`}>
+                {i === 0 && <span class="pt-pulse"></span>}
+                <button type="button" data-city={i} aria-pressed={i === 0 ? 'true' : 'false'} aria-label={ct.name}><i></i></button>
+                <span class="pt-l">{ct.name}</span>
+              </div>
+            );
+          })}
         </div>
         <div class="chips city-chips">
           {site.cities.map((ct, i) => <button type="button" class="chip" data-city={i} aria-pressed={i === 0 ? 'true' : 'false'} style="min-height:36px;font-size:13px">{ct.name}</button>)}

@@ -110,8 +110,9 @@ a:hover .arr { transform: translateX(6px); }
 /* hero */
 .hero { position: relative; height: min(880px, 100svh); min-height: 640px; overflow: hidden; background: var(--deep); color: var(--paper); touch-action: pan-y; }
 .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero-edge { position: absolute; left: 0; right: 0; bottom: -1px; z-index: 2; pointer-events: none; }
 .hero-shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(5,22,29,.5) 0%, rgba(5,22,29,0) 34%, rgba(5,22,29,0) 52%, rgba(5,22,29,.82) 100%); }
-.hero-in { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 80px; pointer-events: none; }
+.hero-in { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 128px; pointer-events: none; }
 .hero-in a { pointer-events: auto; }
 .hero .lbl { color: var(--on-dark-2); margin-bottom: 22px; }
 .hero .acc { color: var(--sky); }
@@ -129,6 +130,10 @@ a:hover .arr { transform: translateX(6px); }
 .g-cred { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 24px; margin-top: 72px; }
 .g-cred > div { border-top: 2px solid var(--ink); padding-top: 18px; }
 .g-cred b { font-size: 16px; font-weight: 600; }
+.g-story { display: grid; grid-template-columns: minmax(0,3fr) minmax(0,9fr); gap: 48px; margin-top: 88px; padding-top: 40px; border-top: 1px solid var(--line); }
+.g-story .lbl { margin-top: 6px; }
+.story-text { columns: 2; column-gap: 48px; }
+.story-text p { margin: 0 0 18px; font-size: 17px; line-height: 1.7; color: var(--text-2); break-inside: avoid; }
 .g-team { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 20px; margin-top: 72px; }
 .ph { position: relative; overflow: hidden; background: #CFC9BD; }
 .ph > img { width: 100%; height: 100%; object-fit: cover; }
@@ -140,8 +145,11 @@ a:hover .arr { transform: translateX(6px); }
 
 /* geo */
 .g-geo { display: grid; grid-template-columns: minmax(0,8fr) minmax(0,4fr); gap: 40px; align-items: stretch; }
-.map { position: relative; aspect-ratio: 1000/600; background: var(--deep); border-radius: var(--r-lg); overflow: hidden; }
-.map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.map { position: relative; aspect-ratio: 1000/640; background: #071C25; border-radius: var(--r-lg); overflow: hidden; }
+.map > img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.map-l { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none; font-size: 11px; letter-spacing: .22em; color: rgba(211,226,230,.38); }
+.map-l-big { font-size: 22px; letter-spacing: .3em; color: rgba(211,226,230,.30); }
+.map-l-w { font-family: var(--font-q); font-style: italic; letter-spacing: 0; font-size: 13px; color: #4BA6D3; }
 .route { stroke-dasharray: 3 7; animation: dash 5s linear infinite; }
 @keyframes dash { to { stroke-dashoffset: -60; } }
 .pt { position: absolute; width: 0; height: 0; }
@@ -151,9 +159,11 @@ a:hover .arr { transform: translateX(6px); }
 .pt button i { width: 9px; height: 9px; border-radius: 50%; background: var(--paper); box-shadow: 0 0 0 3px rgba(0,131,195,.5); transition: all .2s ease; }
 .pt.hq button i { width: 13px; height: 13px; }
 .pt button[aria-pressed="true"] i { width: 16px; height: 16px; background: var(--sky); }
-.pt-l { position: absolute; left: 16px; top: -10px; white-space: nowrap; font-size: 13px; color: #B9CDD3; pointer-events: none; }
+.pt-l { position: absolute; left: 14px; top: -10px; white-space: nowrap; font-size: 13px; color: #D3E2E6; pointer-events: none; text-shadow: 0 0 4px #071C25, 0 0 8px #071C25; }
 .pt button[aria-pressed="true"] + .pt-l { color: #fff; }
-.pt.lft .pt-l { left: auto; right: 16px; }
+.pt.lft .pt-l { left: auto; right: 14px; }
+.pt.up .pt-l { left: 0; top: -30px; transform: translateX(-50%); }
+.pt.down .pt-l { left: 0; top: 10px; transform: translateX(-50%); }
 .city-chips { display: none; margin-top: 14px; }
 .city-card { background: var(--paper); border-radius: var(--r-lg); padding: 32px; display: flex; flex-direction: column; }
 .city-card .lbl { color: var(--blue-text); font-size: 12px; margin: 0; }
@@ -356,12 +366,14 @@ a:hover .arr { transform: translateX(6px); }
 .rise { animation: rise 1.3s var(--ease) both; }
 .r2 { animation-delay: .15s; } .r3 { animation-delay: .3s; } .r4 { animation-delay: .5s; }
 @keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
-.rv { opacity: 0; transform: translateY(40px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
-.rv.in, .no-js .rv { opacity: 1; transform: none; }
+.rv { transition: opacity 1s var(--ease), transform 1s var(--ease); }
+/* Прячем блоки до появления, только когда скрипт сайта точно загрузился (он ставит html.rv-on) —
+   иначе контент оставался бы невидимым */
+.rv-on .rv:not(.in) { opacity: 0; transform: translateY(40px); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .rise, .route, .pt-pulse { animation: none; }
-  .rv { opacity: 1; transform: none; transition: none; }
+  .rv-on .rv:not(.in), .rv { opacity: 1; transform: none; transition: none; }
 }
 
 /* tablet */
@@ -385,11 +397,22 @@ a:hover .arr { transform: translateX(6px); }
   .ba-x { display: none; }
   .hero-row p { font-size: 17px; }
   .trust { gap: 10px 20px; margin-top: 32px; font-size: 13px; }
+  .g-story { grid-template-columns: minmax(0,1fr); gap: 16px; margin-top: 56px; }
+  .story-text { columns: 1; }
   .g-about, .g-geo, .g-sol, .g-scheme, .g-case, .g-comm, .g-evo, .g2, .g-more { grid-template-columns: minmax(0,1fr); gap: 28px; }
   .g-nums, .g-cred, .g-team, .g-tools { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px 14px; }
   .g-nums { margin-top: 40px; }
   .g-cred, .g-team { margin-top: 48px; }
   .pt-l { display: none; }
+  .pt button[aria-pressed="true"] + .pt-l { display: block; }
+  .map-l { font-size: 8px; }
+  .map-l-big { font-size: 13px; }
+  .map-l-w { font-size: 9px; }
+  .map-l-c, .map-l-w { display: none; }
+  .pt button i { width: 7px; height: 7px; box-shadow: 0 0 0 2px rgba(0,131,195,.5); }
+  .pt.hq button i { width: 10px; height: 10px; }
+  .pt button[aria-pressed="true"] i { width: 12px; height: 12px; }
+  .pt-l { font-size: 12px; }
   .city-chips { display: flex; }
   .city-card { padding: 24px; }
   .sol-list { flex-direction: row; overflow-x: auto; gap: 8px; border-top: 0; padding: 0 var(--pad) 6px; margin: 0 calc(var(--pad) * -1); scrollbar-width: none; }
@@ -638,7 +661,8 @@ a:hover .arr { transform: translateX(6px); }
 ::view-transition-old(hdr), ::view-transition-new(hdr) { animation: none; }
 
 /* Появление списков «лесенкой» */
-.rv-s { transform: translateY(24px); transition-duration: .8s; transition-delay: var(--d, 0ms); }
+.rv-s { transition-duration: .8s; transition-delay: var(--d, 0ms); }
+.rv-on .rv-s:not(.in) { transform: translateY(24px); }
 
 /* Шапка */
 .hdr { transition: transform .45s var(--ease), background-color .3s ease, box-shadow .3s ease; }
@@ -682,5 +706,5 @@ a:hover .arr, button:hover .arr { transform: translateX(5px); }
   @view-transition { navigation: none; }
   .hdr, .hdr-in, .btn, .chip, .svc-row, .post, .topic, .art, .gal-grid a img, .img-fade, .lb, .lb img { transition: none !important; animation: none !important; }
   .hdr-hide { transform: none; }
-  .rv-s { opacity: 1; transform: none; }
+  .rv-on .rv-s:not(.in), .rv-s { opacity: 1; transform: none; }
 }

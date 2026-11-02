@@ -275,11 +275,11 @@ collections:
             widget: "list"
             summary: "{{fields.title}}"
             fields: [{ label: "Заголовок", name: "title", widget: "string" }, { label: "Текст", name: "text", widget: "text" }]
-          - label: "Команда"
-            name: "team"
+          - label: "Главная: кратко о компании"
+            name: "about"
             widget: "list"
-            summary: "{{fields.name}} — {{fields.role}}"
-            fields: [{ label: "Имя и фамилия", name: "name", widget: "string" }, { label: "Должность", name: "role", widget: "string" }, { label: "Фото", name: "photo", widget: "image", required: false, choose_url: false }]
+            hint: "Абзацы текста в блоке «О нас»"
+            field: { label: "Абзац", name: "p", widget: "text" }
           - label: "Карта: города"
             name: "cities"
             widget: "list"
@@ -289,8 +289,8 @@ collections:
               - { label: "Город", name: "name", widget: "string" }
               - { label: "Подпись", name: "role", widget: "string" }
               - { label: "Текст", name: "text", widget: "text" }
-              - { label: "Положение по горизонтали, %", name: "x", widget: "number", value_type: "float", hint: "0 — левый край карты, 100 — правый" }
-              - { label: "Положение по вертикали, %", name: "y", widget: "number", value_type: "float", hint: "0 — верх, 100 — низ" }
+              - { label: "Широта", name: "lat", widget: "number", value_type: "float", hint: "Например 59.94. В Яндекс Картах: правый клик по месту → «Что здесь?» — первое число" }
+              - { label: "Долгота", name: "lon", widget: "number", value_type: "float", hint: "Например 30.32 — второе число. Карта охватывает Европейскую Россию до Урала" }
               - { label: "Главный офис", name: "hq", widget: "boolean", required: false, default: false }
           - { label: "Проекты за рубежом", name: "abroad", widget: "list", field: { label: "Страна", name: "item", widget: "string" } }
           - label: "Главная: решения (вкладки)"

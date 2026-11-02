@@ -2,6 +2,7 @@
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.documentElement.classList.add('rv-on'); // скрипт загрузился — можно прятать блоки до появления
 
 /* ---------- Живая вода на первом экране ---------- */
 function initWater() {
@@ -377,15 +378,31 @@ function initMotion() {
 /* ---------- Плавное появление блоков ---------- */
 function initReveal() {
   const els = $$('.rv');
-  if (reduceMotion || !('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('in')); return; }
+  const show = (e) => e.classList.add('in');
+  if (reduceMotion || !('IntersectionObserver' in window)) { els.forEach(show); return; }
   const io = new IntersectionObserver((entries) => entries.forEach((en) => {
-    if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    if (en.isIntersecting) { show(en.target); io.unobserve(en.target); }
   }), { rootMargin: '0px 0px -8% 0px' });
   els.forEach((e) => io.observe(e));
+  // Запасной путь: если наблюдатель не сработал (встроенные просмотрщики, старые браузеры),
+  // показываем всё, что уже на экране или выше, — контент не должен оставаться невидимым.
+  let t = 0;
+  const check = () => {
+    t = 0;
+    const h = window.innerHeight;
+    els.forEach((e) => { if (!e.classList.contains('in') && e.getBoundingClientRect().top < h) show(e); });
+  };
+  const later = () => { if (!t) t = setTimeout(check, 250); };
+  window.addEventListener('scroll', later, { passive: true });
+  window.addEventListener('resize', later);
+  setTimeout(check, 1500);
 }
 
 document.addEventListener('click', (e) => {
   const a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
   if (a && window.ym) try { window.ym(114014482, 'reachGoal', a.href.startsWith('tel:') ? 'phone' : 'email'); } catch (_) {}
 });
-initWater(); initMenu(); initTabs(); initGeo(); initScheme(); initBeforeAfter(); initKb(); initForm(); initLists(); initCalc(); initGallery(); initMotion(); initReveal();
+// Ошибка в одном блоке не должна ломать остальные (и прятать контент): каждый запускаем отдельно.
+// initMotion размечает блоки для появления, initReveal их показывает — эти двое последними.
+[initWater, initMenu, initTabs, initGeo, initScheme, initBeforeAfter, initKb, initForm, initLists, initCalc, initGallery, initMotion, initReveal]
+  .forEach((f) => { try { f(); } catch (e) { console.error(e); } });
