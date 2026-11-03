@@ -122,10 +122,10 @@ function copy_media($dir, $target) {
 
 // Диагностика адресов (один раз, пока нет ~/deploy/diag.txt): что отдаёт сервер по new.gidrologia.ru и gidrologia.ru
 function diag($dir, $target) {
-  $f = $dir . '/diag.txt';
+  $f = $dir . '/diag2.txt';
   if (is_file($f)) return;
   $out = date('c') . "\n";
-  foreach (['http://new.gidrologia.ru/', 'https://new.gidrologia.ru/', 'http://gidrologia.ru/', 'https://gidrologia.ru/', 'http://co66690.tmweb.ru/'] as $u) {
+  foreach (['http://new.gidrologia.ru/', 'http://new.gidrologia.ru/index.html', 'https://new.gidrologia.ru/kontakty/', 'https://gidrologia.ru/'] as $u) {
     $ch = curl_init($u);
     curl_setopt_array($ch, [CURLOPT_NOBODY => false, CURLOPT_HEADER => true, CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 20,
       CURLOPT_SSL_VERIFYPEER => false, CURLOPT_SSL_VERIFYHOST => 0, CURLOPT_FOLLOWLOCATION => false, CURLOPT_USERAGENT => 'gidrologia-diag']);
@@ -136,9 +136,10 @@ function diag($dir, $target) {
     $hdr = substr($r, 0, (int) $info['header_size']);
     $body = substr($r, (int) $info['header_size'], 4000);
     preg_match('#<title>(.*?)</title>#is', $body, $t);
-    $out .= "== $u\nIP " . ($info['primary_ip'] ?? '') . " HTTP " . $info['http_code'] . " $err\n" . trim($hdr) . "\nTITLE: " . ($t[1] ?? '-') . "\n\n";
+    $out .= "== $u\nIP " . ($info['primary_ip'] ?? '') . " HTTP " . $info['http_code'] . " $err\n" . trim($hdr) . "\nTITLE: " . ($t[1] ?? '-') . "\nBODY: " . substr(preg_replace('/\s+/', ' ', $body), 0, 700) . "\n\n";
   }
-  $out .= "== target $target\n" . implode(' ', array_slice(scandir($target), 0, 40)) . "\n";
+  $out .= "== target $target\n";
+  foreach (scandir($target) as $n) if ($n[0] !== '.' || $n === '.htaccess') { $pth = $target . '/' . $n; $out .= $n . (is_dir($pth) ? '/' : ' ' . filesize($pth) . ' ' . date('c', filemtime($pth))) . "\n"; }
   $out .= "home: " . implode(' ', scandir(dirname($dir))) . "\n";
   file_put_contents($f, $out);
 }
