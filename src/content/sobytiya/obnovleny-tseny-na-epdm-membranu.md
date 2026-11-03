@@ -10,5 +10,5 @@ netcatId: 271
 imported: true
 ---
 
-<p>В нашем <a href="https://shop.gidrologia.ru/" target="_blank" rel="noopener">магазине</a> обновлены цены на EPDM-мембрану.<br />
+<p>В нашем <a href="/magazin/" target="_blank" rel="noopener">магазине</a> обновлены цены на EPDM-мембрану.<br />
 &nbsp;</p>

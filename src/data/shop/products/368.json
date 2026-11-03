@@ -1,0 +1,46 @@
+{
+  "id": 368,
+  "title": "Излив из нержавеющей стали Lava 1200",
+  "slug": "izliv-iz-nerzhaveyuschey-stali-lava-1200",
+  "category": 100,
+  "also": [
+    99
+  ],
+  "price": 47250,
+  "vendor": "Waterline",
+  "sku": "",
+  "order": 8,
+  "short": "",
+  "specs": "размеры (ШхГхВ) 1196х175х100 мм  \nколичество и диаметр штуцеров 3х25 мм  \nматериал нержавеющая сталь",
+  "specsFull": "",
+  "description": "Приспособление для создания ровной гладкой водной поверхности шириной 120 см высотой от 50 до 150 см в зависимости от используемого насоса.\n\nРазмеры:\n\n     Ширина - 1196 мм\n\n     Высота   - 100 мм\n\n     Глубина - 175 мм\n\n• Материал - Нержавеющая сталь\n\n• В комплекте штуцер на шланг 25 мм - 3 шт., заглушка на неиспользуемое отверстие - 3 шт.\n\n• Возможность подсоединения штуцера сзади или снизу\n\n• Входное отверстие с внутренней резьбой 1\" - 3 шт. снизу, 3 шт. сзади\n\nвысота водопада \\[мм\\]            рекомендуемый насос  \n      500                                       Angara 14000  \n     1000                                      Angara 20000",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/1426752884_662246_47_0_0.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_1426752884_662246_47_0_0.jpg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1390760507_023668_15_0_0.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760507_023668_15_0_0.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1390760507_363345_14_0_0.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760507_363345_14_0_0.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1426752886_434223_72_0_0.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_1426752886_434223_72_0_0.jpg"
+    }
+  ],
+  "files": [
+    {
+      "name": "Aquafall_300-1500.pdf",
+      "src": "/netcat_files/100/134/Aquafall_300_1500_4.pdf"
+    }
+  ],
+  "video": "",
+  "montageLink": "",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/izlivy/izlivy_368.html"
+}

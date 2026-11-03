@@ -1,0 +1,50 @@
+{
+  "id": 87,
+  "title": "Насос Multi System M 40000",
+  "slug": "nasos-multi-system-m-40000",
+  "category": 107,
+  "also": [
+    114
+  ],
+  "price": 150356,
+  "vendor": "Messner",
+  "sku": "",
+  "order": 3,
+  "short": "-   Область применения - фонтаны, фильтрация, водопады, ручьи\n-   возможность установки насоса вне водоема\n-   защищён от перегрузок встроенным возвратным термовыключателем",
+  "specs": "max расход 645 л/мин  \nmax расход 38700 л/час  \nmax напор 8,5 м  \nмощность 650 Вт  \nнапряжение220 В  \nнапорный - всасывающий патрубок 2 - 2 \"  \nразмеры (ШхГхВ) 450х240х240 мм",
+  "specsFull": "",
+  "description": "## Описание\n\n-   Область применения - фонтаны, фильтрация, водопады, ручьи\n-   возможность установки насоса вне водоема\n-   защищён от перегрузок встроенным возвратным термовыключателем\n-   особо прочный подшипник\n-   все электрические части залиты искусственной смолой\n-   асинхронный двигатель, позволяет организовать регуляцию потока \"больше/меньше\"\n\nВ комплект входит муфта: 2\" - 2\" (артикул 104/3425)",
+  "warranty": "![](/netcat_files/userfiles/1387795778_598883_76.jpg)\n\nГарантия 5 лет",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/1390760567_462550_10.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760567_462550_10.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1390760568_137116_25.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760568_137116_25.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1390760568_485114_2.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760568_485114_2.jpeg"
+    }
+  ],
+  "files": [
+    {
+      "name": "Multi_System_M15000-40000_MP21000-35000.pdf",
+      "src": "/netcat_files/107/141/Multi_System_M15000_40000_MP21000_35000_1.pdf"
+    },
+    {
+      "name": "MultiSystem_M.jpg",
+      "src": "/netcat_files/107/141/MultiSystem_M_1.jpg"
+    },
+    {
+      "name": "1388119606_832025_18.gif",
+      "src": "/netcat_files/107/141/1388119606_832025_18.gif"
+    }
+  ],
+  "video": "",
+  "montageLink": "/arhiv-foruma/tema-140/",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/nasosy-dlya-ruchev-i-filtrov/nasosy-dlya-ruchev-i-filtrov_87.html"
+}

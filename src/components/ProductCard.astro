@@ -1,0 +1,19 @@
+---
+import { cover, productHref, fmtPrice, type Product } from '../lib/shop';
+interface Props { p: Product; }
+const { p } = Astro.props;
+const img = cover(p);
+---
+<article class="pcard" data-item data-t={`${p.title} ${p.vendor} ${p.sku}`.toLowerCase()}>
+  <a href={productHref(p)} class="pcard-img" tabindex="-1" aria-hidden="true">
+    {img ? <img src={img} alt={p.title} loading="lazy" decoding="async"> : <span class="pcard-noimg">Гидрология</span>}
+  </a>
+  <div class="pcard-body">
+    {p.vendor && <p class="pcard-vendor">{p.vendor}</p>}
+    <h3 class="pcard-t"><a href={productHref(p)}>{p.title}</a></h3>
+    <div class="pcard-buy">
+      <span class="price">{fmtPrice(p.price)}</span>
+      <button type="button" class="btn btn-dark pcard-add" data-add={p.id} aria-label={`В корзину: ${p.title}`}>В корзину</button>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,42 @@
+{
+  "id": 15,
+  "title": "Излив Wasserfallschale 28,5 см",
+  "slug": "izliv-wasserfallschale-28-5-sm",
+  "category": 100,
+  "also": [
+    99
+  ],
+  "price": 8171,
+  "vendor": "Messner",
+  "sku": "3",
+  "order": 1,
+  "short": "",
+  "specs": "размеры (ШхГхВ) 28,5х12,5х8,0 см  \nдиаметр штуцера 20/25 мм  \nматериал пластик",
+  "specsFull": "",
+  "description": "Приспособление для создания ровной гладкой водной поверхности шириной 28,5 см высотой от 20 до 80 см в зависимости от используемого насоса.\n\n  \nРазмеры:\n\n     Ширина - 28,5 см\n\n     Высота   - 8 см\n\n     Глубина - 12,5 см\n\n• Изготовлен из прочного пластика\n\n• В комплекте штуцер на шланг 20 мм / 25 мм\n\n• Возможность подсоединения штуцера сзади или снизу\n\n• Возможность соединения нескольких изливов в ряд для увеличения ширины водопада или один над другим для организации каскадов",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/1390822831_222518_57.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390822831_222518_57.jpg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1390822832_194524_60.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390822832_194524_60.jpg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1390760735_988812_13.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760735_988812_13.jpg"
+    }
+  ],
+  "files": [
+    {
+      "name": "Wasserfallschale_28,5cm.pdf",
+      "src": "/netcat_files/100/134/Wasserfallschale_28_5cm.pdf"
+    }
+  ],
+  "video": "",
+  "montageLink": "/arhiv-foruma/tema-141/",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/izlivy/izlivy_15.html"
+}

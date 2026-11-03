@@ -29,6 +29,6 @@ imported: true
 <p>V<sub>1лето</sub> = m<sub>O2 лето1</sub> / m<sub>40</sub> = 1&nbsp;800&nbsp;000 мг / 120&nbsp;000 мг = 15 (м<sup>3</sup> воздуха в час)</p>
 <p>V<sub>2лето</sub> = m<sub>O2 лето2</sub> / m<sub>40</sub> = 2 400&nbsp;000 мг / 120&nbsp;000 мг = 20 (м<sup>3</sup> воздуха в час)</p>
 <p>Получаем, что в летнее время в водоём объёмом 300 м3 необходимо подавать от 15 до 20 м<sup>3</sup>/час, а в зимнее время, соответственно, в два раза больше &ndash; от 30 до 40 м<sup>3</sup>/час.</p>
-<p>Зная необходимую производительность, подбираем аэратор, который может её обеспечить: <strong><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/aeratsiya/" target="_blank" rel="noopener">АЭРАТОРЫ</a></strong>.</p>
+<p>Зная необходимую производительность, подбираем аэратор, который может её обеспечить: <strong><a href="/magazin/oborudovanie-dlya-plavatelnyh-vodoemov/aeratsiya/" target="_blank" rel="noopener">АЭРАТОРЫ</a></strong>.</p>
 <p>По материалам сайта: https:// element-aqua.ru /stati/article_post/raschet-aeratsii-pruda?ysclid=liiuc76zds438325185</p>
 <h2><strong>Рекомендуем ознакомиться:</strong></h2>

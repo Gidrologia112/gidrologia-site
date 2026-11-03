@@ -1,0 +1,40 @@
+{
+  "id": 185,
+  "title": "Насос BADU Magic 6",
+  "slug": "nasos-badu-magic-6",
+  "category": 75,
+  "also": [],
+  "price": 40342,
+  "vendor": "",
+  "sku": "",
+  "order": 3,
+  "short": "",
+  "specs": "",
+  "specsFull": "-   Напряжение питания (В) - 220\n-   Электрическая мощность (Вт) - 450\n-   Производительность (м3/ч) - 6\n-   Максимальный напор (м) - 8\n-   Диматры подключения вход/выход (мм) - 50 / 50\n-   В комплект поставки входят переходники на шланг 32/38 мм.\n-   Длина L (мм) - 480",
+  "description": "## Насос BADU Magic 6\n\nСамовсасывающий циркуляционный насос, предназначенный для циркуляции воды через фильтр в плавательных бассейнах.\n\n-   Конструкция - моноблок со встроенным предварительным фильтром (волосоловкой) объемом 0,5 л.\n-   Материал корпуса . полипропилен.\n-   Может быть установлен на 2 м выше и на 3 м ниже уровня воды.",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/67_0.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_67_0.jpg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/52_3_1.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_52_3_1.jpg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/52_4_1.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_52_4_1.jpg"
+    }
+  ],
+  "files": [
+    {
+      "name": "tp00081.pdf",
+      "src": "/netcat_files/75/107/tp00081.pdf"
+    }
+  ],
+  "video": "https://www.youtube.com/embed/Bg0HZ9VQ3xQ",
+  "montageLink": "",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-zhivyh-basseynov/nasosy/nasosy_185.html"
+}

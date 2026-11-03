@@ -1,0 +1,43 @@
+{
+  "id": 840,
+  "title": "Насос JSP-40000",
+  "slug": "nasos-jsp-40000",
+  "category": 107,
+  "also": [
+    75,
+    108
+  ],
+  "price": 50100,
+  "vendor": "",
+  "sku": "",
+  "order": 6,
+  "short": "Насос для создания ручьёв, водопадов, фонтанов и для фильтрации.",
+  "specs": "**max расход** 642 л/мин\n\n**max расход** 38 500 л/час\n\n**max напор** 11 м\n\n**мощность** 1000 Вт\n\n**напряжение** 220 В\n\n**напорный - всасывающий патрубок** 2\" - 2\"\n\n**размеры (ШхГхВ)** 480\\*216\\*223 мм",
+  "specsFull": "max расход 642 л/мин\n\nmax расход 38 500 л/час\n\nmax напор 11 м\n\nмощность 1000 Вт\n\nнапряжение 220 В\n\nнапорный - всасывающий патрубок 2\" - 2\"\n\nразмеры (ШхГхВ) 480\\*216\\*223 мм",
+  "description": "Насос **JSP-40000** широко применяются в фильтрации прудов и организации водопадов  и ручьев.\n\nПреимущества:\n\n-   Асинхронный мотор высокой мощности с новым дизайном.\n-   Большая высота подьема воды и высокая производительность насоса.\n-   Может пропускать частички грязи до 6 мм.\n-   Износостойкие керамические валы с большим сроком эксплуатации.",
+  "warranty": "12 месяцев",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/jsp.JPG",
+      "thumb": "/netcat_files/multifile/2718/preview_jsp.JPG"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/jsp2.JPG",
+      "thumb": "/netcat_files/multifile/2718/preview_jsp2.JPG"
+    }
+  ],
+  "files": [
+    {
+      "name": "Сертификат насос JSP 40000.pdf",
+      "src": "/netcat_files/107/141/Sertifikat_nasos_JSP_40000.pdf"
+    },
+    {
+      "name": "jsp2.JPG",
+      "src": "/netcat_files/107/141/jsp2.JPG"
+    }
+  ],
+  "video": "",
+  "montageLink": "",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/nasosy-dlya-ruchev-i-filtrov/nasosy-dlya-ruchev-i-filtrov_840.html"
+}

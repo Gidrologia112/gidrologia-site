@@ -1,0 +1,46 @@
+{
+  "id": 837,
+  "title": "Аэратор Тайфун 3600",
+  "slug": "aerator-tayfun-3600",
+  "category": 171,
+  "also": [
+    72
+  ],
+  "price": 21360,
+  "vendor": "Waterline",
+  "sku": "",
+  "order": 12,
+  "short": "Аэратор с двумя рассеивателями максимальной производительностью 3600 л/час",
+  "specs": "объем пруда до 15000 л  \nмощность 40 Вт  \nнапряжение 220 В  \nпроизводительность 60 л/мин (3600 л/час)  \nдлина шланга 10 м  \nдавления 0,30 бар  \nразмеры (ВхДхШ) 288x196x193 мм",
+  "specsFull": "## Характеристики\n\n-   объем пруда до 15000 л\n-   мощность 40 Вт\n-   напряжение 220 В\n-   производительность 3600 л/час\n-   длина шланга 10 м\n-   давления 0,30 бар\n-   размеры (ВхДхШ) 288x196x193 мм",
+  "description": "## Описание\n\nАэратор с двумя рассеивателями максимальной производительностью 3600 л/час.\n\n-   обогащает воду кислородом\n-   способствует циркуляции воды в пруду\n-   улучшает биологическое равновесие в водоёме\n-   оснащён малошумным надёжным насосом\n-   пригоден для использования как в летний, так и в зимний период для создания лунки",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/lk001_0.JPG",
+      "thumb": "/netcat_files/multifile/2718/preview_lk001_0.JPG"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/lk002_0.JPG",
+      "thumb": "/netcat_files/multifile/2718/preview_lk002_0.JPG"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/lk003_0.JPG",
+      "thumb": "/netcat_files/multifile/2718/preview_lk003_0.JPG"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/lk004_0.JPG",
+      "thumb": "/netcat_files/multifile/2718/preview_lk004_0.JPG"
+    }
+  ],
+  "files": [
+    {
+      "name": "Инструкция аэратор LK-60.pdf",
+      "src": "/netcat_files/171/218/Instruktsiya_aerator_LK_60.pdf"
+    }
+  ],
+  "video": "",
+  "montageLink": "",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/aeratsiya/aeratory_837.html"
+}

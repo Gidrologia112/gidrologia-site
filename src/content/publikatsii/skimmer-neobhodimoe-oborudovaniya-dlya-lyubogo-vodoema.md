@@ -27,10 +27,10 @@ imported: true
 <h3>Стационарные скиммеры</h3>
 <p>Стационарные скиммеры монтируются в борт водоёма, в таком случае они называются бортовыми или встраиваемыми, либо ставяться в мелководной зоне водоёма.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/Stat_i/skimmer/savio2.jpg" /></p>
-<p>Модели бортовых скиммеров:&nbsp;<a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_718.html" target="_blank" rel="noopener">Savio Skimmerfilter 30 (США)</a>, <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_55.html" target="_blank" rel="noopener">Savio Skimmerfilter 120 (США)</a>, <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_52.html" target="_blank" rel="noopener">Biosys Skimmer plus (Германия)</a></p>
+<p>Модели бортовых скиммеров:&nbsp;<a href="/magazin/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/" target="_blank" rel="noopener">Savio Skimmerfilter 30 (США)</a>, <a href="/magazin/tovar/skimmer-vstraivaemyy-savio-skimmerfilter-120/" target="_blank" rel="noopener">Savio Skimmerfilter 120 (США)</a>, <a href="/magazin/tovar/skimmer-vstraivaemyy-biosys-skimmer-plus/" target="_blank" rel="noopener">Biosys Skimmer plus (Германия)</a></p>
 <p>Стационарный скиммер представляет собой подставку-основание на которой закреплен поплавок с корзиной, плавающий на поверхности воды.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/Stat_i/skimmer/Skimmer_Vario.jpg" /></p>
-<p>Модели стационарных скиммеров: <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_58.html" target="_blank" rel="noopener">Skimmer 200 (Германия)</a>, <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_53.html" target="_blank" rel="noopener">Standskimmer vario 200 (Германия)</a></p>
+<p>Модели стационарных скиммеров: <a href="/magazin/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/" target="_blank" rel="noopener">Skimmer 200 (Германия)</a>, <a href="/magazin/tovar/skimmer-statsionarnyy-tele-skimmer-200-teleskopicheskiy/" target="_blank" rel="noopener">Standskimmer vario 200 (Германия)</a></p>
 <p>Бортовой скиммер устанавливается так, чтобы уровень воды проходил посередине входного отверстия скиммера.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/Stat_i/skimmer/savio1.jpg" /></p>
 
@@ -38,8 +38,8 @@ imported: true
 <p>Плавающие скиммеры оснащены специальными поплавками, удерживающими скиммер на поверхности воды и поплавком с корзиной для сбора мусора.</p>
 <p>Существуют модели плавающего скиммера оснащенные насосом.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/Stat_i/skimmer/PSSK_50.jpg" /></p>
-<p>Модели плавающих скиммеров: <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_54.html" target="_blank" rel="noopener">Schwimmskimmer 140 (Германия)</a>, <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_57.html" target="_blank" rel="noopener">Schwimmskimmer 200 (Германия).</a></p>
-<p>Модель плавающего скиммера с насосом: <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_56.html" target="_blank" rel="noopener">Profi Schwimmskimmer PSSK 50 (Германия)</a></p>
+<p>Модели плавающих скиммеров: <a href="/magazin/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/" target="_blank" rel="noopener">Schwimmskimmer 140 (Германия)</a>, <a href="/magazin/tovar/skimmer-plavayuschiy-schwimmskimmer-200/" target="_blank" rel="noopener">Schwimmskimmer 200 (Германия).</a></p>
+<p>Модель плавающего скиммера с насосом: <a href="/magazin/tovar/plavayuschiy-skimmer-schwimmskimmer-tsg-2000/" target="_blank" rel="noopener">Profi Schwimmskimmer PSSK 50 (Германия)</a></p>
 <h2>Подбор скиммера</h2>
 <p>Подбор скиммера зависит от площади поверхносит водоёма, в который скиммер будет устанавливаться, и от степени возможной загрязнённости поверхности воды. Водоём, размещённый вблизи деревьев, будет испытывать повышенную нагрузку и для него понадобиться скиммер большего размера.</p>
 
@@ -53,37 +53,37 @@ imported: true
 <td>Рекомендуемый насос</td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_718.html" target="_blank" rel="noopener">Savio Skimmerfilter 30</a></td>
+<td><a href="/magazin/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/" target="_blank" rel="noopener">Savio Skimmerfilter 30</a></td>
 <td>Встраеваемый</td>
 <td>30</td>
 <td>80-134</td>
 <td>
-<p><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_29.html" target="_blank" rel="noopener">Eco-X2 10000</a></p>
-<p><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_664.html" target="_blank" rel="noopener">ECO 14000</a></p></td>
+<p><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 10000</a></p>
+<p><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">ECO 14000</a></p></td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_54.html" target="_blank" rel="noopener">Schwimmskimmer 140</a></td>
+<td><a href="/magazin/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/" target="_blank" rel="noopener">Schwimmskimmer 140</a></td>
 <td>Плавающий</td>
 <td>40</td>
 <td>20 - 50</td>
 <td>
-<p><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_27.html" target="_blank" rel="noopener">Eco-X2 4500</a></p>
-<p><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_661.html" target="_blank" rel="noopener">ECO 4800</a></p></td>
+<p><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 4500</a></p>
+<p><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">ECO 4800</a></p></td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_56.html" target="_blank" rel="noopener">Profi Schwimmskimmer PSSK 50</a></td>
+<td><a href="/magazin/tovar/plavayuschiy-skimmer-schwimmskimmer-tsg-2000/" target="_blank" rel="noopener">Profi Schwimmskimmer PSSK 50</a></td>
 <td>Плавающий</td>
 <td>50</td>
 <td>67</td>
 <td>Встроеный</td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_52.html" target="_blank" rel="noopener">Biosys Skimmer plus</a></td>
+<td><a href="/magazin/tovar/skimmer-vstraivaemyy-biosys-skimmer-plus/" target="_blank" rel="noopener">Biosys Skimmer plus</a></td>
 <td>Встраеваемый</td>
 <td>50</td>
 <td>133 - 265</td>
 <td>
-<p><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_32.html" target="_blank" rel="noopener">Eco-X2 20000</a></p></td>
+<p><a href="/magazin/tovar/nasos-eco-x2-20000/" target="_blank" rel="noopener">Eco-X2 20000</a></p></td>
 </tr>
 <tr>
 <td>Skimmer 200</td>
@@ -91,35 +91,35 @@ imported: true
 <td>60</td>
 <td>80</td>
 <td>
-<p><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_31.html" target="_blank" rel="noopener">Eco-X2 16000</a></p>
-<p><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_665.html" target="_blank" rel="noopener">ECO 18000</a></p></td>
+<p><a href="/magazin/tovar/nasos-eco-x2-16000/" target="_blank" rel="noopener">Eco-X2 16000</a></p>
+<p><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">ECO 18000</a></p></td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_53.html" target="_blank" rel="noopener">Standskimmer vario 200</a></td>
+<td><a href="/magazin/tovar/skimmer-statsionarnyy-tele-skimmer-200-teleskopicheskiy/" target="_blank" rel="noopener">Standskimmer vario 200</a></td>
 <td>Стационарный</td>
 <td>80</td>
 <td>&nbsp;100</td>
 <td>
-<p><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_32.html" target="_blank" rel="noopener">Eco-X2 20000</a></p>
-<p><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_667.html" target="_blank" rel="noopener">ECO 25000</a></p></td>
+<p><a href="/magazin/tovar/nasos-eco-x2-20000/" target="_blank" rel="noopener">Eco-X2 20000</a></p>
+<p><a href="/magazin/tovar/nasos-eco-25000/" target="_blank" rel="noopener">ECO 25000</a></p></td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_57.html" target="_blank" rel="noopener">Schwimmskimmer 200</a></td>
+<td><a href="/magazin/tovar/skimmer-plavayuschiy-schwimmskimmer-200/" target="_blank" rel="noopener">Schwimmskimmer 200</a></td>
 <td>Плавающий</td>
 <td>80</td>
 <td>100</td>
 <td>
-<p><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_32.html" target="_blank" rel="noopener">Eco-X2 20000</a></p>
-<p><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_667.html" target="_blank" rel="noopener">ECO 25000</a></p></td>
+<p><a href="/magazin/tovar/nasos-eco-x2-20000/" target="_blank" rel="noopener">Eco-X2 20000</a></p>
+<p><a href="/magazin/tovar/nasos-eco-25000/" target="_blank" rel="noopener">ECO 25000</a></p></td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_55.html" target="_blank" rel="noopener">Savio Skimmerfilter 120</a></td>
+<td><a href="/magazin/tovar/skimmer-vstraivaemyy-savio-skimmerfilter-120/" target="_blank" rel="noopener">Savio Skimmerfilter 120</a></td>
 <td>Встраеваемый</td>
 <td>120</td>
 <td>317 - 533</td>
 <td>
-<p><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/nasosy/nasosy_131.html" target="_blank" rel="noopener">Multi System M 33000</a></p>
-<p><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/nasosy-dlya-fontanov/nasosy-dlya-fontanov_700.html" target="_blank" rel="noopener">ENO 30000</a></p></td>
+<p><a href="/magazin/tovar/nasos-multi-system-m-33000/" target="_blank" rel="noopener">Multi System M 33000</a></p>
+<p><a href="/magazin/tovar/nasos-eno-30000/" target="_blank" rel="noopener">ENO 30000</a></p></td>
 </tr>
 </tbody>
 </table>

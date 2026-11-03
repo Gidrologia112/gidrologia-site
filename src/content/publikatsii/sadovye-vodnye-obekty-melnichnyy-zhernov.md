@@ -44,9 +44,9 @@ imported: true
 <p>Внимание! Насос охлаждается перекачиваемой им водой. Без воды насос быстро выходит из строя! Своевременно доливайте воду в резервуар.</p>
 <p>Если бурун воды, вытекающей из камня стал белёсым, значит насос не полностью погружен в воду и подсасывает воздух &ndash; срочно долейте воду!</p>
 <h2><strong>Готовые решения:</strong></h2>
-<p>Для удобства и быстроты строительства подобных водных объектов существуют готовые комплекты, состоящие из подземного усиленного резервуара с насосом и коллектором и декоративного излива ввиде вазы или камней. Монтаж подобных конструкций осуществляется намного проще и быстрее. Ознакомиться с ассортиментом декоративных фонтанов можно в нашем магазине:<strong> <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/gotovye-komplekty-dlya-bkv/" target="_blank" rel="noopener">&quot;Готовые комплекты для БКВ&quot;</a>.</strong></p>
+<p>Для удобства и быстроты строительства подобных водных объектов существуют готовые комплекты, состоящие из подземного усиленного резервуара с насосом и коллектором и декоративного излива ввиде вазы или камней. Монтаж подобных конструкций осуществляется намного проще и быстрее. Ознакомиться с ассортиментом декоративных фонтанов можно в нашем магазине:<strong> <a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/gotovye-komplekty-dlya-bkv/" target="_blank" rel="noopener">&quot;Готовые комплекты для БКВ&quot;</a>.</strong></p>
 <p><strong><img loading="lazy" alt="" src="/img/netcat/userfiles/sad023.JPG" /></strong></p>
 <p>По материалам: Ньюбери Т. Библия садового дизайна.</p>
 <h2><strong>Рекомендуем ознакомиться:</strong></h2>
-<p><strong><a href="https://shop.gidrologia.ru/publikatsii/bezopasnyy-kaskadnyy-vodoem-vaza-opisanie-montazh.html" target="_blank" rel="noopener">Безопасный каскадный водоём &quot;Ваза&quot;. Описание. Монтаж</a></strong></p>
+<p><strong><a href="/magazin/" target="_blank" rel="noopener">Безопасный каскадный водоём &quot;Ваза&quot;. Описание. Монтаж</a></strong></p>
 <p><a href="/publikatsii/fontany-po-tehnologii-bkv-na-sadovom-uchastke/" target="_blank" rel="noopener"><strong>Фонтаны по технологии БКВ на садовом участке</strong></a></p>

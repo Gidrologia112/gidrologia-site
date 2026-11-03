@@ -1,0 +1,36 @@
+{
+  "id": 719,
+  "title": "Прожектор ULH-100V универсальный",
+  "slug": "prozhektor-ulh-100v-universalnyy",
+  "category": 126,
+  "also": [],
+  "price": 13700,
+  "vendor": "Emaux",
+  "sku": "",
+  "order": 12,
+  "short": "Прожектор ULH-100V встраиваемый универсальный из нержавеющей стали",
+  "specs": "В комплектацию входит:\n\n-   корпус из нержавеющей стали,\n-   галогеновая лампа 75 Вт / 12 В,\n-   кабель 2,8 м (3 х 1,5 мм2),\n-   комплект фланца, уплотнений и крепежа.",
+  "specsFull": "![](/netcat_files/userfiles/magazin/ulh_100-_3.jpg)\n\n[**Технический паспорт изделия**](/netcat_files/userfiles/magazin/ULH-100V.pdf)",
+  "description": "Прожектор ULH-100V предназначен для подсветки бассейнов и искусственных водоёмов.\n\n### В комплектацию входит:\n\n-   корпус из нержавеющей стали\n-   закладная гильза из пластика\n-   галогеновая лампа 75 Вт / 12 В,\n-   кабель 2,8 м (3 х 1,5 мм<sup>2</sup>),\n-   комплект фланца, уплотнений и крепежа.",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/ulh.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_ulh.jpg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/ulh_100__2.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_ulh_100__2.jpg"
+    }
+  ],
+  "files": [
+    {
+      "name": "ULH-100V.pdf",
+      "src": "/netcat_files/126/160/ULH_100V.pdf"
+    }
+  ],
+  "video": "",
+  "montageLink": "",
+  "active": true,
+  "old": "/catalog/podsvetka/podsvetka-vstraivaemaya-v-bort/podsvetka-vstraivaemaya-v-bort_719.html"
+}

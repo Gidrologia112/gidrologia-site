@@ -1,0 +1,40 @@
+{
+  "id": 191,
+  "title": "Насос BETTAR / BADU Top 20",
+  "slug": "nasos-bettar-badu-top-20",
+  "category": 75,
+  "also": [],
+  "price": 65482,
+  "vendor": "",
+  "sku": "",
+  "order": 8,
+  "short": "",
+  "specs": "",
+  "specsFull": "-   Напряжение питания (В) - 220\n-   Электрическая мощность (Вт) - 1400\n-   Производительность (м3/ч) - 20\n-   Максимальный напор (м) - 8\n-   Диматры подключения вход/выход (мм) - 2\" ВР / 1 1/2\" ВР\n-   Длина L (мм) - 522",
+  "description": "## Насос BETTAR / BADU Top 20\n\nСамовсасывающий циркуляционный насос, предназначенный для циркуляции воды через фильтр в плавательных бассейнах.\n\n-   Конструкция - моноблок со встроенным предварительным фильтром (волосоловкой) объемом 3 л.\n-   Материал корпуса . полипропилен.\n-   Может быть установлен на 3 м выше и на 3 м ниже уровня воды.",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/73_0.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_73_0.jpg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/53_1__1_.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_53_1__1_.jpg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/53_2_0.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_53_2_0.jpg"
+    }
+  ],
+  "files": [
+    {
+      "name": "tp00083.pdf",
+      "src": "/netcat_files/75/107/tp00083.pdf"
+    }
+  ],
+  "video": "",
+  "montageLink": "",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-zhivyh-basseynov/nasosy/nasosy_191.html"
+}

@@ -1,0 +1,48 @@
+{
+  "id": 250,
+  "title": "Светильник Skylight Nano 300, желтый",
+  "slug": "svetilnik-skylight-nano-300-zheltyy",
+  "category": 125,
+  "also": [],
+  "price": 5370,
+  "vendor": "Seliger",
+  "sku": "",
+  "order": 4,
+  "short": "",
+  "specs": "мощность 0,3 Вт  \nнапряжение 12 В  \nтип лампысветодиодная LED  \nсрок службы лампы более 30 000 ч  \nразмер (ВхД) 10х18 мм  \nматериал нержавеющая сталь",
+  "specsFull": "• нержавеющая сталь 1.4301  \n• класс защиты IP68  \n• светильники Nano 100, 200 и 400 необходимо дополнительно комплектовать базовым модулем (арт. 44900)  \n• Nano 300 поставляется в комплекте с базовым модулем и кабелем PUR длиной 10 м  \n• безопасное напряжение 3,5 В/постоянный ток, электронный блок управления (арт. 44950) преобразует в 12 В/постоянный ток  \n• к блоку (арт. 44950) возможно подключить до 10 шт. Nano (2 светильника в 1 ввод)  \n• температура окружающей среды 0...+40° С  \n• температура корпуса Nano 100 - 40° С, Nano 200, Nano 300 и Nano 400 - 45° С  \n• предназначен для монтажа в тело бетона или других поверхностей  \n• компактный корпус  \n• простой монтаж  \n• контроль полярности  \n• возможность соединения светильников в группу  \n• большой ассортимент принадлежностей  \n• контурная подсветка дорожек, ступенек, террас, стен, элементов декора и т.д.",
+  "description": "",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/1390760450_843145_38.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760450_843145_38.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1390760451_531019_15.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760451_531019_15.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1390760451_869251_4.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760451_869251_4.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1390760452_210632_69.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760452_210632_69.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/chg013.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_chg013.jpg"
+    }
+  ],
+  "files": [
+    {
+      "name": "Nano.jpg",
+      "src": "/netcat_files/125/159/Nano.jpg"
+    }
+  ],
+  "video": "",
+  "montageLink": "",
+  "active": true,
+  "old": "/catalog/podsvetka/podsvetka-nastilov-i-stupeney/podsvetka-nastilov-i-stupeney_250.html"
+}

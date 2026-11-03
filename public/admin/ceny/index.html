@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Цены магазина — кабинет «Гидрологии»</title>
+<style>
+  :root { --ink: #16191c; --muted: #5d6670; --line: #dcd8cf; --paper: #f4f2ed; --blue: #0a6aa1; --ok: #1f7a43; --err: #b3261e; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--paper); }
+  main { max-width: 1040px; margin: 0 auto; padding: 32px 20px 80px; }
+  a { color: var(--blue); }
+  h1 { font-size: 28px; margin: 8px 0 4px; }
+  .lead { color: var(--muted); margin: 0 0 28px; max-width: 720px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; margin-bottom: 18px; }
+  .card h2 { font-size: 17px; margin: 0 0 6px; }
+  .card p { margin: 0 0 14px; color: var(--muted); }
+  .num { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 13px; margin-right: 8px; }
+  button, .btn { font: inherit; font-weight: 600; border: 0; border-radius: 999px; padding: 10px 20px; background: var(--ink); color: #fff; cursor: pointer; text-decoration: none; display: inline-block; }
+  button.line { background: #fff; color: var(--ink); border: 1px solid var(--ink); }
+  button:disabled { opacity: .45; cursor: default; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  textarea { width: 100%; min-height: 110px; font: 13px/1.4 ui-monospace, monospace; border: 1px solid var(--line); border-radius: 10px; padding: 10px; margin-top: 12px; }
+  .drop { border: 2px dashed var(--line); border-radius: 12px; padding: 18px; text-align: center; color: var(--muted); }
+  .drop.on { border-color: var(--blue); background: #eef6fb; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 600; }
+  td.r, th.r { text-align: right; white-space: nowrap; }
+  .up { color: var(--err); } .down { color: var(--ok); }
+  .msg { margin-top: 12px; } .msg.err { color: var(--err); } .msg.ok { color: var(--ok); }
+  .warn { font-size: 13px; color: var(--muted); margin-top: 10px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <a href="/admin/">← В кабинет</a>
+  <h1>Цены магазина</h1>
+  <p class="lead">Обновление цен сразу у многих товаров: скачайте таблицу, поправьте цены в Excel и загрузите обратно. Остальное о товарах (фото, описания) правится в кабинете, в разделе «Магазин: товары».</p>
+
+  <div id="login" class="card" hidden>
+    <h2>Нужно войти в кабинет</h2>
+    <p>Откройте <a href="/admin/">кабинет</a>, войдите через GitHub и вернитесь сюда по ссылке «Магазин: цены из Excel».</p>
+  </div>
+
+  <div id="app" hidden>
+    <div class="card">
+      <h2><span class="num">1</span>Скачайте текущие цены</h2>
+      <p>В таблице все товары, которые сейчас на сайте. Меняйте только столбец «Цена»; 0 — «Цена по запросу». Столбец «Номер» не трогайте: по нему находится товар.</p>
+      <div class="row"><button id="dl" disabled>Скачать таблицу Excel</button><span id="count" class="warn"></span></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">2</span>Загрузите таблицу с новыми ценами</h2>
+      <p>Файл Excel (.xlsx) или CSV. Можно и без файла: выделите в Excel столбцы с «Номером» и «Ценой» вместе с заголовками, скопируйте и вставьте в поле ниже.</p>
+      <label class="drop" id="drop" style="display:block;cursor:pointer">Перетащите файл сюда или <a href="#" id="pick">выберите на компьютере</a>
+        <input type="file" id="file" accept=".xlsx,.xls,.csv,.txt" hidden></label>
+      <textarea id="paste" placeholder="…или вставьте сюда строки из Excel (Ctrl+V)"></textarea>
+      <div class="row" style="margin-top:12px"><button id="check" class="line">Проверить изменения</button></div>
+      <div id="msg1" class="msg"></div>
+    </div>
+
+    <div class="card" id="step3" hidden>
+      <h2><span class="num">3</span>Проверьте и сохраните</h2>
+      <p id="sum"></p>
+      <div style="max-height:420px;overflow:auto"><table><thead><tr><th>Товар</th><th class="r">Было</th><th class="r">Станет</th></tr></thead><tbody id="rows"></tbody></table></div>
+      <div class="row" style="margin-top:16px"><button id="save">Сохранить цены</button><button id="cancel" class="line">Отмена</button></div>
+      <p class="warn">Цены сохранятся сразу, без «На проверке». Сайт обновится сам через 3–5 минут.</p>
+      <div id="msg2" class="msg"></div>
+    </div>
+  </div>
+</main>
+
+<script src="https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+(function () {
+  var REPO = 'Gidrologia112/gidrologia-site', BRANCH = 'main', DIR = 'src/data/shop/products/';
+  var $ = function (id) { return document.getElementById(id); };
+  var token = '';
+  try { var u = JSON.parse(localStorage.getItem('decap-cms-user') || localStorage.getItem('netlify-cms-user') || 'null'); token = u && u.token || ''; } catch (e) {}
+  if (!token) { $('login').hidden = false; return; }
+  $('app').hidden = false;
+
+  var cat = {}, changes = [];
+  var rub = function (n) { return n ? n.toLocaleString('ru-RU') + ' ₽' : 'по запросу'; };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var gh = function (path, opt) {
+    opt = opt || {};
+    return fetch('https://api.github.com/repos/' + REPO + path, {
+      method: opt.method || 'GET',
+      headers: { Authorization: 'token ' + token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+      body: opt.body ? JSON.stringify(opt.body) : undefined,
+    }).then(function (r) {
+      if (r.status === 401) throw new Error('Вход в кабинет устарел — откройте кабинет и войдите заново.');
+      if (!r.ok) throw new Error('GitHub ответил ошибкой ' + r.status + '.');
+      return r.json();
+    });
+  };
+
+  fetch('/magazin/catalog.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+    cat = d; $('dl').disabled = false; $('count').textContent = Object.keys(d).length + ' товаров';
+  }).catch(function () { $('count').textContent = 'Не удалось загрузить список товаров — обновите страницу.'; });
+
+  // 1. Скачать
+  $('dl').onclick = function () {
+    var rows = [['Номер', 'Артикул', 'Производитель', 'Название', 'Цена', 'Страница']];
+    Object.keys(cat).forEach(function (id) { var p = cat[id]; rows.push([Number(id), p.a || '', p.v || '', p.t, p.p, 'https://gidrologia.ru/magazin/tovar/' + p.s + '/']); });
+    rows.sort(function (a, b) { return typeof a[0] === 'string' ? -1 : typeof b[0] === 'string' ? 1 : String(a[2] + a[3]).localeCompare(String(b[2] + b[3]), 'ru'); });
+    var ws = XLSX.utils.aoa_to_sheet(rows);
+    ws['!cols'] = [{ wch: 9 }, { wch: 14 }, { wch: 16 }, { wch: 60 }, { wch: 10 }, { wch: 40 }];
+    var wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, 'Цены');
+    var d = new Date(), pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    XLSX.writeFile(wb, 'ceny-gidrologia-' + d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + '.xlsx');
+  };
+
+  // 2. Загрузить
+  var table = null;
+  var readFile = function (f) {
+    var r = new FileReader();
+    r.onload = function () {
+      try {
+        var buf = new Uint8Array(r.result), wb;
+        if (/\.(csv|txt)$/i.test(f.name)) {
+          var text = new TextDecoder('utf-8').decode(buf);
+          if (text.indexOf('�') >= 0) text = new TextDecoder('windows-1251').decode(buf);
+          table = parseText(text);
+        } else {
+          wb = XLSX.read(buf, { type: 'array' });
+          table = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { header: 1, raw: true, defval: '' });
+        }
+        $('paste').value = ''; $('drop').firstChild.textContent = 'Файл: ' + f.name + ' · ';
+        check();
+      } catch (e) { msg('msg1', 'Не получилось прочитать файл. Сохраните его в Excel как .xlsx и попробуйте снова.', 'err'); }
+    };
+    r.readAsArrayBuffer(f);
+  };
+  var parseText = function (t) {
+    var lines = t.replace(/^﻿/, '').split(/\r?\n/).filter(function (l) { return l.trim(); });
+    var d = /\t/.test(lines[0]) ? '\t' : (lines[0].split(';').length >= lines[0].split(',').length ? ';' : ',');
+    return lines.map(function (l) { return l.split(d).map(function (c) { return c.replace(/^"|"$/g, '').trim(); }); });
+  };
+  $('pick').onclick = function (e) { e.preventDefault(); $('file').click(); };
+  $('file').onchange = function () { if (this.files[0]) readFile(this.files[0]); };
+  var drop = $('drop');
+  drop.ondragover = function (e) { e.preventDefault(); drop.classList.add('on'); };
+  drop.ondragleave = function () { drop.classList.remove('on'); };
+  drop.ondrop = function (e) { e.preventDefault(); drop.classList.remove('on'); if (e.dataTransfer.files[0]) readFile(e.dataTransfer.files[0]); };
+
+  var msg = function (id, t, cls) { var m = $(id); m.className = 'msg' + (cls ? ' ' + cls : ''); m.textContent = t; };
+  var price = function (v) {
+    if (typeof v === 'number') return Math.round(v);
+    var s = String(v).replace(/[\s ₽руб.р]/gi, '').replace(',', '.');
+    if (s === '' || s === '-' || /запрос/i.test(String(v))) return s === '' ? null : 0;
+    var n = Number(s); return isFinite(n) && n >= 0 ? Math.round(n) : NaN;
+  };
+  var check = function () {
+    $('step3').hidden = true; changes = [];
+    if ($('paste').value.trim()) table = parseText($('paste').value);
+    if (!table || table.length < 2) { msg('msg1', 'Загрузите файл или вставьте строки вместе с заголовками.', 'err'); return; }
+    var head = table[0].map(function (h) { return String(h).toLowerCase(); });
+    var iId = head.findIndex(function (h) { return /номер|^id$/.test(h); }), iPr = head.findIndex(function (h) { return /цена|price/.test(h); });
+    var iSku = head.findIndex(function (h) { return /артикул/.test(h); });
+    if (iPr < 0 || (iId < 0 && iSku < 0)) { msg('msg1', 'В первой строке должны быть заголовки «Номер» и «Цена» — как в скачанной таблице.', 'err'); return; }
+    var bySku = {}; Object.keys(cat).forEach(function (id) { var a = cat[id].a; if (a) bySku[a] = bySku[a] ? '-' : id; });
+    var bad = [], miss = 0, seen = {};
+    table.slice(1).forEach(function (row, i) {
+      var id = iId >= 0 ? String(parseInt(row[iId], 10)) : '';
+      if (!cat[id] && iSku >= 0 && bySku[String(row[iSku]).trim()] && bySku[String(row[iSku]).trim()] !== '-') id = bySku[String(row[iSku]).trim()];
+      var p = price(row[iPr]);
+      if (p === null) return;
+      if (!cat[id]) { miss++; return; }
+      if (isNaN(p)) { bad.push('строка ' + (i + 2) + ': «' + row[iPr] + '»'); return; }
+      if (seen[id]) return; seen[id] = 1;
+      if (p !== cat[id].p) changes.push({ id: id, t: cat[id].t, f: cat[id].f, from: cat[id].p, to: p });
+    });
+    var notes = [];
+    if (bad.length) notes.push('Не понял цену: ' + bad.slice(0, 5).join(', ') + (bad.length > 5 ? ' и ещё ' + (bad.length - 5) : '') + '.');
+    if (miss) notes.push('Строк без известного номера товара: ' + miss + ' — пропущены.');
+    if (!changes.length) { msg('msg1', 'Цены в таблице совпадают с сайтом — менять нечего. ' + notes.join(' '), notes.length ? 'err' : 'ok'); return; }
+    msg('msg1', notes.join(' '), notes.length ? 'err' : '');
+    var big = changes.filter(function (c) { return c.from && c.to && (c.to > c.from * 2 || c.to < c.from / 2); }).length;
+    $('sum').textContent = 'Изменится цен: ' + changes.length + '.' + (big ? ' Внимание: у ' + big + ' товаров цена изменится больше чем в 2 раза — проверьте, нет ли лишнего нуля.' : '');
+    $('rows').innerHTML = changes.map(function (c) {
+      return '<tr><td>' + esc(c.t) + '</td><td class="r">' + rub(c.from) + '</td><td class="r ' + (c.to > c.from ? 'up' : 'down') + '">' + rub(c.to) + '</td></tr>';
+    }).join('');
+    $('step3').hidden = false; $('save').disabled = false; msg('msg2', '');
+    $('step3').scrollIntoView({ behavior: 'smooth' });
+  };
+  $('check').onclick = check;
+  $('cancel').onclick = function () { $('step3').hidden = true; changes = []; };
+
+  // 3. Сохранить: один коммит с изменёнными файлами товаров
+  var b64 = function (s) { var bin = atob(s.replace(/\n/g, '')), u = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return new TextDecoder('utf-8').decode(u); };
+  $('save').onclick = function () {
+    var btn = this; btn.disabled = true; msg('msg2', 'Сохраняю…');
+    var head;
+    gh('/git/ref/heads/' + BRANCH).then(function (ref) {
+      head = ref.object.sha;
+      return Promise.all(changes.map(function (c) {
+        return gh('/contents/' + DIR + encodeURIComponent(c.f) + '.json?ref=' + head).then(function (file) {
+          var p = JSON.parse(b64(file.content)); p.price = c.to;
+          return { path: DIR + c.f + '.json', mode: '100644', type: 'blob', content: JSON.stringify(p, null, 2) + '\n' };
+        });
+      }));
+    }).then(function (tree) {
+      return gh('/git/commits/' + head).then(function (cm) { return gh('/git/trees', { method: 'POST', body: { base_tree: cm.tree.sha, tree: tree } }); });
+    }).then(function (t) {
+      return gh('/git/commits', { method: 'POST', body: { message: 'Цены магазина: обновлено ' + changes.length + ' товаров', tree: t.sha, parents: [head] } });
+    }).then(function (c) {
+      return gh('/git/refs/heads/' + BRANCH, { method: 'PATCH', body: { sha: c.sha } });
+    }).then(function () {
+      changes.forEach(function (c) { cat[c.id].p = c.to; });
+      msg('msg2', 'Готово: сохранено цен — ' + changes.length + '. На сайте появятся через 3–5 минут.', 'ok');
+      changes = [];
+    }).catch(function (e) {
+      btn.disabled = false;
+      msg('msg2', (e && e.message) || 'Не получилось сохранить. Попробуйте ещё раз.', 'err');
+    });
+  };
+})();
+</script>
+</body>
+</html>

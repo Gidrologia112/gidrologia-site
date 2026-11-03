@@ -244,6 +244,111 @@ function initLists() {
   });
 }
 
+/* ---------- Магазин: корзина в браузере, оформление заказа ---------- */
+function initShop() {
+  const KEY = 'gidro-cart';
+  let mem = {};
+  const load = () => { try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (_) { return mem; } };
+  const save = (c) => { mem = c; try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (_) {} count(); };
+  const count = () => {
+    const n = Object.values(load()).reduce((a, b) => a + (Number(b) || 0), 0);
+    $$('[data-cart-count]').forEach((el) => { el.textContent = n; const l = el.closest('.cart-link'); if (l) l.classList.toggle('has', n > 0); });
+  };
+  const rub = (n) => n.toLocaleString('ru-RU') + ' ₽';
+  count();
+  // На телефоне разделы — лента с прокруткой: показываем текущий раздел
+  const curChip = $('.shopnav .chip[aria-current]');
+  if (curChip && curChip.parentElement.scrollWidth > curChip.parentElement.clientWidth) curChip.parentElement.scrollLeft = curChip.offsetLeft - 20;
+
+  // Количество на странице товара
+  const qi = $('[data-qty-input]');
+  $$('[data-qty]').forEach((b) => b.addEventListener('click', () => { qi.value = Math.max(1, Math.min(999, (Number(qi.value) || 1) + Number(b.dataset.qty))); }));
+
+  // «В корзину»
+  let tt;
+  const toast = () => {
+    let el = $('.cart-toast');
+    if (!el) {
+      el = document.createElement('div'); el.className = 'cart-toast'; el.setAttribute('role', 'status');
+      el.innerHTML = 'Товар добавлен в корзину. <a href="/magazin/korzina/">Оформить заказ →</a>';
+      document.body.appendChild(el);
+    }
+    el.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => el.classList.remove('on'), 3500);
+  };
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest && e.target.closest('[data-add]');
+    if (!b) return;
+    const c = load(), id = b.dataset.add, q = b.hasAttribute('data-add-qty') && qi ? Math.max(1, Number(qi.value) || 1) : 1;
+    c[id] = Math.min(999, (Number(c[id]) || 0) + q);
+    save(c);
+    if (!b.dataset.t) b.dataset.t = b.textContent;
+    b.textContent = 'В корзине ✓'; b.classList.add('added');
+    setTimeout(() => { b.textContent = b.dataset.t; b.classList.remove('added'); }, 1600);
+    toast();
+  });
+
+  // Страница корзины
+  const cart = $('[data-cart]');
+  if (!cart) return;
+  const list = $('[data-cart-list]', cart), empty = $('[data-cart-empty]', cart), form = $('[data-order]', cart);
+  const totalWrap = $('[data-cart-total-wrap]', cart), totalEl = $('[data-cart-total]', cart), onreq = $('[data-cart-onreq]', cart);
+  let cat = {};
+  const render = () => {
+    const c = load();
+    Object.keys(c).forEach((id) => { if (!cat[id]) delete c[id]; });
+    const ids = Object.keys(c);
+    list.textContent = '';
+    let total = 0, req = false;
+    ids.forEach((id) => {
+      const p = cat[id], q = Number(c[id]) || 1, sum = p.p * q;
+      total += sum; if (!p.p) req = true;
+      const row = document.createElement('div'); row.className = 'cart-row';
+      row.innerHTML = '<a class="cart-img" tabindex="-1"></a>' +
+        '<div class="cart-t"><a></a><span class="cart-pr"></span></div>' +
+        '<div class="qty"><button type="button" aria-label="Меньше">−</button><input type="number" min="1" max="999" inputmode="numeric" aria-label="Количество"><button type="button" aria-label="Больше">+</button></div>' +
+        '<div class="cart-sum"></div><button type="button" class="cart-del" aria-label="Удалить из корзины">×</button>';
+      const href = '/magazin/tovar/' + p.s + '/';
+      const im = $('.cart-img', row); im.href = href;
+      if (p.i) { const img = document.createElement('img'); img.alt = ''; img.loading = 'lazy'; img.src = p.i; im.appendChild(img); }
+      const a = $('.cart-t a', row); a.href = href; a.textContent = p.t;
+      $('.cart-pr', row).textContent = p.p ? rub(p.p) + ' за шт.' : 'цена по запросу';
+      $('.cart-sum', row).textContent = p.p ? rub(sum) : '—';
+      const inp = $('input', row); inp.value = q;
+      const setQ = (v) => { const cc = load(); cc[id] = Math.max(1, Math.min(999, v)); save(cc); render(); };
+      $$('.qty button', row)[0].addEventListener('click', () => setQ(q - 1));
+      $$('.qty button', row)[1].addEventListener('click', () => setQ(q + 1));
+      inp.addEventListener('change', () => setQ(Number(inp.value) || 1));
+      $('.cart-del', row).addEventListener('click', () => { const cc = load(); delete cc[id]; save(cc); render(); });
+      list.appendChild(row);
+    });
+    save(c);
+    empty.hidden = ids.length > 0; form.hidden = ids.length === 0; totalWrap.hidden = ids.length === 0;
+    totalEl.textContent = rub(total); onreq.hidden = !req;
+    $('[data-order-items]', form).value = JSON.stringify(c);
+  };
+  fetch('/magazin/catalog.json').then((r) => r.json()).then((d) => { cat = d; render(); })
+    .catch(() => { list.textContent = 'Не удалось загрузить корзину. Обновите страницу.'; });
+
+  const msg = $('[data-order-msg]', form);
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.className = 'form-msg'; msg.textContent = '';
+    if (!form.name.value.trim() || form.phone.value.replace(/\D/g, '').length < 10) { msg.classList.add('err'); msg.textContent = 'Укажите имя и телефон.'; return; }
+    if (!form.consent.checked) { msg.classList.add('err'); msg.textContent = 'Нужно согласие на обработку персональных данных.'; return; }
+    const btn = $('button[type=submit]', form); btn.disabled = true;
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'X-Requested-With': 'fetch' } });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        save({}); form.reset(); form.hidden = true; empty.hidden = true; totalWrap.hidden = true;
+        list.innerHTML = '<div class="cart-done"><b>Спасибо, заказ отправлен!</b><p>Менеджер позвонит в рабочее время, подтвердит наличие и стоимость доставки.</p><a href="/magazin/" class="btn btn-line">Вернуться в каталог</a></div>';
+        if (window.ym) try { window.ym(114014482, 'reachGoal', 'order'); } catch (_) {}
+      } else { msg.classList.add('err'); msg.textContent = data.error || 'Не получилось отправить. Позвоните нам: +7 812 748-22-44.'; }
+    } catch (_) { msg.classList.add('err'); msg.textContent = 'Нет связи. Позвоните нам: +7 812 748-22-44.'; }
+    btn.disabled = false;
+  });
+}
+
 /* ---------- Калькулятор испарения ---------- */
 function initCalc() {
   const root = $('[data-calc]');
@@ -401,5 +506,5 @@ document.addEventListener('click', (e) => {
 });
 // Ошибка в одном блоке не должна ломать остальные (и прятать контент): каждый запускаем отдельно.
 // initMotion размечает блоки для появления, initReveal их показывает — эти двое последними.
-[initWater, initMenu, initTabs, initGeo, initScheme, initBeforeAfter, initKb, initForm, initLists, initCalc, initGallery, initMotion, initReveal]
+[initWater, initMenu, initTabs, initGeo, initScheme, initBeforeAfter, initKb, initForm, initLists, initCalc, initGallery, initShop, initMotion, initReveal]
   .forEach((f) => { try { f(); } catch (e) { console.error(e); } });

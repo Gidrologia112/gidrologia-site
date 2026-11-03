@@ -1,0 +1,27 @@
+{
+  "id": 251,
+  "title": "Трансформатор 300 Вт",
+  "slug": "transformator-300-vt",
+  "category": 126,
+  "also": [],
+  "price": 21048,
+  "vendor": "MCT  Transformatoren",
+  "sku": "",
+  "order": 1,
+  "short": "",
+  "specs": "-   Максимальная нагрузка 300 Вт\n-   Первичное напряжение 220 В, вторичное напряжение 12 В\n-   Встроенная термозащита\n-   Корпус из ударопрочного пластика со встроенными соединениями\n-   Класс защиты IP 65",
+  "specsFull": "[Декларация о соответствии 41106](/netcat_files/userfiles/258.pdf) \n\n[Сертификат Ростеста РОСС РТ.АВ24.АО2248](/netcat_files/userfiles/sertifikat.pdf)",
+  "description": "Трансформатор переменного тока для питания подводных светильников\n\nМощность 300 Вт\n\nНапряжение 220 В / 12 В",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/118_0.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_118_0.jpg"
+    }
+  ],
+  "files": [],
+  "video": "",
+  "montageLink": "",
+  "active": true,
+  "old": "/catalog/podsvetka/podsvetka-vstraivaemaya-v-bort/podsvetka-vstraivaemaya-v-bort_251.html"
+}

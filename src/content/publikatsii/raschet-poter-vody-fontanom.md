@@ -35,7 +35,7 @@ imported: true
 <ul>
 <li>Для цилиндрических насадок - 1 - 2% от расхода воды через насадку;</li>
 <li>Для насадок, распыляющих воду, - 1.5 - 3 % от расхода воды через насадку.</li></ul>
-<p>Если для очистки воды фонтана используется <strong><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-zhivyh-basseynov/filtratsiya/filtratsiya_195.html" target="_blank" rel="noopener">песчаный бассейный фильтр</a></strong>, то необходимо учитывать расход воды на промывку фильтра, который можно принять равным 2% от суточной производительности фильтра.</p>
+<p>Если для очистки воды фонтана используется <strong><a href="/magazin/tovar/filtrovalnaya-emkost-novum-brillant-21/" target="_blank" rel="noopener">песчаный бассейный фильтр</a></strong>, то необходимо учитывать расход воды на промывку фильтра, который можно принять равным 2% от суточной производительности фильтра.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/Stat_i/Fontany/Brilliant.jpg" /></p>
 <h3>Потери воды фонтаном на испарение.</h3>
 <p>Количество испаряющейся воды зависит от следующих факторов:</p>

@@ -50,7 +50,7 @@ imported: true
 <p><strong>Средний уровень</strong> - 20-30% поверхности пруда. Легкий уклон (~ 5 &deg;) в сторону нижней части водоема.&nbsp; (Глубина 38 см) Отмель 20-30% поверхности водоема.</p>
 <p><strong>Отмель</strong> - Используйте для посадки растений. Незначительный уклон (~ 5 &deg;) к нижней части пруда. (Глубина 25 см).</p>
 <p><strong>Верхний шельф</strong> - от 15 см до 20 см поверхности берега предназначено для бутовой кладки, что удерживает края пруда на месте. (Глубина 15 см)</p>
-<p>Рассчитайте площадь необходимого куска <a href="https://shop.gidrologia.ru/catalog/gidroizolyatsiya/epdm-membrana-firestone-pondgard/" target="_blank" rel="noopener">гидроизоляционной мембраны</a> и <a href="https://shop.gidrologia.ru/catalog/gidroizolyatsiya/geotekstil-dornit/geotekstil-dornit_244.html" target="_blank" rel="noopener">подкладочного материала</a>.</p>
+<p>Рассчитайте площадь необходимого куска <a href="/magazin/gidroizolyatsiya/" target="_blank" rel="noopener">гидроизоляционной мембраны</a> и <a href="/magazin/tovar/geotekstil-dornit-350-g-kv-m-2-50-m/" target="_blank" rel="noopener">подкладочного материала</a>.</p>
 <h3><br />
 <strong>Шаг 4. Разметка на местности</strong></h3>
 <p><strong>Обозначьте контуры водоёма.</strong> Как только поверхность выровнена и размещено оборудование, повторно нарисуйте контур пруда. Отметьте общую форму водоема и расположение шельфа при помощи&nbsp; пуливезатора с краской, чтобы пруд остался в намеченных пределах.</p>
@@ -83,7 +83,7 @@ imported: true
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sav018.jpg" /></p>
 <h3><strong>Шаг 8. Создайте болотистую зону</strong></h3>
 <p><strong>Болотистая зона - зона биоплато.&nbsp;</strong>Болотные растения в естественной среде растут по краям водоемов во влажной почве или мелкой воде. Специально выделенные области для болотных растений обеспечивают им здоровый рост, предотвращая зарастание ими всего пруда. Болотные растения способствуют очистке воды водоёма!</p>
-<p>Используйте опорные камни для создания границы вашего мелководного шельфа. Используйте <a href="https://shop.gidrologia.ru/catalog/gidroizolyatsiya/dopolnitelnye-materialy/dopolnitelnye-materialy_393.html" target="_blank" rel="noopener">черную пены</a> для заполнения пространства между камней. Засыпте дно зоны гравием, диаметром 2-4 см слоем от 10 до 15 см. Разместите растения непосредственно в подушке из гравия.</p>
+<p>Используйте опорные камни для создания границы вашего мелководного шельфа. Используйте <a href="/magazin/gidroizolyatsiya/dopolnitelnye-materialy/" target="_blank" rel="noopener">черную пены</a> для заполнения пространства между камней. Засыпте дно зоны гравием, диаметром 2-4 см слоем от 10 до 15 см. Разместите растения непосредственно в подушке из гравия.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sav019.jpg" /></p>
 <p><strong>Создание болотистой зоны.</strong></p>
 <p>Положите кусок подкладки для защиты пленки от истирания и острых краев.</p>
@@ -99,9 +99,9 @@ imported: true
 <p>Добавьте пены и больше камней. Примечание: дно пруда должна быть гладким для легкого удаления отходов.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sav025.jpg" /></p>
 <h3><strong>Шаг 9. Установите излив водопада</strong></h3>
-<p>Выровняйте грунт в месте размещения <a href="https://shop.gidrologia.ru/catalog/gidroizolyatsiya/dopolnitelnye-materialy/dopolnitelnye-materialy.html?search_action=2&action=index&admin_mode=&srchPat%5B0%2C3%5D=%D0%B8%D0%B7%D0%BB%D0%B8%D0%B2" target="_blank" rel="noopener">излива</a>. Используйте блоки для увеличения высоты водопада.</p>
+<p>Выровняйте грунт в месте размещения <a href="/magazin/gidroizolyatsiya/dopolnitelnye-materialy/" target="_blank" rel="noopener">излива</a>. Используйте блоки для увеличения высоты водопада.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sav026.jpg" /></p>
-<p>Подключите <a href="https://shop.gidrologia.ru/catalog/gidroizolyatsiya/dopolnitelnye-materialy/dopolnitelnye-materialy.html?search_action=2&action=index&admin_mode=&srchPat%5B0%2C3%5D=%D1%88%D0%BB%D0%B0%D0%BD%D0%B3" target="_blank" rel="noopener">шланг</a> к задней части излива и затяните хомут.</p>
+<p>Подключите <a href="/magazin/gidroizolyatsiya/dopolnitelnye-materialy/" target="_blank" rel="noopener">шланг</a> к задней части излива и затяните хомут.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sav027.jpg" /></p>
 <p>Установите излив и выровняйте по всей поверхности.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sav028.jpg" /></p>
@@ -135,7 +135,7 @@ imported: true
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sav040.jpg" /></p>
 
 <p><strong>Шаг 11. Установите скиммер</strong></p>
-<p>Одним из наиболее важных шагов является установка <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/" target="_blank" rel="noopener">скиммера</a>. Для достижения наилучших результатов точно следуйте указанным ниже инструкциям.</p>
+<p>Одним из наиболее важных шагов является установка <a href="/magazin/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/" target="_blank" rel="noopener">скиммера</a>. Для достижения наилучших результатов точно следуйте указанным ниже инструкциям.</p>
 <p>Наполните пруд водой с помощью садового шланга. Это позволит вам точно определить уровень воды со всех сторон, прежде чем приступать к установке скиммера.&nbsp; Вода<br />
 должна покрывать половину береговых камней. Убедитесь, что уровень воды на несколько сантиметров ниже края пленки со всех сторон.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sav041.jpg" /></p>
@@ -180,7 +180,7 @@ imported: true
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sav060.jpg" /></p>
 <p><strong>Оставьте доступ к скиммеру!</strong> Не блокируйте отверстие скиммера кладкой&nbsp; или декоративными растениями. Оставьте его открытым, чтобы успешно вытягивать мусор с поверхности пруда. Возможно использовать легкий искусственный камень или растение в горшке, чтобы скрыть крышку из поля зрения.</p>
 <h3><strong>Шаг 12. Подключите насос</strong></h3>
-<p>Подключите шланг к <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/nasosy-dlya-ruchev-i-filtrov/" target="_blank" rel="noopener">насосу</a>.</p>
+<p>Подключите шланг к <a href="/magazin/oborudovanie-dlya-dekorativnyh-vodoemov/nasosy-dlya-ruchev-i-filtrov/" target="_blank" rel="noopener">насосу</a>.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sav061.jpg" /></p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sav062.jpg" /></p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sav063.jpg" /></p>
@@ -196,7 +196,7 @@ imported: true
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sav067.jpg" /></p>
 <p>Используйте декоративную кладку и засыпку, чтобы скрыть пленку и вписать новый водный объект в окружающий ландшафт.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sav068.jpg" /></p>
-<p><strong>Добавьте бактерии</strong>. Для запуска системы фильтрации, просто подключите насос к розетке. Изначально водоем может быть засорен накопленными обломками бутовой кладки и пылью. В течение нескольких дней этот мусор осядет и пруд постепенно станет прозрачным. Создайте экосистему для растений и рыб, добавив <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-zhivyh-basseynov/preparaty/" target="_blank" rel="noopener">полезных прудовых бактерий</a>. Секрет хорошего качества воды и хорошая фильтрация зависят от полезных бактерий. Эти естественные микроорганизмы живут на фильтрующем материале и подводных поверхностях водоема. Создание экосистемы водоема&nbsp; занимает 4 недели после добавления полезных бактерий в новый пруд.</p>
+<p><strong>Добавьте бактерии</strong>. Для запуска системы фильтрации, просто подключите насос к розетке. Изначально водоем может быть засорен накопленными обломками бутовой кладки и пылью. В течение нескольких дней этот мусор осядет и пруд постепенно станет прозрачным. Создайте экосистему для растений и рыб, добавив <a href="/magazin/oborudovanie-dlya-zhivyh-basseynov/preparaty/" target="_blank" rel="noopener">полезных прудовых бактерий</a>. Секрет хорошего качества воды и хорошая фильтрация зависят от полезных бактерий. Эти естественные микроорганизмы живут на фильтрующем материале и подводных поверхностях водоема. Создание экосистемы водоема&nbsp; занимает 4 недели после добавления полезных бактерий в новый пруд.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sav069.jpg" /></p>
 <h3><strong>Шаг 14. Конечный результат</strong></h3>
 <p><strong>Наконец-то! Ваша напряженная работа завершена! У Вас есть прекрасный декоративный водоём, построенный собственными руками, готовый радовать Вас долгие годы!</strong></p>

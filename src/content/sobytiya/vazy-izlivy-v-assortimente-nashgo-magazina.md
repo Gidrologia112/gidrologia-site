@@ -12,6 +12,6 @@ imported: true
 
 <p>В ассортименте нашего интернет-магазина появились новинки - декоративные вазы-изливы Aquascape (США). Теперь построить разнообразные БКВ стало гораздо проще!</p>
 <p>Смотрите подробности в разделе:</p>
-<p><strong><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/dekorativnye-izlivy/" target="_blank" rel="noopener">Декоративные изливы-вазы</a></strong><br />
+<p><strong><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/" target="_blank" rel="noopener">Декоративные изливы-вазы</a></strong><br />
 &nbsp;</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/Vaza_Riflenaya.JPG" /></p>

@@ -1,0 +1,43 @@
+{
+  "id": 73,
+  "title": "Аэратор JPA-200",
+  "slug": "aerator-jpa-200",
+  "category": 106,
+  "also": [
+    72,
+    171
+  ],
+  "price": 42044,
+  "vendor": "",
+  "sku": "",
+  "order": 15,
+  "short": "Производительность 200 л/час\n\nМощность 210 Вт",
+  "specs": "-   объем пруда до 80000 л\n-   мощность 210 Вт\n-   напряжение 220 В\n-   производительность 12 000 л/час\n-   масса 8 кг\n-   давления 0,045 МПа\n-   размеры (ВхДхШ) 345×230×245 мм",
+  "specsFull": "## Характеристики\n\n-   объем пруда до 80000 л\n-   мощность 210 Вт\n-   напряжение 220 В\n-   производительность 12 000 л/час\n-   масса 8 кг\n-   давления 0,045 МПа\n-   размеры (ВхДхШ) 345×230×245 мм\n\n## **[Сертификат](/netcat_files/userfiles/Sertifikat_JRA.pdf)**",
+  "description": "## Описание\n\nАэратор с максимальной производительностью 12 000 л/час.\n\n-   обогащает воду кислородом\n-   способствует циркуляции воды в пруду\n-   улучшает биологическое равновесие в водоёме\n-   оснащён малошумным надёжным компрессором\n-   пригоден для использования как в летний, так и в зимний период для создания лунки",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/jpa_200.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_jpa_200.jpg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/aerator_200.webp",
+      "thumb": "/netcat_files/multifile/2718/preview_aerator_200.webp"
+    }
+  ],
+  "files": [
+    {
+      "name": "Инструкция аэратор LK-60.pdf",
+      "src": "/netcat_files/106/140/Instruktsiya_aerator_LK_60.pdf"
+    },
+    {
+      "name": "Silenta.jpg",
+      "src": "/netcat_files/106/140/Silenta.jpg"
+    }
+  ],
+  "video": "",
+  "montageLink": "",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/filtratsiya-i-aeratsiya/filtratsiya-i-aeratsiya_73.html"
+}

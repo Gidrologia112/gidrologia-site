@@ -72,7 +72,7 @@ if ($authed && isset($_GET['csv'])) {
   fwrite($out, "\xEF\xBB\xBF");
   fputcsv($out, ['Дата', 'Тип', 'Имя', 'Телефон', 'Сообщение', 'Страница', 'Статус', 'Заметка'], ';');
   foreach (leads_all() as $l) {
-    fputcsv($out, [date('d.m.Y H:i', strtotime($l['created'] ?? 'now')), ($l['type'] ?? '') === 'tz' ? 'ТЗ' : 'Проект',
+    fputcsv($out, [date('d.m.Y H:i', strtotime($l['created'] ?? 'now')), (['tz' => 'ТЗ', 'order' => 'Заказ'][$l['type'] ?? ''] ?? 'Проект'),
       $l['name'] ?? '', $l['phone'] ?? '', $l['message'] ?? '', $l['page'] ?? '', $STATUS[$l['status'] ?? 'new'] ?? '', $l['note'] ?? ''], ';');
   }
   exit;
@@ -139,7 +139,7 @@ if ($authed && isset($_GET['csv'])) {
         <div>
           <h3><?= $h($l['name'] ?? '') ?> · <a class="tel" href="tel:<?= $h(preg_replace('/[^\d+]/', '', (string) ($l['phone'] ?? ''))) ?>"><?= $h($l['phone'] ?? '') ?></a></h3>
           <div class="meta">
-            <span class="tag"><?= ($l['type'] ?? '') === 'tz' ? 'Техническое задание' : 'Обсудить проект' ?></span>
+            <span class="tag"><?= ['tz' => 'Техническое задание', 'order' => 'Заказ из магазина'][$l['type'] ?? ''] ?? 'Обсудить проект' ?></span>
             <?= $h(date('d.m.Y H:i', strtotime($l['created'] ?? 'now'))) ?>
             <?php if (!empty($l['page'])): ?> · со страницы <?= $h(parse_url((string) $l['page'], PHP_URL_PATH) ?: '/') ?><?php endif; ?>
           </div>

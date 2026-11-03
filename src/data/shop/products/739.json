@@ -1,0 +1,34 @@
+{
+  "id": 739,
+  "title": "Лестница WALL, 5 ступеней",
+  "slug": "lestnitsa-wall-5-stupeney",
+  "category": 112,
+  "also": [
+    74
+  ],
+  "price": 0,
+  "vendor": "Kripsol",
+  "sku": "",
+  "order": 3,
+  "short": "",
+  "specs": "",
+  "specsFull": "Количество ступеней - 5\n\nТип креплени - стаканы\n\n![](/netcat_files/userfiles/magazin/wall_5st_chertezh1.png)",
+  "description": "Лестница Wall, 5 ступеней\n\nВ комплектацию входит:\n\n-   ступени из нержавеющей стали V2A противоскользящими накладками\n-   крепления на борт (стаканы).",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/Lezniza_kripsol_else_5_stupeni.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_Lezniza_kripsol_else_5_stupeni.jpg"
+    }
+  ],
+  "files": [
+    {
+      "name": "Instruc_Lestnica_WALL_MURO_5 st.pdf",
+      "src": "/netcat_files/112/146/Instruc_Lestnica_WALL_MURO_5_st.pdf"
+    }
+  ],
+  "video": "",
+  "montageLink": "/arhiv-foruma/tema-147/",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/lestnitsy/lestnitsy_739.html"
+}

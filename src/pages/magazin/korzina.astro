@@ -1,0 +1,42 @@
+---
+import Page from '../../layouts/Page.astro';
+import ShopNav from '../../components/ShopNav.astro';
+import site from '../../data/site.json';
+---
+<Page title="Корзина — Магазин «Гидрологии»" description="Корзина и оформление заказа в магазине «Гидрологии»." path="/magazin/korzina/" label="Магазин" h1="Корзина"
+  crumbs={[{ label: 'Магазин', href: '/magazin/' }, { label: 'Корзина' }]}>
+  <section>
+    <div class="w sec-sm">
+      <ShopNav />
+      <div class="cart" data-cart>
+        <div>
+          <div class="cart-list" data-cart-list aria-live="polite"></div>
+          <p class="cart-empty" data-cart-empty hidden>В корзине пока пусто. <a href="/magazin/">Перейти в каталог →</a></p>
+          <div class="cart-total" data-cart-total-wrap hidden>Итого: <b data-cart-total>0 ₽</b><span data-cart-onreq hidden> + позиции с ценой по запросу</span></div>
+        </div>
+        <form class="form cart-form" action="/send.php" method="post" data-order novalidate hidden>
+          <h2 class="h t-h3" style="margin:0 0 6px">Оформление заказа</h2>
+          <p class="note" style="margin:0 0 18px">Оплата не нужна сейчас: менеджер перезвонит, подтвердит наличие, стоимость доставки и выставит счёт.</p>
+          <input type="hidden" name="type" value="order">
+          <input type="hidden" name="items" data-order-items>
+          <div class="hp" aria-hidden="true"><label>Сайт<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <label class="fld">Имя<input type="text" name="name" autocomplete="name" required maxlength="100"></label>
+          <label class="fld">Телефон<input type="tel" name="phone" autocomplete="tel" inputmode="tel" required maxlength="30"></label>
+          <label class="fld">E-mail (для счёта, необязательно)<input type="email" name="email" autocomplete="email" maxlength="100"></label>
+          <label class="fld">Доставка
+            <select name="delivery">
+              <option>Самовывоз</option>
+              <option>Курьер по Санкт-Петербургу</option>
+              <option>Транспортная компания по России</option>
+            </select>
+          </label>
+          <label class="fld">Город и адрес доставки<input type="text" name="city" autocomplete="street-address" maxlength="200"></label>
+          <label class="fld">Комментарий<textarea name="message" rows="3" maxlength="3000" placeholder="Например: подобрать насос под водопад высотой 1,5 м"></textarea></label>
+          <label class="consent"><input type="checkbox" name="consent" value="1" required><span>Даю <a href="/soglasie/" target="_blank">согласие на обработку персональных данных</a> и ознакомлен с&nbsp;<a href={site.links.privacy} target="_blank">политикой конфиденциальности</a></span></label>
+          <button type="submit" class="btn btn-dark">Отправить заказ</button>
+          <p class="form-msg" role="status" data-order-msg></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</Page>

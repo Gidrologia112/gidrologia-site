@@ -34,7 +34,7 @@ imported: true
 <h2><strong>Готовые декоративные изливы для безопасного каскадного водоём</strong>а</h2>
 <p>Приведённые выше примеры потребуют приложить усилия к изготовлению всей конструкции. Чтобы этого избежать, можно выбрать декоративный излив из тех, что изготавливаются фабричным образом.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/Vaza_Kamennaya_005.JPG" /><img loading="lazy" alt="" src="/img/netcat/userfiles/Kamennaya_sfera_001.JPG" /><img loading="lazy" alt="" src="/img/netcat/userfiles/Bazaltovaya_kolonna_002.JPG" /></p>
-<p>В нашем интернет-магазине представлен большой выбор декоративных изливов для безопасных каскадных водоёмов произоводства компании Aquascape (США). С ассортиментом вы можете ознакомиться по ссылке: <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/dekorativnye-izlivy/" target="_blank" rel="noopener"><strong>Декоративные изливы.</strong></a></p>
+<p>В нашем интернет-магазине представлен большой выбор декоративных изливов для безопасных каскадных водоёмов произоводства компании Aquascape (США). С ассортиментом вы можете ознакомиться по ссылке: <a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/" target="_blank" rel="noopener"><strong>Декоративные изливы.</strong></a></p>
 <p>В публикации использованы материалы книги: Р. Ферринг. Настольные фонтаны.</p>
 <h2><strong>Рекомендуем ознакомиться:</strong></h2>
 <p><strong><a href="/publikatsii/bezopasnyy-kaskadnyy-vodoem-tehnologiya-sozdaniya/" target="_blank" rel="noopener">Безопасный каскадный водоём - технология создания.</a></strong></p>

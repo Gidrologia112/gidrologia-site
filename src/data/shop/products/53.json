@@ -1,0 +1,46 @@
+{
+  "id": 53,
+  "title": "Скиммер стационарный Tele Skimmer 200, телескопический",
+  "slug": "skimmer-statsionarnyy-tele-skimmer-200-teleskopicheskiy",
+  "category": 105,
+  "also": [
+    115
+  ],
+  "price": 22935,
+  "vendor": "Messner",
+  "sku": "",
+  "order": 2,
+  "short": "",
+  "specs": "тип установки на телескопическом основании  \nглубина установки от 37 до 93 см  \nплощадь поверхности 100 м2  \nрекоменд. расход 50-300 л/мин  \nподключение 1½” нар. + штуцер 40/50 мм  \nматериал пластик",
+  "specsFull": "Рекомендованный расход воды через скиммер 50 - 300 л/мин\n\nВыполнен из прочного пластика\n\nГлубина установки - от 37.5 до 93 см\n\nВысоту скиммера можно регулировать с помощью телескопического удлинителя\n\nПодключение - 1 1/2\" наружная резьба + штуцер 40/50 мм\n\nДиаметр корзины - 20 см",
+  "description": "Стационарный скиммер Standsimmer Vario 200\n\nПредназначен для сбора листвы и мусора с поверхности водоёма площадью до 100 кв. м",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/1394179006_658118_13.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_1394179006_658118_13.jpg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1394178873_449852_92.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1394178873_449852_92.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1394178873_975871_72.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1394178873_975871_72.jpeg"
+    }
+  ],
+  "files": [
+    {
+      "name": "Skimmer_200.pdf",
+      "src": "/netcat_files/105/139/Skimmer_200_1.pdf"
+    },
+    {
+      "name": "Tele-skimmer.jpg",
+      "src": "/netcat_files/105/139/Tele_skimmer.jpg"
+    }
+  ],
+  "video": "",
+  "montageLink": "/arhiv-foruma/tema-142/",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/skimmery/skimmery_53.html"
+}

@@ -10,6 +10,6 @@ netcatId: 166
 imported: true
 ---
 
-<p>Цены в <a href="https://shop.gidrologia.ru/" target="_blank" rel="noopener">интернет-магазине &quot;Гидрология&quot;</a> уменьшились!</p>
+<p>Цены в <a href="/magazin/" target="_blank" rel="noopener">интернет-магазине &quot;Гидрология&quot;</a> уменьшились!</p>
 <p>Оборудование для создания искусственных водоёмов стало доступнее!</p>
 <p>Спешите приобрести!</p>

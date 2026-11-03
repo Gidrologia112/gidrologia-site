@@ -1,0 +1,32 @@
+{
+  "id": 743,
+  "title": "Теплообменник QWT 40",
+  "slug": "teploobmennik-qwt-40",
+  "category": 188,
+  "also": [],
+  "price": 0,
+  "vendor": "Behncke",
+  "sku": "",
+  "order": 4,
+  "short": "**Теплообменники QWT 40**\n\nМощность 40 кВт\n\nМаксимальное давление: первичный контур – 10 бар.\n\nМаксимальное давление: вторичный контур – 3 бар.",
+  "specs": "-   Мощность, кВт - 40\n-   Подключение вторичного контура - 3/4\" HP\n\n-   Подключение первичного контура - D 50 / 1 1/2\" BP\n\n-   MAX давление вторичного контура, бар - 3\n\n-   MAX рабочее давление первичного контура, бар",
+  "specsFull": "-   Мощность, кВт - 40\n-   Подключение вторичного контура - 3/4\" HP\n-   Подключение первичного контура - D 50 / 1 1/2\" BP\n-   MAX давление вторичного контура, бар - 3\n-   MAX рабочее давление первичного контура, бар\n-   Материал корпуса - Нержавеющая сталь V4A\n-   Материал нагр. элемента - Нержавеющая сталь V4A\n-   Крепеж - в комплекте\n\n![](/netcat_files/userfiles/magazin/qwt002.jpg)\n\n| A | B | C | D | E | F |\n| --- | --- | --- | --- | --- | --- |\n| 385 | 125 | 205 | 50 | 1 ½ ″ ВР | ¾ ″ НР |\n\n[Сертификат 1](/netcat_files/userfiles/magazin/SERT001.pdf)\n\n[Сертификат 2](/netcat_files/userfiles/magazin/SERT002.pdf)\n\n[Отказное письмо](/netcat_files/userfiles/magazin/OTKAZ.pdf)",
+  "description": "Теплообменники QWT 40\n\nМощность 40 кВт\n\nМаксимальное давление: первичный контур – 10 бар.\n\nМаксимальное давление: вторичный контур – 3 бар.\n\nКорпус с гильзой для термодатчика и змеевик из нержавеющей стали V4A\n\n## Необходимые комплектующие:\n\n## [Муфтовый магнитный клапан 3/4\" ВР, 220 В](/magazin/tovar/klapan-elektromagnitnyy-normalno-zakrytyy-g-3-4-pn16-memrana-epdm-t-20/) - 1 шт.\n\n## [Накидная гайка PVC/бронза, D 50 х 11/2 НР](/magazin/tovar/nakidnaya-gayka-pvc-bronza-d-50-h-11-2-nr/) - 2 шт.",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/qwt001.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_qwt001.jpg"
+    }
+  ],
+  "files": [
+    {
+      "name": "tp00106.pdf",
+      "src": "/netcat_files/188/240/tp00106.pdf"
+    }
+  ],
+  "video": "",
+  "montageLink": "/arhiv-foruma/",
+  "active": true,
+  "old": "/catalog/spetsialnoe-oborudovanie/spetsialnoe-oborudovanie_743.html"
+}

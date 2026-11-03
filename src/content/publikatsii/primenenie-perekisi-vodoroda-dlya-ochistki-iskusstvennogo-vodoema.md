@@ -110,9 +110,9 @@ imported: true
 <p>Можно смело сказать, что перекись водорода является необходимым атрибутом каждого владельца искусственных водоёмов.</p>
 <p>Приобрести перекись водорода необходимой 50% концентрации можно у нас &ndash; в компании &laquo;Гидрология&raquo;.</p>
 <ul>
-<li><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-zhivyh-basseynov/preparaty/preparaty_758.html" target="_blank" rel="noopener">Бутылка 1 л</a>. Для обработки до 63 м<sup>3</sup> воды.</li>
-<li><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-zhivyh-basseynov/preparaty/preparaty_759.html" target="_blank" rel="noopener">Канистра 5 л</a>. Для обработки до 313 м<sup>3</sup> воды.</li>
-<li><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-zhivyh-basseynov/preparaty/preparaty_769.html" target="_blank" rel="noopener">Канистра 30 л</a>. Для обработки до 1875 м<sup>3</sup> воды.</li></ul>
+<li><a href="/magazin/tovar/perekis-vodoroda-1-l-37/" target="_blank" rel="noopener">Бутылка 1 л</a>. Для обработки до 63 м<sup>3</sup> воды.</li>
+<li><a href="/magazin/tovar/perekis-vodoroda-10-l-37/" target="_blank" rel="noopener">Канистра 5 л</a>. Для обработки до 313 м<sup>3</sup> воды.</li>
+<li><a href="/magazin/tovar/perekis-vodoroda-30-l-37/" target="_blank" rel="noopener">Канистра 30 л</a>. Для обработки до 1875 м<sup>3</sup> воды.</li></ul>
 <p><em>По материалам сайтов: zdorowiue.ru, liidweb.com, forum.xumuk.ru.</em></p>
 <table>
 <tbody>
@@ -143,7 +143,7 @@ imported: true
 </tr>
 <tr>
 <td>
-<p>Приобрести перекись водорода можно в разделе <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-zhivyh-basseynov/preparaty/" target="_blank" rel="noopener">Препараты</a> интернет-магазина компании &quot;Гидрология&quot;</p></td>
+<p>Приобрести перекись водорода можно в разделе <a href="/magazin/oborudovanie-dlya-zhivyh-basseynov/preparaty/" target="_blank" rel="noopener">Препараты</a> интернет-магазина компании &quot;Гидрология&quot;</p></td>
 </tr>
 </tbody>
 </table></div>

@@ -1,0 +1,47 @@
+{
+  "id": 787,
+  "title": "Насос Angara 14000",
+  "slug": "nasos-angara-14000",
+  "category": 108,
+  "also": [
+    75,
+    107
+  ],
+  "price": 29095,
+  "vendor": "Waterline",
+  "sku": "",
+  "order": 11,
+  "short": "Насос для создания ручьёв, водопадов, фонтанов и для фильтрации.",
+  "specs": "**max расход** 233 л/мин\n\n**max расход** 14000 л/час\n\n**max напор** 5,2 м\n\n**мощность** 245 Вт\n\n**напряжение** 220 В\n\n**напорный - всасывающий патрубок** 1½” - 1½”\n\n**размеры (ШхГхВ)** 319x121x166 мм",
+  "specsFull": "max расход 233 л/мин\n\nmax расход 14000 л/час\n\nmax напор 5,2 м\n\nмощность 245 Вт\n\nнапряжение 220 В\n\nнапорный - всасывающий патрубок 1½” - 1½”\n\nразмеры (ШхГхВ) 319x121x166 мм",
+  "description": "Насосы **Angara** широко применяются в фильтрации прудов и организации водопадов  и ручьев.\n\nНасосы **Angara**, основные преимущества:\n\n-   возможность установки насоса вне водоема\n-   защищены от перегрузок встроенным возвратным термовыключателем\n-   большая площадь фильтрующих сеток\n-   удобная ручка и устойчивая подставка\n-   все электрические части изолированы, залиты искусственной смолой\n-   асинхронный двигатель\n-   открытое рабочее колесо\n-   гарантия **2** года\n\n  В комплект насоса Angara 14 000 входят 2 штуцера с накидной гайкой 1½” - шланг 50/40 мм",
+  "warranty": "2 года",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/Angara_30000_001_0_0_1.JPG",
+      "thumb": "/netcat_files/multifile/2718/preview_Angara_30000_001_0_0_1.JPG"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/Angara_30000_002_0_0_1.JPG",
+      "thumb": "/netcat_files/multifile/2718/preview_Angara_30000_002_0_0_1.JPG"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/Angara_14000_003_0.JPG",
+      "thumb": "/netcat_files/multifile/2718/preview_Angara_14000_003_0.JPG"
+    }
+  ],
+  "files": [
+    {
+      "name": "Nasosy_ANGARA_instrukcija.pdf",
+      "src": "/netcat_files/108/142/Nasosy_ANGARA_instrukcija_0.pdf"
+    },
+    {
+      "name": "Angara 30000 004.JPG",
+      "src": "/netcat_files/108/142/Angara_30000_004_0.JPG"
+    }
+  ],
+  "video": "",
+  "montageLink": "",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/nasosy-dlya-fontanov/nasosy-dlya-fontanov_787.html"
+}

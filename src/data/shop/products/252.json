@@ -1,0 +1,27 @@
+{
+  "id": 252,
+  "title": "Трансформатор 600 Вт",
+  "slug": "transformator-600-vt",
+  "category": 126,
+  "also": [],
+  "price": 0,
+  "vendor": "MCT  Transformatoren",
+  "sku": "",
+  "order": 2,
+  "short": "Трансформатор переменного тока для питания подводных светильников\n\nМощность 600 Вт\n\nНапряжение 220 В / 12 В",
+  "specs": "Максимальная нагрузка 600 Вт  \nПервичное напряжение 220 В, вторичное напряжение 12 В  \nКолличество входов - 1  \nКолличество выходов - 2 (по 300 Вт)",
+  "specsFull": "[Декларация о соответствии 41106](/netcat_files/userfiles/258.pdf) \n\n[Сертификат Ростеста РОСС РТ.АВ24.АО2248](/netcat_files/userfiles/sertifikat.pdf)",
+  "description": "## Трансформатор переменного тока для питания подводных светильников\n\n-   Встроенная термозащита\n-   Корпус из ударопрочного пластика со встроенными соединениями\n-   Класс защиты IP 65",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/120_0.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_120_0.jpg"
+    }
+  ],
+  "files": [],
+  "video": "",
+  "montageLink": "",
+  "active": true,
+  "old": "/catalog/podsvetka/podsvetka-vstraivaemaya-v-bort/podsvetka-vstraivaemaya-v-bort_252.html"
+}

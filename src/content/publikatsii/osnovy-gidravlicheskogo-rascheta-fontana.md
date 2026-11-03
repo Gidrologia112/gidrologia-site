@@ -16,7 +16,7 @@ imported: true
 <p><em>Рисунок 1. Эскиз фонтана.</em></p>
 <h3>Исходные данные</h3>
 <ol>
-<li>В проекте использовано три насадки <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/fontannye-nasadki/fontannye-nasadki_809.html" target="_blank" rel="noopener">Schaumsprudler 1 1/2&quot;</a>, высота струй - 2 м.</li>
+<li>В проекте использовано три насадки <a href="/magazin/tovar/fontannaya-nasadka-schaumsprudler-1-1-2/" target="_blank" rel="noopener">Schaumsprudler 1 1/2&quot;</a>, высота струй - 2 м.</li>
 <li>Длина всасывающей трубы - 7 м</li>
 <li>Длина напорной трубы - 14 м (10 м+ 3 м+1 м)</li>
 <li>Насос &quot;сухой&quot; установки</li></ol>

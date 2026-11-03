@@ -211,6 +211,87 @@ collections:
       - { label: "Содержимое", name: "html", widget: "markdown", modes: ["raw", "rich_text"] }
       - { label: "Старый адрес", name: "old", widget: "hidden", required: false }
 
+  - name: tovary
+    label: "Магазин: товары"
+    label_singular: "товар"
+    description: "Товары магазина /magazin/. Цены по многим товарам сразу — «Магазин: цены из Excel» в шапке кабинета. Чтобы убрать товар с сайта, снимите галочку «Показывать на сайте» — удалять не нужно."
+    folder: src/data/shop/products
+    extension: json
+    format: json
+    create: true
+    delete: false
+    slug: "{{fields.slug}}"
+    identifier_field: title
+    summary: "{{title}} — {{price}} ₽{{active | ternary('', ' · скрыт')}}"
+    sortable_fields: ["title", "price", "vendor", "order"]
+    view_filters:
+      - { label: "Скрытые", field: active, pattern: false }
+      - { label: "Цена по запросу", field: price, pattern: "^0$" }
+    view_groups:
+      - { label: "Производитель", field: vendor }
+    preview_path: "magazin/tovar/{{fields.slug}}/"
+    media_folder: "/public/img/magazin"
+    public_folder: "/img/magazin"
+    fields:
+      - { label: "Название", name: "title", widget: "string" }
+      - { label: "Адрес страницы", name: "slug", widget: "string", required: false, hint: "Для нового товара можно не заполнять — сделается из названия. У существующих не меняйте: на старый адрес ведут ссылки и поиск." }
+      - { label: "Показывать на сайте", name: "active", widget: "boolean", default: true }
+      - { label: "Цена, ₽", name: "price", widget: "number", value_type: "int", min: 0, default: 0, hint: "0 — на сайте будет «Цена по запросу»" }
+      - { label: "Раздел каталога", name: "category", widget: "relation", collection: "magazin", file: "razdely", search_fields: ["items.*.title"], value_field: "items.*.id", display_fields: ["items.*.title"] }
+      - { label: "Также показывать в разделах", name: "also", widget: "relation", collection: "magazin", file: "razdely", search_fields: ["items.*.title"], value_field: "items.*.id", display_fields: ["items.*.title"], multiple: true, required: false }
+      - { label: "Производитель", name: "vendor", widget: "string", required: false }
+      - { label: "Артикул", name: "sku", widget: "string", required: false }
+      - { label: "Фотографии", name: "photos", widget: "photos", required: false, hint: "Первое фото — обложка в каталоге. Можно выбрать или перетащить сразу много." }
+      - { label: "Коротко (в каталоге и поисковиках)", name: "short", widget: "markdown", modes: ["rich_text", "raw"], required: false, buttons: ["bold", "italic", "link", "bulleted-list"], editor_components: [] }
+      - { label: "Главные характеристики (рядом с ценой)", name: "specs", widget: "markdown", modes: ["rich_text", "raw"], required: false }
+      - { label: "Характеристики полностью", name: "specsFull", widget: "markdown", modes: ["rich_text", "raw"], required: false }
+      - { label: "Описание", name: "description", widget: "markdown", modes: ["rich_text", "raw"], required: false }
+      - { label: "Гарантия", name: "warranty", widget: "markdown", modes: ["rich_text", "raw"], required: false }
+      - label: "Файлы (инструкции, паспорта PDF)"
+        name: "files"
+        widget: "list"
+        required: false
+        summary: "{{fields.name}}"
+        fields:
+          - { label: "Подпись", name: "name", widget: "string" }
+          - { label: "Файл", name: "src", widget: "file", choose_url: false }
+      - { label: "Видео YouTube или Rutube", name: "video", widget: "string", required: false, hint: "Ссылка на ролик — обычная, из адресной строки" }
+      - { label: "Ссылка «Как мы монтируем»", name: "montageLink", widget: "string", required: false, hint: "Например /arhiv-foruma/tema-140/" }
+      - { label: "Порядок в разделе", name: "order", widget: "number", value_type: "int", required: false, default: 100, hint: "Меньше — выше в списке" }
+      - { label: "Номер", name: "id", widget: "hidden", required: false }
+      - { label: "Старый адрес", name: "old", widget: "hidden", required: false }
+
+  - name: magazin
+    label: "Магазин: разделы и условия"
+    editor: { preview: false }
+    files:
+      - name: razdely
+        label: "Разделы каталога"
+        file: src/data/shop/categories.json
+        format: json
+        fields:
+          - label: "Разделы"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}} — /magazin/{{fields.path}}/"
+            collapsed: true
+            hint: "Раздел без товаров на сайте не показывается. Удалять разделы с товарами нельзя — сначала перенесите товары."
+            fields:
+              - { label: "Название", name: "title", widget: "string" }
+              - { label: "Адрес", name: "path", widget: "string", hint: "Латиницей, для подраздела — через /: gidroizolyatsiya/plenka. У существующих не меняйте." }
+              - { label: "Входит в раздел", name: "parent", widget: "relation", collection: "magazin", file: "razdely", search_fields: ["items.*.title"], value_field: "items.*.id", display_fields: ["items.*.title"], required: false, hint: "Пусто — раздел верхнего уровня" }
+              - { label: "Порядок", name: "order", widget: "number", value_type: "int", default: 100 }
+              - { label: "Текст над товарами", name: "text", widget: "markdown", modes: ["rich_text", "raw"], required: false }
+              - { label: "Номер", name: "id", widget: "hidden", required: false }
+      - name: usloviya
+        label: "Доставка, оплата, гарантии"
+        file: src/data/shop/pages.json
+        format: json
+        fields:
+          - { label: "Доставка", name: "dostavka", widget: "object", fields: [{ label: "Заголовок", name: "title", widget: "string" }, { label: "Текст", name: "body", widget: "markdown", modes: ["rich_text", "raw"] }] }
+          - { label: "Оплата", name: "oplata", widget: "object", fields: [{ label: "Заголовок", name: "title", widget: "string" }, { label: "Текст", name: "body", widget: "markdown", modes: ["rich_text", "raw"] }] }
+          - { label: "Гарантии", name: "guarantee", widget: "object", fields: [{ label: "Заголовок", name: "title", widget: "string" }, { label: "Текст", name: "body", widget: "markdown", modes: ["rich_text", "raw"] }] }
+
   - name: settings
     label: "Тексты сайта"
     description: "Контакты, цифры, тексты главной страницы, команда, партнёры."

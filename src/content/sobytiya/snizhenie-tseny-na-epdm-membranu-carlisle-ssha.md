@@ -13,4 +13,4 @@ imported: true
 <p>С 10 февраля 2021 года произошло снижение цены на EPDM-мембрану Carlisle (США).</p>
 <p>Новая розничная цена 680 руб. за м<sup>2</sup>.</p>
 <p>Товар в наличии.</p>
-<p><a href="https://shop.gidrologia.ru/catalog/gidroizolyatsiya/epdm-membrana-aquatough-pond-liners-carlisle/" target="_blank" rel="noopener"><strong>Магазин &quot;Гидрология&quot;</strong></a></p>
+<p><a href="/magazin/gidroizolyatsiya/" target="_blank" rel="noopener"><strong>Магазин &quot;Гидрология&quot;</strong></a></p>

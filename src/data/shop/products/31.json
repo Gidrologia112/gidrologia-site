@@ -1,0 +1,56 @@
+{
+  "id": 31,
+  "title": "Насос Eco-X2 16000",
+  "slug": "nasos-eco-x2-16000",
+  "category": 101,
+  "also": [
+    107,
+    114,
+    75
+  ],
+  "price": 82858,
+  "vendor": "Messner",
+  "sku": "",
+  "order": 5,
+  "short": "",
+  "specs": "max расход 257 л/мин  \nmax расход 15400 л/час  \nmax напор 5,8 м  \nмощность 190 Вт  \nнапряжение 220 В  \nнапорный - всасывающий патрубок 11/2 - 11/2 \"  \nразмеры (ШхГхВ) 360х270х180 мм",
+  "specsFull": "",
+  "description": "Описание  \n  \n• возможность установки насоса вне водоема\n\n• конструкция позволяет изменять местоположение напорного патрубка\n\n• большая площадь фильтрующих сеток  \n• удобная ручка и устойчивая подставка  \n• особо прочный подшипник  \n• защищены от перегрузок встроенным возвратным термовыключателем  \n• все электрические части залиты искусственной смолой  \n• асинхронный двигатель  \n• минимальное энергопотребление\n\nВ комплект входит штуцер с накидной гайкой:\n\n1 1/2\" - шланг 50-40 мм (артикул 104/3857)",
+  "warranty": "![](/netcat_files/userfiles/1387795778_598883_76.jpg)\n\nГарантия 5 лет",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/1390760571_936569_83.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760571_936569_83.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1390760572_642125_70.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760572_642125_70.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1390760572_991669_28.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760572_991669_28.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1390760573_339399_30.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760573_339399_30.jpeg"
+    }
+  ],
+  "files": [
+    {
+      "name": "Eco-X2_eco-X2_plus.pdf",
+      "src": "/netcat_files/101/163/Eco_X2_eco_X2_plus_1.pdf"
+    },
+    {
+      "name": "Eco-X2.jpg",
+      "src": "/netcat_files/101/163/Eco_X2_1.jpg"
+    },
+    {
+      "name": "1388057859_179170_79.gif",
+      "src": "/netcat_files/101/163/1388057859_179170_79.gif"
+    }
+  ],
+  "video": "https://www.youtube.com/embed/uP4XbfyfoSo",
+  "montageLink": "/arhiv-foruma/tema-140/",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_31.html"
+}

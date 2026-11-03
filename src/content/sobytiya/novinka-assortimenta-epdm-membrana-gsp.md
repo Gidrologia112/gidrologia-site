@@ -17,4 +17,4 @@ imported: true
 <p>Возможна поставка рулонов произвольного размера.</p>
 <p>Цена указана за 1 м<sup>2</sup> мембраны. Она Вас приятно удивит!</p>
 <p>EPDM-мембрана GSP отвечает всем требованиям, предъявляемым к качественным материалам, предназначенным для создания искусственных водоёмов.</p>
-<p><a href="https://shop.gidrologia.ru/catalog/gidroizolyatsiya/epdm-membrana-gsp/" target="_blank" rel="noopener">EPDM-мембрана GSP!</a></p>
+<p><a href="/magazin/gidroizolyatsiya/" target="_blank" rel="noopener">EPDM-мембрана GSP!</a></p>

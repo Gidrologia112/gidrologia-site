@@ -1,0 +1,43 @@
+---
+import Page from '../../layouts/Page.astro';
+import ShopNav from '../../components/ShopNav.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { topCategories, subCategories, catHref, catCover, inCategory, products } from '../../lib/shop';
+---
+<Page title="Магазин оборудования для водоёмов, бассейнов и фонтанов — Гидрология"
+  description={`Насосы, скиммеры, фильтры, EPDM-мембрана, подсветка и комплекты для безопасных каскадных водоёмов: ${products.length} товаров. Подбор инженером, доставка по России.`}
+  path="/magazin/" label="Магазин" h1="Оборудование" accent="для водных объектов"
+  lead="То, на чём мы строим сами: насосы, фильтрация, закладные, гидроизоляция и подсветка. Поможем подобрать комплект под ваш водоём и отправим по России."
+  crumbs={[{ label: 'Магазин' }]}>
+  <section>
+    <div class="w sec-sm">
+      <ShopNav />
+      <div class="shop-cats">
+        {topCategories.map((c) => {
+          const img = catCover(c);
+          return (
+            <a class="shop-cat rv" href={catHref(c)}>
+              <span class="shop-cat-img">{img ? <img src={img} alt="" loading="lazy"> : null}</span>
+              <span class="shop-cat-t h">{c.title}</span>
+              <span class="shop-cat-n">{inCategory(c.id).length} товаров</span>
+              <span class="shop-cat-subs">{subCategories(c.id).map((s) => s.title).join(' · ')}</span>
+            </a>
+          );
+        })}
+      </div>
+      <div class="shop-search" data-list data-per="24">
+        <h2 class="h shop-all-h">Все товары</h2>
+        <div class="list-tools">
+          <label class="search">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6.5" stroke="#5E5954" stroke-width="1.6"/><path d="M14 14l4 4" stroke="#5E5954" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span class="sr">Поиск по товарам</span>
+            <input type="search" data-list-q placeholder="Поиск по товарам: насос, скиммер, EPDM…" autocomplete="off">
+          </label>
+        </div>
+        <div class="pgrid">{products.map((p) => <ProductCard p={p} />)}</div>
+        <p class="empty" data-list-empty hidden>Ничего не нашлось. <a href="/kontakty/#form" class="acc">Спросите инженера — подберём →</a></p>
+        <button type="button" class="btn btn-line" data-list-more hidden style="margin-top:32px">Показать ещё</button>
+      </div>
+    </div>
+  </section>
+</Page>

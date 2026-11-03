@@ -1,0 +1,41 @@
+---
+// Раздел каталога: /magazin/<раздел>/ и /magazin/<раздел>/<подраздел>/
+import Page from '../../layouts/Page.astro';
+import ShopNav from '../../components/ShopNav.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { categories, subCategories, inCategory, catHref, trail, catCover, type Category } from '../../lib/shop';
+export function getStaticPaths() {
+  return categories.map((c) => ({ params: { path: c.path }, props: { c } }));
+}
+const { c } = Astro.props as { c: Category };
+const items = inCategory(c.id);
+const subs = subCategories(c.id);
+const t = trail(c);
+const top = t[0];
+---
+<Page title={`${c.title} — купить | Магазин «Гидрологии»`}
+  description={`${c.title}: ${items.length} товаров в магазине «Гидрологии». Подбор оборудования инженером, доставка по России.`}
+  path={catHref(c)} label="Магазин" h1={c.title} image={catCover(c)}
+  crumbs={[{ label: 'Магазин', href: '/magazin/' }, ...t.slice(0, -1).map((x) => ({ label: x.title, href: catHref(x) })), { label: c.title }]}>
+  <section>
+    <div class="w sec-sm">
+      <ShopNav current={top.id} />
+      {subs.length > 0 && (
+        <div class="chips shop-subs">{subs.map((s) => <a class="chip" href={catHref(s)}>{s.title} <span class="n">{inCategory(s.id).length}</span></a>)}</div>
+      )}
+      {c.text && <div class="prose" style="margin-bottom:32px" set:html={c.text} />}
+      <div data-list data-per="24">
+        <div class="list-tools">
+          <label class="search">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6.5" stroke="#5E5954" stroke-width="1.6"/><path d="M14 14l4 4" stroke="#5E5954" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span class="sr">Поиск в разделе</span>
+            <input type="search" data-list-q placeholder="Поиск в разделе" autocomplete="off">
+          </label>
+        </div>
+        <div class="pgrid">{items.map((p) => <ProductCard p={p} />)}</div>
+        <p class="empty" data-list-empty hidden>Ничего не нашлось.</p>
+        <button type="button" class="btn btn-line" data-list-more hidden style="margin-top:32px">Показать ещё</button>
+      </div>
+    </div>
+  </section>
+</Page>

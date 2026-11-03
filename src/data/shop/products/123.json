@@ -1,0 +1,27 @@
+{
+  "id": 123,
+  "title": "Крановый бокс (средний на 2 крана)",
+  "slug": "kranovyy-boks-sredniy-na-2-krana",
+  "category": 111,
+  "also": [],
+  "price": 5839,
+  "vendor": "",
+  "sku": "",
+  "order": 2,
+  "short": "Крановый бокс (средний на 2 крана)",
+  "specs": "Материал - пластик\n\nФорма - цилиндрическая",
+  "specsFull": "**Материал:** пластик\n\n**Форма:** цилиндрическая\n\n### **Габаритные размеры:** \n\n-   диаметр основания (мм) - 320\n-   диаметр крышки (мм) - 225\n-   высота (мм) - 250",
+  "description": "Крановый бокс (средний на 2 крана) предназначен для установки вне водоёма, регулирующих водные потоки, кранов. С помощью кранового бокса обеспечивается удобный доступ для регуляции.",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/kranbox.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_kranbox.jpg"
+    }
+  ],
+  "files": [],
+  "video": "",
+  "montageLink": "/arhiv-foruma/tema-151/",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/kranovye-boksy/kranovye-boksy_123.html"
+}

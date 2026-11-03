@@ -22,7 +22,7 @@ imported: true
 <h3><strong>Создание откосовю.</strong></h3>
 <p>Отмель смягчает края водоёма и обеспечивает более удобный заход в водоём для купания.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/dn0032.jpg" /></p>
-<p>В месте спуска в пруд сделайте немного скошенный шельф. Разместите крупные камни на краю шельфа, на глубине 15-30 см ниже уровня воды. Для укрепления береговых камней и заполнения пространства между ними используйте специальную <a href="https://shop.gidrologia.ru/catalog/gidroizolyatsiya/dopolnitelnye-materialy/dopolnitelnye-materialy_393.html" target="_blank" rel="noopener">монтажную чёрную пену Savio</a>. Засыптье на отмели гладких речных камней так, чтобы камни засыпали берег на 5-10 см выше уровня воды. Для предотвращения водных потерь из-за капилярного эффекта, при монтаже гидроизоляции стелите мембрану так, чтобы она выступала по краям водоёма как минимум на 5 см выше уровня воды.</p>
+<p>В месте спуска в пруд сделайте немного скошенный шельф. Разместите крупные камни на краю шельфа, на глубине 15-30 см ниже уровня воды. Для укрепления береговых камней и заполнения пространства между ними используйте специальную <a href="/magazin/gidroizolyatsiya/dopolnitelnye-materialy/" target="_blank" rel="noopener">монтажную чёрную пену Savio</a>. Засыптье на отмели гладких речных камней так, чтобы камни засыпали берег на 5-10 см выше уровня воды. Для предотвращения водных потерь из-за капилярного эффекта, при монтаже гидроизоляции стелите мембрану так, чтобы она выступала по краям водоёма как минимум на 5 см выше уровня воды.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/dn004.jpg" /></p>
 <h3><strong>Декорация водоёма камнями. Опыт &quot;Гидрологии&quot;.</strong></h3>
 <p>При строительстве водоёмов компания &quot;Гидрология&quot; использует следующие виды камней и гальки:</p>
@@ -40,5 +40,5 @@ imported: true
 <p><strong><img loading="lazy" alt="" src="/img/netcat/userfiles/graviy_melkiy.jpg" /></strong></p>
 <p>При создании статьи использовались материалы компании &quot;Savio&quot; (США).</p>
 <h2><strong>Рекомендуем ознакомиться.</strong></h2>
-<p><strong><a href="https://shop.gidrologia.ru/publikatsii/ispolzovanie-graviya-droblenogo-kamnya-kamnya-tseolita-pri-stroitelstve-iskusstvennyh-vodoemov.html" target="_blank" rel="noopener">Использование гравия, дроблёного камня, камня, цеолита при строительстве искусственных водоёмов.</a></strong></p>
-<p><strong><a href="https://shop.gidrologia.ru/publikatsii/kak-ochistit-vodoem-perekis-vodoroda.html" target="_blank" rel="noopener">Как очистить водоём: перекись водорода.</a></strong></p>
+<p><strong><a href="/magazin/" target="_blank" rel="noopener">Использование гравия, дроблёного камня, камня, цеолита при строительстве искусственных водоёмов.</a></strong></p>
+<p><strong><a href="/magazin/" target="_blank" rel="noopener">Как очистить водоём: перекись водорода.</a></strong></p>

@@ -11,4 +11,4 @@ imported: true
 
 <p>Цены в нашем магазине обновлены.</p>
 <p>Добро пожаловать за покупками!</p>
-<p><a href="https://shop.gidrologia.ru/" target="_blank" rel="noopener">Магазин &quot;Гидрология&quot;</a>.</p>
+<p><a href="/magazin/" target="_blank" rel="noopener">Магазин &quot;Гидрология&quot;</a>.</p>

@@ -36,4 +36,4 @@ imported: true
 <p>По материалам:&nbsp;Бойкова И.Г., Волшаник В.В., Карпова Н.Б. и др. Эксплуатация, реконструкция и охрана водных объектов в городах. 2008</p>
 <h2><strong>Рекомендуем ознакомиться:</strong></h2>
 <p><a href="/publikatsii/rasteniya-oksigenatory/" target="_blank" rel="noopener"><strong>Растения-оксигенаторы</strong></a></p>
-<p><a href="https://shop.gidrologia.ru/publikatsii/kolichestvo-rasteniy-v-plavatelnom-vodoeme.html" target="_blank" rel="noopener"><strong>Количество растений в плавательном водоёме</strong></a></p>
+<p><a href="/magazin/" target="_blank" rel="noopener"><strong>Количество растений в плавательном водоёме</strong></a></p>

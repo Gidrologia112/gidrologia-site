@@ -19,5 +19,9 @@
     "d3-geo": "^3.1.1",
     "marked": "^14.1.4"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "turndown": "^7.2.0",
+    "turndown-plugin-gfm": "^1.0.2"
+  }
 }

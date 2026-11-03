@@ -19,7 +19,7 @@ imported: true
 <p>К профессиональным аэраторам - модели с производительностью от 3900 л/час до 19700 л/час с давлением 2,25 бара, - аэраторы Airmax PS и LS.</p>
 <h2><strong>Аэраторы Silenta Pro</strong></h2>
 <p><img loading="lazy" alt="аэратор Silenta Pro 6000" src="/img/netcat/userfiles/aer002.jpeg" /></p>
-<p>Ассортимент <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/aeratsiya/aeratory.html?search_action=2&action=index&admin_mode=&srchPat%5B0%2C3%5D=silenta+pro" target="_blank" rel="noopener"><strong>аэраторов Silenta Pro производства Velda (Нидерланды)</strong></a> включает в себя следующие модели:</p>
+<p>Ассортимент <a href="/magazin/oborudovanie-dlya-plavatelnyh-vodoemov/aeratsiya/" target="_blank" rel="noopener"><strong>аэраторов Silenta Pro производства Velda (Нидерланды)</strong></a> включает в себя следующие модели:</p>
 <p>Silenta Pro 1200, Silenta Pro 1800, Silenta Pro 3600, Silenta Pro 4800 и Silenta Pro 6000.</p>
 <p>Эти модели отличаются друг от друга производительностью, размерами, количеством диффузоров.</p>
 <p>У первых трёх в комплекте один диффузор, у двух послдених - два диффузора. Диффузоры соединяются с компрессором воздушным шлангом длиной 5 м. При необходимости шланг можно удлинить. Так же прозрачный воздушный шланг можно заменить на самопогружной шланг</p>
@@ -36,7 +36,7 @@ imported: true
 <p>Видео: Бурление воды при работе аэратора Silenta Pro</p>
 <video controls preload="metadata" src="/netcat_files/userfiles/video/aerator_Silenta_Ch._2.mp4"></video>
 <h2><strong>Аэрторы Airmax PondSeries и LakeSeries</strong></h2>
-<p><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/aeratsiya/aeratory.html?search_action=2&action=index&admin_mode=&srchPat%5B0%2C3%5D=Airmax+" target="_blank" rel="noopener"><strong>Аэраторы Airmax (США)</strong></a> предназначены для искусственных и естественных водоёмов большого размера.</p>
+<p><a href="/magazin/oborudovanie-dlya-plavatelnyh-vodoemov/aeratsiya/" target="_blank" rel="noopener"><strong>Аэраторы Airmax (США)</strong></a> предназначены для искусственных и естественных водоёмов большого размера.</p>
 <p><img loading="lazy" alt="Аэратор Airmax PS 10" src="/img/netcat/userfiles/aer004.JPG" /></p>
 <p>Модель для прудов Airmax PondSeries (PS) оснащена одним компрессором, одним или тремя диффузорами.</p>
 <p><img loading="lazy" alt="Аэратор Airmax LS 60" src="/img/netcat/userfiles/aer006.JPG" /></p>
@@ -62,7 +62,7 @@ imported: true
 <p>Видео: Аэратор Airмax PS30 - состояние воды после зимы при использовании аэратора втечение всей зимы</p>
 <h2><video controls preload="metadata" src="/netcat_files/userfiles/video/Aerator._Chast_2.mp4"></video></h2>
 <h2><strong>Подбор, приобретение, установка и обслуживание аэраторов</strong></h2>
-<p>Приобрести аэраторы Вы можете у нас -<a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/aeratsiya/" target="_blank" rel="noopener"><strong> в интернет-магазине компании &quot;Гидрология&quot;</strong></a>. Наши специалисты готовы оказать помощь в подборе оптимального аэратора для Вашего водоёма, его монтаже и обслуживании.</p>
+<p>Приобрести аэраторы Вы можете у нас -<a href="/magazin/oborudovanie-dlya-plavatelnyh-vodoemov/aeratsiya/" target="_blank" rel="noopener"><strong> в интернет-магазине компании &quot;Гидрология&quot;</strong></a>. Наши специалисты готовы оказать помощь в подборе оптимального аэратора для Вашего водоёма, его монтаже и обслуживании.</p>
 <p>Наладим дыхание Вашего водоёма вместе!</p>
 <p>При создании статьи использованы материалы компании &quot;Водалюкс&quot;</p>
 <h2><strong>Рекомендуем ознакомиться:</strong></h2>

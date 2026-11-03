@@ -1,0 +1,12 @@
+---
+import Page from '../../layouts/Page.astro';
+import ShopNav from '../../components/ShopNav.astro';
+import { shopPages } from '../../lib/shop';
+const pg = shopPages['oplata'] ?? { title: '', html: '' };
+const titles: Record<string, string> = { dostavka: 'Доставка', oplata: 'Оплата', guarantee: 'Гарантии' };
+const t = titles['oplata'];
+---
+<Page title={`${t} — Магазин «Гидрологии»`} description={`${t}: условия магазина оборудования «Гидрологии».`} path="/magazin/oplata/" label="Магазин" h1={t}
+  crumbs={[{ label: 'Магазин', href: '/magazin/' }, { label: t }]}>
+  <section><div class="w sec-sm"><ShopNav /><div class="prose" set:html={pg.html} /></div></section>
+</Page>

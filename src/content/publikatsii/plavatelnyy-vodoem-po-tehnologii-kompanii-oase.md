@@ -44,7 +44,7 @@ imported: true
 <p>&nbsp;&nbsp;&nbsp;&nbsp; Это увеличивает количество питательных веществ, что практически мгновенно приводит к бесконтрольному росту водорослей. Поэтому необходимо выбрать место для плавательного пруда так, чтобы минимизировать поступление подобных питательных веществ в пруд. Это значит, что важно выдерживать достаточное расстояние между искусственным водоёмом и любыми деревьями и кустарниками. Особенно нужно избегать близости к плавательному водоёму таких растений, как береза, тополь, дуб, ива и грецкий орех. Помимо большой биологической нагрузки, листва этих растений влияет на цветность воды.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/7.jpg" /></p>
 <h3><strong>Планирование плавательного пруда: Направление ветра</strong></h3>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; Направление ветра учитывается при размещении в плавательном водоёме <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/zakladnye-skimmery-donnye-stoki-dyuzy/zakladnye-skimmery-donnye-stoki-dyuzy_104.html">подающих насадок</a> и <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/skimmery/">скиммеров</a> (устройств для удаления мусора с поверхности водоёма).</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Направление ветра учитывается при размещении в плавательном водоёме <a href="/magazin/tovar/dyuza-dlya-podklyucheniya-pylesosa-evro-podklyuch-nar-rezba-2-h-50-mm/">подающих насадок</a> и <a href="/magazin/oborudovanie-dlya-plavatelnyh-vodoemov/skimmery/">скиммеров</a> (устройств для удаления мусора с поверхности водоёма).</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/8.jpg" /></p>
 <p>Подающие насадки размещаются так, чтобы подача воды поддерживалась главным направлением ветра, а скиммер лучше всего установить с подветренной стороны. Если вода будет двигаться в направлении скиммера, то удаление мусора с поверхности происходит особенно эффективно.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/9.jpg" /></p>
@@ -52,21 +52,21 @@ imported: true
 <ul>
 <li><strong>с размером и глубиной зоны купания</strong> &ndash; с этим размером обычно всё понятно, глубина зоны купания чаще всего варьируется в диапазоне от 1,2 до 2 м. Строить искусственный водоём большей глубины имеет смысл в том случае, если Вы планируете прыгать в него с вышки, но практика показывает, что обычно глубины 2 м больше, чем достаточно;</li>
 <li><strong>с размером зоны регенерации</strong> &ndash; чем она больше, тем выше способность плавательного пруда к самоочищению. Если нет возможности сделать зону регенерации достаточной площади (а она минимум должна равняться площади зоны купания), нужно предусмотреть дополнительную систему фильтрации и высадку растений, способных &nbsp;активно задерживать загрязнения;</li>
-<li><strong>с местом расположения <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/filtratsiya-i-aeratsiya/">фильтров</a> и <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/komplektuyuschie/">труб системы дренажа</a></strong>;</li>
+<li><strong>с местом расположения <a href="/magazin/oborudovanie-dlya-dekorativnyh-vodoemov/filtratsiya-i-aeratsiya/">фильтров</a> и <a href="/magazin/oborudovanie-dlya-dekorativnyh-vodoemov/komplektuyuschie/">труб системы дренажа</a></strong>;</li>
 <li><strong>с оптимальным набором водных растений.</strong></li></ul>
 <p><strong>Для расчета геометрии пруда и его привязки к местности лучше всего прибегнуть к консультациям квалифицированных инженера и ландшафтных дизайнеров, для этого свяжитесь <a href="/kontakty/">с нами</a>!!!</strong></p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/10.jpg" /></p>
 <h2><strong>Плавательный водоём: этап строительства</strong></h2>
 <p>&nbsp;&nbsp;&nbsp;&nbsp; После того, как мы со всем определились, материалы закупили, техники нагнали, плавательный водоём на местности разметили, делаем следующие действия:</p>
 <h3><strong>Строительство плавательной зоны</strong></h3>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; Роем котлован и заливаем фундамент плавательной зоны, зоны регенерации и технической камеры, куда будет установлено оборудование. Для заливки необходимо использовать влагостойкие марки бетона, плюс <strong><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/konstruktivnye-materialy/konstruktivnye-materialy_116.html">бетонные блоки</a></strong>. В данном случае рассматривается (в качестве конструктивных элементов) несъёмная опалубка - бетонные блоки компании Lammi.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Роем котлован и заливаем фундамент плавательной зоны, зоны регенерации и технической камеры, куда будет установлено оборудование. Для заливки необходимо использовать влагостойкие марки бетона, плюс <strong><a href="/magazin/oborudovanie-dlya-plavatelnyh-vodoemov/">бетонные блоки</a></strong>. В данном случае рассматривается (в качестве конструктивных элементов) несъёмная опалубка - бетонные блоки компании Lammi.</p>
 <p>&nbsp;&nbsp; Когда бетон полностью застынет, формируем стенки зоны купания, зоны регенерации и технической камеры для системы фильтрации.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/12.jpg" /></p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/13.jpg" /></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp; Бетонируем дно</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/14(1).jpg" /></p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/15.jpg" /></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; Закладываем в стенки трубы и <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/zakladnye-skimmery-donnye-stoki-dyuzy/"><strong>закладные элементы</strong></a> для слива воды в зону регенерации.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Закладываем в стенки трубы и <a href="/magazin/oborudovanie-dlya-plavatelnyh-vodoemov/zakladnye-skimmery-donnye-stoki-dyuzy/"><strong>закладные элементы</strong></a> для слива воды в зону регенерации.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/16.jpg" /></p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/17.jpg" /></p>
 <h3><strong>Строительство зоны регенерации</strong></h3>
@@ -74,48 +74,48 @@ imported: true
 <ul>
 <li>Засыпаем грунтом слой за слоем и выравниваем зону регенерации, создавая рельефы береговых зон.</li>
 <li>Верхний слой зоны регенерации засыпаем, уплотняя слоем песка толщиной 2-3 см</li>
-<li>Заливаем фундамент <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-zhivyh-basseynov/lestnitsy/"><strong>лестницы</strong></a>.</li></ul>
+<li>Заливаем фундамент <a href="/magazin/oborudovanie-dlya-zhivyh-basseynov/lestnitsy/"><strong>лестницы</strong></a>.</li></ul>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/17(1).jpg" /></p>
 <ul>
 <li>Делаем капиллярное заграждение (запруду), которое будет препятствовать просачиванию воды из зоны регенерации в зону плавания.</li></ul>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/19.jpg" /></p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/20.jpg" /></p>
 <h2><strong>Строительство плавательного водоёма: монтаж гидроизоляции</strong></h2>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; Закладываем всю поверхность пруда нетканым материалом - <strong><a href="https://shop.gidrologia.ru/catalog/gidroizolyatsiya/geotekstil-dornit/">геотекстилем</a></strong>.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Закладываем всю поверхность пруда нетканым материалом - <strong><a href="/magazin/gidroizolyatsiya/geotekstil-dornit/">геотекстилем</a></strong>.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/21.jpg" /></p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/22.jpg" /></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; Поверх геотекстиля покрываем всю площадь плавательного водоёма гидроизоляцией из <a href="https://shop.gidrologia.ru/catalog/gidroizolyatsiya/plenka-pvc-pvh/"><strong>ПВХ-плёнки</strong></a> или <a href="https://shop.gidrologia.ru/catalog/gidroizolyatsiya/epdm-membrany/"><strong>EPDM-мембраны</strong></a>.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Поверх геотекстиля покрываем всю площадь плавательного водоёма гидроизоляцией из <a href="/magazin/gidroizolyatsiya/plenka-pvc-pvh/"><strong>ПВХ-плёнки</strong></a> или <a href="/magazin/gidroizolyatsiya/"><strong>EPDM-мембраны</strong></a>.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/23.jpg" /></p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/24.jpg" /></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; Мы предпочитаем работать с <a href="https://shop.gidrologia.ru/catalog/gidroizolyatsiya/epdm-membrany/"><strong>EPDM-мембраной</strong></a>, т. к. этот материал обладает высокой атмосферо- и износостойкостью.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Мы предпочитаем работать с <a href="/magazin/gidroizolyatsiya/"><strong>EPDM-мембраной</strong></a>, т. к. этот материал обладает высокой атмосферо- и износостойкостью.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/25.jpg" /></p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/26.jpg" /></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; Вокруг зоны плавания делаем бортик из <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/konstruktivnye-materialy/"><strong>лиственницы</strong></a> &ndash; эта порода древисины хорошо переносит контакт с водой и со временем приобретает благородный коньячный цвет (данная рекомендация относится к необязательным и в наших суровых северных широтах может быть упущена или заменена на другие способы защиты верхней грани плавательной зоны).<br />
-&nbsp;&nbsp;&nbsp;&nbsp; В бортики встраиваем <strong><a href="https://shop.gidrologia.ru/catalog/podsvetka/">подсветку</a></strong> напряжением 12 В (трасформаторы к ним размещаются в технической камере для фильтров) (так же не обязательное мероприятие).</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Вокруг зоны плавания делаем бортик из <a href="/magazin/oborudovanie-dlya-plavatelnyh-vodoemov/"><strong>лиственницы</strong></a> &ndash; эта порода древисины хорошо переносит контакт с водой и со временем приобретает благородный коньячный цвет (данная рекомендация относится к необязательным и в наших суровых северных широтах может быть упущена или заменена на другие способы защиты верхней грани плавательной зоны).<br />
+&nbsp;&nbsp;&nbsp;&nbsp; В бортики встраиваем <strong><a href="/magazin/podsvetka/">подсветку</a></strong> напряжением 12 В (трасформаторы к ним размещаются в технической камере для фильтров) (так же не обязательное мероприятие).</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/27.jpg" /></p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/28.jpg" /></p>
 <h2><strong>Строительство плавательного водоёма: Система дренажа</strong></h2>
 <ul>
-<li>В зоне регенерации устраиваем систему напорного дренажа (подача воды из насосной камеры фильтра в зону регенерации). Дренажные поля должны быть одинаковой длины, диаметр кольца не больше 10 м. Поток воды распределяется вокруг зоны купания, если размер водоёма большой, организуется несколько выпускных колец вокруг зоны купания. <strong><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/truby-i-fitingi/truby-i-fitingi_144.html">Трубы</a></strong> выкладываются на геотекстиль.</li></ul>
+<li>В зоне регенерации устраиваем систему напорного дренажа (подача воды из насосной камеры фильтра в зону регенерации). Дренажные поля должны быть одинаковой длины, диаметр кольца не больше 10 м. Поток воды распределяется вокруг зоны купания, если размер водоёма большой, организуется несколько выпускных колец вокруг зоны купания. <strong><a href="/magazin/tovar/truba-iz-pvc-u-50-mm-3-m/">Трубы</a></strong> выкладываются на геотекстиль.</li></ul>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/29.jpg" /></p>
 <ul>
-<li>Геотекстиль и трубы следует тщательно закрепить. Не следует использовать соединения труб с углом меньше 45 градусов. Для индивидуального регулирования к каждой дренажной магистрали делаем отдельный <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/truby-i-fitingi/truby-i-fitingi_642.html"><strong>кран</strong></a>.</li></ul>
+<li>Геотекстиль и трубы следует тщательно закрепить. Не следует использовать соединения труб с углом меньше 45 градусов. Для индивидуального регулирования к каждой дренажной магистрали делаем отдельный <a href="/magazin/tovar/kran-sharovyy-pvc-u-50-mm/"><strong>кран</strong></a>.</li></ul>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/30.jpg" /></p>
 <ul>
-<li>В зоне регенерации монтируется <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/skimmery/"><strong>скиммер</strong></a>. Корпус скиммера устанавливается достаточно глубоко, чтобы поплавок имел 12-15 см хода ниже уровня воды, а труба соединения скиммера с технической камерой должна иметь уклон в сторону камеры</li></ul>
+<li>В зоне регенерации монтируется <a href="/magazin/oborudovanie-dlya-plavatelnyh-vodoemov/skimmery/"><strong>скиммер</strong></a>. Корпус скиммера устанавливается достаточно глубоко, чтобы поплавок имел 12-15 см хода ниже уровня воды, а труба соединения скиммера с технической камерой должна иметь уклон в сторону камеры</li></ul>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/31.jpg" /></p>
 <ul>
 <li>Дренажные поля равномерно засыпаются слоем гравия, гравий утрамбовывается. Для засыпки следует использовать промытый гравий однородной зернистости, без органических включений, содержащий, по крайней мере, 96% окиси кремния. Лучше всего использовать гравий двух размеров: 2/8мм и 8/16мм.</li></ul>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/32.jpg" />,</p>
 <h2><strong>Строительство плавательного водоёма: Монтаж системы фильтрации</strong></h2>
 <ul>
-<li>Устанавливаем систему <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-zhivyh-basseynov/filtratsiya/"><strong>фильтрации</strong></a>, соединяем все технические элементы: <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/filtratsiya-i-aeratsiya/"><strong>фильтры</strong></a>, <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/nasosy/"><strong>насосы</strong></a>, <a href="https://shop.gidrologia.ru/catalog/podsvetka/"><strong>подсветку</strong></a>, <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/skimmery/"><strong>скиммеры.</strong></a></li>
+<li>Устанавливаем систему <a href="/magazin/oborudovanie-dlya-zhivyh-basseynov/filtratsiya/"><strong>фильтрации</strong></a>, соединяем все технические элементы: <a href="/magazin/oborudovanie-dlya-dekorativnyh-vodoemov/filtratsiya-i-aeratsiya/"><strong>фильтры</strong></a>, <a href="/magazin/oborudovanie-dlya-plavatelnyh-vodoemov/nasosy/"><strong>насосы</strong></a>, <a href="/magazin/podsvetka/"><strong>подсветку</strong></a>, <a href="/magazin/oborudovanie-dlya-plavatelnyh-vodoemov/skimmery/"><strong>скиммеры.</strong></a></li>
 <li>Фильтрующие модули необходимо установить на соответствующей высоте &ndash; 9 см над уровнем воды с минимальным уклоном к насосу. При заполнении системы водой следует учесть, что после открытия крана и шаровых заслонок вода заполняет трубы и фильтры, что может понизить уровень воды в плавательном водоёме.</li>
-<li>Во избежание снижения производительности фильтра, следует проверить, чтобы &nbsp;в <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/shlangi/"><strong>шланге</strong></a>, соединяющем скиммер с фильтром не было воздуха.</li></ul>
+<li>Во избежание снижения производительности фильтра, следует проверить, чтобы &nbsp;в <a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/shlangi/"><strong>шланге</strong></a>, соединяющем скиммер с фильтром не было воздуха.</li></ul>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/33.jpg" /></p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/34.jpg" /></p>
 <ul>
-<li>Техническую камеру закрываем крышкой из <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/konstruktivnye-materialy/"><strong>лиственницы</strong></a>. Крыша технической камеры может служить замечательным местом отдыха.</li></ul>
+<li>Техническую камеру закрываем крышкой из <a href="/magazin/oborudovanie-dlya-plavatelnyh-vodoemov/"><strong>лиственницы</strong></a>. Крыша технической камеры может служить замечательным местом отдыха.</li></ul>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/35.jpg" /></p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/files/images/36.jpg" /></p>
 <h2><strong>Строительство плавательного водоёма: Запуск системы</strong></h2>

@@ -1,0 +1,39 @@
+{
+  "id": 828,
+  "title": "Насосная камера для акваблоков",
+  "slug": "nasosnaya-kamera-dlya-akvablokov",
+  "category": 98,
+  "also": [],
+  "price": 27425,
+  "vendor": "Гидрология",
+  "sku": "",
+  "order": 7,
+  "short": "Насосная камера для использования совместно с акваблоками.",
+  "specs": "Материал - пластик\n\nФорма - прямоугольная",
+  "specsFull": "**Материал**: пластик\n\n**Форма:** прямоугольная\n\n**Габариты (мм)**: 500\\*500\\*800",
+  "description": "Насосная камера предназначена для установки насосов при строительстве безопасных каскадных водоёмов и хранилищ дождевой воды с использованием акваблоков. С помощью насосной камеры обеспечивается удобный доступ для обслуживания насосов.",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/kamera.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_kamera.jpg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/Kamera_2.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_Kamera_2.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/kamera_3.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_kamera_3.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/kamera_4.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_kamera_4.jpeg"
+    }
+  ],
+  "files": [],
+  "video": "",
+  "montageLink": "/arhiv-foruma/tema-151/",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/vsasyvayuschie-shahty/vsasyvayuschie-shahty_828.html"
+}

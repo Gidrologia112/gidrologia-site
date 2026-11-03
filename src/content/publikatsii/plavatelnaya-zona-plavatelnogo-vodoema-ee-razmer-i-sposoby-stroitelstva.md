@@ -49,17 +49,17 @@ imported: true
 <h2>Строительство плавательной чаши.</h2>
 <p>Компания &quot;Гидрология&quot; при строительстве плавательных водоёмов, живых бассейнов или купелей использует следующие способы организации бортов плавательной чаши:</p>
 <ul>
-<li>С помощью <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/konstruktivnye-materialy/" target="_blank" rel="noopener">несъёмной опалубки</a></li></ul>
+<li>С помощью <a href="/magazin/oborudovanie-dlya-plavatelnyh-vodoemov/" target="_blank" rel="noopener">несъёмной опалубки</a></li></ul>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/Stat_i/plav_zona/opalubka.jpg" /></p>
 
 <ul>
-<li>С помощью <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/konstruktivnye-materialy/konstruktivnye-materialy_116.html" target="_blank" rel="noopener">бетонных блоков</a></li></ul>
+<li>С помощью <a href="/magazin/oborudovanie-dlya-plavatelnyh-vodoemov/" target="_blank" rel="noopener">бетонных блоков</a></li></ul>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/17_Listvennica.jpg" /></p>
 
 <ul>
 <li>С помощью бруса из лиственницы.</li></ul>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/Stat_i/plav_zona/brus1.jpg" /></p>
-<p>Стенки бетонных чаш обшиваются <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-plavatelnyh-vodoemov/konstruktivnye-materialy/" target="_blank" rel="noopener">доской из лиственицы</a>.</p>
+<p>Стенки бетонных чаш обшиваются <a href="/magazin/oborudovanie-dlya-plavatelnyh-vodoemov/" target="_blank" rel="noopener">доской из лиственицы</a>.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/Stat_i/plav_zona/pervom020.jpg" /></p>
 <p>Обращаем внимание на то, что от размера плавательной чаши зависит общий размер плавательного водоёма и живого бассейна, т.к. зона регенерации по своей площади должна быть не меньше площади плавательной зоны.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/toks003.jpg" /></p>

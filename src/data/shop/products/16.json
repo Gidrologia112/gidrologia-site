@@ -1,0 +1,42 @@
+{
+  "id": 16,
+  "title": "Излив Wasserfallschale 38,0 см",
+  "slug": "izliv-wasserfallschale-38-0-sm",
+  "category": 100,
+  "also": [
+    99
+  ],
+  "price": 11813,
+  "vendor": "Messner",
+  "sku": "5",
+  "order": 2,
+  "short": "",
+  "specs": "размеры (ШхГхВ) 38,0х28,0х19,0 см  \nдиаметр штуцера 32,40 мм  \nматериал пластик",
+  "specsFull": "",
+  "description": "Приспособление для создания ровной гладкой водной поверхности шириной 38 см высотой от 40 до 100 см в зависимости от используемого насоса.\n\nРазмеры:\n\n     Ширина - 38 см\n\n     Высота   - 19 см\n\n     Глубина - 28 см\n\n• Изготовлен из прочного пластика\n\n• В комплекте два штуцер на шланг 32 мм и 40 мм\n\n• Возможность подсоединения штуцера сзади или снизу\n\n• Возможность подсоединения специальной светодиодной подсветки Wasserfallschale 38,0 cm LED-Module (артикул 170/7010)\n\n• Возможность соединения нескольких изливов в ряд для увеличения ширины водопада или один над другим для организации каскадов\n\nКомплект поставки\n\n\\- излив\n\n\\- крышка\n\n\\- штуцеры\n\n\\- разделители\n\n\\- клей\n\n\\- заглушка\n\n\\- крепёж для соединения изливов",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/1390760736_381371_15.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760736_381371_15.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1390760737_129056_22.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760737_129056_22.jpg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1390760737_484486_29.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760737_484486_29.jpeg"
+    }
+  ],
+  "files": [
+    {
+      "name": "Wasserfallschale_38,0cm.pdf",
+      "src": "/netcat_files/100/134/Wasserfallschale_38_0cm.pdf"
+    }
+  ],
+  "video": "https://www.youtube.com/embed/DRRFfr9uIeU",
+  "montageLink": "/arhiv-foruma/tema-141/",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/izlivy/izlivy_16.html"
+}

@@ -33,16 +33,16 @@ imported: true
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp; Внесение перекиси водорода сильно увеличивает окислительно-восстановительный потенциал (редокс-потенциал) воды. Это останавливает развитие водорослей, прекращает химическое преобразование неядовитых нитратов (NO<sub>3</sub>) в ядовитые для рыб нитриты (NO<sub>2</sub>), окисляет органические вещества, содержащиеся в воде &ndash; продукты жизнедеятельности рыб, остатки корма и другой биологический мусор до углекислого газа (СО<sub>2</sub>). Чем больше концентрация углекислого газа в воде, тем ниже показатель кислотности (рН).</p>
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp; Единовременное внесение перекиси водорода позволяет сразу улучшить состояние уже зацветшего, запущенного водоёма. Чтобы в дальнейшем ситуация не повторялась, или чтобы сразу не допустить зарастание водоёма, используют специальные <a href="https://shop.gidrologia.ru/catalog/spetsialnoe-oborudovanie/spetsialnoe-oborudovanie_715.html" target="_blank" rel="noopener">дозирующие насосы</a>, которые постепенно с небольшой скоростью подают перекись водорода в воду.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Единовременное внесение перекиси водорода позволяет сразу улучшить состояние уже зацветшего, запущенного водоёма. Чтобы в дальнейшем ситуация не повторялась, или чтобы сразу не допустить зарастание водоёма, используют специальные <a href="/magazin/tovar/doziruyuschiy-nasos-exactus-2-l-ch-5-bar-ruchnaya-regulirovka/" target="_blank" rel="noopener">дозирующие насосы</a>, которые постепенно с небольшой скоростью подают перекись водорода в воду.</p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/Stat_i/Perekis/invikta.jpg" /></p>
 <p><em>Дозирующий насос INVIKTA</em></p>
 
 <h2>Приобретение перекиси водорода</h2>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Приобрести перекись водорода можно в нашем <a href="https://shop.gidrologia.ru/" target="_blank" rel="noopener">магазине</a>:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Приобрести перекись водорода можно в нашем <a href="/magazin/" target="_blank" rel="noopener">магазине</a>:</p>
 <ul>
-<li><strong><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-zhivyh-basseynov/preparaty/preparaty_758.html" target="_blank" rel="noopener">Бутылка 1 л</a></strong>. Для обработки до 63 м<sup>3</sup> воды.</li>
-<li><strong><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-zhivyh-basseynov/preparaty/preparaty_759.html" target="_blank" rel="noopener">Канистра 5 л</a></strong>. Для обработки до 313 м<sup>3</sup> воды.</li>
-<li><strong><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-zhivyh-basseynov/preparaty/preparaty_706.html" target="_blank" rel="noopener">Канистра 30 л</a></strong>. Для обработки до 1875 м<sup>3</sup> воды.</li></ul>
+<li><strong><a href="/magazin/tovar/perekis-vodoroda-1-l-37/" target="_blank" rel="noopener">Бутылка 1 л</a></strong>. Для обработки до 63 м<sup>3</sup> воды.</li>
+<li><strong><a href="/magazin/tovar/perekis-vodoroda-10-l-37/" target="_blank" rel="noopener">Канистра 5 л</a></strong>. Для обработки до 313 м<sup>3</sup> воды.</li>
+<li><strong><a href="/magazin/oborudovanie-dlya-zhivyh-basseynov/preparaty/" target="_blank" rel="noopener">Канистра 30 л</a></strong>. Для обработки до 1875 м<sup>3</sup> воды.</li></ul>
 
 <h2>Перекись водорода - техника безопасности</h2>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/Stat_i/Perekis/b1.jpg" /></p>

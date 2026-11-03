@@ -1,0 +1,388 @@
+{
+  "items": [
+    {
+      "id": 68,
+      "parent": 0,
+      "title": "Оборудование для безопасных каскадных водоемов",
+      "path": "oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov",
+      "order": 0,
+      "text": ""
+    },
+    {
+      "id": 69,
+      "parent": 0,
+      "title": "Оборудование для декоративных водоемов",
+      "path": "oborudovanie-dlya-dekorativnyh-vodoemov",
+      "order": 1,
+      "text": ""
+    },
+    {
+      "id": 70,
+      "parent": 0,
+      "title": "Оборудование для плавательных водоемов",
+      "path": "oborudovanie-dlya-plavatelnyh-vodoemov",
+      "order": 2,
+      "text": ""
+    },
+    {
+      "id": 71,
+      "parent": 0,
+      "title": "Оборудование для живых бассейнов",
+      "path": "oborudovanie-dlya-zhivyh-basseynov",
+      "order": 3,
+      "text": ""
+    },
+    {
+      "id": 188,
+      "parent": 0,
+      "title": "Специальное оборудование",
+      "path": "spetsialnoe-oborudovanie",
+      "order": 4,
+      "text": ""
+    },
+    {
+      "id": 78,
+      "parent": 0,
+      "title": "Гидроизоляция",
+      "path": "gidroizolyatsiya",
+      "order": 5,
+      "text": ""
+    },
+    {
+      "id": 79,
+      "parent": 0,
+      "title": "Подсветка",
+      "path": "podsvetka",
+      "order": 6,
+      "text": ""
+    },
+    {
+      "id": 130,
+      "parent": 0,
+      "title": "Монтаж",
+      "path": "montazh",
+      "order": 7,
+      "text": ""
+    },
+    {
+      "id": 131,
+      "parent": 0,
+      "title": "Обслуживание",
+      "path": "obsluzhivanie",
+      "order": 8,
+      "text": ""
+    },
+    {
+      "id": 196,
+      "parent": 68,
+      "title": "Готовые комплекты для БКВ",
+      "path": "oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/gotovye-komplekty-dlya-bkv",
+      "order": 0,
+      "text": ""
+    },
+    {
+      "id": 101,
+      "parent": 68,
+      "title": "Насосы",
+      "path": "oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy",
+      "order": 1,
+      "text": ""
+    },
+    {
+      "id": 98,
+      "parent": 68,
+      "title": "Всасывающие шахты",
+      "path": "oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/vsasyvayuschie-shahty",
+      "order": 2,
+      "text": ""
+    },
+    {
+      "id": 100,
+      "parent": 68,
+      "title": "Изливы",
+      "path": "oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/izlivy",
+      "order": 3,
+      "text": ""
+    },
+    {
+      "id": 103,
+      "parent": 68,
+      "title": "Шланги",
+      "path": "oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/shlangi",
+      "order": 6,
+      "text": ""
+    },
+    {
+      "id": 180,
+      "parent": 68,
+      "title": "Дополнительное оборудование и материалы",
+      "path": "oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/dopolnitelnoe-oborudovanie-i-materialy",
+      "order": 7,
+      "text": ""
+    },
+    {
+      "id": 185,
+      "parent": 68,
+      "title": "Фонтанные насадки",
+      "path": "oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/fontannye-nasadki",
+      "order": 8,
+      "text": ""
+    },
+    {
+      "id": 172,
+      "parent": 69,
+      "title": "УФ-излучатели",
+      "path": "oborudovanie-dlya-dekorativnyh-vodoemov/uf-izluchateli",
+      "order": 0,
+      "text": ""
+    },
+    {
+      "id": 107,
+      "parent": 69,
+      "title": "Насосы для ручьёв и фильтров",
+      "path": "oborudovanie-dlya-dekorativnyh-vodoemov/nasosy-dlya-ruchev-i-filtrov",
+      "order": 1,
+      "text": ""
+    },
+    {
+      "id": 108,
+      "parent": 69,
+      "title": "Насосы для фонтанов",
+      "path": "oborudovanie-dlya-dekorativnyh-vodoemov/nasosy-dlya-fontanov",
+      "order": 2,
+      "text": ""
+    },
+    {
+      "id": 99,
+      "parent": 69,
+      "title": "Водопады/Изливы",
+      "path": "oborudovanie-dlya-dekorativnyh-vodoemov/vodopadyizlivy",
+      "order": 3,
+      "text": ""
+    },
+    {
+      "id": 104,
+      "parent": 69,
+      "title": "Комплектующие",
+      "path": "oborudovanie-dlya-dekorativnyh-vodoemov/komplektuyuschie",
+      "order": 4,
+      "text": ""
+    },
+    {
+      "id": 105,
+      "parent": 69,
+      "title": "Скиммеры",
+      "path": "oborudovanie-dlya-dekorativnyh-vodoemov/skimmery",
+      "order": 5,
+      "text": ""
+    },
+    {
+      "id": 106,
+      "parent": 69,
+      "title": "Фильтрация и аэрация",
+      "path": "oborudovanie-dlya-dekorativnyh-vodoemov/filtratsiya-i-aeratsiya",
+      "order": 6,
+      "text": ""
+    },
+    {
+      "id": 109,
+      "parent": 70,
+      "title": "Закладные (скиммеры, донные стоки, дюзы)",
+      "path": "oborudovanie-dlya-plavatelnyh-vodoemov/zakladnye-skimmery-donnye-stoki-dyuzy",
+      "order": 1,
+      "text": ""
+    },
+    {
+      "id": 111,
+      "parent": 70,
+      "title": "Крановые боксы",
+      "path": "oborudovanie-dlya-plavatelnyh-vodoemov/kranovye-boksy",
+      "order": 2,
+      "text": ""
+    },
+    {
+      "id": 112,
+      "parent": 70,
+      "title": "Лестницы",
+      "path": "oborudovanie-dlya-plavatelnyh-vodoemov/lestnitsy",
+      "order": 3,
+      "text": ""
+    },
+    {
+      "id": 113,
+      "parent": 70,
+      "title": "Насосные камеры",
+      "path": "oborudovanie-dlya-plavatelnyh-vodoemov/nasosnye-kamery",
+      "order": 4,
+      "text": ""
+    },
+    {
+      "id": 114,
+      "parent": 70,
+      "title": "Насосы",
+      "path": "oborudovanie-dlya-plavatelnyh-vodoemov/nasosy",
+      "order": 5,
+      "text": ""
+    },
+    {
+      "id": 115,
+      "parent": 70,
+      "title": "Скиммеры",
+      "path": "oborudovanie-dlya-plavatelnyh-vodoemov/skimmery",
+      "order": 6,
+      "text": ""
+    },
+    {
+      "id": 116,
+      "parent": 70,
+      "title": "Трубы и фитинги",
+      "path": "oborudovanie-dlya-plavatelnyh-vodoemov/truby-i-fitingi",
+      "order": 7,
+      "text": ""
+    },
+    {
+      "id": 171,
+      "parent": 70,
+      "title": "Аэрация",
+      "path": "oborudovanie-dlya-plavatelnyh-vodoemov/aeratsiya",
+      "order": 8,
+      "text": ""
+    },
+    {
+      "id": 181,
+      "parent": 70,
+      "title": "УФ-обработка воды",
+      "path": "oborudovanie-dlya-plavatelnyh-vodoemov/uf-obrabotka-vody",
+      "order": 9,
+      "text": ""
+    },
+    {
+      "id": 72,
+      "parent": 71,
+      "title": "Аэраторы",
+      "path": "oborudovanie-dlya-zhivyh-basseynov/aeratory",
+      "order": 0,
+      "text": ""
+    },
+    {
+      "id": 73,
+      "parent": 71,
+      "title": "Изливы",
+      "path": "oborudovanie-dlya-zhivyh-basseynov/izlivy",
+      "order": 1,
+      "text": ""
+    },
+    {
+      "id": 74,
+      "parent": 71,
+      "title": "Лестницы",
+      "path": "oborudovanie-dlya-zhivyh-basseynov/lestnitsy",
+      "order": 2,
+      "text": ""
+    },
+    {
+      "id": 75,
+      "parent": 71,
+      "title": "Насосы",
+      "path": "oborudovanie-dlya-zhivyh-basseynov/nasosy",
+      "order": 3,
+      "text": ""
+    },
+    {
+      "id": 76,
+      "parent": 71,
+      "title": "Препараты",
+      "path": "oborudovanie-dlya-zhivyh-basseynov/preparaty",
+      "order": 4,
+      "text": ""
+    },
+    {
+      "id": 77,
+      "parent": 71,
+      "title": "Фильтрация",
+      "path": "oborudovanie-dlya-zhivyh-basseynov/filtratsiya",
+      "order": 5,
+      "text": ""
+    },
+    {
+      "id": 117,
+      "parent": 78,
+      "title": "EPDM-мембрана Indy by GLQ",
+      "path": "gidroizolyatsiya/epdm-membrana-indy-by-glq",
+      "order": 1,
+      "text": ""
+    },
+    {
+      "id": 192,
+      "parent": 78,
+      "title": "EPDM-мембрана GLQ EPDM PondGarden",
+      "path": "gidroizolyatsiya/epdm-membrana-glq-epdm-pondgarden",
+      "order": 2,
+      "text": ""
+    },
+    {
+      "id": 119,
+      "parent": 78,
+      "title": "EPDM: Материалы для склеивания и аксессуары GLQ",
+      "path": "gidroizolyatsiya/epdm-materialy-dlya-skleivaniya-i-aksessuary-glq",
+      "order": 4,
+      "text": ""
+    },
+    {
+      "id": 121,
+      "parent": 78,
+      "title": "Плёнка PVC (ПВХ)",
+      "path": "gidroizolyatsiya/plenka-pvc-pvh",
+      "order": 10,
+      "text": ""
+    },
+    {
+      "id": 123,
+      "parent": 78,
+      "title": "Геотекстиль Дорнит",
+      "path": "gidroizolyatsiya/geotekstil-dornit",
+      "order": 12,
+      "text": ""
+    },
+    {
+      "id": 175,
+      "parent": 78,
+      "title": "Дополнительные материалы",
+      "path": "gidroizolyatsiya/dopolnitelnye-materialy",
+      "order": 13,
+      "text": ""
+    },
+    {
+      "id": 124,
+      "parent": 79,
+      "title": "Подсветка каскадов и водопадов",
+      "path": "podsvetka/podsvetka-kaskadov-i-vodopadov",
+      "order": 0,
+      "text": ""
+    },
+    {
+      "id": 125,
+      "parent": 79,
+      "title": "Подсветка настилов и ступеней",
+      "path": "podsvetka/podsvetka-nastilov-i-stupeney",
+      "order": 1,
+      "text": ""
+    },
+    {
+      "id": 126,
+      "parent": 79,
+      "title": "Подсветка, встраиваемая в борт",
+      "path": "podsvetka/podsvetka-vstraivaemaya-v-bort",
+      "order": 2,
+      "text": ""
+    },
+    {
+      "id": 127,
+      "parent": 79,
+      "title": "Садовые розетки с FM управлением",
+      "path": "podsvetka/sadovye-rozetki-s-fm-upravleniem",
+      "order": 3,
+      "text": ""
+    }
+  ]
+}

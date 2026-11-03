@@ -1,0 +1,78 @@
+---
+import Page from '../../../layouts/Page.astro';
+import ShopNav from '../../../components/ShopNav.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import { products, categoryById, trail, catHref, productHref, fmtPrice, inCategory, type Product } from '../../../lib/shop';
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props as { p: Product };
+const cat = categoryById(p.category);
+const t = trail(cat);
+const related = cat ? inCategory(cat.id).filter((x) => x.id !== p.id).slice(0, 4) : [];
+const plain = (h: string) => h.replace(/<[^>]+>/g, ' ').replace(/&[a-z]+;/g, ' ').replace(/\s+/g, ' ').trim();
+const desc = (plain(p.short) || plain(p.specsFull) || plain(p.description) || p.title).slice(0, 170);
+const specs = p.specs || '';
+const details = [p.specsFull, p.description].filter((h, i, a) => h && a.indexOf(h) === i && plain(h) !== plain(specs));
+// Ролик: обычная ссылка YouTube / Rutube → адрес для встраивания
+const embed = (u: string) => {
+  let m = u.match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/);
+  if (m) return `https://www.youtube.com/embed/${m[1]}`;
+  m = u.match(/rutube\.ru\/(?:video|play\/embed)\/([0-9a-f]{32})/);
+  return m ? `https://rutube.ru/play/embed/${m[1]}` : '';
+};
+const youtube = p.video ? embed(p.video) : '';
+const ld = {
+  '@context': 'https://schema.org', '@type': 'Product', name: p.title, sku: p.sku || String(p.id),
+  ...(p.vendor ? { brand: { '@type': 'Brand', name: p.vendor } } : {}),
+  image: p.photos.map((x) => new URL(x.src, Astro.site).href), description: desc,
+  ...(p.price ? { offers: { '@type': 'Offer', price: p.price, priceCurrency: 'RUB', availability: 'https://schema.org/InStock', url: new URL(productHref(p), Astro.site).href } } : {}),
+};
+---
+<Page title={`${p.title} — купить${p.price ? ` за ${fmtPrice(p.price)}` : ''} | Магазин «Гидрологии»`}
+  description={desc} path={productHref(p)} label={cat ? cat.title : 'Магазин'} h1={p.title} image={p.photos[0]?.src}
+  crumbs={[{ label: 'Магазин', href: '/magazin/' }, ...t.map((x) => ({ label: x.title, href: catHref(x) })), { label: p.title }]} jsonld={ld}>
+  <section>
+    <div class="w sec-sm">
+      <ShopNav current={t[0]?.id} />
+      <div class="pp">
+        <div class="pp-gal" data-lb-group>
+          {p.photos.length ? (
+            <>
+              <a class="pp-main" href={p.photos[0].src} data-lb={p.title}><img src={p.photos[0].src} alt={p.title} decoding="async"></a>
+              {p.photos.length > 1 && <div class="pp-thumbs">{p.photos.slice(1, 9).map((x, i) => <a href={x.src} data-lb={p.title}><img src={x.thumb || x.src} alt={`${p.title} — фото ${i + 2}`} loading="lazy"></a>)}</div>}
+            </>
+          ) : <div class="pp-main pp-noimg">Фото уточняйте у менеджера</div>}
+        </div>
+        <div class="pp-info">
+          {p.vendor && <p class="lbl">{p.vendor}{p.sku ? ` · арт. ${p.sku}` : ''}</p>}
+          <div class="pp-price">{fmtPrice(p.price)}</div>
+          <div class="pp-buy">
+            <label class="qty"><span class="sr">Количество</span><button type="button" data-qty="-1" aria-label="Меньше">−</button><input type="number" min="1" max="999" value="1" data-qty-input inputmode="numeric"><button type="button" data-qty="1" aria-label="Больше">+</button></label>
+            <button type="button" class="btn btn-dark" data-add={p.id} data-add-qty>В корзину</button>
+          </div>
+          <p class="pp-note">Наличие и сроки уточнит менеджер после заказа. Подберём комплект под ваш водоём — <a href="/kontakty/#form">спросите инженера</a>.</p>
+          {specs && <div class="pp-specs prose" set:html={specs} />}
+          {p.files.length > 0 && (
+            <ul class="pp-files">{p.files.map((f) => <li><a href={f.src} target="_blank" rel="noopener">{f.name.replace(/[_-]+/g, ' ')}</a></li>)}</ul>
+          )}
+          {p.montageLink && <p class="pp-note"><a href={p.montageLink}>Как мы монтируем это оборудование →</a></p>}
+          <ul class="pp-terms"><li><a href="/magazin/dostavka/">Доставка по Петербургу и России</a></li><li><a href="/magazin/oplata/">Оплата</a></li><li><a href="/magazin/garantii/">Гарантии</a></li></ul>
+        </div>
+      </div>
+      {(details.length > 0 || youtube || p.warranty) && (
+        <div class="pp-more">
+          {details.map((h) => <div class="prose" set:html={h} />)}
+          {p.warranty && <div class="prose"><h2 class="h">Гарантия</h2><Fragment set:html={p.warranty} /></div>}
+          {youtube && <div class="video-box"><iframe src={youtube} title={p.title} loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>}
+        </div>
+      )}
+      {related.length > 0 && (
+        <div style="margin-top:72px">
+          <h2 class="h t-h3" style="margin:0 0 24px">Ещё в разделе «{cat?.title}»</h2>
+          <div class="pgrid">{related.map((x) => <ProductCard p={x} />)}</div>
+        </div>
+      )}
+    </div>
+  </section>
+</Page>

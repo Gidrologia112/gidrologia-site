@@ -1,0 +1,16 @@
+---
+// Подменю магазина: разделы каталога, условия, корзина
+import { topCategories, catHref } from '../lib/shop';
+interface Props { current?: number; }
+const { current = 0 } = Astro.props;
+---
+<nav class="shopnav" aria-label="Разделы магазина">
+  <div class="chips">
+    <a class="chip" href="/magazin/" aria-current={current === 0 ? 'page' : undefined}>Все разделы</a>
+    {topCategories.map((c) => <a class="chip" href={catHref(c)} aria-current={current === c.id ? 'page' : undefined}>{c.title}</a>)}
+  </div>
+  <div class="shopnav-links">
+    <a href="/magazin/dostavka/">Доставка</a><a href="/magazin/oplata/">Оплата</a><a href="/magazin/garantii/">Гарантии</a>
+    <a href="/magazin/korzina/" class="cart-link">Корзина <b data-cart-count>0</b></a>
+  </div>
+</nav>

@@ -182,55 +182,55 @@ imported: true
 <td>Ширина излива (см)</td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/izlivy/izlivy_15.html" target="_blank" rel="noopener">Wasserfallschale 28,5 см</a></td>
+<td><a href="/magazin/tovar/izliv-wasserfallschale-28-5-sm/" target="_blank" rel="noopener">Wasserfallschale 28,5 см</a></td>
 <td>Messner (Германия)</td>
 <td>Пластик</td>
 <td>28,5</td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/izlivy/izlivy_17.html" target="_blank" rel="noopener">Aquafall 300</a></td>
+<td><a href="/magazin/tovar/izliv-iz-nerzhaveyuschey-stali-lava-300/" target="_blank" rel="noopener">Aquafall 300</a></td>
 <td>Seliger (Германия)</td>
 <td>Нерж. сталь</td>
 <td>30,0</td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/izlivy/izlivy_16.html" target="_blank" rel="noopener">Wasserfallschale 38,0 см</a></td>
+<td><a href="/magazin/tovar/izliv-wasserfallschale-38-0-sm/" target="_blank" rel="noopener">Wasserfallschale 38,0 см</a></td>
 <td>Messner (Германия)</td>
 <td>Пластик</td>
 <td>38,0</td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-zhivyh-basseynov/izlivy/izlivy_165.html" target="_blank" rel="noopener">Излив фланцевый, нерж. сталь</a></td>
+<td><a href="/magazin/tovar/izliv-flantsevyy-v-komplekte-s-krepleniyami/" target="_blank" rel="noopener">Излив фланцевый, нерж. сталь</a></td>
 <td>Гидрология (Россия)</td>
 <td>Нерж. сталь</td>
 <td>40,0</td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-zhivyh-basseynov/izlivy/izlivy_378.html" target="_blank" rel="noopener">Излив фланцевый, кореан</a></td>
+<td><a href="/magazin/tovar/izliv-standartnyy-iz-iskusstvennogo-kamnya-korian/" target="_blank" rel="noopener">Излив фланцевый, кореан</a></td>
 <td>Гидрология (Россия)</td>
 <td>Иск. камень кореан</td>
 <td>40,0</td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/izlivy/izlivy_18.html" target="_blank" rel="noopener">Aquafall 600</a></td>
+<td><a href="/magazin/tovar/izliv-iz-nerzhaveyuschey-stali-lava-600/" target="_blank" rel="noopener">Aquafall 600</a></td>
 <td>Seliger (Германия)</td>
 <td>Нерж. сталь</td>
 <td>60,0</td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/izlivy/izlivy_19.html" target="_blank" rel="noopener">Aquafall 900</a></td>
+<td><a href="/magazin/tovar/izliv-iz-nerzhaveyuschey-stali-lava-900/" target="_blank" rel="noopener">Aquafall 900</a></td>
 <td>Seliger (Германия)</td>
 <td>Нерж. сталь</td>
 <td>90,0</td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/izlivy/izlivy_368.html" target="_blank" rel="noopener">Aquafall 1200</a></td>
+<td><a href="/magazin/tovar/izliv-iz-nerzhaveyuschey-stali-lava-1200/" target="_blank" rel="noopener">Aquafall 1200</a></td>
 <td>Seliger (Германия)</td>
 <td>Нерж. сталь</td>
 <td>120,0</td>
 </tr>
 <tr>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/izlivy/izlivy_21.html" target="_blank" rel="noopener">Aquafall 1500</a></td>
+<td><a href="/magazin/tovar/izliv-iz-nerzhaveyuschey-stali-lava-1500/" target="_blank" rel="noopener">Aquafall 1500</a></td>
 <td>Seliger (Германия)</td>
 <td>Нерж. сталь</td>
 <td>150,0</td>
@@ -271,14 +271,14 @@ imported: true
 </tr>
 <tr>
 <td>0,20</td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_99.html" target="_blank" rel="noopener">System-X 1501</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">System-X 1501</a></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_97.html" target="_blank" rel="noopener">System-X 3000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">System-X 3000</a></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_97.html" target="_blank" rel="noopener">System-X 3000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">System-X 3000</a></td>
 <td></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_98.html" target="_blank" rel="noopener">System-X 4000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">System-X 4000</a></td>
 <td></td>
 <td></td>
 <td></td>
@@ -286,14 +286,14 @@ imported: true
 </tr>
 <tr>
 <td>0,30</td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_102.html" target="_blank" rel="noopener">System-X 2500</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">System-X 2500</a></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_98.html" target="_blank" rel="noopener">System-X 4000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">System-X 4000</a></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_98.html" target="_blank" rel="noopener">System-X 4000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">System-X 4000</a></td>
 <td></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_28.html" target="_blank" rel="noopener">Eco-X2 7500</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 7500</a></td>
 <td></td>
 <td></td>
 <td></td>
@@ -301,46 +301,46 @@ imported: true
 </tr>
 <tr>
 <td>0,40</td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_97.html" target="_blank" rel="noopener">System-X 3000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">System-X 3000</a></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_98.html" target="_blank" rel="noopener">System-X 4000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">System-X 4000</a></td>
 <td>System-X 4000</td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_28.html" target="_blank" rel="noopener">Eco-X2 7500</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 7500</a></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_28.html" target="_blank" rel="noopener">Eco-X2 75000</a></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_29.html" target="_blank" rel="noopener">Eco-X2 10000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 75000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 10000</a></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_29.html" target="_blank" rel="noopener">Eco-X2 10000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 10000</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>0,50</td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_97.html" target="_blank" rel="noopener">System-X 3000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">System-X 3000</a></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_27.html" target="_blank" rel="noopener">Есо-Х2 4500</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Есо-Х2 4500</a></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_27.html" target="_blank" rel="noopener">Есо-Х2 4500</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Есо-Х2 4500</a></td>
 <td></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_28.html" target="_blank" rel="noopener">Eco-X2 7500</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 7500</a></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_29.html" target="_blank" rel="noopener">Есо-Х2 10000</a></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_30.html" target="_blank" rel="noopener">Есо-Х2 13000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Есо-Х2 10000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Есо-Х2 13000</a></td>
 </tr>
 <tr>
 <td>0,60</td>
 <td></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_28.html" target="_blank" rel="noopener">Eco-X2 7500</a></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_28.html" target="_blank" rel="noopener">Eco-X2 7500</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 7500</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 7500</a></td>
 <td></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_29.html" target="_blank" rel="noopener">Eco-X2 10000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 10000</a></td>
 <td></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_30.html" target="_blank" rel="noopener">Eco-X2 13000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 13000</a></td>
 <td></td>
 <td></td>
 </tr>
@@ -349,35 +349,35 @@ imported: true
 <td></td>
 <td></td>
 <td>
-<p><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_29.html" target="_blank" rel="noopener">Eco-X2 10000</a></p></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_29.html" target="_blank" rel="noopener">Eco-X2 10000</a></td>
+<p><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 10000</a></p></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 10000</a></td>
 <td></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_30.html" target="_blank" rel="noopener">Eco-X2 13000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 13000</a></td>
 <td></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_31.html" target="_blank" rel="noopener">Eco-X2 16000</a></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_30.html" target="_blank" rel="noopener">Eco-X2 13000</a></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_31.html" target="_blank" rel="noopener">Eco-X2 16000</a></td>
+<td><a href="/magazin/tovar/nasos-eco-x2-16000/" target="_blank" rel="noopener">Eco-X2 16000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 13000</a></td>
+<td><a href="/magazin/tovar/nasos-eco-x2-16000/" target="_blank" rel="noopener">Eco-X2 16000</a></td>
 </tr>
 <tr>
 <td>1,00</td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_28.html" target="_blank" rel="noopener">Eco-X2 7500</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Eco-X2 7500</a></td>
 <td></td>
 <td></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_29.html" target="_blank" rel="noopener">Есо-Х2 10000</a></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_31.html" target="_blank" rel="noopener">Eco-X2 16000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Есо-Х2 10000</a></td>
+<td><a href="/magazin/tovar/nasos-eco-x2-16000/" target="_blank" rel="noopener">Eco-X2 16000</a></td>
 <td></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_30.html" target="_blank" rel="noopener">Есо-Х2 13000</a></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_32.html" target="_blank" rel="noopener">Eco-X2 20000</a></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_31.html" target="_blank" rel="noopener">Есо-Х2 16000</a></td>
-<td><a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/nasosy-1_32.html" target="_blank" rel="noopener">Есо-Х2 20000</a></td>
+<td><a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">Есо-Х2 13000</a></td>
+<td><a href="/magazin/tovar/nasos-eco-x2-20000/" target="_blank" rel="noopener">Eco-X2 20000</a></td>
+<td><a href="/magazin/tovar/nasos-eco-x2-16000/" target="_blank" rel="noopener">Есо-Х2 16000</a></td>
+<td><a href="/magazin/tovar/nasos-eco-x2-20000/" target="_blank" rel="noopener">Есо-Х2 20000</a></td>
 </tr>
 </tbody>
 </table>
-<p>В данной таблице в качестве рекомендованных насосов использованы германские насосы Messner (Месснер). Используя таблицу расхода воды можно подобрать для обеспечения водопада водой насос любого производителя, например, <a href="https://shop.gidrologia.ru/catalog/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">датские насосы Aquatech</a>.</p>
+<p>В данной таблице в качестве рекомендованных насосов использованы германские насосы Messner (Месснер). Используя таблицу расхода воды можно подобрать для обеспечения водопада водой насос любого производителя, например, <a href="/magazin/oborudovanie-dlya-bezopasnyh-kaskadnyh-vodoemov/nasosy/" target="_blank" rel="noopener">датские насосы Aquatech</a>.</p>
 <h2>Советуем ознакомиться:</h2>
 <p><a href="/publikatsii/dekorativnyy-kaskadnyy-vodoem-izlivy/" target="_blank" rel="noopener">Декоративный каскадный водоём: Изливы.</a></p>
 <p><a href="/publikatsii/podbor-nasosa-dlya-bezopasnogo-kaskadnogo-vodoema-iskusstvennogo-kaskada-ruchya/" target="_blank" rel="noopener">Подбор насоса для безопасного каскадного водоёма, искусственного каскада, ручья. </a></p>

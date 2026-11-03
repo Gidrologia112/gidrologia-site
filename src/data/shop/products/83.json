@@ -1,0 +1,36 @@
+{
+  "id": 83,
+  "title": "УФ-излучатель UV-C Unit 36 Вт",
+  "slug": "uf-izluchatel-uv-c-unit-36-vt",
+  "category": 172,
+  "also": [],
+  "price": 29973,
+  "vendor": "Velda",
+  "sku": "",
+  "order": 2,
+  "short": "Комплект УФ-излучателя UV-C Unit 36 Вт предназначен для обеззараживания воды и борьбы с простейшими водорослями",
+  "specs": "мощность 36 Вт  \nнапряжение 12 В  \nматериал пластик",
+  "specsFull": "",
+  "description": "Комплект УФ-излучателя UV-C Unit 36 Вт предназначен для обеззараживания воды и борьбы с простейшими водорослями\n\n## Состоит из следующих элементов:\n\n1.   Завинчивающийся колпачок с закрепленным кабелем и трансформатором\n2.   УФ-лампа PL UV-C (с держателем)\n3.   Кварцевое стекло\n\n###  Встраивается в фильтры:\n\n-   Clear Control 75\n-   Clear Control 100\n-   Giant Biofill XL\n\n###  Особенности\n\n-   В  приборе  имеется  прозрачный  завинчивающийся  колпачок,  который  обеспечивает\n-   безопасный  контроль  правильной  работы  ультрафиолетовой  лампы. \n-   При  замене ультрафиолетовой  лампы  прибор  автоматически  отключается. \n-   Эффективность свечения и срок эксплуатации больше на 30 % по сравнению с другими моделями.",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/1390760396_520312_30.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760396_520312_30.jpeg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/1390760397_200068_27.jpeg",
+      "thumb": "/netcat_files/multifile/2718/preview_1390760397_200068_27.jpeg"
+    }
+  ],
+  "files": [
+    {
+      "name": "Manual_UV-C.pdf",
+      "src": "/netcat_files/172/219/Manual_UV_C.pdf"
+    }
+  ],
+  "video": "",
+  "montageLink": "",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-dekorativnyh-vodoemov/uf-izluchateli/uf-izluchateli_83.html"
+}

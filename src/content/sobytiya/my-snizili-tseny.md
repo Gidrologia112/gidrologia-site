@@ -12,5 +12,5 @@ imported: true
 
 <p>С 1 марта 2017 существенно снижены цены на основное оборудование.</p>
 <p>Ждём Вас в нашем интернет-магазине:</p>
-<p><a href="https://shop.gidrologia.ru/" target="_blank" rel="noopener">Магазин &quot;Гидрология&quot;.</a></p>
+<p><a href="/magazin/" target="_blank" rel="noopener">Магазин &quot;Гидрология&quot;.</a></p>
 <p><img loading="lazy" alt="" src="/img/netcat/userfiles/sobitia/Bezymyannyy.jpg" /></p>

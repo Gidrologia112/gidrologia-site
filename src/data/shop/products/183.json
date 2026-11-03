@@ -1,0 +1,35 @@
+{
+  "id": 183,
+  "title": "Насос BADU Picco 5",
+  "slug": "nasos-badu-picco-5",
+  "category": 75,
+  "also": [],
+  "price": 33209,
+  "vendor": "",
+  "sku": "",
+  "order": 5,
+  "short": "",
+  "specs": "",
+  "specsFull": "Напряжение питания (В) - 220\n\nЭлектрическая мощность (Вт) - 390\n\nПроизводительность (м3/ч) - 5\n\nМаксимальный напор (м) - 7\n\nДиматры подключения вход/выход (мм) - 38 / 32-38",
+  "description": "## Насос BADU Picco 5\n\nСамовсасывающий циркуляционный насос, предназначенный для циркуляции воды через фильтр в плавательных бассейнах.\n\nКонструкция - моноблок со встроенным предварительным фильтром (волосоловкой) объемом 0,5 л.\n\nМатериал корпуса . полипропилен.\n\nМожет быть установлен на 1,5 м выше и на 3 м ниже уровня воды.",
+  "warranty": "",
+  "photos": [
+    {
+      "src": "/netcat_files/multifile/2718/64_0.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_64_0.jpg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/52_1.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_52_1.jpg"
+    },
+    {
+      "src": "/netcat_files/multifile/2718/52_2.jpg",
+      "thumb": "/netcat_files/multifile/2718/preview_52_2.jpg"
+    }
+  ],
+  "files": [],
+  "video": "https://www.youtube.com/embed/Bg0HZ9VQ3xQ",
+  "montageLink": "",
+  "active": true,
+  "old": "/catalog/oborudovanie-dlya-zhivyh-basseynov/nasosy/nasosy_183.html"
+}

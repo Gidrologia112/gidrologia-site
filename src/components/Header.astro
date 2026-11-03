@@ -10,7 +10,7 @@ const isActive = (href: string) => href !== '/' && !href.startsWith('/#') && pat
     <a class="hdr-logo" href="/" aria-label="Гидрология — на главную"><img src="/logo-light.svg" alt="Гидрология — бассейны, водоёмы, фонтаны" width="141" height="36"></a>
     <nav class="nav" aria-label="Основное меню">
       {site.nav.map((n) => <a href={n.href} aria-current={isActive(n.href) ? 'page' : undefined}>{n.label}</a>)}
-      <a href={L.shop} target="_blank" rel="noopener">Магазин ↗</a>
+      <a href={L.shop} aria-current={path.startsWith("/magazin/") ? "page" : undefined}>Магазин</a>
     </nav>
     <div class="hdr-cta">
       <div class="hdr-phone"><a href={c.phoneSpbHref}>{c.phoneSpb}</a><span>{c.hours}</span></div>
@@ -33,7 +33,7 @@ const isActive = (href: string) => href !== '/' && !href.startsWith('/#') && pat
     {site.nav.map((n) => <a class="h" href={n.href} data-menu-link>{n.label === 'ЭВО' ? 'Учебный центр ЭВО' : n.label}</a>)}
   </nav>
   <div class="mnav-extra">
-    <a href={L.shop} target="_blank" rel="noopener">Магазин ↗</a>
+    <a href={L.shop} aria-current={path.startsWith("/magazin/") ? "page" : undefined}>Магазин</a>
     <a href={L.evaporation}>Калькулятор испарения</a>
     <a href={L.gallery}>Галерея</a>
     <a href={L.video}>Видео</a>

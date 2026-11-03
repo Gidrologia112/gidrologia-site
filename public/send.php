@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') reply(405, ['ok' => false, 'error' =>
 
 // Принимаем запросы только со своего сайта
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-if ($origin !== '' && !preg_match('~^https?://(www\.)?gidrologia\.ru$~i', $origin)) {
+if ($origin !== '' && !preg_match('~^https?://(www\.|new\.)?gidrologia\.ru$~i', $origin)) {
   reply(403, ['ok' => false, 'error' => 'Запрос отклонён.']);
 }
 
@@ -58,12 +58,38 @@ function clean(string $key, int $max): string {
 }
 $name    = clean('name', 100);
 $phone   = clean('phone', 30);
-$type    = ($_POST['type'] ?? '') === 'tz' ? 'tz' : 'project';
+$type    = in_array($_POST['type'] ?? '', ['tz', 'order'], true) ? $_POST['type'] : 'project';
 $message = mb_substr(str_replace("\0", '', trim((string) ($_POST['message'] ?? ''))), 0, 3000);
 $consent = ($_POST['consent'] ?? '') === '1';
 
 if ($name === '' || strlen(preg_replace('/\D/', '', $phone)) < 10) reply(422, ['ok' => false, 'error' => 'Укажите имя и телефон.']);
 if (!$consent) reply(422, ['ok' => false, 'error' => 'Нужно согласие на обработку персональных данных.']);
+
+// Заказ из магазина: состав и цены сверяем с каталогом сайта (magazin/catalog.json), а не верим браузеру
+$order = null;
+if ($type === 'order') {
+  $catalog = json_decode((string) @file_get_contents(__DIR__ . '/magazin/catalog.json'), true) ?: [];
+  $items = json_decode((string) ($_POST['items'] ?? ''), true);
+  $lines = []; $total = 0; $onRequest = false;
+  if (is_array($items)) foreach ($items as $id => $qty) {
+    $id = (string) (int) $id; $qty = max(1, min(999, (int) $qty));
+    if (!isset($catalog[$id])) continue;
+    $p = $catalog[$id]; $sum = (int) $p['p'] * $qty; $total += $sum; if (!$p['p']) $onRequest = true;
+    $lines[] = ['id' => (int) $id, 'title' => $p['t'], 'qty' => $qty, 'price' => (int) $p['p'], 'sum' => $sum, 'url' => 'https://gidrologia.ru/magazin/tovar/' . $p['s'] . '/'];
+  }
+  if (!$lines) reply(422, ['ok' => false, 'error' => 'Корзина пуста.']);
+  $email = clean('email', 100);
+  if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) reply(422, ['ok' => false, 'error' => 'Проверьте e-mail.']);
+  $delivery = clean('delivery', 60);
+  $city = clean('city', 200);
+  $order = ['lines' => $lines, 'total' => $total, 'onRequest' => $onRequest, 'email' => $email, 'delivery' => $delivery, 'city' => $city];
+  $txt = "Заказ из магазина:\n";
+  foreach ($lines as $i => $l) $txt .= ($i + 1) . '. ' . $l['title'] . ' — ' . $l['qty'] . ' шт. × ' . ($l['price'] ? number_format($l['price'], 0, '', ' ') . ' ₽' : 'цена по запросу') . ' = ' . ($l['price'] ? number_format($l['sum'], 0, '', ' ') . ' ₽' : '—') . "\n   " . $l['url'] . "\n";
+  $txt .= 'Итого: ' . number_format($total, 0, '', ' ') . ' ₽' . ($onRequest ? ' (+ позиции с ценой по запросу)' : '') . "\n";
+  $txt .= 'Доставка: ' . ($delivery ?: '—') . ($city !== '' ? ', ' . $city : '') . "\n";
+  if ($email !== '') $txt .= "E-mail: {$email}\n";
+  $message = $txt . ($message !== '' ? "\nКомментарий покупателя:\n" . $message : '');
+}
 
 // Файл (только для ТЗ)
 $attachment = null;
@@ -84,8 +110,8 @@ if ($type === 'tz' && !empty($_FILES['file']) && $_FILES['file']['error'] !== UP
 }
 
 // Письмо
-$subject = $type === 'tz' ? 'Новое ТЗ с сайта gidrologia.ru' : 'Новая заявка с сайта gidrologia.ru';
-$body  = ($type === 'tz' ? "Тип: техническое задание\n" : "Тип: обсудить проект\n");
+$subject = $type === 'tz' ? 'Новое ТЗ с сайта gidrologia.ru' : ($type === 'order' ? 'Новый заказ из магазина gidrologia.ru' : 'Новая заявка с сайта gidrologia.ru');
+$body  = ($type === 'tz' ? "Тип: техническое задание\n" : ($type === 'order' ? "Тип: заказ из магазина\n" : "Тип: обсудить проект\n"));
 $body .= "Имя: {$name}\nТелефон: {$phone}\n\n";
 $body .= "Сообщение:\n" . ($message !== '' ? $message : '—') . "\n\n";
 $body .= 'Согласие на обработку ПДн: да, ' . date('d.m.Y H:i') . "\n";
@@ -116,7 +142,7 @@ require_once __DIR__ . '/lib/leads.php';
 $saved = leads_save([
   'type' => $type, 'name' => $name, 'phone' => $phone, 'message' => $message,
   'page' => mb_substr((string) ($_SERVER['HTTP_REFERER'] ?? ''), 0, 200),
-  'created' => date('c'), 'consent' => true, 'consent_doc' => '/soglasie/ ред. 03.11.2026', 'ip' => mb_substr((string) ($_SERVER['HTTP_X_REAL_IP'] ?? $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'] ?? ''), 0, 100),
+  'created' => date('c'), 'consent' => true, 'order' => $order, 'consent_doc' => '/soglasie/ ред. 03.11.2026', 'ip' => mb_substr((string) ($_SERVER['HTTP_X_REAL_IP'] ?? $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'] ?? ''), 0, 100),
 ], $attachment);
 
 $sent = @mail(MAIL_TO, $encSubject, $content, implode("\r\n", $headers), '-f' . MAIL_FROM);

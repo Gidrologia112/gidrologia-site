@@ -18,11 +18,17 @@
     }
     // Адрес новой записи — из заголовка латиницей, если редактор его не вписал.
     // Поле адреса: «url» у статей и событий, «slug» у проектов, галереи и видео.
-    var SLUG_FIELD = { publikatsii: 'url', sobytiya: 'url', proekty: 'slug', galereya: 'slug', video: 'slug' };
+    var SLUG_FIELD = { publikatsii: 'url', sobytiya: 'url', proekty: 'slug', galereya: 'slug', video: 'slug', tovary: 'slug' };
     CMS.registerEventListener({
       name: 'preSave',
       handler: function (ctx) {
         var entry = ctx.entry, data = entry.get('data');
+        // Новым разделам магазина — свой номер (на него ссылаются товары)
+        if (entry.get('collection') === 'magazin' && data.get('items')) {
+          var items = data.get('items'), max = 0;
+          items.forEach(function (it) { max = Math.max(max, Number(it && it.get('id')) || 0); });
+          return data.set('items', items.map(function (it) { return it && !Number(it.get('id')) ? it.set('id', ++max) : it; }));
+        }
         var key = SLUG_FIELD[entry.get('collection')];
         if (!key) return data;
         var cur = String(data.get(key) || '').trim();
@@ -34,6 +40,7 @@
     // Ссылки в шапке кабинета
     if (CMS.registerAdditionalLink) {
       CMS.registerAdditionalLink({ id: 'zayavki', title: 'Заявки с сайта', data: '/admin/zayavki/', options: { icon: 'page' } });
+      CMS.registerAdditionalLink({ id: 'ceny', title: 'Магазин: цены из Excel', data: '/admin/ceny/', options: { icon: 'page' } });
       CMS.registerAdditionalLink({ id: 'metrika', title: 'Метрика', data: 'https://metrika.yandex.ru/dashboard?id=114014482', options: { icon: 'page' } });
       CMS.registerAdditionalLink({ id: 'deploy', title: 'Статус выкладки', data: 'https://github.com/Gidrologia112/gidrologia-site/actions', options: { icon: 'page' } });
     }

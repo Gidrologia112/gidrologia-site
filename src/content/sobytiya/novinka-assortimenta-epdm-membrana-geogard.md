@@ -18,5 +18,5 @@ imported: true
 <p>9.15*30.5 м</p>
 <p>12.20*30.5 м</p>
 <p>15.25*30.5 м</p>
-<p>Описание материала и цены в нашем <a href="https://shop.gidrologia.ru/catalog/gidroizolyatsiya/epdm-membrana-firestone-geogard/" target="_blank" rel="noopener">магазине</a>.</p>
+<p>Описание материала и цены в нашем <a href="/magazin/gidroizolyatsiya/" target="_blank" rel="noopener">магазине</a>.</p>
 <p>Товар в наличии!</p>
