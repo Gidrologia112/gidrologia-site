@@ -1,11 +1,14 @@
 ---
 // Фото с заглушкой: пока файла нет (src пустой или картинка ещё не скопирована в public/), показываем цветной блок с подписью.
+// small — маленькая картинка (миниатюра со старого сайта): не растягиваем, а показываем в натуральный размер
+// на размытом фоне из неё же, чтобы не было «мыла».
 import { hasImg } from '../lib/img';
-interface Props { src?: string; alt?: string; label?: string; tone?: string; class?: string; eager?: boolean; }
-const { src = '', alt = '', label = 'Фото', tone = '#2E5A62', class: cls = '', eager = false } = Astro.props;
+interface Props { src?: string; alt?: string; label?: string; tone?: string; class?: string; eager?: boolean; small?: boolean; }
+const { src = '', alt = '', label = 'Фото', tone = '#2E5A62', class: cls = '', eager = false, small = false } = Astro.props;
 const ok = hasImg(src);
 ---
-<div class={`ph ${cls}`} style={`background:${tone}`}>
+<div class={`ph ${small && ok ? 'ph-small' : ''} ${cls}`} style={`background:${tone}`}>
+  {ok && small && <img class="ph-blur" src={src} alt="" aria-hidden="true" loading={eager ? 'eager' : 'lazy'} decoding="async">}
   {ok
     ? <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async">
     : <span class="ph-label">{label}</span>}

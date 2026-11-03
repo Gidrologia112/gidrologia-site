@@ -1,7 +1,7 @@
 ---
 // Список публикаций/событий с поиском, рубриками и кнопкой «Показать ещё»
 import Photo from './Photo.astro';
-import { fmtDate, coverOf, type Post } from '../lib/content';
+import { fmtDate, coverInfo, type Post } from '../lib/content';
 interface Props { posts: Post[]; base: string; rubrics?: { key: string; label: string }[]; perPage?: number; placeholder?: string; }
 const { posts, base, rubrics = [], perPage = 12, placeholder = 'Поиск по названию' } = Astro.props;
 const tones = ['#1F4A55', '#2F4D40', '#22465A', '#3D5A48', '#2B3F4C', '#244050'];
@@ -23,7 +23,7 @@ const tones = ['#1F4A55', '#2F4D40', '#22465A', '#3D5A48', '#2B3F4C', '#244050']
   <div style="border-top:1px solid var(--ink)" aria-live="polite">
     {posts.map((p, i) => (
       <a class="post" href={`${base}${p.slug}/`} data-item data-r={`|${(p.data.rubrics || (p.data.rubric ? [p.data.rubric] : [])).join('|')}|`} data-t={`${p.data.title} ${p.data.excerpt || ''}`.toLowerCase()}>
-        <Photo label={p.data.rubric || "Гидрология"} tone={tones[i % tones.length]} src={coverOf(p)} alt="" />
+        <Photo label={p.data.rubric || "Гидрология"} tone={tones[i % tones.length]} src={coverInfo(p).src} small={coverInfo(p).small} alt="" />
         <div>
           {p.data.rubric && <p class="lbl">{p.data.rubric}</p>}
           <div class="h t">{p.data.title}</div>

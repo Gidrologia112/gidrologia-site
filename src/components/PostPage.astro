@@ -4,7 +4,7 @@ import Page from '../layouts/Page.astro';
 import Photo from './Photo.astro';
 import CtaBlock from './CtaBlock.astro';
 import site from '../data/site.json';
-import { fmtDate, coverOf, getEvents, getPublications, type Post } from '../lib/content';
+import { fmtDate, coverOf, coverInfo, getEvents, getPublications, type Post } from '../lib/content';
 
 interface Props { post: Post; related: Post[]; base: string; section: string; sectionHref: string; kind: 'article' | 'event'; }
 const { post, related, base, section, sectionHref, kind } = Astro.props;
@@ -22,6 +22,11 @@ const ld = {
   author: { '@type': 'Organization', name: 'Гидрология' }, publisher: { '@type': 'Organization', name: 'Гидрология', logo: { '@type': 'ImageObject', url: 'https://gidrologia.ru/logo.svg' } },
   mainEntityOfPage: new URL(`${base}${post.slug}/`, Astro.site).href,
 };
+// Большая обложка над статьёй — если её нет в тексте (иначе фото повторится), маленькая миниатюра — только когда в тексте фото нет
+const ci = coverInfo(post);
+const inText = ci.src !== '' && post.body.includes(ci.src);
+const bodyHasImg = /<img|!\[/.test(post.body);
+const heroCover = ci.src && !inText && !(ci.small && bodyHasImg) ? ci : { src: '', small: false };
 ---
 <Page
   title={isDup && d.date ? `${d.title} (${fmtDate(d.date)}) — Гидрология` : `${d.title} — Гидрология`}
@@ -36,7 +41,7 @@ const ld = {
       {d.rubric && rubricKey && <a href={`${sectionHref}?r=${rubricKey}`}>{d.rubric}</a>}
       {d.source && <span>По материалам: {d.source}</span>}
     </div>
-    {d.cover && <Photo src={d.cover} alt={d.title} class="cover" eager />}
+    {heroCover.src && <Photo src={heroCover.src} small={heroCover.small} alt={d.title} class="cover" eager />}
   </div>
   <section>
     <div class="w sec-sm g-article">
