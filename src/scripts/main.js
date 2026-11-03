@@ -111,11 +111,15 @@ function initGeo() {
   const root = $('[data-geo]'), dataEl = $('#cities-data');
   if (!root || !dataEl) return;
   const cities = JSON.parse(dataEl.textContent);
-  const role = $('[data-city-role]', root), name = $('[data-city-name]', root), text = $('[data-city-text]', root);
+  const role = $('[data-city-role]', root), name = $('[data-city-name]', root), text = $('[data-city-text]', root), links = $('[data-city-links]', root);
   $$('[data-city]', root).forEach((btn) => btn.addEventListener('click', () => {
     const i = Number(btn.dataset.city), c = cities[i];
     $$('[data-city]', root).forEach((b) => b.setAttribute('aria-pressed', Number(b.dataset.city) === i ? 'true' : 'false'));
     role.textContent = c.role; name.textContent = c.name; text.textContent = c.text;
+    if (links) {
+      links.textContent = '';
+      (c.links || []).forEach((l) => { const li = document.createElement('li'), a = document.createElement('a'); a.href = l.href; a.textContent = l.t; li.append(a); links.append(li); });
+    }
   }));
 }
 

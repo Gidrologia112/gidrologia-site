@@ -16,6 +16,19 @@ const L = site.links;
 const DEEP = '#05161D', DEEP2 = '#0A2A36', PAPER = '#F3F1EC', PAPER2 = '#EDE9E1', WHITE = '#FFFFFF';
 // Карта «От Невы до Урала»: подложка public/img/map.svg, города — по широте и долготе (src/lib/map.ts)
 const cityPos = (ct: { lat: number; lon: number }) => mapPos(ct.lat, ct.lon);
+// Материалы сайта по городу: статьи и события, в заголовке которых есть город (ищем по основе слова)
+const CITY_RX: Record<string, RegExp> = {
+  'Санкт-Петербург': /Петербург|СПб|Ленинградск|Токсов/i, 'Москва': /Москв|Подмосков|Хрущ[её]в/i, 'Нижний Новгород': /Нижн\S* Новгород/i,
+  'Казань': /Казан/i, 'Киров': /Киров/i, 'Уфа': /\bУф[аеуы]\b/i, 'Екатеринбург': /Екатеринбург/i, 'Валдай': /Валда|ЭВО/i, 'Псков': /Псков/i,
+  'Кортела': /Кортел|Карели/i, 'Калуга': /Калуг|Калужск/i, 'Рязань': /Рязан/i, 'Белгород': /Белгород/i, 'Челябинск': /Челябинск/i,
+  'Беларусь, Германия': /Беларус|Белорус|Минск|Герман/i,
+};
+const allPosts = [...kbPosts.map((p) => ({ p, base: '/publikatsii/' })), ...(await getEvents()).map((p) => ({ p, base: '/sobytiya/' }))];
+const cities = site.cities.map((ct) => {
+  const rx = CITY_RX[ct.name] ?? new RegExp(ct.name.slice(0, 5), 'i');
+  const links = allPosts.filter(({ p }) => rx.test(p.data.title)).slice(0, 4).map(({ p, base }) => ({ t: p.data.title, href: `${base}${p.slug}/` }));
+  return { ...ct, text: ct.text.replace(/\s*\[Примеры объектов\]\s*/g, '').trim(), links };
+});
 const pad2 = (n: number) => String(n).padStart(2, '0');
 ---
 <Base
@@ -95,7 +108,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
         <div class="map">
           <img src="/img/map.svg" alt="" width="1000" height="640" loading="lazy" decoding="async">
           {mapLabels.map((l) => { const [x, y] = mapPos(l.lat, l.lon); return <span class={`map-l map-l-${l.k}`} style={`left:${x}%;top:${y}%`} aria-hidden="true">{l.t}</span>; })}
-          {site.cities.map((ct, i) => {
+          {cities.map((ct, i) => {
             const [x, y] = cityPos(ct);
             return (
               <div class={`pt${ct.hq ? ' hq' : ''} ${labelSide[ct.name] ?? (x > 80 ? 'lft' : '')}`} style={`left:${x}%;top:${y}%`}>
@@ -107,20 +120,21 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
           })}
         </div>
         <div class="chips city-chips">
-          {site.cities.map((ct, i) => <button type="button" class="chip" data-city={i} aria-pressed={i === 0 ? 'true' : 'false'} style="min-height:36px;font-size:13px">{ct.name}</button>)}
+          {cities.map((ct, i) => <button type="button" class="chip" data-city={i} aria-pressed={i === 0 ? 'true' : 'false'} style="min-height:36px;font-size:13px">{ct.name}</button>)}
         </div>
       </div>
       <div class="city-card" aria-live="polite">
         <p class="lbl" data-city-role>{site.cities[0].role}</p>
         <h3 class="h" data-city-name>{site.cities[0].name}</h3>
-        <p data-city-text>{site.cities[0].text}</p>
+        <p data-city-text>{cities[0].text}</p>
+        <ul class="city-links" data-city-links>{cities[0].links.map((l) => <li><a href={l.href}>{l.t}</a></li>)}</ul>
         <div class="abroad">
           Также проектировали для коллег
           <div class="chips">{site.abroad.map((a) => <span class="chip">{a}</span>)}</div>
         </div>
       </div>
     </div>
-    <script type="application/json" id="cities-data" set:html={JSON.stringify(site.cities)}></script>
+    <script type="application/json" id="cities-data" set:html={JSON.stringify(cities)}></script>
   </div>
 </section>
 
@@ -324,9 +338,9 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
         <a href={L.publications} class="btn btn-dark" style="margin-top:28px">Вся база знаний</a>
       </div>
       <div class="side">
-        <a href={L.objects} class="diary">
-          <Photo label="Фото этапа" tone="#2E5A62" />
-          <div class="t"><p class="lbl">Дневник стройки</p><div class="h" style="margin-top:8px;font-size:22px;line-height:1.25">Как строится плавательный водоём: от котлована до запуска</div></div>
+        <a href="/arhiv-foruma/tema-14/" class="diary">
+          <Photo src="/img/netcat/multifile/2557/IMG_0397_resize.jpg" alt="Плавательный водоём в Хрущёво" label="Фото этапа" tone="#2E5A62" />
+          <div class="t"><p class="lbl">Дневник стройки · 98 фото</p><div class="h" style="margin-top:8px;font-size:22px;line-height:1.25">Реконструкция плавательного водоёма в Хрущёво: от котлована до запуска</div></div>
         </a>
         <div class="faq-card">
           <p class="lbl">Вопрос — ответ</p>
@@ -402,7 +416,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
       </div>
     </div>
     <div class="g-part rv">
-      {site.partners.map((p) => <a href={p.href} target="_blank" rel="noopener nofollow">{p.logo ? <img src={p.logo} alt={p.name} loading="lazy"> : <span>[Логотип]</span>}<span>{p.name}</span></a>)}
+      {site.partners.map((p) => { const inner = <>{p.logo && <img src={p.logo} alt={p.name} loading="lazy">}<span>{p.name}</span></>; return p.href ? <a href={p.href} target="_blank" rel="noopener nofollow">{inner}</a> : <a role="presentation">{inner}</a>; })}
     </div>
     <div class="platforms rv">
       <span>Нас читают на площадках:</span>

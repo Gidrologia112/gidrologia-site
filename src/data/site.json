@@ -211,7 +211,7 @@
       "title": "Плавательные водоёмы",
       "href": "/uslugi/vodoemy-plavatelnye/",
       "tone": "#1F4A55",
-      "photo": "",
+      "photo": "/img/netcat/multifile/2557/IMG_0401_resize.jpg",
       "photoLabel": "плавательный водоём с зоной регенерации",
       "text": "Современные технологии ландшафтного строительства: внешний вид естественного водоёма и удобство плавательного бассейна. Естественная фильтрация — без хлора.",
       "facts": [
@@ -233,7 +233,7 @@
       "title": "Живые бассейны",
       "href": "/uslugi/basseyny-zhivye/",
       "tone": "#21465C",
-      "photo": "",
+      "photo": "/img/netcat/multifile/2557/boris_18.jpg",
       "photoLabel": "живой бассейн классической формы",
       "text": "Классический бассейн по внешнему виду, вода в котором очищается экологично — прудовыми бактериями и водными растениями.",
       "facts": [
@@ -255,7 +255,7 @@
       "title": "Декоративные водоёмы",
       "href": "/uslugi/vodoemy-dekorativnye/",
       "tone": "#2F4D40",
-      "photo": "",
+      "photo": "/img/netcat/multifile/2557/Vaskelovo_2.jpg",
       "photoLabel": "декоративный водоём с ручьём",
       "text": "Открытый водоём с водными растениями, каскадными горками, ручьями и фильтрацией. Классического или современного дизайна.",
       "facts": [
@@ -277,7 +277,7 @@
       "title": "Безопасные каскады",
       "href": "/uslugi/vodoemy-bezopasnye-kaskadnye/",
       "tone": "#3F4A42",
-      "photo": "",
+      "photo": "/img/netcat/multifile/2557/izora_1.jpg",
       "photoLabel": "каскад без открытой воды",
       "text": "Безопасны для детей: нет открытой воды. Ручей или каскад небольших габаритов, быстрый монтаж — за один день.",
       "facts": [
@@ -299,7 +299,7 @@
       "title": "Водоёмы для рыб",
       "href": "/uslugi/vodoemydlya-ryb/",
       "tone": "#244050",
-      "photo": "",
+      "photo": "/img/netcat/multifile/2557/vodryb002gal.jpg",
       "photoLabel": "пруд с декоративными рыбами",
       "text": "Садовый аквариум с естественной фильтрацией, пруд с декоративными рыбами, фермы для рыборазведения. Качественная очистка воды и аэрация.",
       "facts": [
@@ -321,7 +321,7 @@
       "title": "Фонтаны",
       "href": "/uslugi/fontany/",
       "tone": "#1C3445",
-      "photo": "",
+      "photo": "/img/netcat/multifile/2557/DSC01558_resize.jpg",
       "photoLabel": "фонтан с вечерней подсветкой",
       "text": "Спокойные и умиротворяющие, торжественные, экспрессивные. Многообразие водных картин, динамическая разноцветная подсветка. Стационарные или плавающие.",
       "facts": [
@@ -455,7 +455,7 @@
     "kind": "Проект плавательного водоёма · Московская обл.",
     "href": "/proekty/proekt-plavatelnogo-vodoema-v-p-hruschevo-mo/",
     "before": "",
-    "after": "",
+    "after": "/img/netcat/multifile/2557/IMG_0398_resize.jpg",
     "facts": [
       {
         "label": "Площадь",
@@ -499,28 +499,28 @@
       "kind": "Проект плавательного водоёма · Ленинградская обл.",
       "href": "/proekty/proekt-vodoema-v-p-toksovo-len-obl/",
       "tone": "#3D5A48",
-      "photo": ""
+      "photo": "/img/netcat/multifile/2557/IMG_20140602_130904_resize.jpg"
     },
     {
-      "title": "Живой бассейн для коллег из Германии",
-      "kind": "Проект живого бассейна · Германия",
-      "href": "/proekty/proekt-zhivogo-basseyna-v-germanii/",
+      "title": "Плавательный водоём в Германии",
+      "kind": "Построен по проекту «Гидрологии» · Германия",
+      "href": "/sobytiya/postroen-vodoem-v-germanii/",
       "tone": "#22465A",
-      "photo": ""
+      "photo": "/img/netcat/multifile/2557/germ039.jpg"
     },
     {
-      "title": "[Название объекта]",
-      "kind": "[Тип] · [Регион]",
-      "href": "/proekty/",
+      "title": "Челябинск",
+      "kind": "Плавательный водоём · 2019",
+      "href": "/sobytiya/zaversheno-stroitelstvo-plavatelnogo-vodoema-v-chelyabinske/",
       "tone": "#2B3F4C",
-      "photo": ""
+      "photo": "/img/netcat/multifile/2557/chelpl075.jpeg"
     },
     {
-      "title": "[Название объекта]",
-      "kind": "[Тип] · [Регион]",
-      "href": "/proekty/",
+      "title": "Машкачи",
+      "kind": "Плавательный водоём · Кировская обл.",
+      "href": "/sobytiya/plavatelnyy-vodoem-v-p-mashkachi-kirovskaya-obl/",
       "tone": "#4A5249",
-      "photo": ""
+      "photo": "/img/netcat/multifile/2557/DSC_1211_resize.jpg"
     }
   ],
   "galleryChips": [
@@ -638,7 +638,7 @@
       "logo": "/img/netcat/f/2631-6-logo1.jpg"
     },
     {
-      "name": "Партнёр",
+      "name": "ayland",
       "href": "",
       "logo": "/img/netcat/f/2631-8-logo2.png"
     },

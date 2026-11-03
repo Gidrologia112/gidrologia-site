@@ -18,5 +18,16 @@ export function sortPosts<T extends Post>(list: T[]): T[] {
   });
 }
 
+// Обложка записи: своя (поле «Обложка») или первая картинка из текста, которая есть на сайте
+import { hasImg } from './img';
+export function coverOf(p: Post): string {
+  if (p.data.cover && hasImg(p.data.cover)) return p.data.cover;
+  for (const m of p.body.matchAll(/!\[[^\]]*\]\(\s*<?([^)\s>]+)|<img[^>]+src=["']([^"']+)["']/g)) {
+    const src = (m[1] || m[2] || '').trim();
+    if (src.startsWith('/') && hasImg(src)) return src;
+  }
+  return '';
+}
+
 export const getPublications = async () => sortPosts(await getCollection('publikatsii'));
 export const getEvents = async () => sortPosts(await getCollection('sobytiya'));

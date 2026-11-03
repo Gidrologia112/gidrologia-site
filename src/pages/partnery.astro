@@ -62,7 +62,7 @@ const benefits = [
     <div class="w sec" style="padding-top:0">
       <div class="hd-row rv"><div><p class="lbl">Наши партнёры</p><h2 class="h t-h2">С кем мы работаем</h2></div></div>
       <div class="g-part rv">
-        {site.partners.map((p) => <a href={p.href} target="_blank" rel="noopener nofollow">{p.logo ? <img src={p.logo} alt={p.name} loading="lazy"> : <span>[Логотип]</span>}<span>{p.name}</span></a>)}
+        {site.partners.map((p) => { const inner = <>{p.logo && <img src={p.logo} alt={p.name} loading="lazy">}<span>{p.name}</span></>; return p.href ? <a href={p.href} target="_blank" rel="noopener nofollow">{inner}</a> : <a role="presentation">{inner}</a>; })}
       </div>
       <div class="platforms rv">
         <span>Нас читают на площадках:</span>
