@@ -35,6 +35,4 @@ imported: true
 &quot;САДЫ НАД КАМОЙ&quot;<br />
 тел. +7(912)0612036 Ватцап/Вайбер<br />
 Соц.сети:<br />
-https://vk.com/permgardenfest<br />
-https://www.instagram.com/permgardenfest/<br />
-https://www.facebook.com/permgardenfest/</p>
+https://vk.com/permgardenfest</p>

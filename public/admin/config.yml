@@ -617,9 +617,6 @@ collections:
       - label: Сайт ЭВО
         name: evo
         widget: string
-      - label: Instagram
-        name: instagram
-        widget: string
       - label: Houzz
         name: houzz
         widget: string

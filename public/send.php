@@ -116,7 +116,7 @@ require_once __DIR__ . '/lib/leads.php';
 $saved = leads_save([
   'type' => $type, 'name' => $name, 'phone' => $phone, 'message' => $message,
   'page' => mb_substr((string) ($_SERVER['HTTP_REFERER'] ?? ''), 0, 200),
-  'created' => date('c'), 'consent' => true,
+  'created' => date('c'), 'consent' => true, 'consent_doc' => '/soglasie/ ред. 03.11.2026', 'ip' => mb_substr((string) ($_SERVER['HTTP_X_REAL_IP'] ?? $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'] ?? ''), 0, 100),
 ], $attachment);
 
 $sent = @mail(MAIL_TO, $encSubject, $content, implode("\r\n", $headers), '-f' . MAIL_FROM);

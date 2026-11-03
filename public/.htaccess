@@ -21,6 +21,9 @@ RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP:X-Forwarded-Proto} !=https
 RewriteRule ^ https://gidrologia.ru%{REQUEST_URI} [L,R=301]
 
+# Убранные записи (соцсети Meta): на список событий
+RewriteRule ^sobytiya/gidrologiya-v-(instagram|facebook)(/|\.html)?$ /sobytiya/ [L,R=301]
+
 # ===== 301-редиректы со старых адресов NetCat =====
 # Старые карточки услуг, проектов, публикаций и событий: /razdel/slug.html → /razdel/slug/
 # Записи без ЧПУ на старом сайте (sobytiya_ID.html)

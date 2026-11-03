@@ -734,3 +734,13 @@ a:hover .arr, button:hover .arr { transform: translateX(5px); }
   .hdr-hide { transform: none; }
   .rv-on .rv-s:not(.in), .rv-s { opacity: 1; transform: none; }
 }
+
+/* Окно согласия на cookie */
+.cookie { position: fixed; left: 16px; bottom: 16px; z-index: 60; max-width: 520px; padding: 20px 22px; border-radius: var(--r); background: var(--deep-2); color: var(--on-dark); box-shadow: 0 18px 50px rgba(5,22,29,.35); }
+.cookie[hidden] { display: none; }
+.cookie p { margin: 0; font-size: 14px; line-height: 1.55; }
+.cookie a { color: var(--sky); }
+.cookie-btns { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.cookie .btn { min-height: 44px; padding: 0 20px; font-size: 14px; }
+.linkbtn { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline; cursor: pointer; }
+@media (max-width: 760px) { .cookie { left: 10px; right: 10px; bottom: 84px; max-width: none; } }

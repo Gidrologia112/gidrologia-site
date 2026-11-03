@@ -242,7 +242,6 @@ collections:
             fields:
               - { label: "Магазин", name: "shop", widget: "string" }
               - { label: "Сайт ЭВО", name: "evo", widget: "string" }
-              - { label: "Instagram", name: "instagram", widget: "string" }
               - { label: "Houzz", name: "houzz", widget: "string" }
               - { label: "ForumHouse", name: "forumhouse", widget: "string" }
               - { label: "Gardener", name: "gardener", widget: "string" }
