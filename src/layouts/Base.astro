@@ -2,8 +2,10 @@
 import '../styles/global.css';
 import site from '../data/site.json';
 
-interface Props { title: string; description: string; path?: string; }
-const { title, description, path = '/' } = Astro.props;
+interface Props { title: string; description: string; path?: string; image?: string; }
+const { title, description, path = '/', image = '' } = Astro.props;
+// Картинка для превью ссылок в мессенджерах и соцсетях: обложка страницы или фото по умолчанию
+const ogImage = new URL(image || '/img/netcat/multifile/2557/IMG_0398_resize.jpg', Astro.site).href;
 const canonical = new URL(path, Astro.site).href;
 
 const org = {
@@ -38,6 +40,8 @@ const org = {
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
   <meta property="og:url" content={canonical}>
+  <meta property="og:image" content={ogImage}>
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="yandex-verification" content="fa2640a94956b9c6">
   <meta name="yandex-verification" content="05b55e55ad1d2c39">
   <script is:inline>document.documentElement.classList.remove('no-js');</script>

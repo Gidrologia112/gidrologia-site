@@ -13,9 +13,12 @@ const sec = forum.forums.find((f) => f.slug === t.forum);
 const near = forum.topics.filter((x) => sec && x.forum === sec.id && x.id !== t.id).slice(0, 8);
 const first = t.posts[0];
 const desc = (forum.topics.find((x) => x.id === t.id)?.excerpt || t.title).slice(0, 180);
+const dup = forum.topics.filter((x) => x.title.trim() === t.title.trim()).length > 1;
+const firstImg = t.posts.flatMap((p) => p.photos)[0]?.src || '';
 ---
 <Page
-  title={`${t.title} — архив форума | Гидрология`}
+  title={dup ? `${t.title} (тема ${t.id}) — архив форума | Гидрология` : `${t.title} — архив форума | Гидрология`}
+  image={firstImg}
   description={desc}
   path={`/arhiv-foruma/tema-${t.id}/`} label={sec ? `Архив форума · ${sec.title}` : 'Архив форума'} h1={t.title}
   crumbs={[{ label: 'Архив форума', href: '/arhiv-foruma/' }, ...(sec ? [{ label: sec.title, href: `/arhiv-foruma/${sec.slug}/` }] : []), { label: t.title }]}

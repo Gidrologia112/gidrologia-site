@@ -57,11 +57,20 @@ RewriteRule ^galereya/([^/]+)/[^/]+\.html$ /galereya/$1/ [L,R=301]
 # Старые разделы
 RewriteRule ^(content|node|taxonomy)(/.*)?$ /publikatsii/ [L,R=301]
 RewriteRule ^isparenie\.html$ /isparenie/ [L,R=301]
+RewriteRule ^galereya/([^/]+)/[^/.]+/?$ /galereya/$1/ [L,R=301]
+RewriteRule ^(index|search|404)/?$ / [L,R=301]
+# Магазин пока на поддомене (временно, до переноса в этот сайт)
+RewriteRule ^magazin/?$ https://shop.gidrologia.ru/ [L,R=302]
+# Старая главная с постраничным выводом (/?p=21) → главная без параметров
+RewriteCond %{QUERY_STRING} ^p=\d+$
+RewriteRule ^$ /? [L,R=301]
 RewriteRule ^geografiya/?$ /#geo [NE,L,R=301]
 # Архив форума: старые адреса phpBB → статичные страницы
 RewriteRule ^forum/files/ - [L]
 RewriteCond %{QUERY_STRING} (^|&)t=(\d+)
 RewriteRule ^forum/viewtopic\.php$ /arhiv-foruma/tema-%2/? [L,R=301]
+# viewtopic.php?p=СООБЩЕНИЕ — тему находит forum/viewtopic.php по списку сообщений
+RewriteRule ^forum/(viewtopic\.php|posts\.json)$ - [L]
 RewriteCond %{QUERY_STRING} (^|&)f=24(&|$)
 RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/24-plavatelnye-vodoemy/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=25(&|$)

@@ -1,5 +1,7 @@
 User-agent: *
 Disallow: /send.php
+Disallow: /admin/
+Disallow: /lib/
 Disallow: /*?utm
 Allow: /
 

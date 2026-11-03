@@ -4,12 +4,16 @@ import Page from '../layouts/Page.astro';
 import Photo from './Photo.astro';
 import CtaBlock from './CtaBlock.astro';
 import site from '../data/site.json';
-import { fmtDate, type Post } from '../lib/content';
+import { fmtDate, coverOf, getEvents, getPublications, type Post } from '../lib/content';
 
 interface Props { post: Post; related: Post[]; base: string; section: string; sectionHref: string; kind: 'article' | 'event'; }
 const { post, related, base, section, sectionHref, kind } = Astro.props;
 const { Content } = await post.render();
 const hasBody = post.body.trim().length > 0;
+// Одинаковые заголовки (например, «Поздравляем с Новым годом!») различаем датой — у каждой страницы свой title
+const all = kind === 'event' ? await getEvents() : await getPublications();
+const norm = (s: string) => s.trim().toLowerCase();
+const isDup = all.filter((x) => norm(x.data.title) === norm(post.data.title)).length > 1;
 const d = post.data;
 const rubricKey = site.pubRubrics.find((r) => r.label === d.rubric)?.key;
 const ld = {
@@ -20,7 +24,8 @@ const ld = {
 };
 ---
 <Page
-  title={`${d.title} — Гидрология`}
+  title={isDup && d.date ? `${d.title} (${fmtDate(d.date)}) — Гидрология` : `${d.title} — Гидрология`}
+  image={coverOf(post)}
   description={d.excerpt || `${section} «Гидрологии»: ${d.title}`}
   path={`${base}${post.slug}/`} label={d.rubric || section} h1={d.title} lead={d.excerpt}
   crumbs={[{ label: section, href: sectionHref }, { label: d.title }]} jsonld={ld}
