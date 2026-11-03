@@ -120,6 +120,29 @@ function copy_media($dir, $target) {
   logmsg(sprintf('Медиа: скопировано %d (%.0f МБ), уже было %d, нет в старом сайте %d, пропущено %d', $copied, $bytes / 1048576, $have, $missing, $skipped));
 }
 
+// Диагностика адресов (один раз, пока нет ~/deploy/diag.txt): что отдаёт сервер по new.gidrologia.ru и gidrologia.ru
+function diag($dir, $target) {
+  $f = $dir . '/diag.txt';
+  if (is_file($f)) return;
+  $out = date('c') . "\n";
+  foreach (['http://new.gidrologia.ru/', 'https://new.gidrologia.ru/', 'http://gidrologia.ru/', 'https://gidrologia.ru/', 'http://co66690.tmweb.ru/'] as $u) {
+    $ch = curl_init($u);
+    curl_setopt_array($ch, [CURLOPT_NOBODY => false, CURLOPT_HEADER => true, CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 20,
+      CURLOPT_SSL_VERIFYPEER => false, CURLOPT_SSL_VERIFYHOST => 0, CURLOPT_FOLLOWLOCATION => false, CURLOPT_USERAGENT => 'gidrologia-diag']);
+    $r = (string) curl_exec($ch);
+    $info = curl_getinfo($ch);
+    $err = curl_error($ch);
+    curl_close($ch);
+    $hdr = substr($r, 0, (int) $info['header_size']);
+    $body = substr($r, (int) $info['header_size'], 4000);
+    preg_match('#<title>(.*?)</title>#is', $body, $t);
+    $out .= "== $u\nIP " . ($info['primary_ip'] ?? '') . " HTTP " . $info['http_code'] . " $err\n" . trim($hdr) . "\nTITLE: " . ($t[1] ?? '-') . "\n\n";
+  }
+  $out .= "== target $target\n" . implode(' ', array_slice(scandir($target), 0, 40)) . "\n";
+  $out .= "home: " . implode(' ', scandir(dirname($dir))) . "\n";
+  file_put_contents($f, $out);
+}
+
 // Не запускаться дважды одновременно
 $lock = fopen($dir . '/pull.lock', 'c');
 if (!$lock || !flock($lock, LOCK_EX | LOCK_NB)) exit(0);
@@ -133,6 +156,7 @@ if (!is_array($state)) $state = [];
 if ($code !== 200 || !preg_match('/^[0-9a-f]{40}$/', trim((string) $body))) { logmsg("Не удалось узнать версию: HTTP $code $err"); exit(1); }
 $sha = trim($body);
 if (!$force && ($state['sha'] ?? '') === $sha) {
+  diag($dir, $target);
   if (sync_config($dir, $target, $state)) save_state($stateFile, $state);
   copy_media($dir, $target);
   exit(0);
