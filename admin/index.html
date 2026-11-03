@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Кабинет редактора — Гидрология</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <script>window.CMS_MANUAL_INIT = true;</script>
+  <script src="https://unpkg.com/decap-cms@3.17.1/dist/decap-cms.js"></script>
+  <script>
+    // Транслитерация заголовка в адрес страницы (Decap сам кириллицу не переводит)
+    var TR = { а:'a',б:'b',в:'v',г:'g',д:'d',е:'e',ё:'e',ж:'zh',з:'z',и:'i',й:'y',к:'k',л:'l',м:'m',н:'n',о:'o',п:'p',р:'r',с:'s',т:'t',у:'u',ф:'f',х:'h',ц:'ts',ч:'ch',ш:'sh',щ:'sch',ъ:'',ы:'y',ь:'',э:'e',ю:'yu',я:'ya' };
+    function slugify(s) {
+      return String(s || '').toLowerCase().split('').map(function (c) { return TR[c] !== undefined ? TR[c] : c; }).join('')
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80).replace(/-+$/, '');
+    }
+    // Адрес новой записи — из заголовка латиницей, если редактор его не вписал.
+    // Поле адреса: «url» у статей и событий, «slug» у проектов, галереи и видео.
+    var SLUG_FIELD = { publikatsii: 'url', sobytiya: 'url', proekty: 'slug', galereya: 'slug', video: 'slug', tovary: 'slug' };
+    CMS.registerEventListener({
+      name: 'preSave',
+      handler: function (ctx) {
+        var entry = ctx.entry, data = entry.get('data');
+        // Новым разделам магазина — свой номер (на него ссылаются товары)
+        if (entry.get('collection') === 'magazin' && data.get('items')) {
+          var items = data.get('items'), max = 0;
+          items.forEach(function (it) { max = Math.max(max, Number(it && it.get('id')) || 0); });
+          return data.set('items', items.map(function (it) { return it && !Number(it.get('id')) ? it.set('id', ++max) : it; }));
+        }
+        var key = SLUG_FIELD[entry.get('collection')];
+        if (!key) return data;
+        var cur = String(data.get(key) || '').trim();
+        if (!cur && !entry.get('newRecord')) return data;   // у старых записей пустой адрес не трогаем
+        var v = slugify(cur || data.get('title'));
+        return v ? data.set(key, v) : data;
+      },
+    });
+    // Ссылки в шапке кабинета
+    if (CMS.registerAdditionalLink) {
+      CMS.registerAdditionalLink({ id: 'vhod', title: 'Сотрудники и выход', data: '/admin/vhod/', options: { icon: 'page' } });
+      CMS.registerAdditionalLink({ id: 'zayavki', title: 'Заявки с сайта', data: '/admin/zayavki/', options: { icon: 'page' } });
+      CMS.registerAdditionalLink({ id: 'ceny', title: 'Магазин: цены из Excel', data: '/admin/ceny/', options: { icon: 'page' } });
+      CMS.registerAdditionalLink({ id: 'metrika', title: 'Метрика', data: 'https://metrika.yandex.ru/dashboard?id=114014482', options: { icon: 'page' } });
+      CMS.registerAdditionalLink({ id: 'deploy', title: 'Статус выкладки', data: 'https://github.com/Gidrologia112/gidrologia-site/actions', options: { icon: 'page' } });
+    }
+  </script>
+  <script src="/admin/cms-widgets.js?v=1"></script>
+  <script>
+    // Вход — логином и паролем сайта (/admin/vhod/). GitHub кабинет видит через посредника /admin/api/,
+    // ключ хранится на хостинге, поэтому в браузере вместо ключа — метка «staff».
+    fetch('/admin/vhod/?me=1', { credentials: 'same-origin', cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (me) {
+        if (!me.ok) {
+          try { localStorage.removeItem('decap-cms-user'); } catch (e) {}
+          location.replace('/admin/vhod/?to=/admin/');
+          return;
+        }
+        try { localStorage.setItem('decap-cms-user', JSON.stringify({ token: 'staff', backendName: 'github', login: me.login, name: me.name })); } catch (e) {}
+        CMS.init({ config: { backend: { api_root: location.origin + '/admin/api', base_url: location.origin } } });
+      })
+      .catch(function () { document.body.innerHTML = '<p style="font:16px system-ui;padding:40px">Не удалось открыть кабинет. Обновите страницу.</p>'; });
+  </script>
+</body>
+</html>
