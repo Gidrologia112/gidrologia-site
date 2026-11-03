@@ -2,6 +2,8 @@
 
 AddDefaultCharset UTF-8
 Options -Indexes
+# Главная — index.html (заглушка хостинга index.htm не должна перехватывать)
+DirectoryIndex index.html index.php
 
 # Единый адрес https://gidrologia.ru: другие домены и www — туда.
 # new.gidrologia.ru — предпросмотр до запуска: без переадресации и закрыт от поисковиков.
