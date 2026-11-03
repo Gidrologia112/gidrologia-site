@@ -1,7 +1,6 @@
 <?php
 /**
- * Заявки с сайта — раздел кабинета. Вход по паролю (хеш в config.php, создаётся при выкладке
- * из секрета ZAYAVKI_PASSWORD). Показывает заявки из формы, позволяет менять статус, писать
+ * Заявки с сайта — раздел кабинета. Вход — общий для сотрудников (/admin/vhod/). Показывает заявки из формы, позволяет менять статус, писать
  * заметку, скачивать вложения и выгружать всё в CSV.
  */
 declare(strict_types=1);
@@ -12,13 +11,11 @@ header('X-Robots-Tag: noindex, nofollow');
 header('Cache-Control: no-store');
 header("Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self'; frame-ancestors 'none'");
 
-$cfg = is_file(__DIR__ . '/config.php') ? require __DIR__ . '/config.php' : [];
-$hash = (string) ($cfg['password_hash'] ?? '');
-
-session_name('gidro_admin');
-session_set_cookie_params(['lifetime' => 0, 'path' => '/admin/zayavki/', 'secure' => !empty($_SERVER['HTTPS']), 'httponly' => true, 'samesite' => 'Strict']);
-session_start();
-if (empty($_SESSION['csrf'])) $_SESSION['csrf'] = bin2hex(random_bytes(16));
+require_once __DIR__ . '/../../lib/staff.php';
+// Вход — общий для сотрудников (/admin/vhod/); заявки видят те, кому владелец открыл к ним доступ
+$me = staff_user();
+if (!$me) { header('Location: /admin/vhod/?to=/admin/zayavki/'); exit; }
+if (empty($me['leads'])) { http_response_code(403); header('Content-Type: text/html; charset=utf-8'); exit('<p style="font:16px system-ui;padding:40px">Доступа к заявкам у вас нет — его открывает владелец сайта. <a href="/admin/vhod/">← Назад</a></p>'); }
 $csrf = $_SESSION['csrf'];
 $h = fn($s) => htmlspecialchars((string) $s, ENT_QUOTES, 'UTF-8');
 $STATUS = ['new' => 'Новая', 'work' => 'В работе', 'done' => 'Закрыта', 'spam' => 'Спам'];
@@ -26,24 +23,8 @@ $STATUS = ['new' => 'Новая', 'work' => 'В работе', 'done' => 'Зак
 function check_csrf(string $csrf): void {
   if (!hash_equals($csrf, (string) ($_POST['csrf'] ?? ''))) { http_response_code(400); exit('Обновите страницу и попробуйте снова.'); }
 }
-
-// Вход / выход
 $error = '';
-if (isset($_POST['logout'])) { check_csrf($csrf); $_SESSION = []; session_destroy(); header('Location: ./'); exit; }
-if (isset($_POST['password'])) {
-  check_csrf($csrf);
-  // защита от подбора: пауза растёт с числом неудачных попыток
-  $fails = (int) ($_SESSION['fails'] ?? 0);
-  sleep(min(8, $fails));
-  if ($hash !== '' && password_verify((string) $_POST['password'], $hash)) {
-    session_regenerate_id(true);
-    $_SESSION['auth'] = true; $_SESSION['fails'] = 0;
-    header('Location: ./'); exit;
-  }
-  $_SESSION['fails'] = $fails + 1;
-  $error = $hash === '' ? 'Пароль ещё не настроен (нет config.php).' : 'Неверный пароль.';
-}
-$authed = !empty($_SESSION['auth']);
+$authed = true;
 
 // Действия для вошедших
 if ($authed && isset($_POST['id'])) {
@@ -123,7 +104,7 @@ if ($authed && isset($_GET['csv'])) {
     <img src="/logo-light.svg" alt="Гидрология">
     <a href="/admin/">← Кабинет редактора</a>
     <a href="https://metrika.yandex.ru/dashboard?id=114014482" target="_blank" rel="noopener">Метрика ↗</a>
-    <form method="post"><input type="hidden" name="csrf" value="<?= $h($csrf) ?>"><button name="logout" value="1" style="background:#ffffff1a">Выйти</button></form>
+    <form method="post" action="/admin/vhod/"><input type="hidden" name="csrf" value="<?= $h($csrf) ?>"><button name="logout" value="1" style="background:#ffffff1a">Выйти</button></form>
   </header>
   <main>
     <h1>Заявки с сайта</h1>

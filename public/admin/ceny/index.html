@@ -36,13 +36,13 @@
 </head>
 <body>
 <main>
-  <a href="/admin/">← В кабинет</a>
+  <a href="/admin/vhod/">← Кабинет</a>
   <h1>Цены магазина</h1>
   <p class="lead">Обновление цен сразу у многих товаров: скачайте таблицу, поправьте цены в Excel и загрузите обратно. Остальное о товарах (фото, описания) правится в кабинете, в разделе «Магазин: товары».</p>
 
   <div id="login" class="card" hidden>
     <h2>Нужно войти в кабинет</h2>
-    <p>Откройте <a href="/admin/">кабинет</a>, войдите через GitHub и вернитесь сюда по ссылке «Магазин: цены из Excel».</p>
+    <p>Не удалось проверить вход. <a href="/admin/vhod/?to=/admin/ceny/">Войдите</a> и вернитесь сюда.</p>
   </div>
 
   <div id="app" hidden>
@@ -78,22 +78,24 @@
 (function () {
   var REPO = 'Gidrologia112/gidrologia-site', BRANCH = 'main', DIR = 'src/data/shop/products/';
   var $ = function (id) { return document.getElementById(id); };
-  var token = '';
-  try { var u = JSON.parse(localStorage.getItem('decap-cms-user') || localStorage.getItem('netlify-cms-user') || 'null'); token = u && u.token || ''; } catch (e) {}
-  if (!token) { $('login').hidden = false; return; }
-  $('app').hidden = false;
+  // Вход — общий для сотрудников (/admin/vhod/); GitHub — через посредника /admin/api/
+  var started = false;
+  fetch('/admin/vhod/?me=1', { credentials: 'same-origin', cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (me) {
+    if (!me.ok) { location.replace('/admin/vhod/?to=/admin/ceny/'); return; }
+    $('app').hidden = false; started = true;
+  }).catch(function () { $('login').hidden = false; });
 
   var cat = {}, changes = [];
   var rub = function (n) { return n ? n.toLocaleString('ru-RU') + ' ₽' : 'по запросу'; };
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
   var gh = function (path, opt) {
     opt = opt || {};
-    return fetch('https://api.github.com/repos/' + REPO + path, {
-      method: opt.method || 'GET',
-      headers: { Authorization: 'token ' + token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+    return fetch('/admin/api/repos/' + REPO + path, {
+      method: opt.method || 'GET', credentials: 'same-origin',
+      headers: { Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
       body: opt.body ? JSON.stringify(opt.body) : undefined,
     }).then(function (r) {
-      if (r.status === 401) throw new Error('Вход в кабинет устарел — откройте кабинет и войдите заново.');
+      if (r.status === 401) throw new Error('Вход устарел — войдите заново на странице «Вход для сотрудников».');
       if (!r.ok) throw new Error('GitHub ответил ошибкой ' + r.status + '.');
       return r.json();
     });

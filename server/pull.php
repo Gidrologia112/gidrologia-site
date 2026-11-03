@@ -56,7 +56,7 @@ function sync_config($dir, $target, &$state, $forceIt = false) {
   $cfgFile = $dir . '/config.php';
   if (!is_file($cfgFile) || !is_dir($target)) return false;
   $sig = md5_file($cfgFile);
-  if (!$forceIt && ($state['cfg'] ?? '') === $sig && is_file($target . '/admin/zayavki/config.php') && is_file($target . '/admin/oauth/config.php')) return false;
+  if (!$forceIt && ($state['cfg'] ?? '') === $sig && is_file($target . '/admin/zayavki/config.php') && is_file($target . '/admin/oauth/config.php') && is_file($target . '/admin/api/config.php')) return false;
   $cfg = include $cfgFile;
   if (!is_array($cfg)) { logmsg('config.php: ошибка в файле, настройки не применены'); return false; }
   @mkdir($target . '/admin/oauth', 0755, true);
@@ -64,12 +64,16 @@ function sync_config($dir, $target, &$state, $forceIt = false) {
   file_put_contents($target . '/admin/oauth/config.php', '<?php return ' . var_export([
     'client_id' => cfgval($cfg, 'oauth_client_id'), 'client_secret' => cfgval($cfg, 'oauth_client_secret'),
   ], true) . ";\n");
+  // Ключ GitHub для входа сотрудников по логину и паролю сайта (посредник /admin/api/)
+  @mkdir($target . '/admin/api', 0755, true);
+  file_put_contents($target . '/admin/api/config.php', '<?php return ' . var_export(['token' => cfgval($cfg, 'github_token')], true) . ";\n");
+  @chmod($target . '/admin/api/config.php', 0600);
   $pw = cfgval($cfg, 'zayavki_password');
   $old = is_file($target . '/admin/zayavki/config.php') ? (include $target . '/admin/zayavki/config.php') : [];
   $hash = ($pw !== '' && is_array($old) && !empty($old['password_hash']) && password_verify($pw, $old['password_hash'])) ? $old['password_hash'] : ($pw !== '' ? password_hash($pw, PASSWORD_DEFAULT) : '');
   file_put_contents($target . '/admin/zayavki/config.php', '<?php return ' . var_export(['password_hash' => $hash], true) . ";\n");
   $state['cfg'] = $sig;
-  logmsg('Настройки кабинета обновлены' . ($hash === '' ? ' (пароль заявок не задан — вход закрыт)' : '') . (cfgval($cfg, 'oauth_client_secret') === '' ? ' (секрет GitHub не задан — вход в /admin не заработает)' : ''));
+  logmsg('Настройки кабинета обновлены' . ($hash === '' ? ' (пароль заявок не задан — вход закрыт)' : '') . (cfgval($cfg, 'github_token') === '' ? ' (ключ github_token не задан — вход сотрудников по паролю не заработает)' : ''));
   return true;
 }
 function save_state($f, $state) { file_put_contents($f, json_encode($state, JSON_UNESCAPED_UNICODE)); }

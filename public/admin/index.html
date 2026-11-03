@@ -8,6 +8,7 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 </head>
 <body>
+  <script>window.CMS_MANUAL_INIT = true;</script>
   <script src="https://unpkg.com/decap-cms@3.17.1/dist/decap-cms.js"></script>
   <script>
     // Транслитерация заголовка в адрес страницы (Decap сам кириллицу не переводит)
@@ -39,6 +40,7 @@
     });
     // Ссылки в шапке кабинета
     if (CMS.registerAdditionalLink) {
+      CMS.registerAdditionalLink({ id: 'vhod', title: 'Сотрудники и выход', data: '/admin/vhod/', options: { icon: 'page' } });
       CMS.registerAdditionalLink({ id: 'zayavki', title: 'Заявки с сайта', data: '/admin/zayavki/', options: { icon: 'page' } });
       CMS.registerAdditionalLink({ id: 'ceny', title: 'Магазин: цены из Excel', data: '/admin/ceny/', options: { icon: 'page' } });
       CMS.registerAdditionalLink({ id: 'metrika', title: 'Метрика', data: 'https://metrika.yandex.ru/dashboard?id=114014482', options: { icon: 'page' } });
@@ -46,5 +48,21 @@
     }
   </script>
   <script src="/admin/cms-widgets.js?v=1"></script>
+  <script>
+    // Вход — логином и паролем сайта (/admin/vhod/). GitHub кабинет видит через посредника /admin/api/,
+    // ключ хранится на хостинге, поэтому в браузере вместо ключа — метка «staff».
+    fetch('/admin/vhod/?me=1', { credentials: 'same-origin', cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (me) {
+        if (!me.ok) {
+          try { localStorage.removeItem('decap-cms-user'); } catch (e) {}
+          location.replace('/admin/vhod/?to=/admin/');
+          return;
+        }
+        try { localStorage.setItem('decap-cms-user', JSON.stringify({ token: 'staff', backendName: 'github', login: me.login, name: me.name })); } catch (e) {}
+        CMS.init({ config: { backend: { api_root: location.origin + '/admin/api', base_url: location.origin } } });
+      })
+      .catch(function () { document.body.innerHTML = '<p style="font:16px system-ui;padding:40px">Не удалось открыть кабинет. Обновите страницу.</p>'; });
+  </script>
 </body>
 </html>

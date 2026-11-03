@@ -5,3 +5,7 @@ public/img/netcat/
 public/admin/oauth/config.php
 public/admin/zayavki/config.php
 .DS_Store
+public/admin/api/config.php
+public/lib/staff-data/
+gidrologia-zayavki/
+gidrologia-staff/

@@ -860,3 +860,11 @@ a:hover .arr, button:hover .arr { transform: translateX(5px); }
 .cart-form .note { color: var(--muted); font-size: 14px; line-height: 1.55; }
 .cart-form .form-msg.ok { color: #1D6B3A; }
 .cart-form .form-msg.err { color: #B3261E; }
+
+/* Значок кабинета для вошедших сотрудников: сбоку справа */
+.staff-fab { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 26; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 10px; background: var(--blue); color: #fff; border-radius: 14px 0 0 14px; text-decoration: none; font-size: 11px; font-weight: 600; letter-spacing: .02em; box-shadow: 0 8px 24px rgba(5,22,29,.25); transition: padding .2s ease, background .2s ease; }
+.staff-fab[hidden] { display: none; }
+.staff-fab:hover, .staff-fab:focus-visible { padding-right: 16px; background: var(--blue-text); }
+.staff-fab span { writing-mode: vertical-rl; transform: rotate(180deg); }
+@media (max-width: 960px) { .staff-fab { top: auto; bottom: 110px; padding: 12px 8px; } }
+@media print { .staff-fab { display: none !important; } }

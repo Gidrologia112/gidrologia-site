@@ -13,7 +13,9 @@ header('Cache-Control: no-store');
 $cfg = is_file(__DIR__ . '/config.php') ? require __DIR__ . '/config.php' : [];
 $clientId = $cfg['client_id'] ?? '';
 $secret   = $cfg['client_secret'] ?? '';
-$origin   = 'https://gidrologia.ru';
+$host     = in_array($_SERVER['HTTP_HOST'] ?? '', ['gidrologia.ru', 'new.gidrologia.ru'], true) ? $_SERVER['HTTP_HOST'] : 'gidrologia.ru';
+require_once __DIR__ . '/../../lib/staff.php';
+$origin   = (staff_https() ? 'https' : 'http') . '://' . $host;
 $self     = $origin . '/admin/oauth/auth.php';
 
 function done(string $status, array $content, string $origin): void {
@@ -34,6 +36,14 @@ function done(string $status, array $content, string $origin): void {
     window.opener.postMessage('authorizing:github', $originJs);
   })();
   </script>";
+  exit;
+}
+
+// Основной вход — логином и паролем сайта: кабинет работает через посредника /admin/api/ (ключ на хостинге)
+$api = is_file(__DIR__ . '/../api/config.php') ? (include __DIR__ . '/../api/config.php') : [];
+if (is_array($api) && !empty($api['token'])) {
+  if (staff_user()) done('success', ['token' => 'staff', 'provider' => 'github'], $origin);
+  header('Location: /admin/vhod/?to=/admin/', true, 302);
   exit;
 }
 
