@@ -185,6 +185,7 @@ function initForm() {
     $('[data-ft-label]', wrap).textContent = modes[i].label;
     $('[data-ft-btn]', wrap).textContent = modes[i].btn;
     $('[data-ft-file]', wrap).hidden = i !== 1;
+    const tzn = $('[data-ft-file2]', wrap); if (tzn) tzn.hidden = i !== 1;
   };
   $$('[data-ft]', wrap).forEach((b) => b.addEventListener('click', () => setMode(Number(b.dataset.ft))));
   if (location.hash === '#tz' || wrap.dataset.formStart === '1') setMode(1);

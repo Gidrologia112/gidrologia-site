@@ -13,7 +13,7 @@ const isActive = (href: string) => href !== '/' && !href.startsWith('/#') && pat
       <a href={L.shop} aria-current={path.startsWith("/magazin/") ? "page" : undefined}>Магазин</a>
     </nav>
     <div class="hdr-cta">
-      <div class="hdr-phone"><a href={c.phoneSpbHref}>{c.phoneSpb}</a><span>{c.hours}</span></div>
+      <div class="hdr-phone"><div class="hdr-tels"><a href={c.phoneSpbHref}>{c.phoneSpb}</a><a href={c.phoneRuHref}>{c.phoneRu}</a></div><span>{c.hours}</span></div>
       <a href="/kontakty/#form" class="btn btn-light" style="min-height:44px;padding:0 20px;font-size:14px">Обсудить проект</a>
     </div>
     <button type="button" class="burger" data-menu-open aria-label="Открыть меню" aria-controls="mnav" aria-expanded="false">
@@ -35,8 +35,7 @@ const isActive = (href: string) => href !== '/' && !href.startsWith('/#') && pat
   <div class="mnav-extra">
     <a href={L.shop} aria-current={path.startsWith("/magazin/") ? "page" : undefined}>Магазин</a>
     <a href={L.evaporation}>Калькулятор испарения</a>
-    <a href={L.gallery}>Галерея</a>
-    <a href={L.video}>Видео</a>
+    <a href={L.forum}>Форум</a>
   </div>
   <div class="mnav-contacts">
     <a href={c.phoneSpbHref}>{c.phoneSpb}</a>

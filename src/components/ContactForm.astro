@@ -16,6 +16,7 @@ const { tz = false } = Astro.props;
     <label class="fld"><span data-ft-label>{tz ? 'Кратко о техническом задании' : 'Расскажите об участке и задаче'}</span><textarea name="message" rows="3" maxlength="3000"></textarea></label>
     <label class="fld-file" data-ft-file hidden={!tz}>Файл ТЗ, план участка или эскиз (PDF, DOC, JPG, PNG, до 10 МБ)<input type="file" name="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"></label>
     <label class="consent"><input type="checkbox" name="consent" value="1" required><span>Даю <a href="/soglasie/" target="_blank">согласие на обработку персональных данных</a> и ознакомлен с&nbsp;<a href={site.links.privacy} target="_blank">политикой конфиденциальности</a></span></label>
+    <p class="tz-note" data-ft-file2 hidden={!tz}><a href={site.links.tz}>Как составить техническое задание — форма подачи ТЗ</a></p>
     <button type="submit" class="btn btn-light" data-ft-btn>{tz ? 'Отправить ТЗ на расчёт' : 'Отправить заявку'}</button>
     <p class="form-msg" role="status" data-form-msg></p>
   </form>

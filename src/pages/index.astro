@@ -21,7 +21,7 @@ const CITY_RX: Record<string, RegExp> = {
   'Санкт-Петербург': /Петербург|СПб|Ленинградск|Токсов/i, 'Москва': /Москв|Подмосков|Хрущ[её]в/i, 'Нижний Новгород': /Нижн\S* Новгород/i,
   'Казань': /Казан/i, 'Киров': /Киров/i, 'Уфа': /\bУф[аеуы]\b/i, 'Екатеринбург': /Екатеринбург/i, 'Валдай': /Валда|ЭВО/i, 'Псков': /Псков/i,
   'Кортела': /Кортел|Карели/i, 'Калуга': /Калуг|Калужск/i, 'Рязань': /Рязан/i, 'Белгород': /Белгород/i, 'Челябинск': /Челябинск/i,
-  'Беларусь, Германия': /Беларус|Белорус|Минск|Герман/i,
+  'Белоруссия': /Беларус|Белорус|Минск|Герман/i,
 };
 const allPosts = [...kbPosts.map((p) => ({ p, base: '/publikatsii/' })), ...(await getEvents()).map((p) => ({ p, base: '/sobytiya/' }))];
 const cities = site.cities.map((ct) => {
@@ -47,7 +47,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
     <p class="lbl rise">Водные объекты в ландшафте · с {site.since} года</p>
     <h1 class="h t-h1 rise r2">Вода, которая становится <span class="acc">частью вашего участка</span></h1>
     <div class="hero-row rise r3">
-      <p>Проектируем, строим и обслуживаем под ключ: плавательные водоёмы, живые бассейны, пруды, ручьи, каскады и фонтаны.</p>
+      <p>Проектируем, строим под ключ и обслуживаем: плавательные водоёмы, живые бассейны, пруды, ручьи, каскады и фонтаны.</p>
       <div class="btns">
         <a href="#contact" class="btn btn-light">Обсудить проект</a>
         <a href="#objects" class="btn btn-ghost">Смотреть объекты</a>
@@ -71,7 +71,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
     <div class="g-about rv">
       <p class="lbl" style="margin-top:10px">01 — О нас</p>
       <div>
-        <p class="h t-st">Мы — одна из немногих профильных компаний ландшафтного рынка России. Наш профиль — водные объекты: водоёмы и&nbsp;ручьи, бассейны и&nbsp;каскады, водопады и&nbsp;фонтаны. <span class="acc">Это всё мы умеем и&nbsp;любим делать.</span></p>
+        <p class="h t-st">Мы — профильная компания ландшафтного рынка России. Наша специализация — водные объекты: водоёмы, ручьи, бассейны, каскады, водопады, фонтаны. <span class="acc">Это всё мы умеем и&nbsp;любим делать.</span></p>
         <div class="g-nums">
           {site.stats.map((s) => <div><div class="h t-num">{s.value}{s.suffix && <span class="acc">{s.suffix}</span>}</div><p>{s.text}</p></div>)}
         </div>
@@ -101,7 +101,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
         <p class="lbl">02 — География</p>
         <h2 class="h t-h2">От Невы <span class="acc">до&nbsp;Урала</span></h2>
       </div>
-      <p class="lead">Базируемся в Санкт-Петербурге, строим по всей России. Нажмите на город, чтобы узнать, что мы там делали.</p>
+      <p class="lead">Базируемся в Санкт-Петербурге, учебный центр на Валдае, строим по всей России. Нажмите на город, чтобы узнать, что мы там делали.</p>
     </div>
     <div class="g-geo rv" data-geo>
       <div>
@@ -221,7 +221,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
     <div class="cmp-wrap rv">
       <div class="hd-row" style="margin-bottom:32px">
         <h3 class="h t-h3">Бассейн или <span class="acc">плавательный водоём?</span></h3>
-        <p class="lead">Строим и то и другое, поэтому сравниваем честно.</p>
+        <p class="lead">Сравниваем честно, чтобы вам было проще выбрать.</p>
       </div>
       <div class="cmp" role="table" aria-label="Сравнение бассейна и плавательного водоёма">
         <div class="k" role="columnheader"><span class="sr">Параметр</span></div><div class="hd" role="columnheader">Классический бассейн</div><div class="hd hl" role="columnheader">Плавательный водоём</div>
@@ -272,13 +272,16 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
         </a>
       ))}
     </div>
-    <div class="gal rv">
+    <div class="gv rv">
+      <a href={L.gallery} class="gv-card"><b class="h">Галерея</b><span>15 разделов: плавательные водоёмы, живые бассейны, фонтаны, эскизы и проекты</span><i aria-hidden="true">→</i></a>
+      <a href={L.video} class="gv-card"><b class="h">Видео</b><span>14 разделов: от купелей до зелёных кровель</span><i aria-hidden="true">→</i></a>
+    </div>
+    <div class="gal rv" style="margin-top:28px">
       <div class="chips">
-        <span class="gal-l">Галерея:</span>
+        <span class="gal-l">Разделы галереи:</span>
         {site.galleryChips.map((g) => <a class="chip" href={L.gallery}>{g}</a>)}
         <a class="chip" href={L.gallery}>Все 15 разделов →</a>
       </div>
-      <a href={L.video} class="more">Видео: 14 разделов →</a>
     </div>
   </div>
 </section>
@@ -293,8 +296,13 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
         <p class="lbl">Как мы работаем</p>
         <h2 class="h t-h2">От идеи <span class="acc">до&nbsp;первого купания</span></h2>
       </div>
-      <a href="#contact" class="more" data-form-tab="1">Отправить техническое задание →</a>
     </div>
+    <a href="#contact" class="tz-cta rv" data-form-tab="1">
+      <div class="tz-img"><Photo src="/img/netcat/userfiles/hru001.jpg" alt="Эскиз водоёма" label="" tone="#0A2A36" /></div>
+      <span class="tz-txt"><b class="h">Отправить техническое задание</b><span>Опишите участок и пожелания, приложите план или фото — рассчитаем проект и стоимость.</span></span>
+      <span class="tz-go" aria-hidden="true">→</span>
+    </a>
+    <p class="tz-how rv"><a href={L.tz}>Как составить техническое задание — форма подачи ТЗ</a></p>
     <ol class="g-proc rv">
       {site.process.map((p, i) => <li><div class="h">{pad2(i + 1)}</div><div><b>{p.title}</b><p>{p.text}</p></div></li>)}
     </ol>
@@ -314,7 +322,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
         <p class="lbl">05 — Сообщество</p>
         <h2 class="h t-h2">Знаем о воде больше, <span class="acc">чем видно с&nbsp;берега</span></h2>
       </div>
-      <p class="lead">Статьи, ответы инженеров и дневники строек. Опыт, который 12 лет копился на нашем форуме — 400+ тем и около 2 700 ответов, — собран в одном месте.</p>
+      <p class="lead">Статьи и дневники строек. Опыт, который 12 лет копился на нашем форуме — 400+ тем и около 2 700 сообщений, — собран в одном месте.</p>
     </div>
     <div class="g-comm rv">
       <div data-kb>
@@ -346,12 +354,13 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
           <p class="lbl">Вопрос — ответ</p>
           <div class="h" style="margin-top:8px;font-size:20px;line-height:1.3">Нужна ли химия в плавательном водоёме?</div>
           <p>Нет. Воду очищают водные растения и прудовые бактерии в зоне регенерации.</p>
-          <a href={L.publications} class="more" style="display:inline-block;margin-top:10px;font-size:14px">Все вопросы →</a>
+          <a href={L.publications} class="more" style="display:inline-block;margin-top:10px;font-size:14px">Читать в базе знаний →</a>
         </div>
       </div>
     </div>
     <div class="g-tools rv">
       <a href={L.evaporation} class="on"><b>Калькулятор испарения</b><span>Потери воды за день и месяц по площади и температуре воды</span></a>
+      <a href={L.forum}><b>Форум</b><span>400+ тем: объекты, дневники строек, обсуждения</span></a>
       <a href="#contact" data-form-tab="1"><b>Подать ТЗ</b><span>Форма для расчёта проекта и стоимости водоёма</span></a>
       <a href={L.video}><b>Видео</b><span>14 разделов: от купелей до зелёных кровель</span></a>
       <a href={L.shop}><b>Магазин</b><span>Оборудование для искусственных водоёмов</span></a>
@@ -367,12 +376,12 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
     <div class="rv">
       <p class="lbl">06 — Учебный центр ЭВО</p>
       <h2 class="h t-h2">Мы учим <span class="acc">других</span></h2>
-      <p class="lead" style="margin-top:24px;font-size:17px;max-width:none">Учебно-выставочный центр «ЭВО» — практические и теоретические семинары для ландшафтных компаний. Проводили их в Санкт-Петербурге, Москве, Казани и Киеве.</p>
+      <p class="lead" style="margin-top:24px;font-size:17px;max-width:none">Учебно-выставочный центр «ЭВО» — практические и теоретические семинары для ландшафтных компаний. Проводили их в Санкт-Петербурге, Москве, Казани, Киеве и на Валдае.</p>
       <div class="evo-nums">
         <div><div class="h">50+</div><span>семинаров</span></div>
         <div><div class="h">4</div><span>летних семинара в 2026</span></div>
       </div>
-      <div class="evo-addr">{site.evo.address}</div>
+      <div class="evo-addr"><b>Учебный центр «ЭВО»:</b> {site.evo.address}</div>
       <a href={L.evo} target="_blank" rel="noopener" class="btn btn-light" style="margin-top:28px">Сайт ЭВО ↗</a>
     </div>
     <div class="rv">

@@ -15,7 +15,7 @@ export function mapPos(lat: number, lon: number): [number, number] {
 // Подписи стран, морей, озёр и рек: k = c (страна), big (Россия), w (вода)
 export const mapLabels: { t: string; k: 'c' | 'big' | 'w'; lat: number; lon: number }[] = [
   { t: 'ФИНЛЯНДИЯ', k: 'c', lat: 61.9, lon: 27.6 }, { t: 'ЭСТОНИЯ', k: 'c', lat: 58.75, lon: 26.2 },
-  { t: 'ЛАТВИЯ', k: 'c', lat: 56.95, lon: 26.6 }, { t: 'БЕЛАРУСЬ', k: 'c', lat: 53.0, lon: 28.6 },
+  { t: 'ЛАТВИЯ', k: 'c', lat: 56.95, lon: 26.6 }, { t: 'БЕЛОРУССИЯ', k: 'c', lat: 53.0, lon: 28.6 },
   { t: 'УКРАИНА', k: 'c', lat: 50.25, lon: 33.0 }, { t: 'КАЗАХСТАН', k: 'c', lat: 50.4, lon: 56.5 },
   { t: 'РОССИЯ', k: 'big', lat: 59.6, lon: 43.5 },
   { t: 'Финский залив', k: 'w', lat: 59.72, lon: 26.4 }, { t: 'Ладожское оз.', k: 'w', lat: 60.62, lon: 31.0 },
