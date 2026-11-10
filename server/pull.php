@@ -2,23 +2,27 @@
 /**
  * Выкладка нового сайта на Timeweb «изнутри»: хостинг сам забирает свежую сборку из GitHub.
  *
- * Как работает: GitHub Actions собирает сайт и кладёт готовые файлы в ветку `deploy`.
- * Этот скрипт по расписанию (Crontab в панели Timeweb, раз в 2 минуты) проверяет, не появилась ли
- * новая сборка, скачивает её и раскладывает в папку сайта. Удаляет только те файлы, которые сам
- * когда-то выложил и которых больше нет в сборке; фото, видео, заявки и настройки не трогает.
+ * Как работает: GitHub Actions собирает сайт и сам отправляет его по FTP в ~/deploy/incoming/
+ * (build.zip + build.sha + списки фото + свежий pull.php). Этот скрипт по расписанию (Crontab в панели
+ * Timeweb, раз в 3 минуты) находит новую сборку и раскладывает её в папку сайта. Хостингу не нужно
+ * ходить в GitHub (из России GitHub бывает недоступен). Запасной путь — забрать ветку `deploy`
+ * с GitHub самому: php pull.php --github.
+ * Удаляет только те файлы, которые сам когда-то выложил и которых больше нет в сборке;
+ * фото, видео, заявки и настройки не трогает.
  *
  * Лежит вне папки сайта: ~/deploy/pull.php, рядом config.php (секреты), state.json, log.txt.
- * Запуск вручную (для проверки): php ~/deploy/pull.php --force
+ * Запуск вручную (для проверки): php ~/deploy/pull.php --force  (или --github — забрать с GitHub)
  */
 const REPO   = 'Gidrologia112/gidrologia-site';
 const BRANCH = 'deploy';
 // Пути, которые выкладка никогда не трогает (живут только на хостинге)
-const KEEP = ['img/netcat/', 'forum/files/', 'netcat_files/', 'lib/leads-data/', 'admin/oauth/config.php', 'admin/zayavki/config.php', '.well-known/'];
+const KEEP = ['img/netcat/', 'forum/files/', 'netcat_files/', 'lib/leads-data/', 'lib/staff-data/', 'admin/oauth/config.php', 'admin/zayavki/config.php', 'admin/api/config.php', '.well-known/'];
 
 date_default_timezone_set('Europe/Moscow');
 $dir    = __DIR__;
 $target = isset($argv) && in_array('--target', $argv, true) ? $argv[array_search('--target', $argv, true) + 1] : dirname($dir) . '/gidrologia-new/public_html';
 $force  = isset($argv) && in_array('--force', $argv, true);
+$viaGh  = isset($argv) && in_array('--github', $argv, true);
 if (PHP_SAPI !== 'cli') { http_response_code(403); exit; }
 
 function logmsg($s) {
@@ -28,7 +32,7 @@ function logmsg($s) {
 }
 function http_get($url, $headers = [], $toFile = null) {
   $ch = curl_init($url);
-  $opts = [CURLOPT_RETURNTRANSFER => $toFile === null, CURLOPT_FOLLOWLOCATION => true, CURLOPT_TIMEOUT => 300,
+  $opts = [CURLOPT_RETURNTRANSFER => $toFile === null, CURLOPT_FOLLOWLOCATION => true, CURLOPT_CONNECTTIMEOUT => 20, CURLOPT_TIMEOUT => 300,
            CURLOPT_HTTPHEADER => array_merge(['User-Agent: gidrologia-deploy'], $headers), CURLOPT_HEADER => false];
   $fh = null;
   if ($toFile !== null) { $fh = fopen($toFile, 'wb'); $opts[CURLOPT_FILE] = $fh; }
@@ -84,10 +88,18 @@ const MEDIA_EXT = ['jpg','jpeg','png','gif','webp','bmp','mp4','flv','avi','wmv'
 function copy_media($dir, $target) {
   $old = dirname($dir) . '/public_html';
   if (!is_dir($old) || !is_dir($target)) return;
-  $base = 'https://raw.githubusercontent.com/' . REPO . '/main/import/';
-  [$c1, $tsv] = http_get($base . 'files-to-copy.tsv');
-  [$c2, $refs] = http_get($base . 'media-refs.txt');
-  if ($c1 !== 200 || $c2 !== 200) return;
+  // Списки приходят вместе со сборкой (~/deploy/import/); с GitHub — только в режиме --github
+  $loc = $dir . '/import/';
+  if (is_file($loc . 'files-to-copy.tsv') && is_file($loc . 'media-refs.txt')) {
+    $tsv = file_get_contents($loc . 'files-to-copy.tsv'); $refs = file_get_contents($loc . 'media-refs.txt');
+  } else {
+    global $viaGh;
+    if (!$viaGh) return;
+    $base = 'https://raw.githubusercontent.com/' . REPO . '/main/import/';
+    [$c1, $tsv] = http_get($base . 'files-to-copy.tsv');
+    [$c2, $refs] = http_get($base . 'media-refs.txt');
+    if ($c1 !== 200 || $c2 !== 200) return;
+  }
   $sig = md5($tsv . $refs);
   $doneFile = $dir . '/media.done';
   if (is_file($doneFile) && trim(file_get_contents($doneFile)) === $sig) return;
@@ -132,24 +144,38 @@ $stateFile = $dir . '/state.json';
 $state = is_file($stateFile) ? json_decode(file_get_contents($stateFile), true) : [];
 if (!is_array($state)) $state = [];
 
-// 1. Какая сборка последняя
-[$code, $body, $err] = http_get('https://api.github.com/repos/' . REPO . '/commits/' . BRANCH, ['Accept: application/vnd.github.sha']);
-if ($code !== 200 || !preg_match('/^[0-9a-f]{40}$/', trim((string) $body))) { logmsg("Не удалось узнать версию: HTTP $code $err"); exit(1); }
-$sha = trim($body);
-if (!$force && ($state['sha'] ?? '') === $sha) {
+// 1. Есть ли новая сборка: сначала то, что прислал GitHub по FTP, иначе (только с --github) — с самого GitHub
+$inbox = $dir . '/incoming';
+$zip = $dir . '/build.zip';
+$tmp = $dir . '/tmp';
+if (is_file($inbox . '/build.zip') && is_file($inbox . '/build.sha')) {
+  $sha = trim((string) file_get_contents($inbox . '/build.sha'));
+  if (!preg_match('/^[0-9a-f]{40}$/', $sha)) { logmsg('В incoming/build.sha неверная версия — сборка пропущена'); @unlink($inbox . '/build.sha'); exit(1); }
+  @unlink($zip);
+  if (!rename($inbox . '/build.zip', $zip)) { logmsg('Не удалось забрать incoming/build.zip'); exit(1); }
+  @unlink($inbox . '/build.sha');
+  // Списки фото старого сайта для копирования
+  @mkdir($dir . '/import', 0755, true);
+  foreach (['files-to-copy.tsv', 'media-refs.txt'] as $f) if (is_file($inbox . '/' . $f)) rename($inbox . '/' . $f, $dir . '/import/' . $f);
+  if (!$force && ($state['sha'] ?? '') === $sha) { @unlink($zip); if (sync_config($dir, $target, $state)) save_state($stateFile, $state); copy_media($dir, $target); exit(0); }
+} elseif ($viaGh) {
+  [$code, $body, $err] = http_get('https://api.github.com/repos/' . REPO . '/commits/' . BRANCH, ['Accept: application/vnd.github.sha']);
+  if ($code !== 200 || !preg_match('/^[0-9a-f]{40}$/', trim((string) $body))) { logmsg("Не удалось узнать версию: HTTP $code $err"); exit(1); }
+  $sha = trim($body);
+  if (!$force && ($state['sha'] ?? '') === $sha) { if (sync_config($dir, $target, $state)) save_state($stateFile, $state); copy_media($dir, $target); exit(0); }
+  [$code, , $err] = http_get('https://codeload.github.com/' . REPO . '/zip/' . $sha, [], $zip);
+  if ($code !== 200 || filesize($zip) < 1000) { logmsg("Не удалось скачать сборку $sha: HTTP $code $err"); exit(1); }
+} else {
+  // Новой сборки нет: только применить изменения config.php и докопировать фото
   if (sync_config($dir, $target, $state)) save_state($stateFile, $state);
   copy_media($dir, $target);
   exit(0);
 }
 
-// 2. Скачиваем архив сборки
-$zip = $dir . '/build.zip';
-[$code, , $err] = http_get('https://codeload.github.com/' . REPO . '/zip/' . $sha, [], $zip);
-if ($code !== 200 || filesize($zip) < 1000) { logmsg("Не удалось скачать сборку $sha: HTTP $code $err"); exit(1); }
-$tmp = $dir . '/tmp';
+// 2. Распаковываем
 rrmdir($tmp);
 $za = new ZipArchive();
-if ($za->open($zip) !== true || !$za->extractTo($tmp)) { logmsg('Архив сборки повреждён'); exit(1); }
+if ($za->open($zip) !== true || !$za->extractTo($tmp)) { logmsg('Архив сборки повреждён'); @unlink($zip); exit(1); }
 $za->close();
 @unlink($zip);
 $roots = glob($tmp . '/*', GLOB_ONLYDIR);

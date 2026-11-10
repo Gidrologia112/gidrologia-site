@@ -1,6 +1,9 @@
 # Сборка сайта при каждом изменении (в том числе из кабинета редактора).
-# Готовые файлы кладутся в ветку `deploy`; хостинг Timeweb сам забирает их оттуда
-# (server/pull.php по расписанию Crontab). Пароли и ключи в сборку не попадают.
+# Готовая сборка отправляется на Timeweb по FTP с шифрованием (FTPS, сертификат проверяется)
+# в ~/deploy/incoming/, там её раскладывает server/pull.php по расписанию Crontab. Хостингу не нужно
+# ходить в GitHub (из России он бывает недоступен). Копия сборки по-прежнему кладётся в ветку `deploy`
+# (запасной путь: php pull.php --github). Пароли и ключи в сборку не попадают;
+# доступ FTP — в секретах репозитория FTP_HOST, FTP_USER, FTP_PASSWORD.
 name: Сборка и выкладка
 
 on:
@@ -46,3 +49,36 @@ jobs:
           git add -A
           git commit -qm "Сборка ${GITHUB_SHA::7}"
           git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" deploy
+
+      - name: Отправка сборки на Timeweb (FTPS)
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          if [ -z "$FTP_HOST" ] || [ -z "$FTP_USER" ] || [ -z "$FTP_PASSWORD" ]; then
+            echo "::warning::Секреты FTP не заданы — сборка не отправлена на хостинг"; exit 0
+          fi
+          sudo apt-get install -y -qq lftp >/dev/null
+          mkdir -p pkg/site && cp -r dist/. pkg/site/
+          (cd pkg && zip -qr ../build.zip site)
+          echo "$GITHUB_SHA" > build.sha
+          # Пользователь FTP ограничен папкой ~/deploy/incoming: всё кладём в его корень.
+          # Сначала под временными именами, потом переименовываем — хостинг не увидит недокачанный файл.
+          lftp -u "$FTP_USER,$FTP_PASSWORD" "$FTP_HOST" <<'LFTP'
+          set cmd:fail-exit yes
+          set net:timeout 30
+          set net:max-retries 3
+          set ftp:ssl-force yes
+          set ftp:ssl-protect-data yes
+          set ssl:verify-certificate yes
+          put import/files-to-copy.tsv -o files-to-copy.tsv
+          put import/media-refs.txt -o media-refs.txt
+          put server/pull.php -o pull.php.part
+          mv pull.php.part pull.php
+          put build.sha -o build.sha
+          put build.zip -o build.zip.part
+          mv build.zip.part build.zip
+          bye
+          LFTP
+          echo "Сборка ${GITHUB_SHA::7} отправлена, хостинг выложит её в течение 3 минут"
