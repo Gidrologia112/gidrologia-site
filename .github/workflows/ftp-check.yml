@@ -1,17 +1,16 @@
-# Разовая проверка связи GitHub → Timeweb по FTP (без пароля): доступен ли порт, какой сертификат.
-name: Проверка FTP Timeweb
+# Разовая проверка связи GitHub → Timeweb (без паролей): какие порты и адреса доступны из-за рубежа.
+name: Проверка связи с Timeweb
 on: workflow_dispatch
 jobs:
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Адрес и порт
+      - name: Порты
         run: |
-          getent ahostsv4 vh432.timeweb.ru | head -1 || true
-          timeout 15 bash -c 'echo > /dev/tcp/92.53.96.140/21' && echo "IPv4 порт 21 открыт" || echo "IPv4 порт 21 недоступен"
-      - name: Приветствие и TLS
+          for p in 21 22 80 443; do timeout 10 bash -c "echo > /dev/tcp/92.53.96.140/$p" 2>/dev/null && echo "vh432 порт $p открыт" || echo "vh432 порт $p недоступен"; done
+      - name: Сайты по HTTP(S)
         run: |
-          timeout 20 openssl s_client -starttls ftp -4 -connect vh432.timeweb.ru:21 -servername vh432.timeweb.ru </dev/null 2>&1 \
-            | grep -E "^(CONNECTED|depth|verify|subject|issuer)|Verify return code|DNS:|errno|didn't|unexpected" | head -20 || true
-          timeout 20 openssl s_client -starttls ftp -4 -connect vh432.timeweb.ru:21 </dev/null 2>/dev/null | openssl x509 -noout -subject -ext subjectAltName -enddate 2>/dev/null | head -5 || true
+          for u in http://new.gidrologia.ru/ https://gidrologia.ru/ https://hosting.timeweb.ru/ https://timeweb.com/; do
+            printf "%s " "$u"; curl -4 -s -o /dev/null -m 15 -w "%{http_code} %{remote_ip}\n" "$u" || echo "нет ответа"
+          done
