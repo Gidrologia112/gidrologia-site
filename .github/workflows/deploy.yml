@@ -3,7 +3,8 @@
 # в ~/deploy/incoming/, там её раскладывает server/pull.php по расписанию Crontab. Хостингу не нужно
 # ходить в GitHub (из России он бывает недоступен). Копия сборки по-прежнему кладётся в ветку `deploy`
 # (запасной путь: php pull.php --github). Пароли и ключи в сборку не попадают;
-# доступ FTP — в секретах репозитория FTP_HOST, FTP_USER, FTP_PASSWORD.
+# FTP: сервер vh432.timeweb.ru, пользователь co66690_deploy (в панели ограничен папкой ~/deploy/incoming,
+# без доступа к панели); пароль — секрет репозитория FTP_PASSWORD.
 name: Сборка и выкладка
 
 on:
@@ -52,12 +53,12 @@ jobs:
 
       - name: Отправка сборки на Timeweb (FTPS)
         env:
-          FTP_HOST: ${{ secrets.FTP_HOST }}
-          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_HOST: vh432.timeweb.ru
+          FTP_USER: co66690_deploy
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
-          if [ -z "$FTP_HOST" ] || [ -z "$FTP_USER" ] || [ -z "$FTP_PASSWORD" ]; then
-            echo "::warning::Секреты FTP не заданы — сборка не отправлена на хостинг"; exit 0
+          if [ -z "$FTP_PASSWORD" ]; then
+            echo "::warning::Секрет FTP_PASSWORD не задан — сборка не отправлена на хостинг"; exit 0
           fi
           sudo apt-get install -y -qq lftp >/dev/null
           mkdir -p pkg/site && cp -r dist/. pkg/site/
