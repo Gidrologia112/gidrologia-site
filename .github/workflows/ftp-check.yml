@@ -8,10 +8,10 @@ jobs:
     steps:
       - name: Адрес и порт
         run: |
-          getent hosts vh432.timeweb.ru || true
-          timeout 15 bash -c 'echo > /dev/tcp/vh432.timeweb.ru/21' && echo "порт 21 открыт" || echo "порт 21 недоступен"
+          getent ahostsv4 vh432.timeweb.ru | head -1 || true
+          timeout 15 bash -c 'echo > /dev/tcp/92.53.96.140/21' && echo "IPv4 порт 21 открыт" || echo "IPv4 порт 21 недоступен"
       - name: Приветствие и TLS
         run: |
-          timeout 20 openssl s_client -starttls ftp -connect vh432.timeweb.ru:21 -servername vh432.timeweb.ru </dev/null 2>&1 \
+          timeout 20 openssl s_client -starttls ftp -4 -connect vh432.timeweb.ru:21 -servername vh432.timeweb.ru </dev/null 2>&1 \
             | grep -E "^(CONNECTED|depth|verify|subject|issuer)|Verify return code|DNS:|errno|didn't|unexpected" | head -20 || true
-          timeout 20 openssl s_client -starttls ftp -connect vh432.timeweb.ru:21 </dev/null 2>/dev/null | openssl x509 -noout -subject -ext subjectAltName -enddate 2>/dev/null | head -5 || true
+          timeout 20 openssl s_client -starttls ftp -4 -connect vh432.timeweb.ru:21 </dev/null 2>/dev/null | openssl x509 -noout -subject -ext subjectAltName -enddate 2>/dev/null | head -5 || true
