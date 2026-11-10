@@ -52,6 +52,9 @@ jobs:
           git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" deploy
 
       - name: Отправка сборки на Timeweb (FTPS)
+        # Сервер Timeweb vh432 с 3 ноября недоступен из-за рубежа — ошибка отправки не роняет сборку
+        continue-on-error: true
+        timeout-minutes: 5
         env:
           FTP_HOST: vh432.timeweb.ru
           FTP_USER: co66690_deploy
