@@ -259,7 +259,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
           {site.case.steps.map((s, i) => <button type="button" role="tab" id={`cs-t${i}`} aria-controls={`cs-p${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{s.label}</button>)}
         </div>
         {site.case.steps.map((s, i) => <p class="case-text" role="tabpanel" id={`cs-p${i}`} aria-labelledby={`cs-t${i}`} hidden={i !== 0}>{s.text}</p>)}
-        <dl class="case-facts">{site.case.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>
+        {site.case.facts.length > 0 && <dl class="case-facts">{site.case.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>}
         <a href={site.case.href} class="btn btn-light">Читать историю объекта</a>
       </div>
     </div>
