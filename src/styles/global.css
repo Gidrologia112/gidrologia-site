@@ -903,3 +903,21 @@ a:hover .arr, button:hover .arr { transform: translateX(5px); }
   .tz-go { display: none; }
   .tz-txt { padding: 0 8px; }
 }
+
+/* Галерея: сетка объектов раздела (обложка + название), страница объекта */
+.gal-objects { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 28px 16px; }
+.gal-obj { display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: inherit; }
+.gal-obj .ph { aspect-ratio: 4/3; border-radius: 12px; overflow: hidden; }
+.gal-obj .ph img { transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.gal-obj:hover .ph img, .gal-obj:focus-visible .ph img { transform: scale(1.04); }
+.gal-obj-t { font-weight: 600; font-size: 16px; line-height: 1.35; }
+.gal-obj:hover .gal-obj-t { color: var(--blue-text, #0a6aa1); }
+.gal-obj-n { font-size: 13px; color: var(--muted); margin-top: -6px; }
+.gal-pn { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line, #DAD5CC); }
+.gal-pn a { display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: inherit; }
+.gal-pn a.r { text-align: right; }
+.gal-pn span { font-size: 13px; color: var(--muted); }
+.gal-pn b { font-size: 17px; }
+.gal-pn a:hover b { color: var(--blue-text, #0a6aa1); }
+@media (max-width: 960px) { .gal-objects { grid-template-columns: repeat(3,minmax(0,1fr)); } }
+@media (max-width: 640px) { .gal-objects { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px 12px; } .gal-obj-t { font-size: 14px; } .gal-pn b { font-size: 15px; } }

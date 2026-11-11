@@ -15,7 +15,7 @@ const html = (p as { html?: string }).html || '';
 ---
 <Page
   title={`${p.title} — проект | Гидрология`}
-  description={`${p.kind}: ${p.place}. Эскиз, визуализация и проект строительства от «Гидрологии».`}
+  description={`${p.kind}: ${p.place}. Эскиз и проект строительства от «Гидрологии».`}
   path={`/proekty/${p.slug}/`} label={`${p.kind} · ${p.place}`} h1={p.title}
   crumbs={[{ label: 'Объекты', href: '/proekty/' }, { label: p.title }]}
 >

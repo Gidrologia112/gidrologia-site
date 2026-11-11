@@ -1,5 +1,6 @@
 ---
 import { video } from '../../lib/data';
+import site from '../../data/site.json';
 import Page from '../../layouts/Page.astro';
 import CtaBlock from '../../components/CtaBlock.astro';
 const count = (h = '') => (h.match(/<iframe|<video/g) || []).length;
@@ -13,6 +14,7 @@ const count = (h = '') => (h.match(/<iframe|<video/g) || []).length;
 >
   <section>
     <div class="w sec-sm">
+      <p style="margin:0 0 32px"><a href={site.links.rutube} target="_blank" rel="noopener" class="btn btn-line">Все видео на нашем канале Rutube ↗</a></p>
       <div class="svc-list">
         {video.map((v, i) => (
           <a class="svc-row" href={`/video/${v.slug}/`}>

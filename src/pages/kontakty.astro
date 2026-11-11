@@ -40,6 +40,7 @@ const tzItems = [
         </div>
         <div class="c-card">
           <p class="lbl">Мы в сети</p>
+          <a href={site.links.rutube} target="_blank" rel="noopener" class="acc">Наш канал на Rutube ↗</a>
           <a href={site.links.houzz} target="_blank" rel="noopener">Houzz ↗</a>
           <a href={site.links.forumhouse} target="_blank" rel="noopener">ForumHouse ↗</a>
           <a href={site.links.shop}>Магазин оборудования</a>
@@ -57,7 +58,8 @@ const tzItems = [
         <h2 class="h">Расскажите <span class="acc">о вашем участке</span></h2>
         <p class="lead" style="margin-top:24px;font-size:17px;max-width:460px">Чтобы обсудить проект — оставьте имя и телефон. Чтобы получить расчёт — выберите «Отправить ТЗ» и опишите задачу. Что стоит указать в техническом задании:</p>
         <ul class="dots" style="margin-top:20px;color:var(--on-dark);max-width:460px">{tzItems.map((t) => <li>{t}</li>)}</ul>
-        <p class="note" style="color:var(--on-dark-3);margin-top:20px">Можно прикрепить план участка, эскиз или готовое ТЗ (до 10 МБ) или прислать на {c.email}.</p>
+        <p style="margin-top:20px;max-width:460px"><a href={site.links.tz} class="acc" style="font-weight:600">Форма подачи технического задания — как заполнить ТЗ →</a></p>
+        <p class="note" style="color:var(--on-dark-3);margin-top:12px">Можно прикрепить план участка, эскиз или готовое ТЗ (до 10 МБ) или прислать на {c.email}.</p>
       </div>
       <div><ContactForm /></div>
     </div>

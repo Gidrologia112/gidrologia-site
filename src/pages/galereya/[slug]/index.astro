@@ -1,8 +1,9 @@
 ---
-import { services, gallery } from '../../lib/data';
-import Page from '../../layouts/Page.astro';
-import Photo from '../../components/Photo.astro';
-import CtaBlock from '../../components/CtaBlock.astro';
+import { services, gallery } from '../../../lib/data';
+import { albumsOf } from '../../../lib/gallery';
+import Page from '../../../layouts/Page.astro';
+import Photo from '../../../components/Photo.astro';
+import CtaBlock from '../../../components/CtaBlock.astro';
 
 export function getStaticPaths() {
   return gallery.map((g) => ({ params: { slug: g.slug } }));
@@ -11,17 +12,16 @@ const { slug } = Astro.params;
 const g = gallery.find((x) => x.slug === slug)!;
 const svc = services.find((s) => s.gallery === g.slug);
 const others = gallery.filter((x) => x.slug !== g.slug);
-type Album = { title: string; text: string; photos: { src: string; thumb: string }[] };
-const groups: { title: string; albums: Album[] }[] = [
-  ...(g.albums.length ? [{ title: '', albums: g.albums as Album[] }] : []),
-  ...(g.groups as { title: string; albums: Album[] }[]),
-];
+const groups = albumsOf(g);
 const total = groups.reduce((n, x) => n + x.albums.reduce((m, a) => m + a.photos.length, 0), 0);
+const objects = groups.reduce((n, x) => n + x.albums.length, 0);
+const ending = (n: number) => (n % 10 === 1 && n % 100 !== 11 ? 'объект' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 'объекта' : 'объектов');
 ---
 <Page
   title={`${g.title} — фото | Гидрология`}
   description={`Фотографии раздела «${g.title}» в галерее «Гидрологии»: ${total} фото построенных объектов.`}
   path={`/galereya/${g.slug}/`} label="Галерея" h1={g.title}
+  lead={objects ? `${objects} ${ending(objects)}, ${total} фото. Выберите объект, чтобы посмотреть все его фотографии.` : undefined}
   crumbs={[{ label: 'Галерея', href: '/galereya/' }, { label: g.title }]}
 >
   {svc && <a slot="hero" href={`/uslugi/${svc.slug}/`} class="btn btn-line" style="margin-top:28px">О решении: {svc.title} →</a>}
@@ -30,14 +30,15 @@ const total = groups.reduce((n, x) => n + x.albums.reduce((m, a) => m + a.photos
       {total > 0 ? groups.map((grp) => (
         <div class="gal-group">
           {grp.title && <h2 class="h t-h3" style="margin:0 0 32px">{grp.title}</h2>}
-          {grp.albums.map((a) => (
-            <div class="gal-album">
-              <div class="gal-head"><h3 class="h">{a.title}</h3>{a.text && <p>{a.text}</p>}</div>
-              <div class="gal-grid">
-                {a.photos.map((p, i) => <a href={p.src} target="_blank" rel="noopener" data-lb={a.title}><Photo src={p.thumb || p.src} alt={`${a.title} — фото ${i + 1}`} tone={g.tone} /></a>)}
-              </div>
-            </div>
-          ))}
+          <div class="gal-objects">
+            {grp.albums.map((a) => (
+              <a class="gal-obj" href={`/galereya/${g.slug}/${a.slug}/`}>
+                <Photo src={a.photos[0].thumb || a.photos[0].src} alt={a.title} tone={g.tone} />
+                <span class="gal-obj-t">{a.title}</span>
+                <span class="gal-obj-n">{a.photos.length} фото</span>
+              </a>
+            ))}
+          </div>
         </div>
       )) : (
         <div class="todo">Фотографий в этом разделе пока нет.</div>

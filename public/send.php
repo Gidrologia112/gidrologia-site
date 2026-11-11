@@ -6,7 +6,7 @@
  */
 
 const MAIL_TO     = 'info@gidrologia.ru';
-const MAIL_FROM   = 'no-reply@gidrologia.ru'; // ящик на домене сайта, иначе письма могут уходить в спам
+const MAIL_FROM   = 'info@gidrologia.ru';     // существующий ящик на домене (Timeweb): с несуществующего адреса письма отбраковываются
 const MAX_FILE    = 10 * 1024 * 1024;
 const RATE_LIMIT  = 5;     // не больше 5 заявок
 const RATE_WINDOW = 600;   // за 10 минут с одного IP
@@ -122,6 +122,7 @@ $headers = [
   'From: =?UTF-8?B?' . base64_encode('Сайт Гидрология') . '?= <' . MAIL_FROM . '>',
   'MIME-Version: 1.0',
 ];
+if (!empty($order['email'])) $headers[] = 'Reply-To: ' . $order['email'];
 
 if ($attachment) {
   $boundary = 'b' . bin2hex(random_bytes(12));
@@ -146,6 +147,8 @@ $saved = leads_save([
 ], $attachment);
 
 $sent = @mail(MAIL_TO, $encSubject, $content, implode("\r\n", $headers), '-f' . MAIL_FROM);
+// В журнале видно, ушло ли письмо (если нет — смотреть настройки почты на хостинге)
+if ($saved) leads_update($saved, ['mail' => $sent ? 'отправлено ' . date('d.m.Y H:i') : 'не отправлено: ' . (error_get_last()['message'] ?? 'mail() вернула false')]);
 if (!$sent && !$saved) reply(500, ['ok' => false, 'error' => 'Не получилось отправить. Позвоните нам: +7 812 748-22-44.']);
 
 reply(200, ['ok' => true]);

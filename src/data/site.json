@@ -14,6 +14,7 @@
   "links": {
     "shop": "/magazin/",
     "evo": "https://эво.com/",
+    "rutube": "https://rutube.ru/channel/25902802/",
     "houzz": "https://www.houzz.ru/pro/gidrologia/gidrologiya",
     "forumhouse": "https://www.forumhouse.ru/threads/92338/",
     "gardener": "http://forum.gardener.ru/viewtopic.php?f=21&t=4279",
@@ -349,7 +350,7 @@
     },
     {
       "title": "Общественные водоёмы",
-      "href": "/kontakty/#form",
+      "href": "/uslugi/obshchestvennye-vodoemy/",
       "tone": "#264B58",
       "photo": "/img/netcat/multifile/2557/chelpl075.jpeg",
       "photoLabel": "водоём в общественном пространстве",
@@ -364,8 +365,8 @@
           "value": "Под ключ"
         },
         {
-          "label": "Площадь",
-          "value": "[от __ м²]"
+          "label": "Сервис",
+          "value": "Круглый год"
         }
       ]
     }

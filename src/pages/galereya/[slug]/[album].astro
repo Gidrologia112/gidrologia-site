@@ -1,0 +1,41 @@
+---
+// Страница одного объекта галереи: все фото, описание, соседние объекты раздела
+import { services, gallery } from '../../../lib/data';
+import { albumsOf } from '../../../lib/gallery';
+import Page from '../../../layouts/Page.astro';
+import Photo from '../../../components/Photo.astro';
+import CtaBlock from '../../../components/CtaBlock.astro';
+
+export function getStaticPaths() {
+  return gallery.flatMap((g) => {
+    const all = albumsOf(g).flatMap((x) => x.albums);
+    return all.map((a, i) => ({ params: { slug: g.slug, album: a.slug }, props: { g, a, prev: all[i - 1], next: all[i + 1] } }));
+  });
+}
+const { g, a, prev, next } = Astro.props as any;
+const svc = services.find((s) => s.gallery === g.slug);
+const desc = (a.text ? a.text.replace(/\s+/g, ' ').slice(0, 150) : `Фотографии объекта «${a.title}»`) + ` — галерея «${g.title}», «Гидрология».`;
+---
+<Page
+  title={`${a.title} — ${g.title} | Гидрология`}
+  description={desc}
+  path={`/galereya/${g.slug}/${a.slug}/`} label={g.title} h1={a.title}
+  lead={a.text || `${a.photos.length} фото`}
+  image={a.photos[0].src}
+  crumbs={[{ label: 'Галерея', href: '/galereya/' }, { label: g.title, href: `/galereya/${g.slug}/` }, { label: a.title }]}
+>
+  <a slot="hero" href={`/galereya/${g.slug}/`} class="btn btn-line" style="margin-top:28px">← Все объекты раздела</a>
+  <section>
+    <div class="w sec-sm">
+      <div class="gal-grid">
+        {a.photos.map((p: any, i: number) => <a href={p.src} target="_blank" rel="noopener" data-lb={a.title}><Photo src={p.thumb || p.src} alt={`${a.title} — фото ${i + 1}`} tone={g.tone} eager={i < 8} /></a>)}
+      </div>
+      <nav class="gal-pn" aria-label="Другие объекты раздела">
+        {prev ? <a href={`/galereya/${g.slug}/${prev.slug}/`}><span>← Предыдущий объект</span><b>{prev.title}</b></a> : <span></span>}
+        {next ? <a class="r" href={`/galereya/${g.slug}/${next.slug}/`}><span>Следующий объект →</span><b>{next.title}</b></a> : <span></span>}
+      </nav>
+      {svc && <p style="margin-top:40px"><a href={`/uslugi/${svc.slug}/`} class="btn btn-line">О решении: {svc.title} →</a></p>}
+    </div>
+  </section>
+  <CtaBlock />
+</Page>

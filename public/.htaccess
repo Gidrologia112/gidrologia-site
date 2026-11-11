@@ -387,6 +387,8 @@ RewriteRule ^galereya/([^/]+)/[^/]+\.html$ /galereya/$1/ [L,R=301]
 # Старые разделы
 RewriteRule ^(content|node|taxonomy)(/.*)?$ /publikatsii/ [L,R=301]
 RewriteRule ^isparenie\.html$ /isparenie/ [L,R=301]
+# (страницы объектов галереи /galereya/раздел/объект/ существуют — их не трогаем)
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^galereya/([^/]+)/[^/.]+/?$ /galereya/$1/ [L,R=301]
 RewriteRule ^(index|search|404)/?$ / [L,R=301]
 # Старая главная с постраничным выводом (/?p=21) → главная без параметров

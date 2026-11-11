@@ -45,7 +45,7 @@ const shop = (s as { shop?: string }).shop || site.links.shop;
     <div class="w sec g-article">
       <div>
         <dl class="facts-row" style="margin-top:0;border-top:0;padding-top:0">{s.facts.map((f: any) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>
-        {includes && (
+        {includes && includes.length > 0 && (
           <div style="margin-top:56px">
             <h2 class="h" style="font-size:32px;margin:0 0 20px">Что входит</h2>
             <ol class="g-proc g-proc-auto">
