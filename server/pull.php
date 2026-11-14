@@ -19,6 +19,7 @@ const BRANCH = 'deploy';
 const KEEP = ['img/netcat/', 'forum/files/', 'netcat_files/', 'lib/leads-data/', 'lib/staff-data/', 'admin/oauth/config.php', 'admin/zayavki/config.php', 'admin/api/config.php', '.well-known/'];
 
 date_default_timezone_set('Europe/Moscow');
+umask(022); // cron на хостинге запускается с umask 077 — тогда веб-сервер не может читать сайт
 $dir    = __DIR__;
 $target = isset($argv) && in_array('--target', $argv, true) ? $argv[array_search('--target', $argv, true) + 1] : dirname($dir) . '/gidrologia-new/public_html';
 $force  = isset($argv) && in_array('--force', $argv, true);
@@ -76,6 +77,7 @@ function sync_config($dir, $target, &$state, $forceIt = false) {
   $old = is_file($target . '/admin/zayavki/config.php') ? (include $target . '/admin/zayavki/config.php') : [];
   $hash = ($pw !== '' && is_array($old) && !empty($old['password_hash']) && password_verify($pw, $old['password_hash'])) ? $old['password_hash'] : ($pw !== '' ? password_hash($pw, PASSWORD_DEFAULT) : '');
   file_put_contents($target . '/admin/zayavki/config.php', '<?php return ' . var_export(['password_hash' => $hash], true) . ";\n");
+  @chmod($target . '/admin/zayavki/config.php', 0600); @chmod($target . '/admin/oauth/config.php', 0600);
   $state['cfg'] = $sig;
   logmsg('Настройки кабинета обновлены' . ($hash === '' ? ' (пароль заявок не задан — вход закрыт)' : '') . (cfgval($cfg, 'github_token') === '' ? ' (ключ github_token не задан — вход сотрудников по паролю не заработает)' : ''));
   return true;
@@ -87,19 +89,25 @@ function readable($path, $rel) {
   if ((fileperms($path) & 0044) !== 0044) @chmod($path, 0644);
 }
 function fix_perms($dir, $target) {
-  if (is_file($dir . '/perms.done') || !is_dir($target)) return;
+  if (is_file($dir . '/perms2.done') || !is_dir($target)) return;
   $n = 0;
-  $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($target, FilesystemIterator::SKIP_DOTS));
+  foreach ([dirname($target), $target] as $d) if ((fileperms($d) & 0055) !== 0055) { @chmod($d, 0755); $n++; }
+  $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($target, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::SELF_FIRST);
   foreach ($it as $f) {
-    if ($f->isDir()) continue;
-    $rel = str_replace('\\', '/', substr($f->getPathname(), strlen($target) + 1));
-    $before = fileperms($f->getPathname());
-    readable($f->getPathname(), $rel);
-    clearstatcache(true, $f->getPathname());
-    if (fileperms($f->getPathname()) !== $before) $n++;
+    $p = $f->getPathname();
+    $rel = str_replace('\\', '/', substr($p, strlen($target) + 1));
+    $before = fileperms($p);
+    if ($f->isDir()) opendir_ok($p, $rel); else readable($p, $rel);
+    clearstatcache(true, $p);
+    if (fileperms($p) !== $before) $n++;
   }
-  file_put_contents($dir . '/perms.done', date('c') . "\n");
-  logmsg("Права файлов сайта исправлены: $n");
+  file_put_contents($dir . '/perms2.done', date('c') . "\n");
+  logmsg("Права папок и файлов сайта исправлены: $n");
+}
+// Папки сайта веб-сервер должен открывать (0755); папки с данными заявок и сотрудников остаются закрытыми.
+function opendir_ok($path, $rel) {
+  if (strpos($rel . '/', 'lib/leads-data/') === 0 || strpos($rel . '/', 'lib/staff-data/') === 0) return;
+  if ((fileperms($path) & 0055) !== 0055) @chmod($path, 0755);
 }
 function save_state($f, $state) { file_put_contents($f, json_encode($state, JSON_UNESCAPED_UNICODE)); }
 
@@ -235,6 +243,7 @@ foreach ($it as $f) {
   if (kept($rel)) continue;
   $dst = $target . '/' . $rel;
   if (!is_dir(dirname($dst))) mkdir(dirname($dst), 0755, true);
+  opendir_ok(dirname($dst), dirname($rel));
   if (!is_file($dst) || filesize($dst) !== $f->getSize() || md5_file($dst) !== md5_file($f->getPathname())) {
     copy($f->getPathname(), $dst . '.tmp') && rename($dst . '.tmp', $dst);
   }
