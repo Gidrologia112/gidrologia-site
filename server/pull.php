@@ -80,6 +80,27 @@ function sync_config($dir, $target, &$state, $forceIt = false) {
   logmsg('Настройки кабинета обновлены' . ($hash === '' ? ' (пароль заявок не задан — вход закрыт)' : '') . (cfgval($cfg, 'github_token') === '' ? ' (ключ github_token не задан — вход сотрудников по паролю не заработает)' : ''));
   return true;
 }
+// Статику должен читать веб-сервер: файлы сайта — 0644 (cron на хостинге создаёт файлы с правами 0600).
+// PHP-файлы и секреты (config.php, данные заявок и сотрудников) не трогаем.
+function readable($path, $rel) {
+  if (substr($rel, -4) === '.php' || strpos($rel, 'lib/leads-data/') === 0 || strpos($rel, 'lib/staff-data/') === 0) return;
+  if ((fileperms($path) & 0044) !== 0044) @chmod($path, 0644);
+}
+function fix_perms($dir, $target) {
+  if (is_file($dir . '/perms.done') || !is_dir($target)) return;
+  $n = 0;
+  $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($target, FilesystemIterator::SKIP_DOTS));
+  foreach ($it as $f) {
+    if ($f->isDir()) continue;
+    $rel = str_replace('\\', '/', substr($f->getPathname(), strlen($target) + 1));
+    $before = fileperms($f->getPathname());
+    readable($f->getPathname(), $rel);
+    clearstatcache(true, $f->getPathname());
+    if (fileperms($f->getPathname()) !== $before) $n++;
+  }
+  file_put_contents($dir . '/perms.done', date('c') . "\n");
+  logmsg("Права файлов сайта исправлены: $n");
+}
 function save_state($f, $state) { file_put_contents($f, json_encode($state, JSON_UNESCAPED_UNICODE)); }
 
 // Фото, видео и вложения форума старого сайта: копируются (не переносятся) из ~/public_html в новую папку
@@ -130,7 +151,7 @@ function copy_media($dir, $target) {
     $t = $target . '/' . $to;
     if (is_file($t) && filesize($t) === filesize($s)) { $have++; continue; }
     if (!is_dir(dirname($t))) mkdir(dirname($t), 0755, true);
-    if (copy($s, $t . '.tmp') && rename($t . '.tmp', $t)) { $copied++; $bytes += filesize($t); }
+    if (copy($s, $t . '.tmp') && rename($t . '.tmp', $t)) { @chmod($t, 0644); $copied++; $bytes += filesize($t); }
   }
   file_put_contents($doneFile, $sig . "\n");
   logmsg(sprintf('Медиа: скопировано %d (%.0f МБ), уже было %d, нет в старом сайте %d, пропущено %d', $copied, $bytes / 1048576, $have, $missing, $skipped));
@@ -139,6 +160,8 @@ function copy_media($dir, $target) {
 // Не запускаться дважды одновременно
 $lock = fopen($dir . '/pull.lock', 'c');
 if (!$lock || !flock($lock, LOCK_EX | LOCK_NB)) exit(0);
+
+fix_perms($dir, $target);
 
 $stateFile = $dir . '/state.json';
 $state = is_file($stateFile) ? json_decode(file_get_contents($stateFile), true) : [];
@@ -215,6 +238,7 @@ foreach ($it as $f) {
   if (!is_file($dst) || filesize($dst) !== $f->getSize() || md5_file($dst) !== md5_file($f->getPathname())) {
     copy($f->getPathname(), $dst . '.tmp') && rename($dst . '.tmp', $dst);
   }
+  readable($dst, $rel);
   $new[$rel] = true;
 }
 // 4. Удаляем то, что выкладывали раньше и чего больше нет в сборке
@@ -227,6 +251,6 @@ rrmdir($tmp);
 $state = array_merge($state, ['sha' => $sha, 'time' => date('c'), 'files' => array_keys($new)]);
 sync_config($dir, $target, $state, true);
 save_state($stateFile, $state);
-@file_put_contents($target . '/admin/deploy-status.json', json_encode(['version' => substr($sha, 0, 7), 'time' => date('c')]));
+@file_put_contents($target . '/admin/deploy-status.json', json_encode(['version' => substr($sha, 0, 7), 'time' => date('c')])); @chmod($target . '/admin/deploy-status.json', 0644);
 logmsg('Выложена сборка ' . substr($sha, 0, 7) . ': файлов ' . count($new) . ', удалено ' . $removed);
 copy_media($dir, $target);
