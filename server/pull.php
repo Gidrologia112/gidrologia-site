@@ -148,6 +148,26 @@ if (!is_array($state)) $state = [];
 $inbox = $dir . '/incoming';
 $zip = $dir . '/build.zip';
 $tmp = $dir . '/tmp';
+// Запасной путь: вместо build.zip в incoming лежит build.url — md5 архива в первой строке, дальше ссылки
+// на части архива (только jsDelivr / GitHub этого репозитория). Хостинг сам скачивает и склеивает части.
+if (!is_file($inbox . '/build.zip') && is_file($inbox . '/build.url') && is_file($inbox . '/build.sha')) {
+  $lines = array_values(array_filter(array_map('trim', explode("\n", (string) file_get_contents($inbox . '/build.url')))));
+  $md5 = strtolower(array_shift($lines) ?? '');
+  $ok = preg_match('/^[0-9a-f]{32}$/', $md5) && $lines;
+  foreach ($lines as $u) if (!preg_match('#^https://(cdn\.jsdelivr\.net/gh/Gidrologia112/gidrologia-site@|raw\.githubusercontent\.com/Gidrologia112/gidrologia-site/)[\w./-]+$#', $u)) $ok = false;
+  if (!$ok) { logmsg('incoming/build.url оформлен неверно — пропущен'); @unlink($inbox . '/build.url'); exit(1); }
+  $part = $dir . '/build.part'; $out = fopen($zip . '.dl', 'wb');
+  foreach ($lines as $i => $u) {
+    [$code, , $err] = http_get($u, [], $part);
+    if ($code !== 200) { fclose($out); @unlink($zip . '.dl'); @unlink($part); logmsg('Не удалось скачать часть ' . ($i + 1) . " сборки: HTTP $code $err"); exit(1); }
+    fwrite($out, file_get_contents($part));
+  }
+  fclose($out); @unlink($part);
+  if (md5_file($zip . '.dl') !== $md5) { @unlink($zip . '.dl'); logmsg('Скачанная сборка не совпала по md5 — выкладка отменена'); exit(1); }
+  rename($zip . '.dl', $inbox . '/build.zip');
+  @unlink($inbox . '/build.url');
+  logmsg('Сборка скачана по ссылкам (' . count($lines) . ' частей)');
+}
 if (is_file($inbox . '/build.zip') && is_file($inbox . '/build.sha')) {
   $sha = trim((string) file_get_contents($inbox . '/build.sha'));
   if (!preg_match('/^[0-9a-f]{40}$/', $sha)) { logmsg('В incoming/build.sha неверная версия — сборка пропущена'); @unlink($inbox . '/build.sha'); exit(1); }
