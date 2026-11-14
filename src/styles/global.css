@@ -426,7 +426,7 @@ a:hover .arr { transform: translateX(6px); }
   .ba-x { display: none; }
   .hero-row p { font-size: 17px; }
   .trust { gap: 10px 20px; margin-top: 32px; font-size: 13px; }
-  .g-tiles { grid-template-columns: minmax(0,1fr); grid-auto-rows: 240px; margin-top: 48px; gap: 14px; }
+  .g-tiles { grid-template-columns: minmax(0,1fr); grid-auto-rows: minmax(240px, auto); margin-top: 48px; gap: 14px; }
   .tile-big { grid-row: span 1; height: 380px; }
   .tile-big h3 { font-size: 24px; }
   .g-story { grid-template-columns: minmax(0,1fr); gap: 16px; margin-top: 56px; }
