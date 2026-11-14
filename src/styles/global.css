@@ -921,3 +921,10 @@ a:hover .arr, button:hover .arr { transform: translateX(5px); }
 .gal-pn a:hover b { color: var(--blue-text, #0a6aa1); }
 @media (max-width: 960px) { .gal-objects { grid-template-columns: repeat(3,minmax(0,1fr)); } }
 @media (max-width: 640px) { .gal-objects { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px 12px; } .gal-obj-t { font-size: 14px; } .gal-pn b { font-size: 15px; } }
+
+/* Карта без карточек городов (ноябрь 2026): точки и подписи, без кликов */
+.g-geo-plain { grid-template-columns: 1fr; gap: 20px; }
+.pt-static > i { position: absolute; left: -5px; top: -5px; width: 10px; height: 10px; border-radius: 50%; background: var(--paper); box-shadow: 0 0 0 3px rgba(0,131,195,.5); }
+.pt-static.hq > i { left: -7px; top: -7px; width: 14px; height: 14px; background: var(--sky); }
+.abroad-plain { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 14px; color: var(--muted-2); }
+.abroad-plain .chips { margin: 0; }

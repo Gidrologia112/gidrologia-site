@@ -353,6 +353,7 @@ RewriteRule ^ https://gidrologia.ru%{REQUEST_URI} [L,R=301]
 
 # Убранные записи (соцсети Meta): на список событий
 RewriteRule ^sobytiya/gidrologiya-v-(instagram|facebook)(/|\.html)?$ /sobytiya/ [L,R=301]
+RewriteRule ^sobytiya/dekorativnomu-vodoemu-v-ekaterinburge-5-let(/|\.html)?$ /sobytiya/ [L,R=301]
 
 # ===== 301-редиректы со старых адресов NetCat =====
 # Старые карточки услуг, проектов, публикаций и событий: /razdel/slug.html → /razdel/slug/
@@ -379,14 +380,16 @@ RewriteRule ^(uslugi|proekty|publikatsii|sobytiya)/([^/]+)\.html$ /$1/$2/ [L,R=3
 RewriteRule ^video/iskusstvennye-ozera-dlya-kottedzhnyh-poselkov\.html$ /video/iskusstvennye-ozera/ [L,R=301]
 RewriteRule ^video/([^/]+)\.html$ /video/$1/ [L,R=301]
 # Галерея: разделы с числовыми адресами и отдельные страницы фото → раздел
-RewriteRule ^galereya/galereya_67\.html$ /galereya/vodosohrannye-tehnologii/ [L,R=301]
-RewriteRule ^galereya/galereya_66\.html$ /galereya/obsluzhivanie/ [L,R=301]
-RewriteRule ^galereya/galereya_72\.html$ /galereya/proektirovanie/ [L,R=301]
+RewriteRule ^galereya/galereya_67\.html$ /galereya/ [L,R=301]
+RewriteRule ^galereya/galereya_66\.html$ /galereya/ [L,R=301]
+RewriteRule ^galereya/galereya_72\.html$ /galereya/ [L,R=301]
 RewriteRule ^galereya/galereya_\d+\.html$ /galereya/ [L,R=301]
 RewriteRule ^galereya/([^/]+)/[^/]+\.html$ /galereya/$1/ [L,R=301]
 # Старые разделы
 RewriteRule ^(content|node|taxonomy)(/.*)?$ /publikatsii/ [L,R=301]
 RewriteRule ^isparenie\.html$ /isparenie/ [L,R=301]
+# Пустые разделы галереи скрыты — в общий список
+RewriteRule ^galereya/(vodosohrannye-tehnologii|obsluzhivanie|proektirovanie)/?$ /galereya/ [L,R=301]
 # (страницы объектов галереи /galereya/раздел/объект/ существуют — их не трогаем)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^galereya/([^/]+)/[^/.]+/?$ /galereya/$1/ [L,R=301]

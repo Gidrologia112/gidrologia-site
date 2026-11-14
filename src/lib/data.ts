@@ -15,7 +15,9 @@ export const gallery = load(import.meta.glob('../data/gallery/*.json', { eager: 
   ...g, title: str(g.title), slug: str(g.slug), tone: g.tone || '#1F4A55',
   albums: arr(g.albums).map(album),
   groups: arr(g.groups).map((x: Any) => ({ ...x, title: str(x?.title), albums: arr(x?.albums).map(album) })),
-})).filter((g) => g.slug);
+}))
+  // Раздел без единого фото на сайте не показываем — появится сам, когда в кабинете загрузят фото
+  .filter((g) => g.slug && [...g.albums, ...g.groups.flatMap((x: Any) => x.albums)].some((a: Any) => a.photos?.length));
 export const video = load(import.meta.glob('../data/video/*.json', { eager: true }))
   .map((v) => ({ ...v, title: str(v.title), slug: str(v.slug), html: str(v.html) })).filter((v) => v.slug);
 export const projects = load(import.meta.glob('../data/projects/*.json', { eager: true }))

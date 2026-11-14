@@ -8,6 +8,7 @@ import ContactForm from '../components/ContactForm.astro';
 import site from '../data/site.json';
 import { mapPos, mapLabels, labelSide } from '../lib/map';
 import { getEvents, getPublications, fmtDate } from '../lib/content';
+import { gallery, video } from '../lib/data';
 const latestEvents = (await getEvents()).slice(0, 4);
 const kbPosts = await getPublications();
 
@@ -16,24 +17,11 @@ const L = site.links;
 const DEEP = '#05161D', DEEP2 = '#0A2A36', PAPER = '#F3F1EC', PAPER2 = '#EDE9E1', WHITE = '#FFFFFF';
 // Карта «От Невы до Урала»: подложка public/img/map.svg, города — по широте и долготе (src/lib/map.ts)
 const cityPos = (ct: { lat: number; lon: number }) => mapPos(ct.lat, ct.lon);
-// Материалы сайта по городу: статьи и события, в заголовке которых есть город (ищем по основе слова)
-const CITY_RX: Record<string, RegExp> = {
-  'Санкт-Петербург': /Петербург|СПб|Ленинградск|Токсов/i, 'Москва': /Москв|Подмосков|Хрущ[её]в/i, 'Нижний Новгород': /Нижн\S* Новгород/i,
-  'Казань': /Казан/i, 'Киров': /Киров/i, 'Уфа': /\bУф[аеуы]\b/i, 'Екатеринбург': /Екатеринбург/i, 'Валдай': /Валда|ЭВО/i, 'Псков': /Псков/i,
-  'Кортела': /Кортел|Карели/i, 'Калуга': /Калуг|Калужск/i, 'Рязань': /Рязан/i, 'Белгород': /Белгород/i, 'Челябинск': /Челябинск/i,
-  'Белоруссия': /Беларус|Белорус|Минск|Герман/i,
-};
-const allPosts = [...kbPosts.map((p) => ({ p, base: '/publikatsii/' })), ...(await getEvents()).map((p) => ({ p, base: '/sobytiya/' }))];
-const cities = site.cities.map((ct) => {
-  const rx = CITY_RX[ct.name] ?? new RegExp(ct.name.slice(0, 5), 'i');
-  const links = allPosts.filter(({ p }) => rx.test(p.data.title)).slice(0, 4).map(({ p, base }) => ({ t: p.data.title, href: `${base}${p.slug}/` }));
-  return { ...ct, text: ct.text.replace(/\s*\[Примеры объектов\]\s*/g, '').trim(), links };
-});
 const pad2 = (n: number) => String(n).padStart(2, '0');
 ---
 <Base
   title="Гидрология — искусственные водоёмы, живые бассейны и фонтаны под ключ"
-  description="Проектируем, строим и обслуживаем водные объекты с 2012 года: плавательные водоёмы, живые бассейны, декоративные пруды, каскады и фонтаны. Более 300 объектов, Санкт-Петербург и вся Россия."
+  description="Проектируем, строим и обслуживаем водные объекты с 2012 года: плавательные водоёмы, живые бассейны, декоративные пруды, каскады и фонтаны. Более 700 объектов, Санкт-Петербург и вся Россия."
 >
 <Header />
 
@@ -50,7 +38,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
       <p>Проектируем, строим под ключ и обслуживаем: плавательные водоёмы, живые бассейны, пруды, ручьи, каскады и фонтаны.</p>
       <div class="btns">
         <a href="#contact" class="btn btn-light">Обсудить проект</a>
-        <a href="#objects" class="btn btn-ghost">Смотреть объекты</a>
+        <a href="#objects" class="btn btn-ghost">Смотреть работы</a>
       </div>
     </div>
     <div class="trust rise r4">{site.trust.map((t) => <span>{t}</span>)}</div>
@@ -71,7 +59,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
     <div class="g-about rv">
       <p class="lbl" style="margin-top:10px">01 — О нас</p>
       <div>
-        <p class="h t-st">Мы — профильная компания ландшафтного рынка России. Наша специализация — водные объекты: водоёмы, ручьи, бассейны, каскады, водопады, фонтаны. <span class="acc">Это всё мы умеем и&nbsp;любим делать.</span></p>
+        <p class="h t-st">Профильная компания ландшафтного рынка России. Специализация — <span class="acc">водные объекты</span>: водоёмы, бассейны, ручьи, каскады, фонтаны.</p>
         <div class="g-nums">
           {site.stats.map((s) => <div><div class="h t-num">{s.value}{s.suffix && <span class="acc">{s.suffix}</span>}</div><p>{s.text}</p></div>)}
         </div>
@@ -93,7 +81,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
   </div>
 </section>
 
-<!-- 02 География -->
+<!-- 02 География: только города, без привязки к объектам (многие объекты закрыты по договору) -->
 <section id="geo" class="light-2">
   <div class="w sec">
     <div class="hd-row rv">
@@ -101,40 +89,28 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
         <p class="lbl">02 — География</p>
         <h2 class="h t-h2">От Невы <span class="acc">до&nbsp;Урала</span></h2>
       </div>
-      <p class="lead">Базируемся в Санкт-Петербурге, учебный центр на Валдае, строим по всей России. Нажмите на город, чтобы узнать, что мы там делали.</p>
+      <p class="lead">Базируемся в Санкт-Петербурге, учебный центр — на Валдае. Работаем по всей России.</p>
     </div>
-    <div class="g-geo rv" data-geo>
-      <div>
-        <div class="map">
-          <img src="/img/map.svg" alt="" width="1000" height="640" loading="lazy" decoding="async">
-          {mapLabels.map((l) => { const [x, y] = mapPos(l.lat, l.lon); return <span class={`map-l map-l-${l.k}`} style={`left:${x}%;top:${y}%`} aria-hidden="true">{l.t}</span>; })}
-          {cities.map((ct, i) => {
-            const [x, y] = cityPos(ct);
-            return (
-              <div class={`pt${ct.hq ? ' hq' : ''} ${labelSide[ct.name] ?? (x > 80 ? 'lft' : '')}`} style={`left:${x}%;top:${y}%`}>
-                {i === 0 && <span class="pt-pulse"></span>}
-                <button type="button" data-city={i} aria-pressed={i === 0 ? 'true' : 'false'} aria-label={ct.name}><i></i></button>
-                <span class="pt-l">{ct.name}</span>
-              </div>
-            );
-          })}
-        </div>
-        <div class="chips city-chips">
-          {cities.map((ct, i) => <button type="button" class="chip" data-city={i} aria-pressed={i === 0 ? 'true' : 'false'} style="min-height:36px;font-size:13px">{ct.name}</button>)}
-        </div>
+    <div class="g-geo g-geo-plain rv">
+      <div class="map">
+        <img src="/img/map.svg" alt="Карта: города, где работает «Гидрология»" width="1000" height="640" loading="lazy" decoding="async">
+        {mapLabels.map((l) => { const [x, y] = mapPos(l.lat, l.lon); return <span class={`map-l map-l-${l.k}`} style={`left:${x}%;top:${y}%`} aria-hidden="true">{l.t}</span>; })}
+        {site.cities.map((ct, i) => {
+          const [x, y] = cityPos(ct);
+          return (
+            <div class={`pt pt-static${ct.hq ? ' hq' : ''} ${labelSide[ct.name] ?? (x > 80 ? 'lft' : '')}`} style={`left:${x}%;top:${y}%`}>
+              {i === 0 && <span class="pt-pulse"></span>}
+              <i></i>
+              <span class="pt-l">{ct.name}</span>
+            </div>
+          );
+        })}
       </div>
-      <div class="city-card" aria-live="polite">
-        <p class="lbl" data-city-role>{site.cities[0].role}</p>
-        <h3 class="h" data-city-name>{site.cities[0].name}</h3>
-        <p data-city-text>{cities[0].text}</p>
-        <ul class="city-links" data-city-links>{cities[0].links.map((l) => <li><a href={l.href}>{l.t}</a></li>)}</ul>
-        <div class="abroad">
-          Также проектировали для коллег
-          <div class="chips">{site.abroad.map((a) => <span class="chip">{a}</span>)}</div>
-        </div>
+      <div class="abroad abroad-plain">
+        Также проектировали для коллег
+        <div class="chips">{site.abroad.map((a) => <span class="chip">{a}</span>)}</div>
       </div>
     </div>
-    <script type="application/json" id="cities-data" set:html={JSON.stringify(cities)}></script>
   </div>
 </section>
 
@@ -146,7 +122,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
         <p class="lbl">03 — Решения</p>
         <h2 class="h t-h2">Что мы <span class="acc">создаём</span></h2>
       </div>
-      <p class="lead">Каждое направление — от эскиза и проекта до запуска и сезонного обслуживания.</p>
+      <p class="lead">От проекта до запуска и обслуживания.</p>
     </div>
     <div class="g-sol rv" data-tabs>
       <div class="sol-list" role="tablist" aria-label="Направления">
@@ -180,107 +156,45 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
   </div>
 </section>
 
-<!-- Как устроено + сравнение -->
+<!-- Сравнение -->
 <section id="scheme" class="light-2">
   <div class="w sec">
     <div class="hd-row rv">
       <div>
-        <p class="lbl">Как это устроено</p>
-        <h2 class="h t-h2">Что внутри <span class="acc">плавательного водоёма</span></h2>
-      </div>
-      <p class="lead">Нажмите на точку на схеме. Схема упрощённая — каждый объект мы рассчитываем индивидуально.</p>
-    </div>
-    <div class="g-scheme rv" data-scheme>
-      <div class="scheme">
-        <svg viewBox="0 0 1000 520" role="img" aria-label="Схема плавательного водоёма в разрезе">
-          <path d="M0 150H1000V520H0Z" fill="#B9A98C"/>
-          <path d="M0 150H1000" stroke="#8C7C60" stroke-width="2"/>
-          <path d="M60 150L120 230L380 230L420 380L780 380L820 230L940 150Z" fill="#2B5E6E"/>
-          <path d="M60 150L120 230L380 230L420 380L780 380L820 230L940 150" fill="none" stroke="#1B1918" stroke-width="5"/>
-          <path d="M60 150H940" stroke="#9FD3E8" stroke-width="3"/>
-          <path d="M120 230H380" stroke="#3E7350" stroke-width="10" stroke-linecap="round"/>
-          <g stroke="#4F8A5B" stroke-width="4" stroke-linecap="round"><path d="M150 228V170M175 228V160M205 228V176M240 228V156M275 228V172M310 228V162M345 228V178"/></g>
-          <path d="M380 230L392 168" stroke="#E8E2D6" stroke-width="6"/>
-          <rect x="890" y="120" width="40" height="38" rx="4" fill="#E8E2D6" stroke="#1B1918" stroke-width="2"/>
-          <rect x="840" y="420" width="70" height="44" rx="6" fill="#E8E2D6" stroke="#1B1918" stroke-width="2"/>
-          <rect x="700" y="430" width="90" height="56" rx="6" fill="#E8E2D6" stroke="#1B1918" stroke-width="2"/>
-          <path d="M910 158V442M840 442H790M700 458H150V240" fill="none" stroke="#5E5954" stroke-width="3" stroke-dasharray="8 6"/>
-        </svg>
-        {site.scheme.map((p, i) => (
-          <button type="button" class="spot" data-spot={i} aria-pressed={i === 0 ? 'true' : 'false'} aria-label={p.title} style={`left:${p.x}%;top:${p.y}%`}>{i + 1}</button>
-        ))}
-      </div>
-      <div class="spot-card" aria-live="polite">
-        <p class="lbl">Элемент <span data-spot-n>1</span> из {site.scheme.length}</p>
-        <h3 class="h" data-spot-title>{site.scheme[0].title}</h3>
-        <p data-spot-text>{site.scheme[0].text}</p>
+        <p class="lbl">Сравнение</p>
+        <h2 class="h t-h2">Бассейн или <span class="acc">плавательный водоём</span></h2>
       </div>
     </div>
-    <script type="application/json" id="scheme-data" set:html={JSON.stringify(site.scheme)}></script>
-
     <div class="cmp-wrap rv">
-      <div class="hd-row" style="margin-bottom:32px">
-        <h3 class="h t-h3">Бассейн или <span class="acc">плавательный водоём?</span></h3>
-        <p class="lead">Сравниваем честно, чтобы вам было проще выбрать.</p>
-      </div>
       <div class="cmp" role="table" aria-label="Сравнение бассейна и плавательного водоёма">
         <div class="k" role="columnheader"><span class="sr">Параметр</span></div><div class="hd" role="columnheader">Классический бассейн</div><div class="hd hl" role="columnheader">Плавательный водоём</div>
         {site.compare.map((r) => <><div class="k" role="rowheader">{r.param}</div><div role="cell">{r.pool}</div><div class="hl" role="cell">{r.pond}</div></>)}
       </div>
-      <p class="note">Цифры подставим из смет «Гидрологии».</p>
     </div>
   </div>
 </section>
 
 <Lens from={PAPER2} to={DEEP} />
 
-<!-- 04 Объекты -->
+<!-- 04 Работы: без конкретных объектов (многие закрыты по договору) — вход в галерею и видео -->
 <section id="objects" class="dark">
   <div class="w sec" style="padding-top:64px">
     <div class="hd-row rv">
       <div>
-        <p class="lbl">04 — Объекты</p>
-        <h2 class="h t-h2">История одного <span class="acc">водоёма</span></h2>
+        <p class="lbl">04 — Работы</p>
+        <h2 class="h t-h2">Наши <span class="acc">работы</span></h2>
       </div>
-      <a href={L.objects} class="more">Все объекты →</a>
+      <p class="lead">Галерея и видео выполненных работ.</p>
     </div>
-    <div class="g-case rv">
-      <div class="ba" data-ba>
-        <div class="ba-before">{site.case.before && <img src={site.case.before} alt="Участок до строительства" loading="lazy">}<span class="ba-tag">До · участок</span></div>
-        <div class="ba-after">{site.case.after && <img src={site.case.after} alt="Тот же ракурс после строительства" loading="lazy">}<span class="ba-tag">После<span class="ba-x"> · тот же ракурс</span></span></div>
-        <div class="ba-line" aria-hidden="true"><span class="ba-knob"><svg width="22" height="12" viewBox="0 0 22 12" fill="none"><path d="M6 1L1 6l5 5M16 1l5 5-5 5" stroke="#05161D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-        <label><span class="sr">Сравнить участок до и после строительства</span><input type="range" min="0" max="100" value="50"></label>
-        <span class="ba-hint">Потяните, чтобы сравнить</span>
-      </div>
-      <div class="case" data-tabs>
-        <p class="lbl">{site.case.kind}</p>
-        <h3 class="h t-h3">{site.case.title}</h3>
-        <div class="case-tabs" role="tablist" aria-label="История объекта">
-          {site.case.steps.map((s, i) => <button type="button" role="tab" id={`cs-t${i}`} aria-controls={`cs-p${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{s.label}</button>)}
-        </div>
-        {site.case.steps.map((s, i) => <p class="case-text" role="tabpanel" id={`cs-p${i}`} aria-labelledby={`cs-t${i}`} hidden={i !== 0}>{s.text}</p>)}
-        {site.case.facts.length > 0 && <dl class="case-facts">{site.case.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>}
-        <a href={site.case.href} class="btn btn-light">Читать историю объекта</a>
-      </div>
-    </div>
-    <div class="strip rv">
-      {site.objects.map((o) => (
-        <a href={o.href}>
-          <Photo src={o.photo} alt={o.title} label="Фото объекта" tone={o.tone} />
-          <div class="kind">{o.kind}</div>
-          <div class="h name">{o.title}</div>
-        </a>
-      ))}
-    </div>
-    <div class="gv rv">
-      <a href={L.gallery} class="gv-card"><b class="h">Галерея</b><span>15 разделов: плавательные водоёмы, живые бассейны, фонтаны, эскизы и проекты</span><i aria-hidden="true">→</i></a>
-      <a href={L.video} class="gv-card"><b class="h">Видео</b><span>14 разделов: от купелей до зелёных кровель</span><i aria-hidden="true">→</i></a>
+    <div class="gv rv" style="margin-top:0">
+      <a href={L.gallery} class="gv-card"><b class="h">Галерея</b><span>{gallery.length} разделов: плавательные водоёмы, живые бассейны, фонтаны, эскизы и проекты</span><i aria-hidden="true">→</i></a>
+      <a href={L.video} class="gv-card"><b class="h">Видео</b><span>{video.length} разделов: от купелей до зелёных кровель</span><i aria-hidden="true">→</i></a>
     </div>
     <div class="gal rv" style="margin-top:28px">
       <div class="chips">
         <span class="gal-l">Разделы галереи:</span>
         {site.galleryChips.map((g) => <a class="chip" href={L.gallery}>{g}</a>)}
-        <a class="chip" href={L.gallery}>Все 15 разделов →</a>
+        <a class="chip" href={L.gallery}>Все {gallery.length} разделов →</a>
       </div>
     </div>
   </div>
@@ -322,7 +236,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
         <p class="lbl">05 — Сообщество</p>
         <h2 class="h t-h2">Знаем о воде больше, <span class="acc">чем видно с&nbsp;берега</span></h2>
       </div>
-      <p class="lead">Статьи и дневники строек. Опыт, который 12 лет копился на нашем форуме — 400+ тем и около 2 700 сообщений, — собран в одном месте.</p>
+      <p class="lead">Статьи и архив форума: 400+ тем за 12 лет.</p>
     </div>
     <div class="g-comm rv">
       <div data-kb>
@@ -362,7 +276,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
       <a href={L.evaporation} class="on"><b>Калькулятор испарения</b><span>Потери воды за день и месяц по площади и температуре воды</span></a>
       <a href={L.forum}><b>Форум</b><span>400+ тем: объекты, дневники строек, обсуждения</span></a>
       <a href="#contact" data-form-tab="1"><b>Подать ТЗ</b><span>Форма для расчёта проекта и стоимости водоёма</span></a>
-      <a href={L.video}><b>Видео</b><span>14 разделов: от купелей до зелёных кровель</span></a>
+      <a href={L.video}><b>Видео</b><span>{video.length} разделов: от купелей до зелёных кровель</span></a>
       <a href={L.shop}><b>Магазин</b><span>Оборудование для искусственных водоёмов</span></a>
     </div>
   </div>
@@ -376,9 +290,9 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
     <div class="rv">
       <p class="lbl">06 — Учебный центр ЭВО</p>
       <h2 class="h t-h2">Мы учим <span class="acc">других</span></h2>
-      <p class="lead" style="margin-top:24px;font-size:17px;max-width:none">Учебно-выставочный центр «ЭВО» — практические и теоретические семинары для ландшафтных компаний. Проводили их в Санкт-Петербурге, Москве, Казани, Киеве и на Валдае.</p>
+      <p class="lead" style="margin-top:24px;font-size:17px;max-width:none">Учебно-выставочный центр «ЭВО» — семинары для ландшафтных компаний.</p>
       <div class="evo-nums">
-        <div><div class="h">50+</div><span>семинаров</span></div>
+        <div><div class="h">150+</div><span>семинаров</span></div>
         <div><div class="h">4</div><span>летних семинара в 2026</span></div>
       </div>
       <div class="evo-addr"><b>Учебный центр «ЭВО»:</b> {site.evo.address}</div>
@@ -414,7 +328,7 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
 <!-- 08 Партнёры -->
 <section id="partners">
   <div class="w sec" style="padding-top:64px">
-    <div class="g2 rv" style="margin-bottom:44px">
+    <div class="g2 rv">
       <div>
         <p class="lbl">08 — Партнёры</p>
         <h2 class="h t-h2">Объединяйте усилия <span class="acc">с&nbsp;«Гидрологией»</span></h2>
@@ -423,15 +337,6 @@ const pad2 = (n: number) => String(n).padStart(2, '0');
         <ul class="dots">{site.partnerPoints.map((p) => <li>{p}</li>)}</ul>
         <a href={L.partners} class="more" style="display:inline-block;margin-top:22px">О партнёрской программе →</a>
       </div>
-    </div>
-    <div class="g-part rv">
-      {site.partners.map((p) => { const inner = <>{p.logo && <img src={p.logo} alt={p.name} loading="lazy">}<span>{p.name}</span></>; return p.href ? <a href={p.href} target="_blank" rel="noopener nofollow">{inner}</a> : <a role="presentation">{inner}</a>; })}
-    </div>
-    <div class="platforms rv">
-      <span>Нас читают на площадках:</span>
-      <a class="chip" href={L.houzz} target="_blank" rel="noopener">Houzz</a>
-      <a class="chip" href={L.forumhouse} target="_blank" rel="noopener">ForumHouse</a>
-      <a class="chip" href={L.gardener} target="_blank" rel="noopener">Gardener.ru</a>
     </div>
   </div>
 </section>

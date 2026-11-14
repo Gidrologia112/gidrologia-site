@@ -58,20 +58,5 @@ const benefits = [
     </div>
   </section>
 
-  <section>
-    <div class="w sec" style="padding-top:0">
-      <div class="hd-row rv"><div><p class="lbl">Наши партнёры</p><h2 class="h t-h2">С кем мы работаем</h2></div></div>
-      <div class="g-part rv">
-        {site.partners.map((p) => { const inner = <>{p.logo && <img src={p.logo} alt={p.name} loading="lazy">}<span>{p.name}</span></>; return p.href ? <a href={p.href} target="_blank" rel="noopener nofollow">{inner}</a> : <a role="presentation">{inner}</a>; })}
-      </div>
-      <div class="platforms rv">
-        <span>Нас читают на площадках:</span>
-        <a class="chip" href={site.links.houzz} target="_blank" rel="noopener">Houzz</a>
-        <a class="chip" href={site.links.forumhouse} target="_blank" rel="noopener">ForumHouse</a>
-        <a class="chip" href={site.links.gardener} target="_blank" rel="noopener">Gardener.ru</a>
-      </div>
-    </div>
-  </section>
-
   <CtaBlock title="Обсудим" accent="сотрудничество" text="Расскажите об объекте и этапе, на котором нужна помощь, — предложим формат работы." />
 </Page>

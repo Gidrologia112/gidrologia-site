@@ -1,18 +1,20 @@
 ---
 import { gallery } from '../../lib/data';
+import { full } from '../../lib/gallery';
 import Page from '../../layouts/Page.astro';
 import Photo from '../../components/Photo.astro';
 import CtaBlock from '../../components/CtaBlock.astro';
 type Album = { title: string; text: string; photos: { src: string; thumb: string }[] };
-const all = (g: any): Album[] => [...g.albums, ...g.groups.flatMap((x: any) => x.albums)];
+const all = (g: any): Album[] => [...g.albums, ...g.groups.flatMap((x: any) => x.albums)].filter(full);
 const count = (g: any) => all(g).reduce((n, a) => n + a.photos.length, 0);
+const obj = (n: number) => n % 10 === 1 && n % 100 !== 11 ? 'объект' : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 'объекта' : 'объектов';
 const first = (g: any) => { const p = all(g)[0]?.photos[0]; return p ? (p.thumb || p.src) : ''; };
 ---
 <Page
   title="Галерея водоёмов, бассейнов и фонтанов — Гидрология"
   description="Фотографии объектов «Гидрологии»: плавательные и декоративные водоёмы, живые бассейны, купели, фонтаны, эскизы и проекты, учебный центр ЭВО."
   path="/galereya/" label="Галерея" h1="Галерея"
-  lead="Фотографии построенных объектов, эскизы и проекты, монтаж и семинары — 15 разделов."
+  lead={`Фотографии построенных объектов, эскизы и проекты, монтаж и семинары — ${gallery.length} разделов.`}
   crumbs={[{ label: 'Галерея' }]}
 >
   <section>
@@ -22,7 +24,7 @@ const first = (g: any) => { const p = all(g)[0]?.photos[0]; return p ? (p.thumb 
           <a class="card" href={`/galereya/${g.slug}/`}>
             <Photo label="Фото раздела" tone={g.tone} src={first(g)} alt={g.title} />
             <div class="h name">{g.title}</div>
-            {count(g) > 0 && <p>{count(g)} фото · {all(g).length} объектов</p>}
+            {count(g) > 0 && <p>{count(g)} фото · {all(g).length} {obj(all(g).length)}</p>}
           </a>
         ))}
       </div>
