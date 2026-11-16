@@ -8,6 +8,12 @@ DirectoryIndex index.html index.php
 # Единый адрес https://gidrologia.ru: другие домены и www — туда.
 # new.gidrologia.ru — предпросмотр до запуска: без переадресации и закрыт от поисковиков.
 RewriteEngine On
+# Схема для переадресаций. Хостинг стоит за прокси и сам считает, что запрос пришёл по http,
+# поэтому относительные адреса в переадресациях превращались в http://… (лишний переход).
+# Основной домен всегда https, предпросмотр new.gidrologia.ru — http.
+RewriteRule ^ - [E=SCH:http]
+RewriteCond %{HTTP_HOST} ^(www\.)?(shop\.)?gidrologia\.ru$ [NC]
+RewriteRule ^ - [E=SCH:https]
 SetEnvIfNoCase Host ^new\.gidrologia\.ru$ GIDRO_PREVIEW
 <IfModule mod_headers.c>
   Header always set X-Robots-Tag "noindex, nofollow" env=GIDRO_PREVIEW
@@ -352,101 +358,106 @@ RewriteCond %{HTTP:X-Forwarded-Proto} !=https
 RewriteRule ^ https://gidrologia.ru%{REQUEST_URI} [L,R=301]
 
 # Убранные записи (соцсети Meta): на список событий
-RewriteRule ^sobytiya/gidrologiya-v-(instagram|facebook)(/|\.html)?$ /sobytiya/ [L,R=301]
-RewriteRule ^sobytiya/dekorativnomu-vodoemu-v-ekaterinburge-5-let(/|\.html)?$ /sobytiya/ [L,R=301]
+RewriteRule ^sobytiya/gidrologiya-v-(instagram|facebook)(/|\.html)?$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/ [L,R=301]
+RewriteRule ^sobytiya/dekorativnomu-vodoemu-v-ekaterinburge-5-let(/|\.html)?$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/ [L,R=301]
 
 # ===== 301-редиректы со старых адресов NetCat =====
 # Старые карточки услуг, проектов, публикаций и событий: /razdel/slug.html → /razdel/slug/
 # Записи без ЧПУ на старом сайте (sobytiya_ID.html)
-RewriteRule ^sobytiya/sobytiya_3\.html$ /sobytiya/vodnye-obekty-na-uchastke-klassifikatsiya-otlichiy-3/ [L,R=301]
-RewriteRule ^sobytiya/sobytiya_4\.html$ /sobytiya/otkryta-videostranichka-gidrologii-na-youtube-4/ [L,R=301]
-RewriteRule ^sobytiya/sobytiya_5\.html$ /sobytiya/seminar-25-26-fevralya-2014-g-v-kieve-5/ [L,R=301]
-RewriteRule ^sobytiya/sobytiya_6\.html$ /sobytiya/seminar-na-temu-plavatelnye-vodoemy-sposoby-biolog-6/ [L,R=301]
-RewriteRule ^sobytiya/sobytiya_7\.html$ /sobytiya/my-stali-blizhe-k-vam-7/ [L,R=301]
-RewriteRule ^sobytiya/sobytiya_9\.html$ /sobytiya/25-yanvarya-sostoyalsya-pervyj-v-etom-godu-seminar-9/ [L,R=301]
-RewriteRule ^sobytiya/sobytiya_11\.html$ /sobytiya/den-rozhdeniya-dmitriya-petrova-11/ [L,R=301]
-RewriteRule ^sobytiya/sobytiya_12\.html$ /sobytiya/zvonok-s-sajta-12/ [L,R=301]
-RewriteRule ^sobytiya/sobytiya_13\.html$ /sobytiya/seminar-dmitriya-petrova-v-kieve-sostoitsya-13/ [L,R=301]
-RewriteRule ^sobytiya/sobytiya_15\.html$ /sobytiya/seminar-v-kazani-15/ [L,R=301]
-RewriteRule ^sobytiya/sobytiya_19\.html$ /sobytiya/blagotvoritelnyj-proekt-vodoem-s-vodopadom-dlya-gm-19/ [L,R=301]
-RewriteRule ^sobytiya/sobytiya_20\.html$ /sobytiya/nachalo-sezona-2014-20/ [L,R=301]
-RewriteRule ^sobytiya/sobytiya_21\.html$ /sobytiya/gidrologiya-na-ukraine-21/ [L,R=301]
-RewriteRule ^sobytiya/sobytiya_35\.html$ /sobytiya/publikatsiya-novogo-proekta-35/ [L,R=301]
-RewriteRule ^sobytiya/sobytiya_55\.html$ /sobytiya/sostoyalsya-letnij-seminar-dmitriya-petrova-55/ [L,R=301]
-RewriteRule ^sobytiya/sobytiya_314\.html$ /sobytiya/pozdravlyaem-s-novym-godom-314/ [L,R=301]
-RewriteRule ^uslugi/vodoemybezopasnye-kaskadnye\.html$ /uslugi/vodoemy-bezopasnye-kaskadnye/ [L,R=301]
-RewriteRule ^(uslugi|proekty|publikatsii|sobytiya)/([^/]+)\.html$ /$1/$2/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_3\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/vodnye-obekty-na-uchastke-klassifikatsiya-otlichiy-3/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_4\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/otkryta-videostranichka-gidrologii-na-youtube-4/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_5\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/seminar-25-26-fevralya-2014-g-v-kieve-5/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_6\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/seminar-na-temu-plavatelnye-vodoemy-sposoby-biolog-6/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_7\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/my-stali-blizhe-k-vam-7/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_9\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/25-yanvarya-sostoyalsya-pervyj-v-etom-godu-seminar-9/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_11\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/den-rozhdeniya-dmitriya-petrova-11/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_12\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/zvonok-s-sajta-12/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_13\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/seminar-dmitriya-petrova-v-kieve-sostoitsya-13/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_15\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/seminar-v-kazani-15/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_19\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/blagotvoritelnyj-proekt-vodoem-s-vodopadom-dlya-gm-19/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_20\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/nachalo-sezona-2014-20/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_21\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/gidrologiya-na-ukraine-21/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_35\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/publikatsiya-novogo-proekta-35/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_55\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/sostoyalsya-letnij-seminar-dmitriya-petrova-55/ [L,R=301]
+RewriteRule ^sobytiya/sobytiya_314\.html$ %{ENV:SCH}://%{HTTP_HOST}/sobytiya/pozdravlyaem-s-novym-godom-314/ [L,R=301]
+RewriteRule ^uslugi/vodoemybezopasnye-kaskadnye\.html$ %{ENV:SCH}://%{HTTP_HOST}/uslugi/vodoemy-bezopasnye-kaskadnye/ [L,R=301]
+RewriteRule ^(uslugi|proekty|publikatsii|sobytiya)/([^/]+)\.html$ %{ENV:SCH}://%{HTTP_HOST}/$1/$2/ [L,R=301]
 # Видео: /video/razdel.html → /video/razdel/
-RewriteRule ^video/iskusstvennye-ozera-dlya-kottedzhnyh-poselkov\.html$ /video/iskusstvennye-ozera/ [L,R=301]
-RewriteRule ^video/([^/]+)\.html$ /video/$1/ [L,R=301]
+RewriteRule ^video/iskusstvennye-ozera-dlya-kottedzhnyh-poselkov\.html$ %{ENV:SCH}://%{HTTP_HOST}/video/iskusstvennye-ozera/ [L,R=301]
+RewriteRule ^video/([^/]+)\.html$ %{ENV:SCH}://%{HTTP_HOST}/video/$1/ [L,R=301]
 # Галерея: разделы с числовыми адресами и отдельные страницы фото → раздел
-RewriteRule ^galereya/galereya_67\.html$ /galereya/ [L,R=301]
-RewriteRule ^galereya/galereya_66\.html$ /galereya/ [L,R=301]
-RewriteRule ^galereya/galereya_72\.html$ /galereya/ [L,R=301]
-RewriteRule ^galereya/galereya_\d+\.html$ /galereya/ [L,R=301]
-RewriteRule ^galereya/([^/]+)/[^/]+\.html$ /galereya/$1/ [L,R=301]
+RewriteRule ^galereya/galereya_67\.html$ %{ENV:SCH}://%{HTTP_HOST}/galereya/ [L,R=301]
+RewriteRule ^galereya/galereya_66\.html$ %{ENV:SCH}://%{HTTP_HOST}/galereya/ [L,R=301]
+RewriteRule ^galereya/galereya_72\.html$ %{ENV:SCH}://%{HTTP_HOST}/galereya/ [L,R=301]
+RewriteRule ^galereya/galereya_\d+\.html$ %{ENV:SCH}://%{HTTP_HOST}/galereya/ [L,R=301]
+RewriteRule ^galereya/([^/]+)/[^/]+\.html$ %{ENV:SCH}://%{HTTP_HOST}/galereya/$1/ [L,R=301]
 # Старые разделы
-RewriteRule ^(content|node|taxonomy)(/.*)?$ /publikatsii/ [L,R=301]
-RewriteRule ^isparenie\.html$ /isparenie/ [L,R=301]
+RewriteRule ^(content|node|taxonomy)(/.*)?$ %{ENV:SCH}://%{HTTP_HOST}/publikatsii/ [L,R=301]
+RewriteRule ^isparenie\.html$ %{ENV:SCH}://%{HTTP_HOST}/isparenie/ [L,R=301]
 # Пустые разделы галереи скрыты — в общий список
-RewriteRule ^galereya/(vodosohrannye-tehnologii|obsluzhivanie|proektirovanie)/?$ /galereya/ [L,R=301]
+RewriteRule ^galereya/(vodosohrannye-tehnologii|obsluzhivanie|proektirovanie)/?$ %{ENV:SCH}://%{HTTP_HOST}/galereya/ [L,R=301]
 # (страницы объектов галереи /galereya/раздел/объект/ существуют — их не трогаем)
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^galereya/([^/]+)/[^/.]+/?$ /galereya/$1/ [L,R=301]
-RewriteRule ^(index|search|404)/?$ / [L,R=301]
+RewriteRule ^galereya/([^/]+)/[^/.]+/?$ %{ENV:SCH}://%{HTTP_HOST}/galereya/$1/ [L,R=301]
+RewriteRule ^(index|search|404)/?$ %{ENV:SCH}://%{HTTP_HOST}/ [L,R=301]
+# Старая карта сайта NetCat → новая (её адрес помнит Яндекс Вебмастер)
+RewriteRule ^sitemap\.xml$ %{ENV:SCH}://%{HTTP_HOST}/sitemap-index.xml [L,R=301]
 # Старая главная с постраничным выводом (/?p=21) → главная без параметров
 RewriteCond %{QUERY_STRING} ^p=\d+$
-RewriteRule ^$ /? [L,R=301]
-RewriteRule ^geografiya/?$ /#geo [NE,L,R=301]
+RewriteRule ^$ %{ENV:SCH}://%{HTTP_HOST}/? [L,R=301]
+RewriteRule ^geografiya/?$ %{ENV:SCH}://%{HTTP_HOST}/#geo [NE,L,R=301]
 # Архив форума: старые адреса phpBB → статичные страницы
 RewriteRule ^forum/files/ - [L]
 RewriteCond %{QUERY_STRING} (^|&)t=(\d+)
-RewriteRule ^forum/viewtopic\.php$ /arhiv-foruma/tema-%2/? [L,R=301]
+RewriteRule ^forum/viewtopic\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/tema-%2/? [L,R=301]
 # viewtopic.php?p=СООБЩЕНИЕ — тему находит forum/viewtopic.php по списку сообщений
 RewriteRule ^forum/(viewtopic\.php|posts\.json)$ - [L]
 RewriteCond %{QUERY_STRING} (^|&)f=24(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/24-plavatelnye-vodoemy/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/24-plavatelnye-vodoemy/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=25(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/25-dekorativnye-vodoemy/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/25-dekorativnye-vodoemy/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=7(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/7-bezopasnye-kaskadnye-vodoemy/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/7-bezopasnye-kaskadnye-vodoemy/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=2(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/2-plavatelnye-vodoemy/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/2-plavatelnye-vodoemy/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=28(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/28-kupeli/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/28-kupeli/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=16(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/16-obschestvennye-plavatelnye-vodoemy/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/16-obschestvennye-plavatelnye-vodoemy/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=11(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/11-bassejny-klassicheskie/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/11-bassejny-klassicheskie/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=6(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/6-zhivye-bassejny/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/6-zhivye-bassejny/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=5(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/5-dekorativnye-vodoemy/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/5-dekorativnye-vodoemy/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=4(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/4-vodoemy-dlya-ryb/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/4-vodoemy-dlya-ryb/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=3(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/3-fontany/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/3-fontany/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=21(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/21-estestvennye-vodoemy/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/21-estestvennye-vodoemy/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=20(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/20-zelenye-krovli/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/20-zelenye-krovli/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=12(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/12-vodosohrannye-tehnologii/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/12-vodosohrannye-tehnologii/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=15(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/15-montazh-gidroizolyatsii/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/15-montazh-gidroizolyatsii/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=18(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/18-montazh-oborudovaniya/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/18-montazh-oborudovaniya/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=10(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/10-obsluzhivanie/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/10-obsluzhivanie/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=17(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/17-seminary-vystavki-vebinary/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/17-seminary-vystavki-vebinary/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=13(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/13-raznoe/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/13-raznoe/? [L,R=301]
 RewriteCond %{QUERY_STRING} (^|&)f=19(&|$)
-RewriteRule ^forum/viewforum\.php$ /arhiv-foruma/19-spetsialisty-rossii/? [L,R=301]
-RewriteRule ^forum(/.*)?$ /arhiv-foruma/? [L,R=301]
+RewriteRule ^forum/viewforum\.php$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/19-spetsialisty-rossii/? [L,R=301]
+RewriteRule ^forum(/.*)?$ %{ENV:SCH}://%{HTTP_HOST}/arhiv-foruma/? [L,R=301]
+# Папка без косой черты в конце (/uslugi → /uslugi/): сами, иначе сервер подставит http://
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.*[^/])$ %{ENV:SCH}://%{HTTP_HOST}/$1/ [L,R=301]
 # Служебные адреса NetCat
-RewriteRule ^netcat(/.*)?$ / [L,R=301]
+RewriteRule ^netcat(/.*)?$ %{ENV:SCH}://%{HTTP_HOST}/ [L,R=301]
 
 ErrorDocument 404 /404.html
 

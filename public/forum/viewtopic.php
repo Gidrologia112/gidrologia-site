@@ -7,4 +7,7 @@ if (!$t && isset($_GET['p'])) {
 }
 $to = $t ? "/arhiv-foruma/tema-$t/" : '/arhiv-foruma/';
 if ($t && !is_dir(dirname(__DIR__) . "/arhiv-foruma/tema-$t")) $to = '/arhiv-foruma/';
-header('Location: ' . $to, true, 301);
+// Полный адрес: иначе сервер за прокси подставляет http:// и получается лишний переход
+$host = preg_match('/^(www\.)?(new\.)?gidrologia\.ru$/i', $_SERVER['HTTP_HOST'] ?? '') ? $_SERVER['HTTP_HOST'] : 'gidrologia.ru';
+$scheme = stripos($host, 'new.') === 0 ? 'http' : 'https';
+header('Location: ' . $scheme . '://' . $host . $to, true, 301);

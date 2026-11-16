@@ -1,10 +1,8 @@
 # Сборка сайта при каждом изменении (в том числе из кабинета редактора).
-# Готовая сборка отправляется на Timeweb по FTP с шифрованием (FTPS, сертификат проверяется)
-# в ~/deploy/incoming/, там её раскладывает server/pull.php по расписанию Crontab. Хостингу не нужно
-# ходить в GitHub (из России он бывает недоступен). Копия сборки по-прежнему кладётся в ветку `deploy`
-# (запасной путь: php pull.php --github). Пароли и ключи в сборку не попадают;
-# FTP: сервер vh432.timeweb.ru, пользователь co66690_deploy (в панели ограничен папкой ~/deploy/incoming,
-# без доступа к панели); пароль — секрет репозитория FTP_PASSWORD.
+# Готовая сборка частями кладётся в ветку `vykladka`; хостинг сам забирает её через jsDelivr
+# (server/pull.php по расписанию Crontab). Копия сборки по-прежнему кладётся в ветку `deploy`.
+# Пароли и ключи в сборку не попадают. Прежний путь по FTP убран: с 3 ноября 2026 Timeweb
+# закрыт для подключений из-за рубежа.
 name: Сборка и выкладка
 
 on:
@@ -51,38 +49,22 @@ jobs:
           git commit -qm "Сборка ${GITHUB_SHA::7}"
           git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" deploy
 
-      - name: Отправка сборки на Timeweb (FTPS)
-        # Сервер Timeweb vh432 с 3 ноября недоступен из-за рубежа — ошибка отправки не роняет сборку
-        continue-on-error: true
-        timeout-minutes: 5
-        env:
-          FTP_HOST: vh432.timeweb.ru
-          FTP_USER: co66690_deploy
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+      - name: Публикация сборки в ветку vykladka (её забирает хостинг через jsDelivr)
+        # Хостинг не достаёт до GitHub-файлов, а GitHub — до хостинга. Сборка режется на части по 1,5 МБ
+        # и кладётся в ветку vykladka. ~/deploy/pull.php раз в 3 минуты узнаёт версию ветки через api.github.com
+        # и скачивает части с cdn.jsdelivr.net по точному sha коммита, сверяя md5.
         run: |
-          if [ -z "$FTP_PASSWORD" ]; then
-            echo "::warning::Секрет FTP_PASSWORD не задан — сборка не отправлена на хостинг"; exit 0
-          fi
-          sudo apt-get install -y -qq lftp >/dev/null
-          mkdir -p pkg/site && cp -r dist/. pkg/site/
-          (cd pkg && zip -qr ../build.zip site)
-          echo "$GITHUB_SHA" > build.sha
-          # Пользователь FTP ограничен папкой ~/deploy/incoming: всё кладём в его корень.
-          # Сначала под временными именами, потом переименовываем — хостинг не увидит недокачанный файл.
-          lftp -u "$FTP_USER,$FTP_PASSWORD" "$FTP_HOST" <<'LFTP'
-          set cmd:fail-exit yes
-          set net:timeout 30
-          set net:max-retries 3
-          set ftp:ssl-force yes
-          set ftp:ssl-protect-data yes
-          set ssl:verify-certificate yes
-          put import/files-to-copy.tsv -o files-to-copy.tsv
-          put import/media-refs.txt -o media-refs.txt
-          put server/pull.php -o pull.php.part
-          mv pull.php.part pull.php
-          put build.sha -o build.sha
-          put build.zip -o build.zip.part
-          mv build.zip.part build.zip
-          bye
-          LFTP
-          echo "Сборка ${GITHUB_SHA::7} отправлена, хостинг выложит её в течение 3 минут"
+          mkdir -p pkg/site && cp -r dist/. pkg/site/ && rm -rf pkg/site/.git
+          (cd pkg && zip -qrX ../build.zip site)
+          mkdir vk && cd vk
+          split -b 1500000 -d -a 2 ../build.zip build.zip.p
+          { echo "$GITHUB_SHA"; md5sum ../build.zip | cut -d' ' -f1; ls build.zip.p*; } > manifest.txt
+          cp ../import/files-to-copy.tsv ../import/media-refs.txt .
+          cat manifest.txt
+          git init -q -b vykladka
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "Выкладка ${GITHUB_SHA::7}"
+          git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" vykladka
+          echo "Сборка ${GITHUB_SHA::7} опубликована, хостинг выложит её в течение 3–6 минут"

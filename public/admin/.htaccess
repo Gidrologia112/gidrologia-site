@@ -1,3 +1,6 @@
+# Настройки кабинета: без типа содержимого Decap CMS не читает config.yml («Error loading the CMS configuration»)
+AddType text/yaml .yml
+
 # Кабинет редактора: своя политика безопасности (скрипты Decap CMS с unpkg, API GitHub)
 <IfModule mod_headers.c>
   Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https://*.githubusercontent.com https://github.com https://mc.yandex.ru; connect-src 'self' blob: data: https://api.github.com https://*.githubusercontent.com https://unpkg.com; frame-src 'self' blob:; font-src 'self' data: https://unpkg.com; form-action 'self' https://github.com; base-uri 'self'; frame-ancestors 'none'"

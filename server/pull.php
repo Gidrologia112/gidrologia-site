@@ -2,11 +2,11 @@
 /**
  * Выкладка нового сайта на Timeweb «изнутри»: хостинг сам забирает свежую сборку из GitHub.
  *
- * Как работает: GitHub Actions собирает сайт и сам отправляет его по FTP в ~/deploy/incoming/
- * (build.zip + build.sha + списки фото + свежий pull.php). Этот скрипт по расписанию (Crontab в панели
- * Timeweb, раз в 3 минуты) находит новую сборку и раскладывает её в папку сайта. Хостингу не нужно
- * ходить в GitHub (из России GitHub бывает недоступен). Запасной путь — забрать ветку `deploy`
- * с GitHub самому: php pull.php --github.
+ * Как работает: GitHub Actions собирает сайт и кладёт его частями в ветку `vykladka`. Этот скрипт
+ * по расписанию (Crontab в панели Timeweb, раз в 3 минуты) узнаёт через api.github.com, не появилась ли
+ * новая версия, скачивает части с jsDelivr, сверяет md5 и раскладывает сборку в папку сайта
+ * (см. auto_check). Можно и вручную положить в ~/deploy/incoming/ build.zip + build.sha или build.url + build.sha.
+ * Запасной путь — забрать ветку `deploy` с GitHub самому: php pull.php --github.
  * Удаляет только те файлы, которые сам когда-то выложил и которых больше нет в сборке;
  * фото, видео, заявки и настройки не трогает.
  *
@@ -165,6 +165,49 @@ function copy_media($dir, $target) {
   logmsg(sprintf('Медиа: скопировано %d (%.0f МБ), уже было %d, нет в старом сайте %d, пропущено %d', $copied, $bytes / 1048576, $have, $missing, $skipped));
 }
 
+// Автовыкладка: GitHub Actions кладёт части сборки в ветку vykladka (manifest.txt: sha сайта, md5 архива, имена частей).
+// Версию ветки узнаём через api.github.com (до него хостинг достаёт), а части качаем с jsDelivr по точному sha
+// коммита — такой адрес не меняется, кэш jsDelivr не мешает. Дальше работает обычный путь через incoming/build.url.
+const AUTO_BRANCH = 'vykladka';
+function auto_check($dir, $inbox, &$state) {
+  if (is_file($inbox . '/build.zip') || is_file($inbox . '/build.url')) return;
+  $cfg = is_file($dir . '/config.php') ? (include $dir . '/config.php') : [];
+  $tok = is_array($cfg) ? cfgval($cfg, 'github_token') : '';
+  $h = ['Accept: application/vnd.github.sha'];
+  if ($tok !== '') $h[] = 'Authorization: Bearer ' . $tok;
+  [$code, $body, $err] = http_get('https://api.github.com/repos/' . REPO . '/commits/' . AUTO_BRANCH, $h);
+  $v = trim((string) $body);
+  if ($code !== 200 || !preg_match('/^[0-9a-f]{40}$/', $v)) {
+    if (($state['auto_err'] ?? '') !== (string) $code) logmsg('Автовыкладка: не удалось узнать версию ветки ' . AUTO_BRANCH . ": HTTP $code $err");
+    $state['auto_err'] = (string) $code;
+    return;
+  }
+  unset($state['auto_err']);
+  if (($state['vk'] ?? '') === $v) return;
+  $base = 'https://cdn.jsdelivr.net/gh/' . REPO . '@' . $v . '/';
+  [$c, $man] = http_get($base . 'manifest.txt');
+  $lines = array_values(array_filter(array_map('trim', explode("\n", (string) $man))));
+  if ($c !== 200 || count($lines) < 3 || !preg_match('/^[0-9a-f]{40}$/', $lines[0]) || !preg_match('/^[0-9a-f]{32}$/', $lines[1])) {
+    logmsg('Автовыкладка: manifest.txt версии ' . substr($v, 0, 7) . " не прочитан (HTTP $c), повторю позже");
+    return;
+  }
+  $sha = $lines[0]; $md5 = $lines[1]; $urls = [];
+  foreach (array_slice($lines, 2) as $p) {
+    if (!preg_match('/^build\.zip\.p\d+$/', $p)) { logmsg('Автовыкладка: неверное имя части в manifest.txt'); return; }
+    $urls[] = $base . $p;
+  }
+  $state['vk'] = $v;
+  if (($state['sha'] ?? '') === $sha) return;
+  @mkdir($inbox, 0755, true);
+  foreach (['files-to-copy.tsv', 'media-refs.txt'] as $f) {
+    [$c2, $b2] = http_get($base . $f);
+    if ($c2 === 200 && strlen((string) $b2) > 0) file_put_contents($inbox . '/' . $f, $b2);
+  }
+  file_put_contents($inbox . '/build.url', $md5 . "\n" . implode("\n", $urls) . "\n");
+  file_put_contents($inbox . '/build.sha', $sha . "\n");
+  logmsg('Автовыкладка: найдена новая сборка ' . substr($sha, 0, 7) . ' (' . count($urls) . ' частей)');
+}
+
 // Не запускаться дважды одновременно
 $lock = fopen($dir . '/pull.lock', 'c');
 if (!$lock || !flock($lock, LOCK_EX | LOCK_NB)) exit(0);
@@ -179,6 +222,7 @@ if (!is_array($state)) $state = [];
 $inbox = $dir . '/incoming';
 $zip = $dir . '/build.zip';
 $tmp = $dir . '/tmp';
+if (!$viaGh) { auto_check($dir, $inbox, $state); save_state($stateFile, $state); }
 // Запасной путь: вместо build.zip в incoming лежит build.url — md5 архива в первой строке, дальше ссылки
 // на части архива (только jsDelivr / GitHub этого репозитория). Хостинг сам скачивает и склеивает части.
 if (!is_file($inbox . '/build.zip') && is_file($inbox . '/build.url') && is_file($inbox . '/build.sha')) {
