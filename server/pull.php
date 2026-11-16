@@ -169,8 +169,17 @@ function copy_media($dir, $target) {
 // Версию ветки узнаём через api.github.com (до него хостинг достаёт), а части качаем с jsDelivr по точному sha
 // коммита — такой адрес не меняется, кэш jsDelivr не мешает. Дальше работает обычный путь через incoming/build.url.
 const AUTO_BRANCH = 'vykladka';
+// jsDelivr иногда отвечает 404/503 на свежую версию (16.11: сборка 7eb551e). Тот же файл есть
+// на его запасных адресах — пробуем их по очереди.
+function jsd_get($url, $file = null) {
+  $tries = [$url];
+  if (strpos($url, 'https://cdn.jsdelivr.net/') === 0) foreach (['fastly', 'gcore', 'testingcf'] as $h) $tries[] = 'https://' . $h . '.jsdelivr.net/' . substr($url, 25);
+  $r = [0, '', ''];
+  foreach ($tries as $u) { $r = http_get($u, [], $file); if ($r[0] === 200) return $r; }
+  return $r;
+}
 function auto_check($dir, $inbox, &$state) {
-  if (is_file($inbox . '/build.zip') || is_file($inbox . '/build.url')) return;
+  if (is_file($inbox . '/build.zip')) return;
   $cfg = is_file($dir . '/config.php') ? (include $dir . '/config.php') : [];
   $tok = is_array($cfg) ? cfgval($cfg, 'github_token') : '';
   $h = ['Accept: application/vnd.github.sha'];
@@ -183,9 +192,16 @@ function auto_check($dir, $inbox, &$state) {
     return;
   }
   unset($state['auto_err']);
-  if (($state['vk'] ?? '') === $v) return;
+  // Очередь из прошлой проверки: если её не удалось скачать, а в ветке уже новая версия — заменяем
+  // (раньше застрявшая очередь блокировала выкладку навсегда). Ручной build.url не трогаем.
+  $queued = is_file($inbox . '/build.url') ? (string) file_get_contents($inbox . '/build.url') : '';
+  if ($queued !== '') {
+    if (strpos($queued, '@' . $v . '/') !== false) return;
+    if (strpos($queued, 'cdn.jsdelivr.net/gh/' . REPO . '@') === false) return;
+    logmsg('Автовыкладка: в ветке ' . AUTO_BRANCH . ' новая версия ' . substr($v, 0, 7) . ', прежняя очередь заменена');
+  } elseif (($state['vk'] ?? '') === $v) return;
   $base = 'https://cdn.jsdelivr.net/gh/' . REPO . '@' . $v . '/';
-  [$c, $man] = http_get($base . 'manifest.txt');
+  [$c, $man] = jsd_get($base . 'manifest.txt');
   $lines = array_values(array_filter(array_map('trim', explode("\n", (string) $man))));
   if ($c !== 200 || count($lines) < 3 || !preg_match('/^[0-9a-f]{40}$/', $lines[0]) || !preg_match('/^[0-9a-f]{32}$/', $lines[1])) {
     logmsg('Автовыкладка: manifest.txt версии ' . substr($v, 0, 7) . " не прочитан (HTTP $c), повторю позже");
@@ -197,10 +213,14 @@ function auto_check($dir, $inbox, &$state) {
     $urls[] = $base . $p;
   }
   $state['vk'] = $v;
-  if (($state['sha'] ?? '') === $sha) return;
+  if (($state['sha'] ?? '') === $sha) {
+    // Эта версия сайта уже выложена: устаревшая очередь больше не нужна
+    if ($queued !== '') { @unlink($inbox . '/build.url'); @unlink($inbox . '/build.sha'); }
+    return;
+  }
   @mkdir($inbox, 0755, true);
   foreach (['files-to-copy.tsv', 'media-refs.txt'] as $f) {
-    [$c2, $b2] = http_get($base . $f);
+    [$c2, $b2] = jsd_get($base . $f);
     if ($c2 === 200 && strlen((string) $b2) > 0) file_put_contents($inbox . '/' . $f, $b2);
   }
   file_put_contents($inbox . '/build.url', $md5 . "\n" . implode("\n", $urls) . "\n");
@@ -233,7 +253,7 @@ if (!is_file($inbox . '/build.zip') && is_file($inbox . '/build.url') && is_file
   if (!$ok) { logmsg('incoming/build.url оформлен неверно — пропущен'); @unlink($inbox . '/build.url'); exit(1); }
   $part = $dir . '/build.part'; $out = fopen($zip . '.dl', 'wb');
   foreach ($lines as $i => $u) {
-    [$code, , $err] = http_get($u, [], $part);
+    [$code, , $err] = jsd_get($u, $part);
     if ($code !== 200) { fclose($out); @unlink($zip . '.dl'); @unlink($part); logmsg('Не удалось скачать часть ' . ($i + 1) . " сборки: HTTP $code $err"); exit(1); }
     fwrite($out, file_get_contents($part));
   }
