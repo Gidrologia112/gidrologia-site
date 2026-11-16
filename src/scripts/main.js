@@ -170,6 +170,35 @@ function initKb() {
   apply();
 }
 
+/* ---------- Метка формы (защита от спама, проверяет send.php — см. public/lib/antispam.php) ----------
+   Метку берём при первом касании формы. Перед отправкой ждём, чтобы с выдачи прошло не меньше 4 секунд,
+   и обновляем метку, если она старше 6 часов. Без метки форму не отправляем: сервер молча отбросил бы заявку. */
+const FT_MIN = 4000, FT_REFRESH = 6 * 3600 * 1000;
+let ftPromise = null, ftAt = 0;
+function formToken(force) {
+  if (force || !ftPromise || Date.now() - ftAt > FT_REFRESH) {
+    ftAt = Date.now();
+    ftPromise = fetch('/send.php?token=1', { cache: 'no-store', headers: { 'X-Requested-With': 'fetch' } })
+      .then((r) => r.json()).then((d) => { ftAt = Date.now(); return d && d.t ? d.t : ''; })
+      .catch(() => '');
+    ftPromise.then((t) => { if (!t) ftPromise = null; });
+  }
+  return ftPromise;
+}
+function armToken(form) {
+  const go = () => { formToken(); };
+  ['focusin', 'pointerdown', 'input'].forEach((ev) => form.addEventListener(ev, go, { once: true, passive: true }));
+}
+async function withToken(form) {
+  let t = await formToken();
+  if (!t) t = await formToken(true);
+  if (!t) return null;
+  const wait = FT_MIN - (Date.now() - ftAt);
+  if (wait > 0) await new Promise((r) => setTimeout(r, wait));
+  const fd = new FormData(form); fd.set('ft', t);
+  return fd;
+}
+
 /* ---------- Форма ---------- */
 function initForm() {
   const wrap = $('[data-form-wrap]');
@@ -191,6 +220,7 @@ function initForm() {
   if (location.hash === '#tz' || wrap.dataset.formStart === '1') setMode(1);
   $$('[data-form-tab]').forEach((a) => a.addEventListener('click', () => setMode(Number(a.dataset.formTab))));
 
+  armToken(form);
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     msg.className = 'form-msg'; msg.textContent = '';
@@ -202,7 +232,9 @@ function initForm() {
     const btn = $('[data-ft-btn]', form);
     btn.disabled = true;
     try {
-      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'X-Requested-With': 'fetch' } });
+      const body = await withToken(form);
+      if (!body) { msg.classList.add('err'); msg.textContent = 'Нет связи с сервером. Обновите страницу или позвоните нам: +7 812 748-22-44.'; return; }
+      const res = await fetch(form.action, { method: 'POST', body, headers: { 'X-Requested-With': 'fetch' } });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
         form.reset(); setMode(wrap.dataset.formStart === '1' ? 1 : 0);
@@ -331,6 +363,7 @@ function initShop() {
     .catch(() => { list.textContent = 'Не удалось загрузить корзину. Обновите страницу.'; });
 
   const msg = $('[data-order-msg]', form);
+  armToken(form);
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     msg.className = 'form-msg'; msg.textContent = '';
@@ -338,7 +371,9 @@ function initShop() {
     if (!form.consent.checked) { msg.classList.add('err'); msg.textContent = 'Нужно согласие на обработку персональных данных.'; return; }
     const btn = $('button[type=submit]', form); btn.disabled = true;
     try {
-      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'X-Requested-With': 'fetch' } });
+      const body = await withToken(form);
+      if (!body) { msg.classList.add('err'); msg.textContent = 'Нет связи с сервером. Обновите страницу или позвоните нам: +7 812 748-22-44.'; btn.disabled = false; return; }
+      const res = await fetch(form.action, { method: 'POST', body, headers: { 'X-Requested-With': 'fetch' } });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
         save({}); form.reset(); form.hidden = true; empty.hidden = true; totalWrap.hidden = true;

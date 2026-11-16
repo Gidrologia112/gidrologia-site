@@ -123,6 +123,7 @@ if ($authed && isset($_GET['csv'])) {
             <span class="tag"><?= ['tz' => 'Техническое задание', 'order' => 'Заказ из магазина'][$l['type'] ?? ''] ?? 'Обсудить проект' ?></span>
             <?= $h(date('d.m.Y H:i', strtotime($l['created'] ?? 'now'))) ?>
             <?php if (!empty($l['page'])): ?> · со страницы <?= $h(parse_url((string) $l['page'], PHP_URL_PATH) ?: '/') ?><?php endif; ?>
+            <?php if (!empty($l['spam_reason'])): ?> · фильтр спама: <span style="color:#b3261e"><?= $h($l['spam_reason']) ?></span><?php endif; ?>
             <?php if (!empty($l['mail'])): ?> · письмо: <span style="color:<?= strpos((string) $l['mail'], 'не ') === 0 ? '#b3261e' : 'inherit' ?>"><?= $h($l['mail']) ?></span><?php endif; ?>
           </div>
           <?php if (!empty($l['message'])): ?><p class="msg"><?= $h($l['message']) ?></p><?php endif; ?>

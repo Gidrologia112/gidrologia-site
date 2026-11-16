@@ -1,7 +1,9 @@
 <?php
 /**
  * Гидрология — обработчик формы заявки.
- * Отправляет письмо на MAIL_TO. Защита: honeypot, проверка полей, ограничение частоты по IP, проверка файла.
+ * Отправляет письмо на MAIL_TO. Защита: подписанная метка формы и фильтр спама (lib/antispam.php — там описаны правила),
+ * honeypot, проверка полей, ограничение частоты по настоящему IP посетителя, проверка файла.
+ * GET /send.php?token=1 — выдаёт метку для формы (её берёт скрипт сайта).
  * Работает на обычном хостинге Timeweb (PHP 7.4+), функция mail() должна быть включена в панели.
  */
 
@@ -27,6 +29,14 @@ function reply(int $code, array $data): void {
   exit;
 }
 
+require_once __DIR__ . '/lib/antispam.php';
+
+// Метка для формы: скрипт сайта берёт её при первом касании формы
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['token'])) {
+  header('Cache-Control: no-store, private');
+  reply(200, ['t' => form_token_issue()]);
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') reply(405, ['ok' => false, 'error' => 'Метод не поддерживается.']);
 
 // Принимаем запросы только со своего сайта
@@ -36,10 +46,14 @@ if ($origin !== '' && !preg_match('~^https?://(www\.|new\.)?gidrologia\.ru$~i', 
 }
 
 // Honeypot: боты заполняют скрытое поле
-if (!empty($_POST['website'])) reply(200, ['ok' => true]);
+if (!empty($_POST['website'])) { antispam_log('ловушка website'); reply(200, ['ok' => true]); }
 
-// Ограничение частоты по IP (файлы во временной папке)
-$ip = $_SERVER['REMOTE_ADDR'] ?? '0';
+// Метка формы: без неё, слишком быстро или слишком поздно — молча «ок», ничего не сохраняем и не шлём
+$tokErr = form_token_check((string) ($_POST['ft'] ?? ''));
+if ($tokErr !== '') { antispam_log($tokErr); reply(200, ['ok' => true]); }
+
+// Ограничение частоты по настоящему IP посетителя (файлы во временной папке)
+$ip = client_ip();
 $rateFile = sys_get_temp_dir() . '/gidro_rate_' . hash('sha256', $ip);
 $now = time();
 $hits = [];
@@ -60,6 +74,7 @@ $name    = clean('name', 100);
 $phone   = clean('phone', 30);
 $type    = in_array($_POST['type'] ?? '', ['tz', 'order'], true) ? $_POST['type'] : 'project';
 $message = mb_substr(str_replace("\0", '', trim((string) ($_POST['message'] ?? ''))), 0, 3000);
+$userText = $message . "\n" . clean('city', 200); // то, что написал сам посетитель — для фильтра спама
 $consent = ($_POST['consent'] ?? '') === '1';
 
 if ($name === '' || strlen(preg_replace('/\D/', '', $phone)) < 10) reply(422, ['ok' => false, 'error' => 'Укажите имя и телефон.']);
@@ -90,6 +105,9 @@ if ($type === 'order') {
   if ($email !== '') $txt .= "E-mail: {$email}\n";
   $message = $txt . ($message !== '' ? "\nКомментарий покупателя:\n" . $message : '');
 }
+
+// Фильтр по содержанию: подозрительная заявка сохраняется со статусом «Спам» и не уходит на почту
+$spam = spam_reasons($name, $phone, $userText);
 
 // Файл (только для ТЗ)
 $attachment = null;
@@ -143,8 +161,15 @@ require_once __DIR__ . '/lib/leads.php';
 $saved = leads_save([
   'type' => $type, 'name' => $name, 'phone' => $phone, 'message' => $message,
   'page' => mb_substr((string) ($_SERVER['HTTP_REFERER'] ?? ''), 0, 200),
-  'created' => date('c'), 'consent' => true, 'order' => $order, 'consent_doc' => '/soglasie/ ред. 03.11.2026', 'ip' => mb_substr((string) ($_SERVER['HTTP_X_REAL_IP'] ?? $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'] ?? ''), 0, 100),
-], $attachment);
+  'created' => date('c'), 'consent' => true, 'order' => $order, 'consent_doc' => '/soglasie/ ред. 03.11.2026', 'ip' => mb_substr(client_ip(), 0, 100),
+  'remote_addr' => mb_substr((string) ($_SERVER['REMOTE_ADDR'] ?? ''), 0, 60), // для проверки, за прокси ли сайт
+  'status' => $spam ? 'spam' : 'new',
+] + ($spam ? ['spam_reason' => implode(', ', $spam)] : []), $attachment);
+
+if ($spam) {
+  if ($saved) leads_update($saved, ['mail' => 'не отправлялось: фильтр спама']);
+  reply(200, ['ok' => true]);
+}
 
 $sent = @mail(MAIL_TO, $encSubject, $content, implode("\r\n", $headers), '-f' . MAIL_FROM);
 // В журнале видно, ушло ли письмо (если нет — смотреть настройки почты на хостинге)

@@ -38,7 +38,7 @@ function leads_save(array $lead, ?array $file): ?string {
     }
   }
   $lead['id'] = $id;
-  $lead['status'] = 'new';
+  $lead['status'] = in_array($lead['status'] ?? '', ['new', 'spam'], true) ? $lead['status'] : 'new';
   $lead['note'] = '';
   @file_put_contents($dir . '/' . $id . '.json', json_encode($lead, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT), LOCK_EX);
   return $id;
