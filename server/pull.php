@@ -169,15 +169,25 @@ function copy_media($dir, $target) {
 // Версию ветки узнаём через api.github.com (до него хостинг достаёт), а части качаем с jsDelivr по точному sha
 // коммита — такой адрес не меняется, кэш jsDelivr не мешает. Дальше работает обычный путь через incoming/build.url.
 const AUTO_BRANCH = 'vykladka';
-// jsDelivr иногда отвечает 404/503 на свежую версию (16.11: сборка 7eb551e). Тот же файл есть
-// на его запасных адресах — пробуем их по очереди.
+// Файлы ветки vykladka качаем сначала через api.github.com (до него хостинг достаёт; та же
+// дорога, по которой узнаём версию), а jsDelivr — запасной путь. 16.11 jsDelivr весь вечер
+// отвечал 404/503 на свежие версии (сборки 7eb551e, 18b7fb4), и выкладка стояла.
 function jsd_get($url, $file = null) {
-  $tries = [$url];
-  if (strpos($url, 'https://cdn.jsdelivr.net/') === 0) foreach (['fastly', 'gcore', 'testingcf'] as $h) $tries[] = 'https://' . $h . '.jsdelivr.net/' . substr($url, 25);
+  $tries = [];
+  if (preg_match('#^https://cdn\.jsdelivr\.net/gh/([\w.-]+/[\w.-]+)@([0-9a-f]{40})/([\w./-]+)$#', $url, $m)) {
+    $cfg = is_file(__DIR__ . '/config.php') ? (include __DIR__ . '/config.php') : [];
+    $tok = is_array($cfg) ? cfgval($cfg, 'github_token') : '';
+    $h = ['Accept: application/vnd.github.raw', 'X-GitHub-Api-Version: 2022-11-28'];
+    if ($tok !== '') $h[] = 'Authorization: Bearer ' . $tok;
+    $tries[] = ['https://api.github.com/repos/' . $m[1] . '/contents/' . $m[3] . '?ref=' . $m[2], $h];
+  }
+  $tries[] = [$url, []];
+  if (strpos($url, 'https://cdn.jsdelivr.net/') === 0) foreach (['fastly', 'gcore'] as $host) $tries[] = ['https://' . $host . '.jsdelivr.net/' . substr($url, 25), []];
   $r = [0, '', ''];
-  foreach ($tries as $u) { $r = http_get($u, [], $file); if ($r[0] === 200) return $r; }
+  foreach ($tries as [$u, $h]) { $r = http_get($u, $h, $file); if ($r[0] === 200) return $r; }
   return $r;
 }
+
 function auto_check($dir, $inbox, &$state) {
   if (is_file($inbox . '/build.zip')) return;
   $cfg = is_file($dir . '/config.php') ? (include $dir . '/config.php') : [];
