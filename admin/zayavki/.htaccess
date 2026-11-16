@@ -1,0 +1,7 @@
+Options -Indexes
+<FilesMatch "^config(\.sample)?\.php$">
+  Require all denied
+</FilesMatch>
+<IfModule mod_headers.c>
+  Header always unset Content-Security-Policy
+</IfModule>

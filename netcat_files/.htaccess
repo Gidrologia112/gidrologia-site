@@ -1,0 +1,10 @@
+# Папка старого сайта: здесь остаются только видео (userfiles/video).
+# Скрипты в ней не выполняются и не отдаются — на случай, если в старых файлах остались вредоносные.
+Options -Indexes -ExecCGI
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .phar .pl .py .cgi
+<FilesMatch "\.(php\d?|phtml|phar|pl|py|cgi|sh|htaccess)$">
+  Require all denied
+</FilesMatch>
+<FilesMatch "\.(mp4|webm|mov)$">
+  Header set Cache-Control "public, max-age=31536000"
+</FilesMatch>

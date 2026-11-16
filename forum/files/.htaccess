@@ -1,0 +1,14 @@
+# Фото из архива форума (вложения phpBB без расширений в именах файлов).
+# Файлы отдаются как изображения; скрипты здесь не выполняются и не отдаются.
+<IfModule mod_authz_core.c>
+  Require all granted
+</IfModule>
+Options -Indexes -ExecCGI
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .phar .pl .py .cgi
+ForceType image/jpeg
+<FilesMatch "\.(php\d?|phtml|phar|pl|py|cgi|sh)$">
+  Require all denied
+</FilesMatch>
+<IfModule mod_headers.c>
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</IfModule>
