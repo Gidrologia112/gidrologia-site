@@ -44,6 +44,9 @@ $uri = (string) ($_SERVER['REQUEST_URI'] ?? '');
 $path = (string) preg_replace('~^/admin/api/?~', '', (string) parse_url($uri, PHP_URL_PATH));
 $query = (string) parse_url($uri, PHP_URL_QUERY);
 $path = rawurldecode($path);
+// Косая черта внутри имени ветки (cms/sobytiya/…): Apache на хостинге отбрасывает адреса с %2F (404),
+// поэтому кабинет присылает её как %252F — после первой раскодировки здесь остаётся %2F
+$path = str_ireplace('%2F', '/', $path);
 if (preg_match('~(^|/)\.\.(/|$)~', $path)) out(400, ['message' => 'Неверный адрес']);
 
 // Кто вошёл: отвечаем сами — так в кабинете и в истории правок видно имя сотрудника

@@ -11,6 +11,17 @@
 </head>
 <body>
   <script>window.CMS_MANUAL_INIT = true;</script>
+  <script>
+    // Apache на хостинге не пропускает %2F в адресе (404), а Decap так кодирует имена веток cms/…
+    // (например, при удалении ветки после публикации). Посредник /admin/api/ понимает %252F.
+    (function () {
+      var f = window.fetch;
+      window.fetch = function (input, init) {
+        if (typeof input === 'string' && input.indexOf('/admin/api/') !== -1) input = input.replace(/%2F/gi, '%252F');
+        return f.call(this, input, init);
+      };
+    })();
+  </script>
   <script src="https://unpkg.com/decap-cms@3.17.1/dist/decap-cms.js"></script>
   <script>
     // Транслитерация заголовка в адрес страницы (Decap сам кириллицу не переводит)
